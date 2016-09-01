@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DyroEngine", "DyroEngine\DyroEngine.vcxproj", "{3DF3DA9D-6CA5-43C0-B490-A101A816915A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DyroGame", "DyroGame\DyroGame.vcxproj", "{7696E5CC-81C2-45C0-83EC-22B3A7A7185B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3DF3DA9D-6CA5-43C0-B490-A101A816915A} = {3DF3DA9D-6CA5-43C0-B490-A101A816915A}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Engine", "1. Engine", "{716E20A3-1DEA-4F24-A14F-3145927BEB0C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Game", "3. Game", "{6A0B8FBF-F932-4AAA-A3F1-B328E58515D9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Externals", "2. Externals", "{8BAD9FBB-9C5E-4329-A7AE-8E96C9724506}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Tools", "4. Tools", "{16176A18-31A1-4C82-ADD2-419A7B123CDC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
+		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3DF3DA9D-6CA5-43C0-B490-A101A816915A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3DF3DA9D-6CA5-43C0-B490-A101A816915A}.Debug|Win32.Build.0 = Debug|Win32
+		{3DF3DA9D-6CA5-43C0-B490-A101A816915A}.Debug|x64.ActiveCfg = Debug|Win32
+		{3DF3DA9D-6CA5-43C0-B490-A101A816915A}.Release|Win32.ActiveCfg = Release|Win32
+		{3DF3DA9D-6CA5-43C0-B490-A101A816915A}.Release|Win32.Build.0 = Release|Win32
+		{3DF3DA9D-6CA5-43C0-B490-A101A816915A}.Release|x64.ActiveCfg = Release|Win32
+		{7696E5CC-81C2-45C0-83EC-22B3A7A7185B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7696E5CC-81C2-45C0-83EC-22B3A7A7185B}.Debug|Win32.Build.0 = Debug|Win32
+		{7696E5CC-81C2-45C0-83EC-22B3A7A7185B}.Debug|x64.ActiveCfg = Debug|x64
+		{7696E5CC-81C2-45C0-83EC-22B3A7A7185B}.Debug|x64.Build.0 = Debug|x64
+		{7696E5CC-81C2-45C0-83EC-22B3A7A7185B}.Release|Win32.ActiveCfg = Release|Win32
+		{7696E5CC-81C2-45C0-83EC-22B3A7A7185B}.Release|Win32.Build.0 = Release|Win32
+		{7696E5CC-81C2-45C0-83EC-22B3A7A7185B}.Release|x64.ActiveCfg = Release|x64
+		{7696E5CC-81C2-45C0-83EC-22B3A7A7185B}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3DF3DA9D-6CA5-43C0-B490-A101A816915A} = {716E20A3-1DEA-4F24-A14F-3145927BEB0C}
+		{7696E5CC-81C2-45C0-83EC-22B3A7A7185B} = {6A0B8FBF-F932-4AAA-A3F1-B328E58515D9}
+	EndGlobalSection
+EndGlobal

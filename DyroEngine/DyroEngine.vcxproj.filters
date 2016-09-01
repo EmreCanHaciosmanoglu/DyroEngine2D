@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Core">
+      <UniqueIdentifier>{79805992-63fc-411a-b50f-d4d937398760}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core\Main">
+      <UniqueIdentifier>{0dcfee41-88ff-46fe-9443-cbc8fbb36db5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Defines">
+      <UniqueIdentifier>{5f122730-291f-4610-a280-93e0ca943083}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core\Systems">
+      <UniqueIdentifier>{639f91dd-82f1-4488-a7f3-1b5687e20446}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SceneGraph">
+      <UniqueIdentifier>{88427e0c-5487-4c90-9c27-58046cb544f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SceneGraph\Base">
+      <UniqueIdentifier>{1d52c887-31ab-4a63-9e49-44cc07b7395c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Defines\Context">
+      <UniqueIdentifier>{cf922d28-c17c-4b3d-9bc1-cd49f7b7ee6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Math">
+      <UniqueIdentifier>{34eab2a1-bf20-4113-a282-703239940d41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core\Systems\Graphics">
+      <UniqueIdentifier>{32cc5fdf-b1ac-46f9-b381-acc77325c443}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core\Systems\Graphics\Rendering">
+      <UniqueIdentifier>{b8f46d51-d7f0-4782-af77-8af715daea6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core\Systems\Timer">
+      <UniqueIdentifier>{7f37b6e5-213a-40c9-8976-a405266b9bcb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Helpers">
+      <UniqueIdentifier>{b65cb8c8-1bba-48d9-8c4f-10cf0c0b17f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Debug">
+      <UniqueIdentifier>{ffc5e18a-ffb5-4c92-9fe0-f472632f0910}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SceneGraph\Scene">
+      <UniqueIdentifier>{857cd2f0-625f-42ed-b7d1-c908fc9de153}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Helpers\Factory">
+      <UniqueIdentifier>{353137fb-60bb-45fc-92a3-185cda4daf5c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Core\Engine.cpp">
+      <Filter>Header Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\System\Graphics.cpp">
+      <Filter>Header Files\Core\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneGraph\Scene\Scene.cpp">
+      <Filter>Header Files\SceneGraph\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneGraph\Scene\Manager\SceneManager.cpp">
+      <Filter>Header Files\SceneGraph\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\System\MainWindow.cpp">
+      <Filter>Header Files\Core\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\System\MainTimer.cpp">
+      <Filter>Header Files\Core\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Helpers\Singleton.cpp">
+      <Filter>Header Files\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Diagnostics\Logger.cpp">
+      <Filter>Header Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\System\Logic.cpp">
+      <Filter>Header Files\Core\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Settings\WorldSettings.cpp">
+      <Filter>Header Files\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\System\System.cpp">
+      <Filter>Header Files\Core\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneGraph\Object.cpp">
+      <Filter>Header Files\SceneGraph\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneGraph\Object\Objects\Timer.cpp">
+      <Filter>Header Files\Core\Systems\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Helpers\Math\Matrix2D.cpp">
+      <Filter>Header Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Helpers\Math\Rect2D.cpp">
+      <Filter>Header Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Helpers\Math\Vector2D.cpp">
+      <Filter>Header Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Helpers\Manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Game\AbstractGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\System\Manager\SystemFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\System\Manager\SystemManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Interfaces\IDrawable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Interfaces\IInput.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Interfaces\IWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Settings\Settings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Settings\ApplicationSettings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Settings\GameSettings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Settings\PhyxSettings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneGraph\Component\Component.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneGraph\Object\GameObjects\GameObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Rendering\Renderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\Defines\color.h">
+      <Filter>Header Files\Defines</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Defines\d2dutill.h">
+      <Filter>Header Files\Defines</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Defines\deletemacros.h">
+      <Filter>Header Files\Defines</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\Engine.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Defines\fstream.h">
+      <Filter>Header Files\Defines</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Defines\iostream.h">
+      <Filter>Header Files\Defines</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\System\Graphics.h">
+      <Filter>Header Files\Core\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Defines\string.h">
+      <Filter>Header Files\Defines</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Defines\stringstream.h">
+      <Filter>Header Files\Defines</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\System\Logic.h">
+      <Filter>Header Files\Core\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\System\MainTimer.h">
+      <Filter>Header Files\Core\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\System\MainWindow.h">
+      <Filter>Header Files\Core\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Helpers\Singleton.h">
+      <Filter>Header Files\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Helpers\ObjectCounter.h">
+      <Filter>Header Files\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Diagnostics\Logger.h">
+      <Filter>Header Files\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SceneGraph\Scene\Scene.h">
+      <Filter>Header Files\SceneGraph\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SceneGraph\Scene\Manager\SceneManager.h">
+      <Filter>Header Files\SceneGraph\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\Settings\WorldSettings.h">
+      <Filter>Header Files\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\System\System.h">
+      <Filter>Header Files\Core\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SceneGraph\Object.h">
+      <Filter>Header Files\SceneGraph\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Helpers\Math\Matrix2D.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Helpers\Math\Rect2D.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Helpers\Math\Vector2D.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Helpers\Manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Defines\assert.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Defines\Types\InputStateType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Defines\Types\LogType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Defines\Types\ResourceType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Defines\Types\SystemType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\Game\AbstractGame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\System\Manager\SystemFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\System\Manager\SystemManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Interfaces\IDrawable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Interfaces\IInput.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Interfaces\IWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\Settings\ApplicationSettings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\Settings\GameSettings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\Settings\PhyxSettings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\Settings\Settings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SceneGraph\Object\Objects\Timer.h">
+      <Filter>Header Files\Core\Systems\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Defines\programdefaults.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SceneGraph\Component\Component.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SceneGraph\Object\GameObjects\GameObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\Rendering\Renderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
