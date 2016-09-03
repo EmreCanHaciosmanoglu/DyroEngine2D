@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _IDRAWABLE_H
+#define _IDRAWABLE_H
+
 class IDrawable
 {
 public:
@@ -13,4 +15,6 @@ public:
 private:
 	bool can_draw;
 };
+
+#endif
 
