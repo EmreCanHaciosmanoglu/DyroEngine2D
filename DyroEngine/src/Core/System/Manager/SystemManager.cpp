@@ -14,21 +14,6 @@
 
 #include "Helpers/Singleton.h"
 
-class SystemWithType
-{
-public:
-	SystemWithType(SystemType type)
-		:system_type(type)
-	{}
-
-	bool operator()(System* system)
-	{
-		return system->getType() == system_type;
-	}
-private:
-	SystemType system_type;
-};
-
 SystemManager::SystemManager()
 	:factory(nullptr)
 {
@@ -39,7 +24,11 @@ SystemManager::~SystemManager()
 
 System* SystemManager::getSystem(SystemType type)
 {
-	std::vector<System*>::const_iterator it = std::find_if(this->vec_systems.begin(), this->vec_systems.end(), SystemWithType(type));
+	std::vector<System*>::const_iterator it = std::find_if(this->vec_systems.begin(), this->vec_systems.end(), 
+		[type](System* s) -> bool
+	{
+		return s->getType() == type;
+	});
 	if (it != this->vec_systems.end())
 		return (*it);
 
