@@ -30,11 +30,15 @@ public:
 
 	virtual void destroy();
 
+	void addGameObject(GameObject* object);
+	void removeGameObject(GameObject* object);
+
 	void setRenderer(Renderer* renderer);
 	Renderer* getRenderer() const;
 
 private:
 	Renderer* renderer;
+	std::vector<GameObject*> vec_objects;
 };
 
 #endif //_SCENE_H
