@@ -3,7 +3,7 @@
 
 #include "SceneGraph/Scene/Scene.h"
 
-class GameObject;
+class SceneObject;
 
 class MyScene : public Scene
 {
@@ -17,8 +17,8 @@ public:
 
 private:
 
-	GameObject* rectangle;
-	GameObject* circle;
+	SceneObject* rectangle;
+	SceneObject* circle;
 };
 
 #endif
