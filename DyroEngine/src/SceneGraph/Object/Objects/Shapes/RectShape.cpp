@@ -22,6 +22,8 @@ void RectShape::render(Renderer* renderer)
 	//Renderer cannot be null
 	assert(renderer != nullptr);
 
+	renderer->setColor(getColor());
+
 	getFill()
 		? renderer->fillRect(this->rect) 
 		: renderer->drawRect(this->rect, this->line_width);

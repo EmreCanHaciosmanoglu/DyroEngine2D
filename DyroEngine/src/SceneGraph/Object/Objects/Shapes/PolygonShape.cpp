@@ -20,6 +20,8 @@ void PolygonShape::render(Renderer* renderer)
 	//Renderer cannot be null
 	assert(renderer != nullptr);
 
+	renderer->setColor(getColor());
+
 	getFill()
 		? renderer->fillPolygon(this->vec_points)
 		: renderer->drawPolygon(this->vec_points, this->close, this->line_width);

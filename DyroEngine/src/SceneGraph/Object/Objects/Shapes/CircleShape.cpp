@@ -20,6 +20,8 @@ void CircleShape::render(Renderer* renderer)
 	//Renderer cannot be null
 	assert(renderer != nullptr);
 
+	renderer->setColor(getColor());
+
 	getFill()
 		? renderer->fillCircle(this->center, this->radius)
 		: renderer->drawCircle(this->center, this->radius, this->line_width);

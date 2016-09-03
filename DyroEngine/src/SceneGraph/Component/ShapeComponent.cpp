@@ -49,3 +49,12 @@ bool ShapeComponent::getFill() const
 
 	return false;
 }
+
+void ShapeComponent::setColor(const Color& c)
+{
+	this->shape->setColor(c);
+}
+const Color& ShapeComponent::getColor() const
+{
+	return this->shape->getColor();
+}

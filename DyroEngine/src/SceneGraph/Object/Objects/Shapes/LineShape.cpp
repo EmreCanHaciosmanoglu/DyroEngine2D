@@ -20,5 +20,7 @@ void LineShape::render(Renderer* renderer)
 	//Renderer cannot be null
 	assert(renderer != nullptr);
 
+	renderer->setColor(getColor());
+
 	renderer->drawLine(this->v1, this->v2, this->line_width);
 }
