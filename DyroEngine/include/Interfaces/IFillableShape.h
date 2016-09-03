@@ -4,8 +4,8 @@
 class IFillableShape
 {
 public:
-	IFillableShape();
-	virtual ~IFillableShape();
+	IFillableShape(){}
+	virtual ~IFillableShape(){}
 
 	virtual void setFill(bool fill) = 0;
 	virtual bool getFill() const = 0;
