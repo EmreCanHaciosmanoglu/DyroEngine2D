@@ -128,8 +128,10 @@
     <ClInclude Include="include\Core\System\MainWindow.h" />
     <ClInclude Include="include\Core\Settings\WorldSettings.h" />
     <ClInclude Include="include\SceneGraph\Object\Objects\Shapes\Shape.h" />
+    <ClInclude Include="include\SceneGraph\Object\GameObjects\SceneObject.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\SceneGraph\Object\GameObjects\SceneObject.cpp" />
     <ClCompile Include="src\Interfaces\IFillableShape.cpp" />
     <ClCompile Include="src\SceneGraph\Object\Objects\Shapes\CircleShape.cpp" />
     <ClCompile Include="src\SceneGraph\Object\Objects\Shapes\LineShape.cpp" />
