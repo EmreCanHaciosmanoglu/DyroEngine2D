@@ -3,6 +3,8 @@
 
 #include "SceneGraph/Scene/Scene.h"
 
+class GameObject;
+
 class MyScene : public Scene
 {
 public:
@@ -14,6 +16,9 @@ public:
 	virtual bool shutdown();
 
 private:
+
+	GameObject* rectangle;
+	GameObject* circle;
 };
 
 #endif
