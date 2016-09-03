@@ -12,10 +12,7 @@
 #endif
 
 class GameObject;
-class CameraManager;
-class LightManager;
-class ResourceManager;
-class GeometryManager;
+class Renderer;
 
 class Scene : public Object, public IDrawable
 {
@@ -33,7 +30,11 @@ public:
 
 	virtual void destroy();
 
+	void setRenderer(Renderer* renderer);
+	Renderer* getRenderer() const;
+
 private:
+	Renderer* renderer;
 };
 
 #endif //_SCENE_H

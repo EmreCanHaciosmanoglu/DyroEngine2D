@@ -1,6 +1,8 @@
 #ifndef _RENDERER_H
 #define _RENDERER_H
 
+#include "Helpers/Manager.h"
+
 #ifndef _WINDOWS_H
 #include <Windows.h>
 #endif
@@ -24,11 +26,14 @@
 
 class Graphics;
 
-class Renderer
+class Renderer : Manager
 {
 public:
 	Renderer();
 	~Renderer();
+
+	virtual bool initialize();
+	virtual bool shutdown();
 
 	void setInterpolationMode(D2D1_BITMAP_INTERPOLATION_MODE i) { interpolation_mode = i; }
 	

@@ -12,8 +12,11 @@
 	#include "Defines/string.h"
 #endif
 
+#include "Core/Rendering/Renderer.h"
+
+#include "Diagnostics/Logger.h"
+
 class Scene;
-class Renderer;
 
 class SceneManager : public Manager, public IDrawable
 {
@@ -32,6 +35,24 @@ public:
 	Scene* getActiveScene() const;
 
 private:
+	template<typename T>
+	void setupManager()
+	{
+		if (Singleton<T>::hasInstance())
+		{
+			Singleton<Logger>::getInstance().log(_T("Check if we can keep data that will be used in a different scene aswell, so not all data need to be unloaded."), LOGTYPE_TODO);
+			Singleton<T>::getInstance().shutdown();
+		}
+		else Singleton<T>::createInstance();
+
+		Singleton<T>::getInstance().initialize();
+	}
+	template<typename T>
+	void destroyManager()
+	{
+		Singleton<T>::getInstance().shutdown();
+		Singleton<T>::destroyInstance();
+	}
 
 	Scene* active_scene;
 	std::vector<Scene*> vec_scenes;

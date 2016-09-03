@@ -39,8 +39,12 @@ SceneManager::~SceneManager()
 
 bool SceneManager::initialize()
 {
+	setupManager<Renderer>();
+
 	if (!this->active_scene->getInitialized())
 	{
+		this->active_scene->setRenderer(&Singleton<Renderer>::getInstance());
+
 		if (!this->active_scene->initialize())
 			return false;
 		this->active_scene->setInitialized();
@@ -78,6 +82,8 @@ bool SceneManager::shutdown()
 
 		SafeDelete(scene);
 	}
+
+	destroyManager<Renderer>();
 
 	return true;
 }

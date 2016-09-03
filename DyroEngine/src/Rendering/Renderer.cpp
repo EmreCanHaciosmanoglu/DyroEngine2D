@@ -13,11 +13,21 @@
 Renderer::Renderer()
 	:interpolation_mode(D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR)
 {
-	this->graphics = dynamic_cast<Graphics*>(Singleton<SystemManager>::getInstance().getSystem(SystemType::GRAPHICS_SYSTEM));
-	assert(this->graphics != nullptr);
 }
 Renderer::~Renderer()
 {
+}
+
+bool Renderer::initialize()
+{
+	this->graphics = dynamic_cast<Graphics*>(Singleton<SystemManager>::getInstance().getSystem(SystemType::GRAPHICS_SYSTEM));
+	assert(this->graphics != nullptr);
+
+	return true;
+}
+bool Renderer::shutdown()
+{
+	return true;
 }
 
 void Renderer::setColor(const Color& c)

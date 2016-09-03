@@ -11,6 +11,7 @@
 
 Scene::Scene(const std::tstring& name)
 	:Object(name)
+	,renderer(nullptr)
 {
 }
 Scene::~Scene()
@@ -44,4 +45,13 @@ void Scene::deactive()
 void Scene::destroy()
 {
 	Object::destroy();
+}
+
+void Scene::setRenderer(Renderer* renderer)
+{
+	this->renderer = renderer;
+}
+Renderer* Scene::getRenderer() const
+{
+	return this->renderer;
 }
