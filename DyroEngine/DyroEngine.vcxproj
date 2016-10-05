@@ -79,6 +79,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\Core\System\Input.h" />
+    <ClInclude Include="include\Defines\Types\InputStateType.h" />
     <ClInclude Include="include\Interfaces\IFillableShape.h" />
     <ClInclude Include="include\Core\Game\AbstractGame.h" />
     <ClInclude Include="include\Core\Rendering\Renderer.h" />
@@ -104,6 +106,7 @@
     <ClInclude Include="include\Defines\Types\SystemType.h" />
     <ClInclude Include="include\Helpers\Manager.h" />
     <ClInclude Include="include\Interfaces\IDrawable.h" />
+    <ClInclude Include="include\Interfaces\IInput.h" />
     <ClInclude Include="include\Interfaces\IWindow.h" />
     <ClInclude Include="include\Diagnostics\Logger.h" />
     <ClInclude Include="include\Helpers\Math\Matrix2D.h" />
@@ -131,6 +134,8 @@
     <ClInclude Include="include\SceneGraph\Object\GameObjects\SceneObject.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Core\System\Input.cpp" />
+    <ClCompile Include="src\Interfaces\IInput.cpp" />
     <ClCompile Include="src\SceneGraph\Object\GameObjects\SceneObject.cpp" />
     <ClCompile Include="src\Interfaces\IFillableShape.cpp" />
     <ClCompile Include="src\SceneGraph\Object\Objects\Shapes\CircleShape.cpp" />
