@@ -10,25 +10,6 @@
 
 #include "Helpers\Singleton.h"
 
-namespace
-{
-	class SceneWithName
-	{
-	public:
-		SceneWithName(const std::tstring& name)
-			:name(name)
-		{}
-
-		bool operator()(Scene* scene)
-		{
-			return scene->getName() == this->name;
-		}
-
-	private:
-		std::tstring name;
-	};
-}
-
 SceneManager::SceneManager()
 	:active_scene(nullptr)
 {
@@ -97,7 +78,11 @@ void SceneManager::addScene(Scene* scene)
 
 void SceneManager::setActiveScene(const std::tstring& name)
 {
-	std::vector<Scene*>::iterator it = std::find_if(vec_scenes.begin(), vec_scenes.end(), SceneWithName(name));
+	std::vector<Scene*>::iterator it = std::find_if(vec_scenes.begin(), vec_scenes.end(), 
+		[name](Scene* scene) -> bool
+	{
+		return scene->getName() == name;
+	});
 
 	//Scene with given name was not found.
 	assert(it != vec_scenes.end());

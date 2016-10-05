@@ -11,6 +11,7 @@
 #include "Core\System\MainWindow.h"
 #include "Core\System\Graphics.h"
 #include "Core\System\MainTimer.h"
+#include "Core\System\Input.h"
 
 #include "Core/System/Manager/SystemManager.h"
 #include "Defines/Types/SystemType.h"
@@ -88,6 +89,9 @@ int Engine::initialize()
 	MainWindow* window = dynamic_cast<MainWindow*>(Singleton<SystemManager>::getInstance().getSystem(SystemType::WINDOW_SYSTEM));
 	if (window == nullptr)
 		return FALSE;
+	Input* input = dynamic_cast<Input*>(Singleton<SystemManager>::getInstance().getSystem(SystemType::INPUT_SYSTEM));
+	if (input == nullptr)
+		return FALSE;
 	MainTimer* timer = dynamic_cast<MainTimer*>(Singleton<SystemManager>::getInstance().getSystem(SystemType::TIMER_SYSTEM));
 	if (timer == nullptr)
 		return FALSE;
@@ -100,6 +104,8 @@ int Engine::initialize()
 
 	if (!window->initialize())
 		return FALSE;
+	if (!input->initialize())
+		return false;
 	if (!timer->initialize())
 		return FALSE;
 	if (!graphics->initialize())
