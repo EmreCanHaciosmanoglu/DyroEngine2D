@@ -2,6 +2,7 @@
 #define _GAMEOBJECT_H
 
 #include "SceneGraph\Object.h"
+#include "Interfaces\IInput.h"
 
 #ifndef _SINGLETON_H
 #include "Helpers/Singleton.h"
@@ -19,8 +20,9 @@
 
 class Component;
 class Scene;
+class Input;
 
-class GameObject : public Object
+class GameObject : public Object, public IInput
 {
 public:
 	GameObject(const std::tstring& name = _T(""));
@@ -29,6 +31,8 @@ public:
 	virtual bool initialize();
 	virtual void update();
 	virtual bool shutdown();
+
+	virtual void setupInput(Input* input);
 
 	void setScene(Scene* scene);
 	Scene* getScene() const;

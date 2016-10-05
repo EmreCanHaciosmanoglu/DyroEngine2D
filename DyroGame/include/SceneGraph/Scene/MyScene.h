@@ -4,6 +4,7 @@
 #include "SceneGraph/Scene/Scene.h"
 
 class SceneObject;
+class Input;
 
 class MyScene : public Scene
 {
@@ -14,6 +15,11 @@ public:
 	virtual bool initialize();
 	virtual void update();
 	virtual bool shutdown();
+
+	virtual void setupInput(Input* input);
+
+	void changeColorRectangle();
+	void changeColorCircle();
 
 private:
 

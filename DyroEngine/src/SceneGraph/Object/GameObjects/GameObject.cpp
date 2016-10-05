@@ -72,6 +72,11 @@ bool GameObject::shutdown()
 	return true;
 }
 
+void GameObject::setupInput(Input* input)
+{
+
+}
+
 void GameObject::setScene(Scene* scene)
 {
 	this->current_scene = scene;

@@ -5,6 +5,10 @@
 #include "SceneGraph/Object/Objects/Shapes/CircleShape.h"
 #include "SceneGraph/Component/ShapeComponent.h"
 
+#include "Core\System\Input.h"
+
+#include <functional>
+
 MyScene::MyScene()
 	:Scene(_T("MyScene"))
 	,rectangle(nullptr)
@@ -37,4 +41,19 @@ void MyScene::update()
 bool MyScene::shutdown()
 {
 	return Scene::shutdown();
+}
+
+void MyScene::setupInput(Input* input)
+{
+	input->bindInput(InputBinding(VK_NEXT, std::bind(&MyScene::changeColorRectangle, this), InputStateType::PRESSED));
+	input->bindInput(InputBinding(VK_PRIOR, std::bind(&MyScene::changeColorCircle, this), InputStateType::PRESSED));
+}
+
+void MyScene::changeColorRectangle()
+{
+	this->rectangle->getComponent<ShapeComponent>()->setColor(Color((rand() % 255) / 255.0f, (rand() % 255) / 255.0f, (rand() % 255) / 255.0f));
+}
+void MyScene::changeColorCircle()
+{
+	this->circle->getComponent<ShapeComponent>()->setColor(Color((rand() % 255) / 255.0f, (rand() % 255) / 255.0f, (rand() % 255) / 255.0f));
 }

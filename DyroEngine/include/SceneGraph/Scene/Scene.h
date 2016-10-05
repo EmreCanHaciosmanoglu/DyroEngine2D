@@ -3,6 +3,7 @@
 
 #include "SceneGraph/Object.h"
 #include "Interfaces\IDrawable.h"
+#include "Interfaces\IInput.h"
 
 #ifndef _VECTOR_
 #include <vector>
@@ -13,8 +14,9 @@
 
 class GameObject;
 class Renderer;
+class Input;
 
-class Scene : public Object, public IDrawable
+class Scene : public Object, public IDrawable, public IInput
 {
 public:
 	Scene(const std::tstring& name);
@@ -24,6 +26,8 @@ public:
 	virtual void update();
 	virtual void draw();
 	virtual bool shutdown();
+
+	virtual void setupInput(Input* input);
 
 	virtual void activate();
 	virtual void deactive();

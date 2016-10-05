@@ -5,6 +5,9 @@
 #include <algorithm>
 #endif
 
+#include "Core\System\Input.h"
+#include "Core\System\Manager\SystemManager.h"
+
 #include "Defines\deletemacros.h"
 
 #include "Helpers/Singleton.h"
@@ -22,10 +25,16 @@ Scene::~Scene()
 
 bool Scene::initialize()
 {
+	Input* input = dynamic_cast<Input*>(Singleton<SystemManager>::getInstance().getSystem(SystemType::INPUT_SYSTEM));
+	this->setupInput(input);
+
 	for (GameObject* obj : this->vec_objects)
 	{
 		if (obj->getInitialized())
 			continue;
+
+		obj->setupInput(input);
+
 		if (!obj->initialize())
 			return false;
 	}
@@ -63,6 +72,11 @@ bool Scene::shutdown()
 	this->vec_objects.clear();
 
 	return true;
+}
+
+void Scene::setupInput(Input* input)
+{
+
 }
 
 void Scene::activate()
