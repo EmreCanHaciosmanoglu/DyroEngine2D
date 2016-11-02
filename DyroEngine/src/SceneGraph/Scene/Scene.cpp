@@ -132,7 +132,7 @@ CameraManager* Scene::getCameraManager() const
 }
 void Scene::setResourceManager(ResourceManager* manager)
 {
-	this->resource_manager;
+	this->resource_manager = manager;
 }
 ResourceManager* Scene::getResourceManager() const
 {

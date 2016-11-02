@@ -4,11 +4,14 @@
 
 TransformComponent::TransformComponent(const std::tstring& name)
 	:Component(name == _T("") ? _T("TransformComponent") : name)
-	,is_dirty(false)
-	,position(0,0)
-	,scaling(1,1)
-	,rotation(0.0f)
-	,world_matrix()
+	, is_dirty(false)
+	, position(0, 0)
+	, scaling(1, 1)
+	, rotation(0.0f)
+	, world_matrix()
+	, mirror_x(Vector2D(1, 1))
+	, mirror_y(Vector2D(1, 1))
+	,center_position(0,0)
 {
 }
 TransformComponent::~TransformComponent()
@@ -24,17 +27,56 @@ void TransformComponent::update()
 	if (!this->is_dirty)
 		return;
 
+	Matrix2D mat_center = Matrix2D::createTranslationMatrix(this->center_position);
 	Matrix2D mat_translation = Matrix2D::createTranslationMatrix(this->position);
 	Matrix2D mat_scale = Matrix2D::createScalingMatrix(this->scaling);
 	Matrix2D mat_rotation = Matrix2D::createRotationMatrix(this->rotation);
 
-	this->world_matrix = mat_scale*mat_rotation*mat_translation;
+	Matrix2D mat_mirror_x = Matrix2D::createScalingMatrix(this->mirror_x);
+	Matrix2D mat_mirror_y = Matrix2D::createScalingMatrix(this->mirror_y);
+
+	this->world_matrix = mat_center*mat_mirror_x*mat_mirror_y*mat_scale*mat_rotation*mat_translation;
 
 	this->is_dirty = false;
 }
 bool TransformComponent::shutdown()
 {
 	return true;
+}
+
+void TransformComponent::mirrorX()
+{
+	this->is_dirty = true;
+	this->mirror_x *= Vector2D(-1, 1);
+}
+void TransformComponent::mirrorY()
+{
+	this->is_dirty = true;
+	this->mirror_y *= Vector2D(1, -1);
+}
+void TransformComponent::resetMirror(bool x, bool y)
+{
+	this->is_dirty = true;
+	if (x)
+		this->mirror_x = Vector2D(1, 1);
+	if (y)
+		this->mirror_y = Vector2D(1, 1);
+}
+
+void TransformComponent::center(float xCenter, float yCenter) 
+{
+	this->is_dirty = true;
+	center(Vector2D(xCenter, yCenter));
+}
+void TransformComponent::center(const Vector2D& centerPosition)
+{
+	this->is_dirty = true;
+	this->center_position = centerPosition;
+}
+void TransformComponent::resetCenter()
+{
+	this->is_dirty = true;
+	center(Vector2D(0, 0));
 }
 
 void TransformComponent::translate(const Vector2D& translation)

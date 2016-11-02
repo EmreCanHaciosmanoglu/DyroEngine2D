@@ -22,11 +22,30 @@ public:
 	void changeColorRectangle();
 	void changeColorCircle();
 
+	void mirrorXImage();
+	void mirrorYImage();	
+	void centerImage();
+	void resetImage();
+
+	void nextImage();
+	void previousImage();
+	void randomImage();
+
 private:
+	static const int CIRCLE_AMOUNT = 100;
+	static const int IMAGE_PATH_AMOUNT = 15;
+
+	float animated_angle;
+
 	FreeCamera* camera;
 
 	SceneObject* rectangle;
-	SceneObject* circle;
+	SceneObject* circles[CIRCLE_AMOUNT];
+
+	SceneObject* object;
+
+	std::tstring image_paths[IMAGE_PATH_AMOUNT];
+	int current_image;
 };
 
 #endif

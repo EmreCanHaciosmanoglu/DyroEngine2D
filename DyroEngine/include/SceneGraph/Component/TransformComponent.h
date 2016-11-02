@@ -16,6 +16,14 @@ public:
 	virtual void update();
 	virtual bool shutdown();
 
+	void mirrorX();
+	void mirrorY();
+	void resetMirror(bool x = true, bool y = true);
+
+	void center(float xCenter, float yCenter);
+	void center(const Vector2D& centerPosition);
+	void resetCenter();
+
 	void translate(const Vector2D& translation);
 	void scale(const Vector2D& scale);
 	void rotate(float rotation);
@@ -33,8 +41,11 @@ public:
 private:
 	bool is_dirty;
 
+	Vector2D center_position;
 	Vector2D position;
 	Vector2D scaling;
+	Vector2D mirror_x;
+	Vector2D mirror_y;
 	float rotation;
 
 	Matrix2D world_matrix;

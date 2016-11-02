@@ -9,11 +9,12 @@ Image::Image(const std::tstring& resourcePath)
 	,bitmap(nullptr)
 	,converter(nullptr)
 	,opacity(1.0f)
+	,clip(Rect2D::empty)
 {}
 Image::~Image()
 {}
 
-bool Image::intialize()
+bool Image::initialize()
 {
 	ID2D1RenderTarget *renderTargetPtr = dynamic_cast<Graphics*>(Singleton<SystemManager>::getInstance().getSystem(SystemType::GRAPHICS_SYSTEM))->getRenderTarget();
 	IWICImagingFactory *iWICFactoryPtr = dynamic_cast<Graphics*>(Singleton<SystemManager>::getInstance().getSystem(SystemType::GRAPHICS_SYSTEM))->getImageFactory();
@@ -159,7 +160,6 @@ int Image::getWidth() const
 {
 	return this->bitmap->GetPixelSize().width;
 }
-
 int	Image::getHeight() const
 {
 	return this->bitmap->GetPixelSize().height;
@@ -169,15 +169,23 @@ float Image::getOpacity() const
 {
 	return this->opacity;
 }
-
 void Image::setOpacity(float opacity)
 {
 	this->opacity = opacity;
 }
 
-void Image::setTransparencyColor(Color transparentColor)
+const Rect2D& Image::getClip() const
 {
-	COLORREF color = RGB(transparentColor.red, transparentColor.green, transparentColor.blue);
+	return this->clip;
+}
+void Image::setClip(const Rect2D& clip)
+{
+	this->clip = clip;
+}
+
+void Image::setTransparencyColor(const Color& transparentColor)
+{
+	COLORREF color = RGB((int)(transparentColor.red * 255), (int)(transparentColor.green * 255), (int)(transparentColor.blue * 255));
 
 	UINT width = 0, height = 0;
 	

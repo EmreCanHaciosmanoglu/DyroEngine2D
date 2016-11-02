@@ -79,6 +79,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\SceneGraph\Component\ImageComponent.h" />
     <ClInclude Include="include\SceneGraph\Object\GameObjects\Camera\Camera.h" />
     <ClInclude Include="include\SceneGraph\Component\CameraComponent.h" />
     <ClInclude Include="include\Core\Resources\Image.h" />
@@ -142,6 +143,7 @@
     <ClInclude Include="include\SceneGraph\Component\TransformComponent.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\SceneGraph\Component\ImageComponent.cpp" />
     <ClCompile Include="src\SceneGraph\Object\GameObjects\Camera\Camera.cpp" />
     <ClCompile Include="src\SceneGraph\Component\CameraComponent.cpp" />
     <ClCompile Include="src\Core\Resources\Image.cpp" />
