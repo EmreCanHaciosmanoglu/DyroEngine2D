@@ -3,3 +3,4 @@ bin/
 *.opensdf
 .vs/DyroEngine/v14/.suo
 DyroEngine.VC.db
+DyroEngine.VC.VC.opendb
