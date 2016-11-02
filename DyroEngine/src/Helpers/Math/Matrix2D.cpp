@@ -1,252 +1,169 @@
 #include "Helpers/Math/Matrix2D.h"
 
-#ifndef _UNORDERED_SET_
-	#include <unordered_set>
-#endif
+//------------------------------------------------------------------------------
+// Matrix2D Constructors, friend operators, operators, methods, static methods
+//------------------------------------------------------------------------------
+Matrix2D::Matrix2D(Vector2D dirX, Vector2D dirY, Vector2D orig) : dirX(dirX), dirY(dirY), orig(orig)
+{}
 
-Matrix2D::Matrix2D()
+Matrix2D::Matrix2D(double e1X, double e1Y, double e2X, double e2Y, double oX, double oY) : dirX(e1X, e1Y), dirY(e2X, e2Y), orig(oX, oY)
+{}
+
+Matrix2D::Matrix2D(const Matrix2D& sourceRef) : dirX(sourceRef.dirX), dirY(sourceRef.dirY), orig(sourceRef.orig)
+{}
+
+Matrix2D::Matrix2D(const D2D1::Matrix3x2F& mat) : dirX(mat._11, mat._12), dirY(mat._21, mat._22), orig(mat._31, mat._32)
+{}
+
+Matrix2D operator*(const Matrix2D& matrix1, const Matrix2D& matrix2)
 {
-	// initially identity matrix
-	Identity();
-}
-Matrix2D::Matrix2D(float m0, float m1, float m2, float m3, float m4, float m5, float m6, float m7, float m8)
-{
-	m[0] = m0; m[1] = m1; m[2] = m2;
-	m[3] = m3; m[4] = m4; m[5] = m5;
-	m[6] = m6; m[7] = m7; m[8] = m8;
-}
-
-float Matrix2D::GetDeterminant()
-{
-	return m[0] * (m[4] * m[8] - m[5] * m[7]) - m[1] * (m[3] * m[8] - m[5] * m[6]) + m[2] * (m[3] * m[7] - m[4] * m[6]);
-}
-
-inline Matrix2D& Matrix2D::Identity()
-{
-	m[0] = m[4] = m[8] = 1.0f;
-	m[1] = m[2] = m[3] = m[5] = m[6] = m[7] = 0.0f;
-	return *this;
-}
-Matrix2D Matrix2D::Transpose()
-{
-	Matrix2D matTranspose = *this;
-
-	std::swap(matTranspose[1], matTranspose[3]);
-	std::swap(matTranspose[2], matTranspose[6]);
-	std::swap(matTranspose[5], matTranspose[7]);
-
-	return matTranspose;
-}
-Matrix2D Matrix2D::Invert()
-{
-	//tmp[0] = m[4] * m[8] - m[5] * m[7];
-	//tmp[1] = m[1] * m[8] - m[2] * m[7];
-	//tmp[2] = m[1] * m[5] - m[2] * m[4];
-	//tmp[3] = m[3] * m[8] - m[5] * m[6];
-	//tmp[4] = m[0] * m[8] - m[2] * m[6];
-	//tmp[5] = m[0] * m[5] - m[2] * m[3];
-	//tmp[6] = m[3] * m[7] - m[4] * m[6];
-	//tmp[7] = m[0] * m[7] - m[1] * m[6];
-	//tmp[8] = m[0] * m[4] - m[1] * m[3];
-
-	//tmp[1] *= -1;
-	//tmp[3] *= -1;
-	//tmp[5] *= -1;
-	//tmp[7] *= -1;
-
-	float determinant, invDeterminant;
-	float tmp[9];
-
-	tmp[0] = m[4] * m[8] - m[5] * m[7];
-	tmp[1] = m[2] * m[7] - m[1] * m[8];
-	tmp[2] = m[1] * m[5] - m[2] * m[4];
-	tmp[3] = m[5] * m[6] - m[3] * m[8];
-	tmp[4] = m[0] * m[8] - m[2] * m[6];
-	tmp[5] = m[2] * m[3] - m[0] * m[5];
-	tmp[6] = m[3] * m[7] - m[4] * m[6];
-	tmp[7] = m[1] * m[6] - m[0] * m[7];
-	tmp[8] = m[0] * m[4] - m[1] * m[3];
-
-	// check determinant if it is 0
-	determinant = m[0] * tmp[0] + m[1] * tmp[3] + m[2] * tmp[6];
-	if (fabs(determinant) <= EPSILON)
-		return Identity(); // cannot inverse, make it idenety matrix
-
-	// divide by the determinant
-	invDeterminant = 1.0f / determinant;
-
-	Matrix2D matInverse = Matrix2D(invDeterminant * tmp[0],
-									invDeterminant * tmp[1],
-									invDeterminant * tmp[2],
-									invDeterminant * tmp[3],
-									invDeterminant * tmp[4],
-									invDeterminant * tmp[5],
-									invDeterminant * tmp[6],
-									invDeterminant * tmp[7],
-									invDeterminant * tmp[8]);
-
-	//m[0] = invDeterminant * tmp[0];
-	//m[1] = invDeterminant * tmp[1];
-	//m[2] = invDeterminant * tmp[2];
-	//m[3] = invDeterminant * tmp[3];
-	//m[4] = invDeterminant * tmp[4];
-	//m[5] = invDeterminant * tmp[5];
-	//m[6] = invDeterminant * tmp[6];
-	//m[7] = invDeterminant * tmp[7];
-	//m[8] = invDeterminant * tmp[8];
-
-	return matInverse;
+	return Matrix2D(Vector2D(matrix1.dirX.x * matrix2.dirX.x + matrix1.dirX.y * matrix2.dirY.x, matrix1.dirX.x * matrix2.dirX.y + matrix1.dirX.y * matrix2.dirY.y),
+		Vector2D(matrix1.dirY.x * matrix2.dirX.x + matrix1.dirY.y * matrix2.dirY.x, matrix1.dirY.x * matrix2.dirX.y + matrix1.dirY.y * matrix2.dirY.y),
+		Vector2D(matrix1.orig.x * matrix2.dirX.x + matrix1.orig.y * matrix2.dirY.x + matrix2.orig.x, matrix1.orig.x * matrix2.dirX.y + matrix1.orig.y * matrix2.dirY.y + matrix2.orig.y));
 }
 
-Vector2D Matrix2D::GetTranslation() const
+std::ostream& operator<<(std::ostream& os, Matrix2D matrix)
 {
-	return Vector2D(m[2], m[5]);
-}
-Vector2D Matrix2D::GetScale() const
-{
-	return Vector2D(m[0], m[4]);
-}
-double Matrix2D::GetRotation()
-{
-	if ((m[1] != (-1 * m[3])) || (m[4] != m[0]))
-		return -1.0;
-	else 
-	{
-		double scale_factor = sqrt((m[0] * m[4] - m[3] * m[1]));
-		return acos(m[0] / scale_factor); // For radians
-	}
+	os << "Matrix2D( " << matrix.dirX.x << ", " << matrix.dirX.y << ", " << matrix.dirY.x << ", " << matrix.dirY.y << ", " << matrix.orig.x << ", " << matrix.orig.y << " )";
+
+	return os;
 }
 
-Matrix2D Matrix2D::operator+(const Matrix2D& rhs) const
+std::wostream& operator<<(std::wostream& wos, const Matrix2D& matrix)
 {
-	return Matrix2D(m[0] + rhs[0], m[1] + rhs[1], m[2] + rhs[2],
-		m[3] + rhs[3], m[4] + rhs[4], m[5] + rhs[5],
-		m[6] + rhs[6], m[7] + rhs[7], m[8] + rhs[8]);
-}
-Matrix2D Matrix2D::operator-(const Matrix2D& rhs) const
-{
-	return Matrix2D(m[0] - rhs[0], m[1] - rhs[1], m[2] - rhs[2],
-		m[3] - rhs[3], m[4] - rhs[4], m[5] - rhs[5],
-		m[6] - rhs[6], m[7] - rhs[7], m[8] - rhs[8]);
-}
-Matrix2D& Matrix2D::operator+=(const Matrix2D& rhs)
-{
-	m[0] += rhs[0];  m[1] += rhs[1];  m[2] += rhs[2];
-	m[3] += rhs[3];  m[4] += rhs[4];  m[5] += rhs[5];
-	m[6] += rhs[6];  m[7] += rhs[7];  m[8] += rhs[8];
-	return *this;
-}
-Matrix2D& Matrix2D::operator-=(const Matrix2D& rhs)
-{
-	m[0] -= rhs[0];  m[1] -= rhs[1];  m[2] -= rhs[2];
-	m[3] -= rhs[3];  m[4] -= rhs[4];  m[5] -= rhs[5];
-	m[6] -= rhs[6];  m[7] -= rhs[7];  m[8] -= rhs[8];
-	return *this;
+	wos << L"Matrix2D( " << matrix.dirX.x << L", " << matrix.dirX.y << L", " << matrix.dirY.x << L", " << matrix.dirY.y << L", " << matrix.orig.x << L", " << matrix.orig.y << L" )";
+
+	return wos;
 }
 
-Matrix2D Matrix2D::operator*(const Matrix2D& rhs) const
+Vector2D Matrix2D::transformVector(const Vector2D& vector) const
 {
-	return Matrix2D(m[0] * rhs[0] + m[3] * rhs[1] + m[6] * rhs[2], 
-					m[1] * rhs[0] + m[4] * rhs[1] + m[7] * rhs[2],
-					m[2] * rhs[0] + m[5] * rhs[1] + m[8] * rhs[2],
-					m[0] * rhs[3] + m[3] * rhs[4] + m[6] * rhs[5],
-					m[1] * rhs[3] + m[4] * rhs[4] + m[7] * rhs[5],
-					m[2] * rhs[3] + m[5] * rhs[4] + m[8] * rhs[5],
-					m[0] * rhs[6] + m[3] * rhs[7] + m[6] * rhs[8],
-					m[1] * rhs[6] + m[4] * rhs[7] + m[7] * rhs[8],
-					m[2] * rhs[6] + m[5] * rhs[7] + m[8] * rhs[8]);
-}
-Matrix2D& Matrix2D::operator*=(const Matrix2D& rhs)
-{
-	*this = *this * rhs;
-	return *this;
+	return dirX * vector.x + dirY * vector.y;
 }
 
-bool Matrix2D::operator==(const Matrix2D& rhs) const
+Vector2D Matrix2D::transformPoint(const Vector2D& point) const
 {
-	return (m[0] == rhs[0]) && (m[1] == rhs[1]) && (m[2] == rhs[2]) &&
-		(m[3] == rhs[3]) && (m[4] == rhs[4]) && (m[5] == rhs[5]) &&
-		(m[6] == rhs[6]) && (m[7] == rhs[7]) && (m[8] == rhs[8]);
-}
-bool Matrix2D::operator!=(const Matrix2D& rhs) const
-{
-	return (m[0] != rhs[0]) || (m[1] != rhs[1]) || (m[2] != rhs[2]) ||
-		(m[3] != rhs[3]) || (m[4] != rhs[4]) || (m[5] != rhs[5]) ||
-		(m[6] != rhs[6]) || (m[7] != rhs[7]) || (m[8] != rhs[8]);
+	return orig + transformVector(point - Vector2D(0, 0));
 }
 
-float Matrix2D::operator[](int index) const
+double Matrix2D::determinant() const
 {
-	return m[index];
-}
-float& Matrix2D::operator[](int index)
-{
-	return m[index];
+	return dirX.x * dirY.y - dirX.y * dirY.x;
 }
 
-Matrix2D& Matrix2D::operator=(const Matrix2D& other)
+Matrix2D Matrix2D::inverse() const
 {
-	for (int i = 0; i < MAXNUMBER; ++i)
-		this->m[i] = other.m[i];
-
-	return *this;
+	//calculate determinant
+	double det = determinant();
+	//1)calculate matrix of minors
+	//2)Use the alternating law of signs to produce the matrix of cofactors 
+	//3)Transpose
+	//4)the inverse matrix is 1/Determinant * the resulting matrix
+	return Matrix2D(Vector2D(+dirY.y, -dirX.y) / det,
+		Vector2D(-dirY.x, +dirX.x) / det,
+		Vector2D(dirY.x * orig.y - dirY.y * orig.x, -(dirX.x * orig.y - dirX.y * orig.x)) / det);
 }
 
-Matrix2D Matrix2D::CreateIdentityMatrix()
+bool Matrix2D::equals(const Matrix2D& p) const
 {
-	return Matrix2D();
+	return dirX == p.dirX && dirY == p.dirY && orig == p.orig;
 }
 
-Matrix2D Matrix2D::CreateRotationMatrix(double angle)
+bool Matrix2D::operator==(const Matrix2D& other) const
 {
-	return Matrix2D((float)cos(angle), (float)-sin(angle), 0.0f,
-					(float)sin(angle), (float)cos(angle), 0.0f,
-					0.0f, 0.0f, 1.0f);
+	return dirX == other.dirX && dirY == other.dirY && orig == other.orig;
 }
 
-Matrix2D Matrix2D::CreateScalingMatrix(double scale)
+bool Matrix2D::operator!=(const Matrix2D& other) const
 {
-	return CreateScalingMatrix(scale, scale);
-}
-Matrix2D Matrix2D::CreateScalingMatrix(const Vector2D& scaleXY)
-{
-	return CreateScalingMatrix(scaleXY.x, scaleXY.y);
-}
-Matrix2D Matrix2D::CreateScalingMatrix(double scaleX, double scaleY)
-{
-	return Matrix2D((float)scaleX, 0.0f, 0.0f,
-					0.0f, (float)scaleY, 0.0f,
-					0.0f, 0.0f, 1.0f);
+	return !(*this == other);
 }
 
-Matrix2D Matrix2D::CreateTranslationMatrix(const Vector2D& origin)
-{
-	return Matrix2D(1.0f, 0.0f, (float)origin.x,
-					0.0f, 1.0f, (float)origin.y,
-					0.0f, 0.0f, 1.0f);
-}
-Matrix2D Matrix2D::CreateTranslationMatrix(double tx, double ty)
-{
-	return CreateTranslationMatrix(Vector2D(tx, ty));
-}
-
-const D2D1_MATRIX_3X2_F& Matrix2D::ToMatrix3x2F()
+const D2D1::Matrix3x2F Matrix2D::toMatrix3x2F() const
 {
 	D2D1::Matrix3x2F mat;
 
-	mat._11 = (FLOAT)m[0];
-	mat._12 = (FLOAT)m[1];
-	mat._21 = (FLOAT)m[3];
-	mat._22 = (FLOAT)m[4];
-	mat._31 = (FLOAT)m[2];
-	mat._32 = (FLOAT)m[5];
-
-	//mat._11 = (FLOAT)m[0];
-	//mat._12 = (FLOAT)dirX.y;
-	//mat._21 = (FLOAT)dirY.x;
-	//mat._22 = (FLOAT)m[4];
-	//mat._31 = (FLOAT)m[2];
-	//mat._32 = (FLOAT)m[5];
+	mat._11 = (FLOAT)dirX.x;
+	mat._12 = (FLOAT)dirX.y;
+	mat._21 = (FLOAT)dirY.x;
+	mat._22 = (FLOAT)dirY.y;
+	mat._31 = (FLOAT)orig.x;
+	mat._32 = (FLOAT)orig.y;
 
 	return mat;
 }
+
+void Matrix2D::setAsIdentity()
+{
+	dirX = Vector2D(1, 0);
+	dirY = Vector2D(0, 1);
+	orig = Vector2D(0, 0);
+}
+
+void Matrix2D::setAsRotate(double radians)
+{
+	dirX = Vector2D(cos(radians), sin(radians));
+	dirY = Vector2D(-sin(radians), cos(radians));
+	orig = Vector2D(0, 0);
+}
+void Matrix2D::setAsTranslate(double tx, double ty)
+{
+	dirX = Vector2D(1, 0);
+	dirY = Vector2D(0, 1);
+	orig = Vector2D(tx, ty);
+}
+
+void Matrix2D::setAsTranslate(Vector2D pt)
+{
+	dirX = Vector2D(1, 0);
+	dirY = Vector2D(0, 1);
+	orig = Vector2D(pt.x, pt.y);
+}
+
+void Matrix2D::setAsScale(double scaleX, double scaleY)
+{
+	dirX = Vector2D(scaleX, 0);
+	dirY = Vector2D(0, scaleY);
+	orig = Vector2D(0, 0);
+}
+
+void Matrix2D::setAsScale(double scale)
+{
+	setAsScale(scale, scale);
+}
+
+Matrix2D Matrix2D::createRotationMatrix(double angle)
+{
+	return Matrix2D(Vector2D(cos(angle), sin(angle)), Vector2D(-sin(angle), cos(angle)), Vector2D());
+}
+
+Matrix2D Matrix2D::createIdentityMatrix()
+{
+	return Matrix2D(Vector2D(1, 0), Vector2D(0, 1), Vector2D());
+}
+
+Matrix2D Matrix2D::createScalingMatrix(double scale)
+{
+	return createScalingMatrix(scale, scale);
+}
+
+Matrix2D Matrix2D::createScalingMatrix(Vector2D scaleXY)
+{
+	return createScalingMatrix(scaleXY.x, scaleXY.y);
+}
+
+Matrix2D Matrix2D::createScalingMatrix(double scaleX, double scaleY)
+{
+	return Matrix2D(Vector2D(scaleX, 0), Vector2D(0, scaleY), Vector2D());
+}
+
+Matrix2D Matrix2D::createTranslationMatrix(Vector2D origin)
+{
+	return Matrix2D(Vector2D(1, 0), Vector2D(0, 1), origin);
+}
+
+Matrix2D Matrix2D::createTranslationMatrix(double tx, double ty)
+{
+	return createTranslationMatrix(Vector2D(tx, ty));
+}
+

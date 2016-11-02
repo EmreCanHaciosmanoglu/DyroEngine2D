@@ -5,6 +5,7 @@
 
 class SceneObject;
 class Input;
+class FreeCamera;
 
 class MyScene : public Scene
 {
@@ -22,6 +23,7 @@ public:
 	void changeColorCircle();
 
 private:
+	FreeCamera* camera;
 
 	SceneObject* rectangle;
 	SceneObject* circle;

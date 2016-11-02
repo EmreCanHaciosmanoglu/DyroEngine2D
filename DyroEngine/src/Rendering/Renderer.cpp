@@ -17,6 +17,14 @@ Renderer::Renderer()
 Renderer::~Renderer()
 {
 }
+void Renderer::setTransformMatrix(const Matrix2D& transformMatrix)
+{
+	this->graphics->getRenderTarget()->SetTransform(&transformMatrix.toMatrix3x2F());
+}
+void Renderer::setInterpolationMode(D2D1_BITMAP_INTERPOLATION_MODE i)
+{
+	interpolation_mode = i; 
+}
 
 bool Renderer::initialize()
 {

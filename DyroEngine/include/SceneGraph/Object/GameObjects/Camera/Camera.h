@@ -1,26 +1,28 @@
-#ifndef _SCENEOBJECT_H
-#define _SCENEOBJECT_H
+#ifndef _CAMERA_H
+#define _CAMERA_H
 
 #include "SceneGraph\Object\GameObjects\GameObject.h"
-#include "Interfaces\IDrawable.h"
 
+class CameraComponent;
 class TransformComponent;
 
-class SceneObject :	public GameObject, public IDrawable
+class Camera : public GameObject
 {
 public:
-	SceneObject(const std::tstring& name = _T(""));
-	virtual ~SceneObject();
+	Camera(const std::tstring& name = _T(""), bool setActive = true);
+	virtual ~Camera();
 
 	virtual bool initialize();
 	virtual void update();
-	virtual void draw();
 	virtual bool shutdown();
 
+	CameraComponent* getCamera() const;
 	TransformComponent* getTransform() const;
 
 private:
+	CameraComponent* camera;
 	TransformComponent* transform;
 };
 
 #endif
+

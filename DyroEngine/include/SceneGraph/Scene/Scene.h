@@ -14,6 +14,7 @@
 
 class GameObject;
 class Renderer;
+class CameraManager;
 class Input;
 
 class Scene : public Object, public IDrawable, public IInput
@@ -39,9 +40,13 @@ public:
 
 	void setRenderer(Renderer* renderer);
 	Renderer* getRenderer() const;
+	void setCameraManager(CameraManager* manager);
+	CameraManager* getCameraManager() const;
 
 private:
+
 	Renderer* renderer;
+	CameraManager* camera_manager;
 	std::vector<GameObject*> vec_objects;
 };
 

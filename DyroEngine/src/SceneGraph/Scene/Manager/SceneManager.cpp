@@ -21,10 +21,12 @@ SceneManager::~SceneManager()
 bool SceneManager::initialize()
 {
 	setupManager<Renderer>();
+	setupManager<CameraManager>();
 
 	if (!this->active_scene->getInitialized())
 	{
 		this->active_scene->setRenderer(&Singleton<Renderer>::getInstance());
+		this->active_scene->setCameraManager(&Singleton<CameraManager>::getInstance());
 
 		if (!this->active_scene->initialize())
 			return false;
@@ -65,6 +67,7 @@ bool SceneManager::shutdown()
 	}
 
 	destroyManager<Renderer>();
+	destroyManager<CameraManager>();
 
 	return true;
 }

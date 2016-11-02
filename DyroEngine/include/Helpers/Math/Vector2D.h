@@ -54,15 +54,6 @@ public:
 
 	static Vector2D ZeroVector;
 
-	//inline const Vector2D& ToRasterSpace()
-	//{
-	//	return Vector2D(((x + 1) / 2) * WORLDSETTINGS->GetWindowWidth(), ((y - 1) / -2) * WORLDSETTINGS->GetWindowHeight());
-	//}
-	//inline const Vector2D& ToNDCSpace()
-	//{
-	//	return Vector2D((x / WORLDSETTINGS->GetWindowWidth() * 2) - 1,((y / WORLDSETTINGS->GetWindowHeight()) * -2) + 1);
-	//}
-
 	double       Length() const;							// length of a vector
 	double       Distance(const Vector2D& vec) const;		// distance between two vectors
 	double       Dot(const Vector2D& vec) const;			// dot product

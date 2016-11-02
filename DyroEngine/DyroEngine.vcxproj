@@ -79,6 +79,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\SceneGraph\Object\GameObjects\Camera\Camera.h" />
+    <ClInclude Include="include\SceneGraph\Component\CameraComponent.h" />
     <ClInclude Include="include\Core\System\Input.h" />
     <ClInclude Include="include\Defines\Types\InputStateType.h" />
     <ClInclude Include="include\Interfaces\IFillableShape.h" />
@@ -114,6 +116,8 @@
     <ClInclude Include="include\Helpers\Math\Rect2D.h" />
     <ClInclude Include="include\SceneGraph\Component\Component.h" />
     <ClInclude Include="include\SceneGraph\Component\ShapeComponent.h" />
+    <ClInclude Include="include\SceneGraph\Object\GameObjects\Camera\FreeCamera.h" />
+    <ClInclude Include="include\SceneGraph\Object\GameObjects\Camera\Manager\CameraManager.h" />
     <ClInclude Include="include\SceneGraph\Object\GameObjects\GameObject.h" />
     <ClInclude Include="include\SceneGraph\Object\Objects\Shapes\CircleShape.h" />
     <ClInclude Include="include\SceneGraph\Object\Objects\Shapes\LineShape.h" />
@@ -132,10 +136,15 @@
     <ClInclude Include="include\Core\Settings\WorldSettings.h" />
     <ClInclude Include="include\SceneGraph\Object\Objects\Shapes\Shape.h" />
     <ClInclude Include="include\SceneGraph\Object\GameObjects\SceneObject.h" />
+    <ClInclude Include="include\SceneGraph\Component\TransformComponent.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\SceneGraph\Object\GameObjects\Camera\Camera.cpp" />
+    <ClCompile Include="src\SceneGraph\Component\CameraComponent.cpp" />
     <ClCompile Include="src\Core\System\Input.cpp" />
     <ClCompile Include="src\Interfaces\IInput.cpp" />
+    <ClCompile Include="src\SceneGraph\Object\GameObjects\Camera\FreeCamera.cpp" />
+    <ClCompile Include="src\SceneGraph\Object\GameObjects\Camera\Manager\CameraManager.cpp" />
     <ClCompile Include="src\SceneGraph\Object\GameObjects\SceneObject.cpp" />
     <ClCompile Include="src\Interfaces\IFillableShape.cpp" />
     <ClCompile Include="src\SceneGraph\Object\Objects\Shapes\CircleShape.cpp" />
@@ -173,6 +182,7 @@
     <ClCompile Include="src\Helpers\Math\Vector2D.cpp" />
     <ClCompile Include="src\Core\System\MainWindow.cpp" />
     <ClCompile Include="src\Core\Settings\WorldSettings.cpp" />
+    <ClCompile Include="src\SceneGraph\Component\TransformComponent.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -35,7 +35,8 @@ public:
 	virtual bool initialize();
 	virtual bool shutdown();
 
-	void setInterpolationMode(D2D1_BITMAP_INTERPOLATION_MODE i) { interpolation_mode = i; }
+	void setTransformMatrix(const Matrix2D& transformMatrix);
+	void setInterpolationMode(D2D1_BITMAP_INTERPOLATION_MODE i);
 	
 	void setColor(const Color& c);
 	void setColor(float r, float g, float b, float a = 1.0f);
