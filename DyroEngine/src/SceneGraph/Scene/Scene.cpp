@@ -18,6 +18,7 @@ Scene::Scene(const std::tstring& name)
 	:Object(name)
 	,renderer(nullptr)
 	,camera_manager(nullptr)
+	,resource_manager(nullptr)
 {
 }
 Scene::~Scene()
@@ -128,4 +129,12 @@ void Scene::setCameraManager(CameraManager* manager)
 CameraManager* Scene::getCameraManager() const
 {
 	return this->camera_manager;
+}
+void Scene::setResourceManager(ResourceManager* manager)
+{
+	this->resource_manager;
+}
+ResourceManager* Scene::getResourceManager() const
+{
+	return this->resource_manager;
 }

@@ -13,6 +13,7 @@
 #endif
 
 #include "Core/Rendering/Renderer.h"
+#include "Core/Resources/Manager/ResourceManager.h"
 #include "SceneGraph/Object/GameObjects/Camera/Manager/CameraManager.h"
 
 #include "Diagnostics/Logger.h"

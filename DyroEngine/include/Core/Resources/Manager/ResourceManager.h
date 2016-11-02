@@ -37,7 +37,15 @@ private:
 template<typename T>
 T* ResourceManager::getResource(const std::tstring& path)
 {
+	if (this->resources[path] != nullptr)
+		return dynamic_cast<T*>(this->resources[path]);
 
+	T * new_r = new T(path);
+	new_r->initialize();
+
+	this->resources[path] = new_r;
+
+	return new_r;
 }
 
 #endif

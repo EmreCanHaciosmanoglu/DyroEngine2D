@@ -25,6 +25,7 @@
 #endif
 
 class Graphics;
+class Image;
 
 class Renderer : Manager
 {
@@ -63,6 +64,13 @@ public:
 	
 	void fillPolygon(const std::vector<Vector2D>& vecPoints);
 	void fillPolygon(Vector2D* points, int size);
+
+	bool drawBitmap(Image* bmpPtr);
+	bool drawBitmap(Image* bmpPtr, double x, double y);
+	bool drawBitmap(Image* bmpPtr, const Vector2D& position);
+	bool drawBitmap(Image* bmpPtr, const Rect2D& srcRect);
+	bool drawBitmap(Image* bmpPtr, double x, double y, const Rect2D& srcRect);
+	bool drawBitmap(Image* bmpPtr, const Vector2D& position, const Rect2D& srcRect);
 
 private:
 	D2D1_BITMAP_INTERPOLATION_MODE interpolation_mode;

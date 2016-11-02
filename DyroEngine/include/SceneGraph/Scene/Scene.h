@@ -15,6 +15,7 @@
 class GameObject;
 class Renderer;
 class CameraManager;
+class ResourceManager;
 class Input;
 
 class Scene : public Object, public IDrawable, public IInput
@@ -42,11 +43,14 @@ public:
 	Renderer* getRenderer() const;
 	void setCameraManager(CameraManager* manager);
 	CameraManager* getCameraManager() const;
+	void setResourceManager(ResourceManager* manager);
+	ResourceManager* getResourceManager() const;
 
 private:
 
 	Renderer* renderer;
 	CameraManager* camera_manager;
+	ResourceManager* resource_manager;
 	std::vector<GameObject*> vec_objects;
 };
 

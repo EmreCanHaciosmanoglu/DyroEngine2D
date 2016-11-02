@@ -3,6 +3,8 @@
 #include "Core/System/Graphics.h"
 #include "Core/System/Manager/SystemManager.h"
 
+#include "Core/Resources/Image.h"
+
 #include "Diagnostics/Logger.h"
 
 #include "Defines/assert.h"
@@ -188,4 +190,63 @@ void Renderer::fillPolygon(Vector2D* points, int size)
 	}
 
 	SafeRelease(pGeometry);
+}
+
+bool Renderer::drawBitmap(Image* imagePtr)
+{
+	assert(imagePtr != nullptr);
+
+	Rect2D srcRect2(0, 0, imagePtr->getWidth(), imagePtr->getHeight());
+	return drawBitmap(imagePtr, Vector2D(0, 0), srcRect2);
+}
+
+bool Renderer::drawBitmap(Image* imagePtr, double x, double y)
+{
+	assert(imagePtr != nullptr);
+
+	Rect2D srcRect(0, 0, imagePtr->getWidth(), imagePtr->getHeight());
+	return drawBitmap(imagePtr, Vector2D(x, y), srcRect);
+}
+
+bool Renderer::drawBitmap(Image* imagePtr, const Vector2D& position)
+{
+	assert(imagePtr != nullptr);
+
+	Rect2D srcRect(0, 0, imagePtr->getWidth(), imagePtr->getHeight());
+	return drawBitmap(imagePtr, position, srcRect);
+}
+
+bool Renderer::drawBitmap(Image* imagePtr, const Rect2D& srcRect)
+{
+	assert(imagePtr != nullptr);
+
+	return drawBitmap(imagePtr, Vector2D(0, 0), srcRect);
+}
+
+bool Renderer::drawBitmap(Image* imagePtr, double x, double y, const Rect2D& srcRect)
+{
+	assert(imagePtr != nullptr);
+
+	return drawBitmap(imagePtr, Vector2D(x, y), srcRect);
+}
+
+bool Renderer::drawBitmap(Image* imagePtr, const Vector2D& position, const Rect2D& srcRect)
+{
+	assert(imagePtr != nullptr);
+
+	D2D1_RECT_F srcRect_f;
+	srcRect_f.left = (FLOAT)srcRect.left;
+	srcRect_f.right = (FLOAT)srcRect.right;
+	srcRect_f.top = (FLOAT)srcRect.top;
+	srcRect_f.bottom = (FLOAT)srcRect.bottom;
+
+	D2D1_RECT_F dstRect_f;
+	dstRect_f.left = (FLOAT)position.x;
+	dstRect_f.right = dstRect_f.left + (FLOAT)(srcRect.right - srcRect.left);
+	dstRect_f.top = (FLOAT)position.y;
+	dstRect_f.bottom = dstRect_f.top + (FLOAT)(srcRect.bottom - srcRect.top);
+
+	this->graphics->getRenderTarget()->DrawBitmap(imagePtr->getBitmap(), dstRect_f, (FLOAT)imagePtr->getOpacity(), this->interpolation_mode, srcRect_f);
+
+	return true;
 }
