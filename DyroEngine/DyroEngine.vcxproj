@@ -79,6 +79,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\Core\Resources\Image.h" />
+    <ClInclude Include="include\Core\Resources\Manager\ResourceManager.h" />
+    <ClInclude Include="include\Core\Resources\Resource.h" />
     <ClInclude Include="include\Core\System\Input.h" />
     <ClInclude Include="include\Defines\Types\InputStateType.h" />
     <ClInclude Include="include\Interfaces\IFillableShape.h" />
@@ -134,6 +137,9 @@
     <ClInclude Include="include\SceneGraph\Object\GameObjects\SceneObject.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Core\Resources\Image.cpp" />
+    <ClCompile Include="src\Core\Resources\Manager\ResourceManager.cpp" />
+    <ClCompile Include="src\Core\Resources\Resource.cpp" />
     <ClCompile Include="src\Core\System\Input.cpp" />
     <ClCompile Include="src\Interfaces\IInput.cpp" />
     <ClCompile Include="src\SceneGraph\Object\GameObjects\SceneObject.cpp" />
