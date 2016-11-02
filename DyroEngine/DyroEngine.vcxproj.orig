@@ -79,11 +79,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <ClInclude Include="include\SceneGraph\Object\GameObjects\Camera\Camera.h" />
     <ClInclude Include="include\SceneGraph\Component\CameraComponent.h" />
+=======
     <ClInclude Include="include\Core\Resources\Image.h" />
     <ClInclude Include="include\Core\Resources\Manager\ResourceManager.h" />
     <ClInclude Include="include\Core\Resources\Resource.h" />
+>>>>>>> DyroEngine_Resources
     <ClInclude Include="include\Core\System\Input.h" />
     <ClInclude Include="include\Defines\Types\InputStateType.h" />
     <ClInclude Include="include\Interfaces\IFillableShape.h" />
@@ -142,11 +145,14 @@
     <ClInclude Include="include\SceneGraph\Component\TransformComponent.h" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <ClCompile Include="src\SceneGraph\Object\GameObjects\Camera\Camera.cpp" />
     <ClCompile Include="src\SceneGraph\Component\CameraComponent.cpp" />
+=======
     <ClCompile Include="src\Core\Resources\Image.cpp" />
     <ClCompile Include="src\Core\Resources\Manager\ResourceManager.cpp" />
     <ClCompile Include="src\Core\Resources\Resource.cpp" />
+>>>>>>> DyroEngine_Resources
     <ClCompile Include="src\Core\System\Input.cpp" />
     <ClCompile Include="src\Interfaces\IInput.cpp" />
     <ClCompile Include="src\SceneGraph\Object\GameObjects\Camera\FreeCamera.cpp" />
