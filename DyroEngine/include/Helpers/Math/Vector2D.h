@@ -6,9 +6,9 @@
 	#include <math.h>
 #endif
 
-//#ifndef _WORLDSETTINGS_H
-//#include "WorldSettings.h"
-//#endif
+#ifndef BOX2D_H
+	#include <Box2D\Box2D.h>
+#endif
 
 #pragma region Disable Waring 4172
 // Warning 4172
@@ -18,12 +18,12 @@
 //
 // C4172.cpp
 // compile with: /W1 /LD
-// double f = 10;
+// float f = 10;
 //
-// const double& bar() 
+// const float& bar() 
 // {
 //  //try the following line instead
-//	// const double& bar() 
+//	// const float& bar() 
 //	   {
 //			return f;   // C4172
 //	   }
@@ -42,21 +42,21 @@ public:
 		x = other.x;
 		y = other.y;
 	}
-	Vector2D(double xPos, double yPos)
+	Vector2D(float xPos, float yPos)
 		: x(xPos)
 		, y(yPos)
 	{}
 	~Vector2D()
 	{}
 
-	double x;
-	double y;
+	float x;
+	float y;
 
 	static Vector2D ZeroVector;
 
-	double       Length() const;							// length of a vector
-	double       Distance(const Vector2D& vec) const;		// distance between two vectors
-	double       Dot(const Vector2D& vec) const;			// dot product
+	float       Length() const;							// length of a vector
+	float       Distance(const Vector2D& vec) const;		// distance between two vectors
+	float       Dot(const Vector2D& vec) const;			// dot product
 	Vector2D&	 Normalize();								// normalized vector
 
 	// operators
@@ -65,16 +65,19 @@ public:
 	Vector2D     operator-(const Vector2D& rhs) const;		// subtract rhs
 	Vector2D&    operator+=(const Vector2D& rhs);			// add rhs and update this object
 	Vector2D&    operator-=(const Vector2D& rhs);			// subtract rhs and update this object
-	Vector2D     operator*(const double scale) const;		// scale
+	Vector2D     operator*(const float scale) const;		// scale
 	Vector2D     operator*(const Vector2D& rhs) const;		// multiply each element
-	Vector2D&    operator*=(const double scale);			// scale and update this object
+	Vector2D&    operator*=(const float scale);			// scale and update this object
 	Vector2D&    operator*=(const Vector2D& rhs);			// multiply each element and update this object
-	Vector2D     operator/(const double scale) const;		// inverse scale
-	Vector2D&    operator/=(const double scale);			// scale and update this object
+	Vector2D     operator/(const float scale) const;		// inverse scale
+	Vector2D&    operator/=(const float scale);			// scale and update this object
 
 	bool        operator==(const Vector2D& rhs) const;		// exact compare, no epsilon
 	bool        operator!=(const Vector2D& rhs) const;		// exact compare, no epsilon
 	bool        operator<(const Vector2D& rhs) const;		// comparison for sort
+
+	static b2Vec2		toBox2DVec(const Vector2D& ref);
+	static Vector2D     toVector2D(const b2Vec2& ref);
 };
 
 #endif

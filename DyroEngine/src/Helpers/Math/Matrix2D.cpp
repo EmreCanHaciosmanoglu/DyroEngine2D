@@ -6,7 +6,7 @@
 Matrix2D::Matrix2D(Vector2D dirX, Vector2D dirY, Vector2D orig) : dirX(dirX), dirY(dirY), orig(orig)
 {}
 
-Matrix2D::Matrix2D(double e1X, double e1Y, double e2X, double e2Y, double oX, double oY) : dirX(e1X, e1Y), dirY(e2X, e2Y), orig(oX, oY)
+Matrix2D::Matrix2D(float e1X, float e1Y, float e2X, float e2Y, float oX, float oY) : dirX(e1X, e1Y), dirY(e2X, e2Y), orig(oX, oY)
 {}
 
 Matrix2D::Matrix2D(const Matrix2D& sourceRef) : dirX(sourceRef.dirX), dirY(sourceRef.dirY), orig(sourceRef.orig)
@@ -46,7 +46,7 @@ Vector2D Matrix2D::transformPoint(const Vector2D& point) const
 	return orig + transformVector(point - Vector2D(0, 0));
 }
 
-double Matrix2D::determinant() const
+float Matrix2D::determinant() const
 {
 	return dirX.x * dirY.y - dirX.y * dirY.x;
 }
@@ -54,7 +54,7 @@ double Matrix2D::determinant() const
 Matrix2D Matrix2D::inverse() const
 {
 	//calculate determinant
-	double det = determinant();
+	float det = determinant();
 	//1)calculate matrix of minors
 	//2)Use the alternating law of signs to produce the matrix of cofactors 
 	//3)Transpose
@@ -100,13 +100,13 @@ void Matrix2D::setAsIdentity()
 	orig = Vector2D(0, 0);
 }
 
-void Matrix2D::setAsRotate(double radians)
+void Matrix2D::setAsRotate(float radians)
 {
 	dirX = Vector2D(cos(radians), sin(radians));
 	dirY = Vector2D(-sin(radians), cos(radians));
 	orig = Vector2D(0, 0);
 }
-void Matrix2D::setAsTranslate(double tx, double ty)
+void Matrix2D::setAsTranslate(float tx, float ty)
 {
 	dirX = Vector2D(1, 0);
 	dirY = Vector2D(0, 1);
@@ -120,19 +120,19 @@ void Matrix2D::setAsTranslate(Vector2D pt)
 	orig = Vector2D(pt.x, pt.y);
 }
 
-void Matrix2D::setAsScale(double scaleX, double scaleY)
+void Matrix2D::setAsScale(float scaleX, float scaleY)
 {
 	dirX = Vector2D(scaleX, 0);
 	dirY = Vector2D(0, scaleY);
 	orig = Vector2D(0, 0);
 }
 
-void Matrix2D::setAsScale(double scale)
+void Matrix2D::setAsScale(float scale)
 {
 	setAsScale(scale, scale);
 }
 
-Matrix2D Matrix2D::createRotationMatrix(double angle)
+Matrix2D Matrix2D::createRotationMatrix(float angle)
 {
 	return Matrix2D(Vector2D(cos(angle), sin(angle)), Vector2D(-sin(angle), cos(angle)), Vector2D());
 }
@@ -142,7 +142,7 @@ Matrix2D Matrix2D::createIdentityMatrix()
 	return Matrix2D(Vector2D(1, 0), Vector2D(0, 1), Vector2D());
 }
 
-Matrix2D Matrix2D::createScalingMatrix(double scale)
+Matrix2D Matrix2D::createScalingMatrix(float scale)
 {
 	return createScalingMatrix(scale, scale);
 }
@@ -152,7 +152,7 @@ Matrix2D Matrix2D::createScalingMatrix(Vector2D scaleXY)
 	return createScalingMatrix(scaleXY.x, scaleXY.y);
 }
 
-Matrix2D Matrix2D::createScalingMatrix(double scaleX, double scaleY)
+Matrix2D Matrix2D::createScalingMatrix(float scaleX, float scaleY)
 {
 	return Matrix2D(Vector2D(scaleX, 0), Vector2D(0, scaleY), Vector2D());
 }
@@ -162,7 +162,7 @@ Matrix2D Matrix2D::createTranslationMatrix(Vector2D origin)
 	return Matrix2D(Vector2D(1, 0), Vector2D(0, 1), origin);
 }
 
-Matrix2D Matrix2D::createTranslationMatrix(double tx, double ty)
+Matrix2D Matrix2D::createTranslationMatrix(float tx, float ty)
 {
 	return createTranslationMatrix(Vector2D(tx, ty));
 }

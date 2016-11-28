@@ -17,11 +17,11 @@ public:
 	virtual bool shutdown();
 
 	void setApplicationSettings(const ApplicationSettings& settings);
-	ApplicationSettings& getApplicationSettings();
+	ApplicationSettings* getApplicationSettings();
 	void setPhyxSettings(const PhyxSettings& settings);
-	PhyxSettings& getPhyxSettings();
+	PhyxSettings* getPhyxSettings();
 	void setGameSettings(const GameSettings& settings);
-	GameSettings& getGameSettings();
+	GameSettings* getGameSettings();
 
 private:
 

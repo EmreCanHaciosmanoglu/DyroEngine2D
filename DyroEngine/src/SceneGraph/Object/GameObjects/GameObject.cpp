@@ -21,6 +21,20 @@ GameObject::~GameObject()
 
 bool GameObject::initialize()
 {
+	std::sort(this->vec_components.begin(), this->vec_components.end(),
+		[](const Component * c1, const Component * c2) -> bool
+	{
+		if (c1->getExecutionOrder() == Component::INVALID_ORDER_ID && c2->getExecutionOrder() == Component::INVALID_ORDER_ID)
+			return false;
+
+		else if (c1->getExecutionOrder() == Component::INVALID_ORDER_ID)
+			return false;
+		else if (c2->getExecutionOrder() == Component::INVALID_ORDER_ID)
+			return true;
+
+		return c1->getExecutionOrder() < c2->getExecutionOrder();
+	});
+
 	for (Component* obj : this->vec_components)
 	{
 		if (obj->getInitialized())
@@ -110,8 +124,6 @@ void GameObject::addComponent(Component* component)
 	{
 		this->vec_components.push_back(component);
 		component->setParent(this);
-		if (component->getOrderValue() == Component::INVALID_ORDER_ID)
-			component->setOrderValue(this->vec_components.size());
 	}
 }
 void GameObject::removeComponent(Component* component)

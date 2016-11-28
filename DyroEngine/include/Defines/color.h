@@ -1,6 +1,8 @@
 #ifndef _COLOR_H
 #define _COLOR_H
 
+#include "Defines\d2dutill.h"
+
 struct Color
 {
 	Color()
@@ -26,6 +28,11 @@ struct Color
 	float green;
 	float blue;
 	float alpha;
+
+	D2D1::ColorF toColorF() const
+	{
+		return D2D1::ColorF (this->red,this->green,this->blue,this->alpha);
+	}
 };
 
 #endif //_COLOR_H

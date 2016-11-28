@@ -9,6 +9,7 @@
 #include "Defines/deletemacros.h"
 
 #include "Helpers\Singleton.h"
+#include "Helpers\Manager.h"
 
 SceneManager::SceneManager()
 	:active_scene(nullptr)
@@ -23,12 +24,14 @@ bool SceneManager::initialize()
 	setupManager<Renderer>();
 	setupManager<CameraManager>();
 	setupManager<ResourceManager>();
+	setupManager<DebugRenderer>();
 
 	if (!this->active_scene->getInitialized())
 	{
-		this->active_scene->setRenderer(&Singleton<Renderer>::getInstance());
-		this->active_scene->setCameraManager(&Singleton<CameraManager>::getInstance());
-		this->active_scene->setResourceManager(&Singleton<ResourceManager>::getInstance());
+		this->active_scene->addManager(&Singleton<Renderer>::getInstance());
+		this->active_scene->addManager(&Singleton<CameraManager>::getInstance());
+		this->active_scene->addManager(&Singleton<ResourceManager>::getInstance());
+		this->active_scene->addManager(&Singleton<DebugRenderer>::getInstance());
 
 		if (!this->active_scene->initialize())
 			return false;

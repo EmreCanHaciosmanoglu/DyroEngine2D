@@ -27,23 +27,23 @@ void WorldSettings::setApplicationSettings(const ApplicationSettings& settings)
 {
 	this->application_settings = settings;
 }
-ApplicationSettings& WorldSettings::getApplicationSettings()
+ApplicationSettings* WorldSettings::getApplicationSettings()
 {
-	return this->application_settings;
+	return &this->application_settings;
 }
 void WorldSettings::setPhyxSettings(const PhyxSettings& settings)
 {
 	this->phyx_settings = settings;
 }
-PhyxSettings& WorldSettings::getPhyxSettings()
+PhyxSettings* WorldSettings::getPhyxSettings()
 {
-	return this->phyx_settings;
+	return &this->phyx_settings;
 }
 void WorldSettings::setGameSettings(const GameSettings& settings)
 {
 	this->game_settings = settings;
 }
-GameSettings& WorldSettings::getGameSettings()
+GameSettings* WorldSettings::getGameSettings()
 {
-	return this->game_settings;
+	return &this->game_settings;
 }

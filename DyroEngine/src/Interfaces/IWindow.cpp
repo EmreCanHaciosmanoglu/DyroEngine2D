@@ -22,8 +22,8 @@ IWindow::IWindow()
 	, window_classname(_T(""))
 	, window_title(_T(""))
 
-	, window_width(Singleton<WorldSettings>::getInstance().getApplicationSettings().getWindowWidth())
-	, window_height(Singleton<WorldSettings>::getInstance().getApplicationSettings().getWindowHeight())
+	, window_width(Singleton<WorldSettings>::getInstance().getApplicationSettings()->getWindowWidth())
+	, window_height(Singleton<WorldSettings>::getInstance().getApplicationSettings()->getWindowHeight())
 {}
 IWindow::~IWindow()
 {}
@@ -59,19 +59,19 @@ bool IWindow::createWindow()
 	{
 		int value = GetLastError();
 		Singleton<Logger>::getInstance().log(_T("Register \"WNDCLASS\" failed."), LOGTYPE_ERROR);
-		return FALSE;
+		return false;
 	}
 
 	if (!setupWindow())
-		return FALSE;
+		return false;
 	if (!errorHandling())
-		return FALSE;
+		return false;
 
 	ShowWindow(this->handle_window, SW_SHOW);
 	SetForegroundWindow(this->handle_window);
 	SetFocus(this->handle_window);
 
-	return TRUE;
+	return true;
 }
 bool IWindow::destroyWindow()
 {
@@ -94,7 +94,7 @@ bool IWindow::destroyWindow()
 		this->handle_instance = NULL;
 	}
 
-	return TRUE;
+	return true;
 }
 
 const POINT IWindow::getCenterPosition() const
@@ -152,10 +152,10 @@ bool IWindow::setupWindow()
 	if (!this->handle_window)
 	{
 		Singleton<Logger>::getInstance().log(_T("Creation of our window failed."), LOGTYPE_ERROR);
-		return FALSE;
+		return false;
 	}
 
-	return TRUE;
+	return true;
 }
 bool IWindow::errorHandling()
 {
@@ -163,7 +163,7 @@ bool IWindow::errorHandling()
 	if (!(this->handle_devicecontext = GetDC(this->handle_window)))
 	{
 		Singleton<Logger>::getInstance().log(_T("Can't create a \"GLDC\"."), LOGTYPE_ERROR);
-		return FALSE;
+		return false;
 	}
 
 	//Check the pixel format
@@ -173,15 +173,15 @@ bool IWindow::errorHandling()
 	if (!this->pixel_format)
 	{
 		Singleton<Logger>::getInstance().log(_T("Can't find a suitable \"PixelFormat\"."), LOGTYPE_ERROR);
-		return FALSE;
+		return false;
 	}
 	if (!SetPixelFormat(this->handle_devicecontext, this->pixel_format, &pfd))
 	{
 		Singleton<Logger>::getInstance().log(_T("Can't set the \"PixelFormat\"."), LOGTYPE_ERROR);
-		return FALSE;
+		return false;
 	}
 
-	return TRUE;
+	return true;
 }
 
 WNDCLASS IWindow::createWindowClass()

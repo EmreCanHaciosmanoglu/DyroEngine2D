@@ -13,10 +13,10 @@
 #endif
 
 class GameObject;
-class Renderer;
-class CameraManager;
-class ResourceManager;
 class Input;
+class Manager;
+
+class b2World;
 
 class Scene : public Object, public IDrawable, public IInput
 {
@@ -36,23 +36,43 @@ public:
 
 	virtual void destroy();
 
+	void enableDebugRendering();
+	void disableDebugRendering();
+
+	b2World* getPhyxWorld();
+
 	void addGameObject(GameObject* object);
 	void removeGameObject(GameObject* object);
 
-	void setRenderer(Renderer* renderer);
-	Renderer* getRenderer() const;
-	void setCameraManager(CameraManager* manager);
-	CameraManager* getCameraManager() const;
-	void setResourceManager(ResourceManager* manager);
-	ResourceManager* getResourceManager() const;
+	void addManager(Manager* manager);
+	template<typename T>
+	T* getManager() const;
 
 private:
+	void setupPyhx();
 
-	Renderer* renderer;
-	CameraManager* camera_manager;
-	ResourceManager* resource_manager;
+	b2World* phyx_world;
+
+	bool debug_rendering;
+
 	std::vector<GameObject*> vec_objects;
+	std::vector<Manager*> vec_managers;
 };
+
+template <typename T>
+T* Scene::getManager() const
+{
+	for (Manager* m : this->vec_managers)
+	{
+		T* new_m = dynamic_cast<T*>(m);
+		if (new_m == nullptr)
+			continue;
+
+		return new_m;
+	}
+
+	return nullptr;
+}
 
 #endif //_SCENE_H
 

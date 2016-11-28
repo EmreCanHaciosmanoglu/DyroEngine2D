@@ -24,7 +24,7 @@ bool ShapeComponent::initialize()
 }
 void ShapeComponent::draw()
 {
-	this->shape->render(getParent()->getScene()->getRenderer());
+	this->shape->render(getParent()->getScene()->getManager<Renderer>());
 }
 void ShapeComponent::update()
 {

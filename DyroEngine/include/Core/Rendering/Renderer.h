@@ -27,11 +27,11 @@
 class Graphics;
 class Image;
 
-class Renderer : Manager
+class Renderer :  public Manager
 {
 public:
 	Renderer();
-	~Renderer();
+	virtual ~Renderer();
 
 	virtual bool initialize();
 	virtual bool shutdown();
@@ -45,31 +45,31 @@ public:
 	void drawLine(const Vector2D& v1, const Vector2D& v2, float lineWidth = 0.5f);
 	void drawLine(float x1, float y1, float x2, float y2, float lineWidth = 0.5f);
 	
-	void drawRect(double left, double top, double width, double height, float lineWidth = 0.5f);
+	void drawRect(float left, float top, float width, float height, float lineWidth = 0.5f);
 	void drawRect(const Vector2D& lefttop, const Vector2D& rightbottom, float lineWidth = 0.5f);
 	void drawRect(const Rect2D& rect, float lineWidth = 0.5f);
 	
-	void drawCircle(double xcenter, double ycenter, double r, float lineWidth = 0.5f);
-	void drawCircle(const Vector2D& center, double r, float lineWidth = 0.5f);
+	void drawCircle(float xcenter, float ycenter, float r, float lineWidth = 0.5f);
+	void drawCircle(const Vector2D& center, float r, float lineWidth = 0.5f);
 	
 	void drawPolygon(const std::vector<Vector2D>& vecPoints, bool close = true, float lineWidth = 0.5f);
 	void drawPolygon(Vector2D* points, int size, bool close = true, float lineWidth = 0.5f);
 	
-	void fillRect(double left, double top, double width, double height);
+	void fillRect(float left, float top, float width, float height);
 	void fillRect(const Vector2D& lefttop, const Vector2D& rightbottom);
 	void fillRect(const Rect2D& rect);
 	
-	void fillCircle(const Vector2D& center, double r);
-	void fillCircle(double xcenter, double ycenter, double r);
+	void fillCircle(const Vector2D& center, float r);
+	void fillCircle(float xcenter, float ycenter, float r);
 	
 	void fillPolygon(const std::vector<Vector2D>& vecPoints);
 	void fillPolygon(Vector2D* points, int size);
 
 	bool drawBitmap(Image* bmpPtr);
-	bool drawBitmap(Image* bmpPtr, double x, double y);
+	bool drawBitmap(Image* bmpPtr, float x, float y);
 	bool drawBitmap(Image* bmpPtr, const Vector2D& position);
 	bool drawBitmap(Image* bmpPtr, const Rect2D& srcRect);
-	bool drawBitmap(Image* bmpPtr, double x, double y, const Rect2D& srcRect);
+	bool drawBitmap(Image* bmpPtr, float x, float y, const Rect2D& srcRect);
 	bool drawBitmap(Image* bmpPtr, const Vector2D& position, const Rect2D& srcRect);
 
 private:

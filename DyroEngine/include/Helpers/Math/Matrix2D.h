@@ -29,7 +29,7 @@ struct Matrix2D
 	//! Default constructor results in a unity matrix
 	Matrix2D(Vector2D dirX = Vector2D(1, 0), Vector2D dirY = Vector2D(0, 1), Vector2D orig = Vector2D(0, 0));
 	//! Constructor, using doubles, all required
-	Matrix2D(double e1X, double e1Y, double e2X, double e2Y, double oX, double oY);
+	Matrix2D(float e1X, float e1Y, float e2X, float e2Y, float oX, float oY);
 	//! Copy constructor
 	Matrix2D(const Matrix2D& orig);
 	//! Construct from Direct2D, not for students
@@ -53,7 +53,7 @@ struct Matrix2D
 	//! Vector2D q = f.Transform(p);
 	Vector2D				transformPoint(const Vector2D& p) const;
 	//! Calculate the determinant
-	double					determinant() const;
+	float					determinant() const;
 	//! Calculate the inverse matrix
 	Matrix2D				inverse() const;
 	//! Are two matrices equal within a threshold?	p.Equals(q)
@@ -64,31 +64,31 @@ struct Matrix2D
 	//! Converts this matrix into a Identity matrix
 	void setAsIdentity();
 	//! Converts this matrix into a Rotate matrix
-	void setAsRotate(double radians);
+	void setAsRotate(float radians);
 	//! Converts this matrix into a Translation matrix
-	void setAsTranslate(double tx, double ty);
+	void setAsTranslate(float tx, float ty);
 	//! Converts this matrix into a Translation matrix
 	void setAsTranslate(Vector2D pt);
 	//! Converts this matrix into a Scale matrix
-	void setAsScale(double sx, double sy);
+	void setAsScale(float sx, float sy);
 	//! Converts this matrix into a Scale matrix
-	void setAsScale(double s);
+	void setAsScale(float s);
 
 	// -------------------------
 	// Static Methods 
 	// -------------------------
 	//! Instantiate a rotation matrix: 
 	//! Matrix r = Matrix::Rotation(M_PI/2);
-	static Matrix2D createRotationMatrix(double radians);
+	static Matrix2D createRotationMatrix(float radians);
 	//! Instantiate an identity matrix: 
 	//! Matrix2D m = Matrix2D::Identity();
 	static Matrix2D createIdentityMatrix();
 	//! Instantiate a scale matrix: 
 	//! Matrix s = Matrix::Scaling(2);
-	static Matrix2D createScalingMatrix(double scale);
+	static Matrix2D createScalingMatrix(float scale);
 	//! Instantiate a scale matrix: 
 	//! Matrix s = Matrix::Scaling(2,-3);
-	static Matrix2D createScalingMatrix(double scaleX, double scaleY);
+	static Matrix2D createScalingMatrix(float scaleX, float scaleY);
 	//! Instantiate a scale matrix: 
 	//! Matrix s = Matrix::Scaling( Vector2D(2,-3) );
 	static Matrix2D createScalingMatrix(Vector2D scaleXY);
@@ -97,7 +97,7 @@ struct Matrix2D
 	static Matrix2D createTranslationMatrix(Vector2D origin);
 	//! Instantiate a translation matrix: 
 	//! Matrix t = Matrix::Translation(2,3);
-	static Matrix2D createTranslationMatrix(double tx, double ty);
+	static Matrix2D createTranslationMatrix(float tx, float ty);
 
 
 	// -------------------------

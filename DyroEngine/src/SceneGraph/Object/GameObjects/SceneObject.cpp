@@ -14,6 +14,7 @@ SceneObject::SceneObject(const std::tstring& name)
 	:GameObject(name)
 	,transform(new TransformComponent())
 {
+	addComponent(this->transform);
 }
 SceneObject::~SceneObject()
 {
@@ -21,8 +22,6 @@ SceneObject::~SceneObject()
 
 bool SceneObject::initialize()
 {
-	addComponent(this->transform);
-
 	return GameObject::initialize();
 }
 void SceneObject::update()
@@ -32,9 +31,11 @@ void SceneObject::update()
 void SceneObject::draw()
 {
 	Matrix2D world_matrix = getTransform()->getWorldMatrix();
-	Matrix2D view_matrix = getScene()->getCameraManager()->getActiveCamera()->getCamera()->getViewMatrix();
+	Matrix2D view_matrix = getScene()->getManager<CameraManager>()->getActiveCamera()->getCamera()->getViewMatrix();
 
-	getScene()->getRenderer()->setTransformMatrix(world_matrix * view_matrix);
+	Renderer* renderer = getScene()->getManager<Renderer>();
+
+	renderer->setTransformMatrix(world_matrix * view_matrix);
 
 	for (Component* obj : getComponents())
 	{
@@ -55,7 +56,7 @@ void SceneObject::draw()
 			drawable_obj->draw();
 	}
 
-	getScene()->getRenderer()->setTransformMatrix(Matrix2D::createIdentityMatrix());
+	renderer->setTransformMatrix(Matrix2D::createIdentityMatrix());
 }
 bool SceneObject::shutdown()
 {

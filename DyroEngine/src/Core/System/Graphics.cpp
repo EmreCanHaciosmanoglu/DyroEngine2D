@@ -6,8 +6,11 @@
 
 #include "Defines/Types/SystemType.h"
 #include "Defines/deletemacros.h"
+#include "Defines\color.h"
 
 #include "Helpers/Singleton.h"
+#include "Core\Settings\WorldSettings.h"
+#include "Core\Settings\GameSettings.h"
 
 Graphics::Graphics()
 	: System(SystemType::GRAPHICS_SYSTEM)
@@ -51,7 +54,7 @@ void Graphics::update()
 }
 void Graphics::draw()
 {
-	this->render_target->Clear(D2D1::ColorF(D2D1::ColorF::Cyan));
+	this->render_target->Clear(Singleton<WorldSettings>::getInstance().getGameSettings()->getBackgroundColor().toColorF());
 }
 bool Graphics::shutdown()
 {

@@ -5,20 +5,20 @@
 Component::Component(const std::tstring& name)
 	:Object(name)
 	, parent(nullptr)
-	, order_id(INVALID_ORDER_ID)
+	, execution_order(INVALID_ORDER_ID)
 {
 }
 Component::~Component()
 {
 }
 
-int Component::getOrderValue() const
+int Component::getExecutionOrder() const
 {
-	return this->order_id;
+	return this->execution_order;
 }
-void Component::setOrderValue(int value)
+void Component::setExecutionOrder(int value)
 {
-	this->order_id = value;
+	this->execution_order = value;
 }
 
 void Component::setParent(GameObject* parent)

@@ -79,7 +79,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\Defines\Types\BodyType.h" />
+    <ClInclude Include="include\Diagnostics\DebugRenderer.h" />
+    <ClInclude Include="include\SceneGraph\Component\Collision\BoxCollisionComponent.h" />
+    <ClInclude Include="include\SceneGraph\Component\Collision\CircleCollisionComponent.h" />
+    <ClInclude Include="include\SceneGraph\Component\Collision\CollisionComponent.h" />
+    <ClInclude Include="include\SceneGraph\Component\Collision\PolygonCollisionComponent.h" />
+    <ClInclude Include="include\SceneGraph\Component\Collision\TriangleCollisionComponent.h" />
     <ClInclude Include="include\SceneGraph\Component\ImageComponent.h" />
+    <ClInclude Include="include\SceneGraph\Component\RigidBodyComponent.h" />
     <ClInclude Include="include\SceneGraph\Object\GameObjects\Camera\Camera.h" />
     <ClInclude Include="include\SceneGraph\Component\CameraComponent.h" />
     <ClInclude Include="include\Core\Resources\Image.h" />
@@ -123,10 +131,12 @@
     <ClInclude Include="include\SceneGraph\Object\GameObjects\Camera\FreeCamera.h" />
     <ClInclude Include="include\SceneGraph\Object\GameObjects\Camera\Manager\CameraManager.h" />
     <ClInclude Include="include\SceneGraph\Object\GameObjects\GameObject.h" />
+    <ClInclude Include="include\SceneGraph\Object\GameObjects\PhysicsObject.h" />
     <ClInclude Include="include\SceneGraph\Object\Objects\Shapes\CircleShape.h" />
     <ClInclude Include="include\SceneGraph\Object\Objects\Shapes\LineShape.h" />
     <ClInclude Include="include\SceneGraph\Object\Objects\Shapes\PolygonShape.h" />
     <ClInclude Include="include\SceneGraph\Object\Objects\Shapes\RectShape.h" />
+    <ClInclude Include="include\SceneGraph\Object\Objects\Shapes\TriangleShape.h" />
     <ClInclude Include="include\SceneGraph\Scene\Scene.h" />
     <ClInclude Include="include\SceneGraph\Scene\Manager\SceneManager.h" />
     <ClInclude Include="include\Helpers\Singleton.h" />
@@ -141,9 +151,18 @@
     <ClInclude Include="include\SceneGraph\Object\Objects\Shapes\Shape.h" />
     <ClInclude Include="include\SceneGraph\Object\GameObjects\SceneObject.h" />
     <ClInclude Include="include\SceneGraph\Component\TransformComponent.h" />
+    <ClInclude Include="include\Interfaces\IDrawableDebugInfo.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Diagnostics\DebugRenderer.cpp" />
+    <ClCompile Include="src\Interfaces\IDrawableDebugInfo.cpp" />
+    <ClCompile Include="src\SceneGraph\Component\Collision\BoxCollisionComponent.cpp" />
+    <ClCompile Include="src\SceneGraph\Component\Collision\CircleCollisionComponent.cpp" />
+    <ClCompile Include="src\SceneGraph\Component\Collision\CollisionComponent.cpp" />
+    <ClCompile Include="src\SceneGraph\Component\Collision\PolygonCollisionComponent.cpp" />
+    <ClCompile Include="src\SceneGraph\Component\Collision\TriangleCollisionComponent.cpp" />
     <ClCompile Include="src\SceneGraph\Component\ImageComponent.cpp" />
+    <ClCompile Include="src\SceneGraph\Component\RigidBodyComponent.cpp" />
     <ClCompile Include="src\SceneGraph\Object\GameObjects\Camera\Camera.cpp" />
     <ClCompile Include="src\SceneGraph\Component\CameraComponent.cpp" />
     <ClCompile Include="src\Core\Resources\Image.cpp" />
@@ -153,6 +172,7 @@
     <ClCompile Include="src\Interfaces\IInput.cpp" />
     <ClCompile Include="src\SceneGraph\Object\GameObjects\Camera\FreeCamera.cpp" />
     <ClCompile Include="src\SceneGraph\Object\GameObjects\Camera\Manager\CameraManager.cpp" />
+    <ClCompile Include="src\SceneGraph\Object\GameObjects\PhysicsObject.cpp" />
     <ClCompile Include="src\SceneGraph\Object\GameObjects\SceneObject.cpp" />
     <ClCompile Include="src\Interfaces\IFillableShape.cpp" />
     <ClCompile Include="src\SceneGraph\Object\Objects\Shapes\CircleShape.cpp" />
@@ -181,6 +201,7 @@
     <ClCompile Include="src\SceneGraph\Component\ShapeComponent.cpp" />
     <ClCompile Include="src\SceneGraph\Object\GameObjects\GameObject.cpp" />
     <ClCompile Include="src\SceneGraph\Object\Objects\Shapes\Shape.cpp" />
+    <ClCompile Include="src\SceneGraph\Object\Objects\Shapes\TriangleShape.cpp" />
     <ClCompile Include="src\SceneGraph\Scene\Scene.cpp" />
     <ClCompile Include="src\SceneGraph\Scene\Manager\SceneManager.cpp" />
     <ClCompile Include="src\Helpers\Singleton.cpp" />

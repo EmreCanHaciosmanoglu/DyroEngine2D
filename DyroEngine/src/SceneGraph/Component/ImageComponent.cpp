@@ -31,7 +31,7 @@ void ImageComponent::update()
 }
 void ImageComponent::draw()
 {
-	Renderer* renderer = getParent()->getScene()->getRenderer();
+	Renderer* renderer = getParent()->getScene()->getManager<Renderer>();
 
 	this->image->getClip() != Rect2D::empty
 		? renderer->drawBitmap(image, this->image->getClip())

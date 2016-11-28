@@ -65,7 +65,7 @@ void Renderer::drawLine(float x1, float y1, float x2, float y2, float lineWidth)
 	drawLine(v1, v2, lineWidth);
 }
 
-void Renderer::drawRect(double left, double top, double width, double height, float lineWidth)
+void Renderer::drawRect(float left, float top, float width, float height, float lineWidth)
 {
 	drawRect(Rect2D(left, top, left + width, top + height), lineWidth);
 }
@@ -79,12 +79,12 @@ void Renderer::drawRect(const Rect2D& rect, float lineWidth)
 	this->graphics->getRenderTarget()->DrawRectangle(d2dRect, this->graphics->getColorBrush(), lineWidth);
 }
 
-void Renderer::drawCircle(double xcenter, double ycenter, double r, float lineWidth)
+void Renderer::drawCircle(float xcenter, float ycenter, float r, float lineWidth)
 {
 	D2D1_ELLIPSE ellipse = D2D1::Ellipse(D2D1::Point2((FLOAT)xcenter, (FLOAT)ycenter), (FLOAT)r, (FLOAT)r);
 	this->graphics->getRenderTarget()->DrawEllipse(ellipse, this->graphics->getColorBrush(), lineWidth);
 }
-void Renderer::drawCircle(const Vector2D& center, double r, float lineWidth)
+void Renderer::drawCircle(const Vector2D& center, float r, float lineWidth)
 {
 	drawCircle(center.x, center.y, r, lineWidth);
 }
@@ -110,7 +110,7 @@ void Renderer::drawPolygon(Vector2D* points, int size, bool close, float lineWid
 		drawLine(points[0], points[size - 1], lineWidth);
 }
 
-void Renderer::fillRect(double left, double top, double width, double height)
+void Renderer::fillRect(float left, float top, float width, float height)
 {
 	fillRect(Rect2D(left, top, left + width, top + height));
 }
@@ -124,11 +124,11 @@ void Renderer::fillRect(const Rect2D& rect)
 	this->graphics->getRenderTarget()->FillRectangle(d2dRect, this->graphics->getColorBrush());
 }
 
-void Renderer::fillCircle(const Vector2D& center, double r)
+void Renderer::fillCircle(const Vector2D& center, float r)
 {
 	fillCircle(center.x, center.y, r);
 }
-void Renderer::fillCircle(double xcenter, double ycenter, double r)
+void Renderer::fillCircle(float xcenter, float ycenter, float r)
 {
 	D2D1_ELLIPSE ellipse = D2D1::Ellipse(D2D1::Point2((FLOAT)xcenter, (FLOAT)ycenter), (FLOAT)r, (FLOAT)r);
 	this->graphics->getRenderTarget()->FillEllipse(ellipse, this->graphics->getColorBrush());
@@ -174,7 +174,7 @@ void Renderer::fillPolygon(Vector2D* points, int size)
 		pGeometrySink->BeginFigure(D2D1::Point2F((FLOAT)points[0].x, (FLOAT)points[0].y), D2D1_FIGURE_BEGIN_FILLED);
 
 		for (int i = 0; i < size; ++i)
-			pGeometrySink->AddLine(D2D1::Point2F((FLOAT)points[i].x, (FLOAT)points[0].y));
+			pGeometrySink->AddLine(D2D1::Point2F((FLOAT)points[i].x, (FLOAT)points[i].y));
 
 		pGeometrySink->EndFigure(D2D1_FIGURE_END_CLOSED);
 
@@ -200,7 +200,7 @@ bool Renderer::drawBitmap(Image* imagePtr)
 	return drawBitmap(imagePtr, Vector2D(0, 0), srcRect2);
 }
 
-bool Renderer::drawBitmap(Image* imagePtr, double x, double y)
+bool Renderer::drawBitmap(Image* imagePtr, float x, float y)
 {
 	assert(imagePtr != nullptr);
 
@@ -223,7 +223,7 @@ bool Renderer::drawBitmap(Image* imagePtr, const Rect2D& srcRect)
 	return drawBitmap(imagePtr, Vector2D(0, 0), srcRect);
 }
 
-bool Renderer::drawBitmap(Image* imagePtr, double x, double y, const Rect2D& srcRect)
+bool Renderer::drawBitmap(Image* imagePtr, float x, float y, const Rect2D& srcRect)
 {
 	assert(imagePtr != nullptr);
 

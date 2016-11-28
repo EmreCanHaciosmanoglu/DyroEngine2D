@@ -45,7 +45,7 @@ unsigned char ApplicationSettings::getBitsPerPixel() const
 
 void ApplicationSettings::setFullscreen(int fullscreen)
 {
-	this->fullscreen = fullscreen == constants::TRUE;
+	this->fullscreen = fullscreen == 1;
 }
 bool ApplicationSettings::getFullscreen() const
 {

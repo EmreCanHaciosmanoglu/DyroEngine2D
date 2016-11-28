@@ -25,10 +25,10 @@ bool MainWindow::initialize()
 	if (!createWindow())
 	{
 		shutdown();
-		return FALSE;
+		return false;
 	}
 
-	return TRUE;
+	return true;
 }
 void MainWindow::update()
 {
@@ -36,17 +36,17 @@ void MainWindow::update()
 }
 bool MainWindow::shutdown()
 {
-	ApplicationSettings settings = Singleton<WorldSettings>::getInstance().getApplicationSettings();
+	ApplicationSettings* settings = Singleton<WorldSettings>::getInstance().getApplicationSettings();
 
-	if (settings.getFullscreen())
+	if (settings->getFullscreen())
 	{
 		ChangeDisplaySettings(NULL, 0);
-		ShowCursor(TRUE);
+		ShowCursor(true);
 	}
 
 	destroyWindow();
 
-	return TRUE;
+	return true;
 }
 
 LRESULT MainWindow::handleEvent(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
@@ -93,16 +93,16 @@ LRESULT MainWindow::handleEvent(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 
 BYTE MainWindow::getWindowBitsPerPixel() const
 {
-	return Singleton<WorldSettings>::getInstance().getApplicationSettings().getBitsPerPixel();
+	return Singleton<WorldSettings>::getInstance().getApplicationSettings()->getBitsPerPixel();
 }
 
 const std::tstring MainWindow::getWindowTitle() const
 {
-	return Singleton<WorldSettings>::getInstance().getApplicationSettings().getWindowTitle();
+	return Singleton<WorldSettings>::getInstance().getApplicationSettings()->getWindowTitle();
 }
 const std::tstring MainWindow::getWindowClassName() const
 {
-	return Singleton<WorldSettings>::getInstance().getApplicationSettings().getWindowTitle();
+	return Singleton<WorldSettings>::getInstance().getApplicationSettings()->getWindowTitle();
 }
 
 const POINT MainWindow::getWindowPosition() const

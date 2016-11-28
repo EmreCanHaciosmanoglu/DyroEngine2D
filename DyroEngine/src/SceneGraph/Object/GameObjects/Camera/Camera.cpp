@@ -12,6 +12,9 @@ Camera::Camera(const std::tstring& name, bool setActive)
 	,transform(new TransformComponent())
 {
 	Singleton<CameraManager>::getInstance().addCamera(this, setActive);
+
+	addComponent(this->transform);
+	addComponent(this->camera);
 }
 Camera::~Camera()
 {
@@ -19,9 +22,6 @@ Camera::~Camera()
 
 bool Camera::initialize()
 {
-	addComponent(this->transform);
-	addComponent(this->camera);
-
 	return GameObject::initialize();
 }
 void Camera::update()

@@ -4,19 +4,20 @@
 #include "Helpers/Manager.h"
 #include "Interfaces\IDrawable.h"
 
-#ifndef _VECTOR_
-#include <vector>
-#endif
-
 #ifndef _STRING_H
 	#include "Defines/string.h"
 #endif
+
+#include "Diagnostics/Logger.h"
+#include "Diagnostics\DebugRenderer.h"
 
 #include "Core/Rendering/Renderer.h"
 #include "Core/Resources/Manager/ResourceManager.h"
 #include "SceneGraph/Object/GameObjects/Camera/Manager/CameraManager.h"
 
-#include "Diagnostics/Logger.h"
+#ifndef _VECTOR_
+#include <vector>
+#endif
 
 class Scene;
 

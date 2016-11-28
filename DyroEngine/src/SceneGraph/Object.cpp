@@ -5,8 +5,9 @@ Object::Object(const std::tstring& name)
 
 	, initialized(false)
 	, destroyed(false)
+
+	,name(name == _T("") ? generateName<Object>(_T("Object_")) : name)
 {
-	this->name = name == _T("") ? generateName<Object>(_T("Object_")) : name;
 }
 Object::~Object()
 {

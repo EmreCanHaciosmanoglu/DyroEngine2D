@@ -1,24 +1,29 @@
-#include "SceneGraph/Scene/Scene.h"
-#include "SceneGraph/Object/GameObjects/GameObject.h"
-
-#ifndef _ALGORITHM
-#include <algorithm>
-#endif
+#include "SceneGraph\Scene\Scene.h"
+#include "SceneGraph\Object\GameObjects\GameObject.h"
 
 #include "Core\System\Input.h"
 #include "Core\System\Manager\SystemManager.h"
 
 #include "Defines\deletemacros.h"
 
-#include "Helpers/Singleton.h"
+#include "Helpers\Singleton.h"
 
-#include "Interfaces/IDrawable.h"
+#include "Core\Settings\WorldSettings.h"
+#include "Core\Settings\PhyxSettings.h"
+
+#include "Interfaces\IDrawable.h"
+#include "Interfaces\IDrawableDebugInfo.h"
+
+#include "Diagnostics\DebugRenderer.h"
+
+#include <Box2D\Box2D.h>
+
+#include <algorithm>
 
 Scene::Scene(const std::tstring& name)
 	:Object(name)
-	,renderer(nullptr)
-	,camera_manager(nullptr)
-	,resource_manager(nullptr)
+	,phyx_world(nullptr)
+	,debug_rendering(false)
 {
 }
 Scene::~Scene()
@@ -27,6 +32,8 @@ Scene::~Scene()
 
 bool Scene::initialize()
 {
+	setupPyhx();
+
 	Input* input = dynamic_cast<Input*>(Singleton<SystemManager>::getInstance().getSystem(SystemType::INPUT_SYSTEM));
 	this->setupInput(input);
 
@@ -45,6 +52,13 @@ bool Scene::initialize()
 }
 void Scene::update()
 {
+	PhyxSettings* settings = Singleton<WorldSettings>::getInstance().getPhyxSettings();
+
+	if(Vector2D::toBox2DVec(settings->getGravity()) != this->phyx_world->GetGravity())
+		this->phyx_world = new b2World(Vector2D::toBox2DVec(settings->getGravity()));
+
+	phyx_world->Step(settings->getPhyxTimeStep(), settings->getVelocityInterpolation(), settings->getPositionInterpolation());
+
 	for (GameObject* obj : this->vec_objects)
 	{
 		if (obj->isActive())
@@ -53,14 +67,31 @@ void Scene::update()
 }
 void Scene::draw()
 {
-	for (GameObject* obj : this->vec_objects)
+	if (!this->debug_rendering)
 	{
-		IDrawable* drawable_obj = dynamic_cast<IDrawable*>(obj);
-		if(drawable_obj == nullptr)
-			continue;
+		for (GameObject* obj : this->vec_objects)
+		{
+			IDrawable* drawable_obj = dynamic_cast<IDrawable*>(obj);
+			if (drawable_obj == nullptr)
+				continue;
 
-		if(drawable_obj->getCanDraw())
-			drawable_obj->draw();
+			if (drawable_obj->getCanDraw())
+				drawable_obj->draw();
+		}
+	}
+	else
+	{
+		this->phyx_world->DrawDebugData();
+
+		for (GameObject* obj : this->vec_objects)
+		{
+			IDrawableDebugInfo* drawable_obj = dynamic_cast<IDrawableDebugInfo*>(obj);
+			if (drawable_obj == nullptr)
+				continue;
+
+			if (drawable_obj->getCanDrawDebugInfo())
+				drawable_obj->drawDebugInfo();
+		}
 	}
 }
 bool Scene::shutdown()
@@ -73,9 +104,26 @@ bool Scene::shutdown()
 	}
 	this->vec_objects.clear();
 
+	SafeDelete(this->phyx_world);
+
 	return true;
 }
 
+void Scene::setupPyhx()
+{
+	PhyxSettings* settings = Singleton<WorldSettings>::getInstance().getPhyxSettings();
+
+	this->phyx_world = new b2World(Vector2D::toBox2DVec(settings->getGravity()));
+
+	DebugRenderer* debug_renderer = getManager<DebugRenderer>();
+
+	debug_renderer->SetFlags(b2Draw::e_shapeBit);
+	debug_renderer->AppendFlags(b2Draw::e_centerOfMassBit);
+	debug_renderer->AppendFlags(b2Draw::e_jointBit);
+	debug_renderer->AppendFlags(b2Draw::e_pairBit);
+
+	this->phyx_world->SetDebugDraw(debug_renderer);
+}
 void Scene::setupInput(Input* input)
 {
 
@@ -93,6 +141,20 @@ void Scene::deactive()
 void Scene::destroy()
 {
 	Object::destroy();
+}
+
+void Scene::enableDebugRendering()
+{
+	this->debug_rendering = true;
+}
+void Scene::disableDebugRendering()
+{
+	this->debug_rendering = false;
+}
+
+b2World* Scene::getPhyxWorld()
+{
+	return this->phyx_world;
 }
 
 void Scene::addGameObject(GameObject* object)
@@ -114,27 +176,11 @@ void Scene::removeGameObject(GameObject* object)
 	}
 }
 
-void Scene::setRenderer(Renderer* renderer)
+void Scene::addManager(Manager* manager)
 {
-	this->renderer = renderer;
-}
-Renderer* Scene::getRenderer() const
-{
-	return this->renderer;
-}
-void Scene::setCameraManager(CameraManager* manager)
-{
-	this->camera_manager = manager;
-}
-CameraManager* Scene::getCameraManager() const
-{
-	return this->camera_manager;
-}
-void Scene::setResourceManager(ResourceManager* manager)
-{
-	this->resource_manager = manager;
-}
-ResourceManager* Scene::getResourceManager() const
-{
-	return this->resource_manager;
+	std::vector<Manager*>::const_iterator it = std::find(this->vec_managers.begin(), this->vec_managers.end(), manager);
+	if (it != this->vec_managers.end())
+		return;
+
+	this->vec_managers.push_back(manager);
 }

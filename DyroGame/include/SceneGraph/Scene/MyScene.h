@@ -3,9 +3,12 @@
 
 #include "SceneGraph/Scene/Scene.h"
 
-class SceneObject;
+#ifndef _VECTOR2D_H
+	#include "Helpers\Math\Vector2D.h"
+#endif
+
 class Input;
-class FreeCamera;
+class SceneObject;
 
 class MyScene : public Scene
 {
@@ -19,33 +22,9 @@ public:
 
 	virtual void setupInput(Input* input);
 
-	void changeColorRectangle();
-	void changeColorCircle();
-
-	void mirrorXImage();
-	void mirrorYImage();	
-	void centerImage();
-	void resetImage();
-
-	void nextImage();
-	void previousImage();
-	void randomImage();
-
 private:
-	static const int CIRCLE_AMOUNT = 100;
-	static const int IMAGE_PATH_AMOUNT = 15;
+	SceneObject* createTriangle(const Vector2D& position, const Vector2D& scale) const;
 
-	float animated_angle;
-
-	FreeCamera* camera;
-
-	SceneObject* rectangle;
-	SceneObject* circles[CIRCLE_AMOUNT];
-
-	SceneObject* object;
-
-	std::tstring image_paths[IMAGE_PATH_AMOUNT];
-	int current_image;
 };
 
 #endif

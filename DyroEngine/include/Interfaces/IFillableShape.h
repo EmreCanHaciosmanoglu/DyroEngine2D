@@ -4,7 +4,9 @@
 class IFillableShape
 {
 public:
-	IFillableShape(){}
+	IFillableShape()
+		:fill(true)
+	{}
 	virtual ~IFillableShape(){}
 
 	virtual void setFill(bool fill) = 0;

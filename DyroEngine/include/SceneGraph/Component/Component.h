@@ -19,8 +19,8 @@ public:
 	virtual void update() = 0;
 	virtual bool shutdown() = 0;
 
-	void setOrderValue(int value);
-	int getOrderValue() const;
+	void setExecutionOrder(int value);
+	int getExecutionOrder() const;
 
 	void setParent(GameObject* parent);
 	GameObject* getParent() const;
@@ -30,7 +30,7 @@ public:
 private:
 	GameObject* parent;
 
-	int order_id;
+	int execution_order;
 };
 
 #endif
