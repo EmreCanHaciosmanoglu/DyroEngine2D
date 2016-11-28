@@ -67,7 +67,7 @@ HRESULT Graphics::createDeviceIndependentResources()
 {
 	HRESULT hr = S_OK;
 
-	hr = D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, &this->D2D_factory);
+	hr = D2D1CreateFactory(D2D1_FACTORY_TYPE_MULTI_THREADED, &this->D2D_factory);
 	hr = CoInitializeEx(NULL, COINIT_MULTITHREADED);
 	hr = CoCreateInstance(CLSID_WICImagingFactory, NULL, CLSCTX_INPROC_SERVER, IID_IWICImagingFactory, (LPVOID*)&this->image_factory);
 
