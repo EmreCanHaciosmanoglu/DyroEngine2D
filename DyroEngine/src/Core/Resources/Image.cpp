@@ -188,9 +188,6 @@ void Image::setTransparencyColor(const Color& transparentColor)
 	COLORREF color = RGB((int)(transparentColor.red * 255), (int)(transparentColor.green * 255), (int)(transparentColor.blue * 255));
 
 	UINT width = 0, height = 0;
-	
-	WICPixelFormatGUID pixelFormat;
-	this->converter->GetPixelFormat(&pixelFormat);
 	this->converter->GetSize(&width, &height);
 	
 	UINT bitmapStride = 4 * width;
