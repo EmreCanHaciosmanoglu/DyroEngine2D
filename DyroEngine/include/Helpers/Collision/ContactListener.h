@@ -7,9 +7,7 @@
 	#include <vector>
 #endif
 
-class CollisionComponent;
 class b2Fixture;
-class PhysicsObject;
 
 class ContactListener : public b2ContactListener
 {
@@ -48,36 +46,7 @@ public:
 	virtual void PostSolve(b2Contact* contact, const b2ContactImpulse* impulse);
 
 private:
-	struct ContactData
-	{
-		ContactData(PhysicsObject* objectA, PhysicsObject* objectB, CollisionComponent* colliderA, CollisionComponent* colliderB)
-			:object_a(objectA)
-			, object_b(objectB)
-			, collider_a(colliderA)
-			, collider_b(colliderB)
-		{}
-
-		bool operator== (const ContactData& ref) const 
-		{
-			return this->object_a == ref.object_a && this->object_b == ref.object_b && this->collider_a == ref.collider_a && this->collider_b == ref.collider_b;
-		}
-		bool operator!= (const ContactData& ref) const
-		{
-			return !((*this) == ref);
-		}
-
-		PhysicsObject* object_a;
-		PhysicsObject* object_b;
-
-		CollisionComponent* collider_a;
-		CollisionComponent* collider_b;
-	};
-
-	void computeBeginContact(CollisionComponent* colliderA, CollisionComponent* colliderB, b2Fixture* fixtureA, b2Fixture* fixtureB, PhysicsObject* objectA, PhysicsObject* objectB);
-	void computeEndContact(CollisionComponent* colliderA, CollisionComponent* colliderB, b2Fixture* fixtureA, b2Fixture* fixtureB, PhysicsObject* objectA, PhysicsObject* objectB);
-
-	std::vector<ContactData> vec_colliders;
-	std::vector<ContactData> vec_triggers;
+	std::vector<b2Fixture*> vec_contacts;
 };
 
 #endif

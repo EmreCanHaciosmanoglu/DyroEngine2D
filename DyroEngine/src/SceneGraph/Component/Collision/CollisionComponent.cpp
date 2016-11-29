@@ -17,18 +17,18 @@ CollisionComponent::CollisionComponent(RigidBodyComponent* rigid, float restitut
 CollisionComponent::~CollisionComponent()
 {}
 
-void CollisionComponent::setAsTrigger(bool trigger)
+void CollisionComponent::isTrigger(bool trigger)
 {
 	this->is_trigger = trigger;
-	for (b2Fixture* fixture = this->rigid->getBody()->GetFixtureList(); fixture != nullptr; fixture = fixture->GetNext())
+	for (b2Fixture* fixturePtr = this->rigid->getBody()->GetFixtureList(); fixturePtr != nullptr; fixturePtr = fixturePtr->GetNext())
 	{
-		fixture->SetSensor(this->is_trigger);
+		setAsTrigger(fixturePtr);
 	}
 }
 
-bool CollisionComponent::getIsTrigger() const
+void CollisionComponent::setAsTrigger(b2Fixture* fixture)
 {
-	return this->is_trigger;
+	fixture->SetSensor(this->is_trigger);
 }
 
 float CollisionComponent::getRestitution() const

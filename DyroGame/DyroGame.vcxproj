@@ -131,15 +131,11 @@
     <ClInclude Include="include\Core\Game\Game.h" />
     <ClInclude Include="include\Main.h" />
     <ClInclude Include="include\SceneGraph\Scene\MyScene.h" />
-    <ClInclude Include="include\SceneGraph\Object\GameObjects\Spaceship.h" />
-    <ClInclude Include="include\SceneGraph\Scene\TestScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Core\Game\Game.cpp" />
     <ClCompile Include="src\Main.cpp" />
-    <ClCompile Include="src\SceneGraph\Object\GameObjects\Spaceship.cpp" />
     <ClCompile Include="src\SceneGraph\Scene\MyScene.cpp" />
-    <ClCompile Include="src\SceneGraph\Scene\TestScene.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

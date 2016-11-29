@@ -3,7 +3,6 @@
 #include "Helpers/Singleton.h"
 
 #include "SceneGraph/Scene/MyScene.h"
-#include "SceneGraph/Scene/TestScene.h"
 #include "SceneGraph/Scene/Manager/SceneManager.h"
 
 Game::Game()
@@ -16,12 +15,10 @@ Game::~Game()
 bool Game::initialize()
 {
 	//Add all the scenes you need
-	//Singleton<SceneManager>::getInstance().addScene(new MyScene());
-	Singleton<SceneManager>::getInstance().addScene(new TestScene());
+	Singleton<SceneManager>::getInstance().addScene(new MyScene());
 
 	//Active your main scene
-	//Singleton<SceneManager>::getInstance().setActiveScene(_T("MyScene"));
-	Singleton<SceneManager>::getInstance().setActiveScene(_T("TestScene"));
+	Singleton<SceneManager>::getInstance().setActiveScene(_T("MyScene"));
 
 	return true;
 }

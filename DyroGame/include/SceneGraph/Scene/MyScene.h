@@ -8,6 +8,7 @@
 #endif
 
 class Input;
+class SceneObject;
 
 class MyScene : public Scene
 {
@@ -22,6 +23,8 @@ public:
 	virtual void setupInput(Input* input);
 
 private:
+	SceneObject* createTriangle(const Vector2D& position, const Vector2D& scale) const;
+
 };
 
 #endif

@@ -41,8 +41,8 @@ bool BoxCollisionComponent::initialize()
 	//fixtureDef.filter = m_CollisionFilter;
 
 	b2Fixture *fixturePtr = getRigid()->getBody()->CreateFixture(&fixtureDef);
-	if (fixturePtr == nullptr)
-		return false;
+	if (fixturePtr != nullptr)
+		setAsTrigger(fixturePtr);
 
 	return true;
 }

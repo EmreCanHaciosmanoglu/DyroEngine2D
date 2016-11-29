@@ -59,12 +59,12 @@ bool MyScene::initialize()
 	game_settings->setBackgroundColor(Color(0.16f, 0.15f, 0.18f));
 
 	addGameObject(new FreeCamera(_T("Main Camera"), 200.0f));
+	addGameObject(createTriangle(Vector2D((window_width / 2.0f), (window_height / 2.0f) - 15), Vector2D(500.0f, 310.0f)));
 
 	float step_rect = window_width / (RECT_AMOUNT + 1);
 	for (int i = 0; i < RECT_AMOUNT; ++i)
 	{
 		PhysicsObject* phyx_object = new PhysicsObject(BodyType::DYNAMIC);
-		phyx_object->setName(_T("BOX_") + std::tstring(TOSTRING(i)));
 		phyx_object->getTransform()->setPosition(Vector2D(step_rect * (i + 1), 0.0f));
 		phyx_object->getTransform()->center(-RECT_WIDTH / 2, -RECT_HEIGHT / 2);
 
@@ -77,7 +77,6 @@ bool MyScene::initialize()
 	for (int i = 0; i < CIRCLE_AMOUNT; ++i)
 	{
 		PhysicsObject* phyx_object = new PhysicsObject(BodyType::DYNAMIC);
-		phyx_object->setName(_T("CIRCLE_") + std::tstring(TOSTRING(i)));
 		phyx_object->getTransform()->setPosition(Vector2D(step_circle * (i + 1), 0.0f));
 
 		phyx_object->addComponent(new ShapeComponent(new CircleShape(0, 0, (float)CIRCLE_RADIUS)));
@@ -89,7 +88,6 @@ bool MyScene::initialize()
 	for (int i = 0; i < TRIANGLE_AMOUNT; ++i)
 	{
 		PhysicsObject* phyx_object = new PhysicsObject(BodyType::DYNAMIC);
-		phyx_object->setName(_T("TRIANGLE_") + std::tstring(TOSTRING(i)));
 		phyx_object->getTransform()->setPosition(Vector2D(step_triangle * (i + 1), 100.0f));
 
 		phyx_object->addComponent(new ShapeComponent(new TriangleShape((float)TRIANGLE_SCALE, (float)TRIANGLE_SCALE)));
@@ -99,7 +97,6 @@ bool MyScene::initialize()
 	}
 
 	PhysicsObject* ground_object = new PhysicsObject(BodyType::STATIC);
-	ground_object->setName(_T("GROUND_OBJECT"));
 	ground_object->getTransform()->setPosition(Vector2D(window_width / 2, window_height - GROUND_RECT_HEIGHT / 2));
 	ground_object->getTransform()->center(Vector2D(-GROUND_RECT_WIDTH / 2, -GROUND_RECT_HEIGHT / 2));
 
@@ -123,4 +120,22 @@ void MyScene::setupInput(Input* input)
 {
 	input->bindInput(InputBinding(VK_F1, std::bind(&Scene::enableDebugRendering, this), InputStateType::PRESSED));
 	input->bindInput(InputBinding(VK_F2, std::bind(&Scene::disableDebugRendering, this), InputStateType::PRESSED));
+}
+
+SceneObject* MyScene::createTriangle(const Vector2D& position, const Vector2D& scale) const
+{
+	SceneObject* triangle = new SceneObject(_T("Triangle"));
+
+	TriangleShape* triangle_shape = new TriangleShape();
+	triangle_shape->setFill(true);
+	triangle_shape->setColor(Color(0.45f, 0.77f, 1.0f));
+
+	triangle->addComponent(new ShapeComponent(triangle_shape));
+
+	TransformComponent* transform = triangle->getTransform();
+	transform->setScale(scale);
+	transform->setPosition(position);
+	transform->center(Vector2D());
+
+	return triangle;
 }
