@@ -125,10 +125,18 @@ void TransformComponent::setPosition(const Vector2D& position)
 	this->is_dirty = true;
 	this->position = position;
 }
+void TransformComponent::setPosition(float x, float y)
+{
+	setPosition(Vector2D(x, y));
+}
 void TransformComponent::setScale(const Vector2D& scale)
 {
 	this->is_dirty = true;
 	this->scaling = scale;
+}
+void TransformComponent::setScale(float x, float y)
+{
+	setScale(Vector2D(x, y));
 }
 void TransformComponent::setRotation(float angle)
 {

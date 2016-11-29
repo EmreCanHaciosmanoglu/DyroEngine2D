@@ -29,7 +29,9 @@ public:
 	void rotate(float rotation);
 
 	void setPosition(const Vector2D& position);
+	void setPosition(float x, float y);
 	void setScale(const Vector2D& scale);
+	void setScale(float x, float y);
 	void setRotation(float angle);
 
 	const Vector2D& getPosition() const;

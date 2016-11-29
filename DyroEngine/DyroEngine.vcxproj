@@ -130,6 +130,7 @@
     <ClInclude Include="include\Helpers\Math\Rect2D.h" />
     <ClInclude Include="include\SceneGraph\Component\Component.h" />
     <ClInclude Include="include\SceneGraph\Component\ShapeComponent.h" />
+    <ClInclude Include="include\SceneGraph\Object\GameObjects\Camera\FollowCamera.h" />
     <ClInclude Include="include\SceneGraph\Object\GameObjects\Camera\FreeCamera.h" />
     <ClInclude Include="include\SceneGraph\Object\GameObjects\Camera\Manager\CameraManager.h" />
     <ClInclude Include="include\SceneGraph\Object\GameObjects\GameObject.h" />
@@ -174,6 +175,7 @@
     <ClCompile Include="src\Core\Resources\Resource.cpp" />
     <ClCompile Include="src\Core\System\Input.cpp" />
     <ClCompile Include="src\Interfaces\IInput.cpp" />
+    <ClCompile Include="src\SceneGraph\Object\GameObjects\Camera\FollowCamera.cpp" />
     <ClCompile Include="src\SceneGraph\Object\GameObjects\Camera\FreeCamera.cpp" />
     <ClCompile Include="src\SceneGraph\Object\GameObjects\Camera\Manager\CameraManager.cpp" />
     <ClCompile Include="src\SceneGraph\Object\GameObjects\PhysicsObject.cpp" />

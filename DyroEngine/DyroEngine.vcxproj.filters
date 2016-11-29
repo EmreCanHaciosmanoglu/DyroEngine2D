@@ -240,6 +240,9 @@
     <ClCompile Include="src\Helpers\Collision\ContactListener.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\SceneGraph\Object\GameObjects\Camera\FollowCamera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Defines\color.h">
@@ -465,6 +468,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Helpers\Collision\ContactFilter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SceneGraph\Object\GameObjects\Camera\FollowCamera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
