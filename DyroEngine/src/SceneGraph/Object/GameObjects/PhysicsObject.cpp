@@ -35,15 +35,30 @@ bool PhysicsObject::shutdown()
 	return SceneObject::shutdown();
 }
 
-bool PhysicsObject::shouldCollide() { return true; }
+bool PhysicsObject::shouldCollide(PhysicsObject* other)
+{
+	return true; 
+}
 
-void PhysicsObject::onCollisionEnter(){}
-void PhysicsObject::onCollisionStay(){}
-void PhysicsObject::onCollisionLeave(){}
+void PhysicsObject::onCollisionEnter(PhysicsObject* other)
+{
+}
+void PhysicsObject::onCollisionStay(PhysicsObject* other)
+{
+}
+void PhysicsObject::onCollisionLeave(PhysicsObject* other)
+{
+}
 
-void PhysicsObject::onTriggerEnter(){}
-void PhysicsObject::onTriggerStay(){}
-void PhysicsObject::onTriggerLeave(){}
+void PhysicsObject::onTriggerEnter(PhysicsObject* other)
+{
+}
+void PhysicsObject::onTriggerStay(PhysicsObject* other)
+{
+}
+void PhysicsObject::onTriggerLeave(PhysicsObject* other)
+{
+}
 
 RigidBodyComponent* PhysicsObject::getRigidBody() const
 {

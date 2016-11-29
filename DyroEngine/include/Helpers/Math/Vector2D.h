@@ -71,6 +71,8 @@ public:
 	Vector2D&    operator*=(const Vector2D& rhs);			// multiply each element and update this object
 	Vector2D     operator/(const float scale) const;		// inverse scale
 	Vector2D&    operator/=(const float scale);			// scale and update this object
+	Vector2D     operator/(const int scale) const;		// inverse scale
+	Vector2D&    operator/=(const int scale);			// scale and update this object
 
 	bool        operator==(const Vector2D& rhs) const;		// exact compare, no epsilon
 	bool        operator!=(const Vector2D& rhs) const;		// exact compare, no epsilon

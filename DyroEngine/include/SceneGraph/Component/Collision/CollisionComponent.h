@@ -16,11 +16,11 @@ public:
 	virtual void update() = 0;
 	virtual bool shutdown() = 0;
 
-	void isTrigger(bool trigger);
+	void setAsTrigger(bool trigger);
+
+	bool getIsTrigger() const;
 
 protected:
-	void setAsTrigger(b2Fixture* fixture);
-
 	float getRestitution() const;
 	float getFriction() const;
 	float getDensity() const;

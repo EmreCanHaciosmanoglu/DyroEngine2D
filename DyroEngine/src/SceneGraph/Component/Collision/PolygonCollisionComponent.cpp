@@ -40,8 +40,8 @@ bool PolygonCollisionComponent::initialize()
 	//fixtureDef.filter = m_CollisionFilter;
 
 	b2Fixture *fixturePtr = getRigid()->getBody()->CreateFixture(&fixtureDef);
-	if (fixturePtr != nullptr)
-		setAsTrigger(fixturePtr);
+	if (fixturePtr == nullptr)
+		return false;
 
 	return true;
 }

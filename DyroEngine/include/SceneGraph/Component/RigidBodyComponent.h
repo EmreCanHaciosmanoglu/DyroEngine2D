@@ -25,6 +25,20 @@ public:
 
 	b2Body* getBody() const;
 
+	void setGravityScale(float scale);
+	float getGravityScale() const;
+
+	void setLinearVelocity(const Vector2D& velocity);
+	Vector2D getLinearVelocity() const;
+	void setAngularVelocity(float velocity);
+	float getAngularVelocity() const;
+
+	void ApplyForce(const Vector2D& force, const Vector2D& offsetPoint = Vector2D());
+	void ApplyTorque(float torque);
+
+	void ApplyLinearImpulse(const Vector2D& impulse, const Vector2D& offsetPoint = Vector2D());
+	void ApplyAngularImpulse(float impulse);
+
 private:
 	bool createBody(const Vector2D& position, const float angle);
 
@@ -32,6 +46,8 @@ private:
 
 	b2Body* body;
 	BodyType body_type;
+
+	float gravity_scale;
 };
 
 #endif

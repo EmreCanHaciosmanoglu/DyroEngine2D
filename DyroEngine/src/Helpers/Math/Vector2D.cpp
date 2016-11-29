@@ -66,6 +66,14 @@ Vector2D& Vector2D::operator/=(const float a)
 {
 	x /= a; y /= a; return *this;
 }
+Vector2D Vector2D::operator/(const int a) const
+{
+	return Vector2D(x / a, y / a);
+}
+Vector2D& Vector2D::operator/=(const int a)
+{
+	x /= a; y /= a; return *this;
+}
 
 bool Vector2D::operator==(const Vector2D& rhs) const 
 {

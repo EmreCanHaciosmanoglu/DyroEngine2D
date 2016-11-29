@@ -62,7 +62,10 @@ void Scene::update()
 	if(Vector2D::toBox2DVec(settings->getGravity()) != this->phyx_world->GetGravity())
 		this->phyx_world = new b2World(Vector2D::toBox2DVec(settings->getGravity()));
 
-	phyx_world->Step(settings->getPhyxTimeStep(), settings->getVelocityInterpolation(), settings->getPositionInterpolation());
+	this->phyx_world->Step(settings->getPhyxTimeStep(), settings->getVelocityInterpolation(), settings->getPositionInterpolation());
+
+	//Update the contact listener so we can handle collision check when objects when still colliding
+	this->contact_listener->update();
 
 	for (GameObject* obj : this->vec_objects)
 	{

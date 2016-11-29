@@ -23,15 +23,15 @@ public:
 	virtual void drawDebugInfo();
 	virtual bool shutdown();
 
-	virtual bool shouldCollide();
+	virtual bool shouldCollide(PhysicsObject* other);
 
-	virtual void onCollisionEnter();
-	virtual void onCollisionStay();
-	virtual void onCollisionLeave();
+	virtual void onCollisionEnter(PhysicsObject* other);
+	virtual void onCollisionStay(PhysicsObject* other);
+	virtual void onCollisionLeave(PhysicsObject* other);
 
-	virtual void onTriggerEnter();
-	virtual void onTriggerStay();
-	virtual void onTriggerLeave();
+	virtual void onTriggerEnter(PhysicsObject* other);
+	virtual void onTriggerStay(PhysicsObject* other);
+	virtual void onTriggerLeave(PhysicsObject* other);
 
 	RigidBodyComponent* getRigidBody() const;
 

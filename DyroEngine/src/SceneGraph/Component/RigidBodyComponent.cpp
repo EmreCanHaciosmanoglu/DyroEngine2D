@@ -13,6 +13,7 @@ RigidBodyComponent::RigidBodyComponent(BodyType bodyType, const std::tstring& na
 	:Component(name == _T("") ? _T("RigidBodyComponent") : name)
 	,body(nullptr)
 	,body_type(bodyType)
+	,gravity_scale(1.0f)
 {
 	setExecutionOrder(200);
 }
@@ -51,6 +52,71 @@ b2Body* RigidBodyComponent::getBody() const
 	return this->body;
 }
 
+void RigidBodyComponent::setGravityScale(float gravityScale)
+{
+	this->gravity_scale = gravityScale;
+}
+float RigidBodyComponent::getGravityScale() const
+{
+	return this->gravity_scale;
+}
+
+void RigidBodyComponent::setLinearVelocity(const Vector2D& velocity)
+{
+	Vector2D v = velocity;
+	v /= constants::BOX2D_SCALE;
+
+	this->body->SetLinearVelocity(b2Vec2((float)v.x, (float)v.y));
+	this->body->SetAwake(true);
+}
+Vector2D RigidBodyComponent::getLinearVelocity() const
+{
+	b2Vec2 v = this->body->GetLinearVelocity();
+	return Vector2D(v.x, v.y) * constants::BOX2D_SCALE;
+}
+void RigidBodyComponent::setAngularVelocity(float velocity)
+{
+	this->body->SetAngularVelocity((float)velocity);
+	this->body->SetAwake(true);
+}
+float  RigidBodyComponent::getAngularVelocity() const
+{
+	return this->body->GetAngularVelocity();
+}
+
+void RigidBodyComponent::ApplyForce(const Vector2D& force, const Vector2D& offsetPoint)
+{
+	Vector2D f = force;
+	f /= (constants::BOX2D_SCALE * constants::BOX2D_SCALE);
+	if (offsetPoint.x == 0 && offsetPoint.y == 0)
+	{
+		this->body->ApplyForceToCenter(b2Vec2((float)f.x, (float)f.y), true);
+	}
+	else
+	{
+		b2Vec2 p = this->body->GetWorldPoint(b2Vec2((float)offsetPoint.x / constants::BOX2D_SCALE, (float)offsetPoint.y / constants::BOX2D_SCALE));
+		this->body->ApplyForce(b2Vec2((float)f.x, (float)f.y), p, true);
+	}
+}
+void RigidBodyComponent::ApplyTorque(float torque)
+{
+	torque /= (constants::BOX2D_SCALE * constants::BOX2D_SCALE);
+	this->body->ApplyTorque((float)torque, true);
+}
+
+void RigidBodyComponent::ApplyLinearImpulse(const Vector2D& impulse, const Vector2D& offsetPoint)
+{
+	Vector2D i = impulse;
+	i /= (constants::BOX2D_SCALE * constants::BOX2D_SCALE);
+	b2Vec2 p = this->body->GetWorldPoint(b2Vec2((float)offsetPoint.x / constants::BOX2D_SCALE, (float)offsetPoint.y / constants::BOX2D_SCALE));
+	this->body->ApplyLinearImpulse(b2Vec2((float)i.x, (float)i.y), p, true);
+}
+void RigidBodyComponent::ApplyAngularImpulse(float impulse)
+{
+	impulse /= (constants::BOX2D_SCALE * constants::BOX2D_SCALE);
+	this->body->ApplyAngularImpulse((float)impulse, true);
+}
+
 bool RigidBodyComponent::createBody(const Vector2D& position, const float angle)
 {
 	Vector2D pos = position;
@@ -76,6 +142,7 @@ bool RigidBodyComponent::createBody(const Vector2D& position, const float angle)
 
 	bodyDef.position.Set(pos.x, pos.y);
 	bodyDef.angle = angle;
+	bodyDef.gravityScale = gravity_scale;
 
 	bodyDef.userData = (void*)getParent();
 
