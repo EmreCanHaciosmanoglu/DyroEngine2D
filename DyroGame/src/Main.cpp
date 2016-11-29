@@ -6,13 +6,17 @@
 #include "Helpers/Singleton.h"
 #include "Diagnostics/Logger.h"
 
+#include "Defines/iostream.h"
+
 #if defined (DEBUG) | defined(_DEBUG)
 int _tmain(int argc, char* argv[])
 {
 	UNREFERENCED_PARAMETER(argc);
 	UNREFERENCED_PARAMETER(argv);
 
-	WinMain((HINSTANCE)GetModuleHandle(NULL), 0, 0, SW_SHOW);
+	int return_value = WinMain((HINSTANCE)GetModuleHandle(NULL), 0, 0, SW_SHOW);
+
+	return std::cin.get();
 }
 #endif
 
