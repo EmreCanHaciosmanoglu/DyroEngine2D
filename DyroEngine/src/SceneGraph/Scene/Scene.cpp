@@ -7,6 +7,8 @@
 #include "Defines\deletemacros.h"
 
 #include "Helpers\Singleton.h"
+#include "Helpers\Collision\ContactListener.h"
+#include "Helpers\Collision\ContactFilter.h"
 
 #include "Core\Settings\WorldSettings.h"
 #include "Core\Settings\PhyxSettings.h"
@@ -24,6 +26,9 @@ Scene::Scene(const std::tstring& name)
 	:Object(name)
 	,phyx_world(nullptr)
 	,debug_rendering(false)
+	,debug_renderer(nullptr)
+	,contact_filter(nullptr)
+	,contact_listener(nullptr)
 {
 }
 Scene::~Scene()
@@ -104,6 +109,10 @@ bool Scene::shutdown()
 	}
 	this->vec_objects.clear();
 
+	SafeDelete(this->debug_renderer);
+	SafeDelete(this->contact_filter);
+	SafeDelete(this->contact_listener);
+
 	SafeDelete(this->phyx_world);
 
 	return true;
@@ -111,11 +120,13 @@ bool Scene::shutdown()
 
 void Scene::setupPyhx()
 {
+	this->debug_renderer = new DebugRenderer();
+	this->contact_filter = new ContactFilter();
+	this->contact_listener = new ContactListener();
+
 	PhyxSettings* settings = Singleton<WorldSettings>::getInstance().getPhyxSettings();
 
 	this->phyx_world = new b2World(Vector2D::toBox2DVec(settings->getGravity()));
-
-	DebugRenderer* debug_renderer = getManager<DebugRenderer>();
 
 	debug_renderer->SetFlags(b2Draw::e_shapeBit);
 	debug_renderer->AppendFlags(b2Draw::e_centerOfMassBit);
@@ -123,6 +134,8 @@ void Scene::setupPyhx()
 	debug_renderer->AppendFlags(b2Draw::e_pairBit);
 
 	this->phyx_world->SetDebugDraw(debug_renderer);
+	this->phyx_world->SetContactFilter(this->contact_filter);
+	this->phyx_world->SetContactListener(this->contact_listener);
 }
 void Scene::setupInput(Input* input)
 {

@@ -36,7 +36,7 @@ bool BoxCollisionComponent::initialize()
 	fixtureDef.restitution = getRestitution();
 	fixtureDef.friction = getFriction();
 
-	fixtureDef.userData = (void *) getParent();
+	fixtureDef.userData = (void *)this;
 
 	//fixtureDef.filter = m_CollisionFilter;
 

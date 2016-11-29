@@ -9,7 +9,6 @@
 #endif
 
 #include "Diagnostics/Logger.h"
-#include "Diagnostics\DebugRenderer.h"
 
 #include "Core/Rendering/Renderer.h"
 #include "Core/Resources/Manager/ResourceManager.h"

@@ -234,6 +234,12 @@
     <ClCompile Include="src\SceneGraph\Component\Collision\CollisionComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Helpers\Collision\ContactFilter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Helpers\Collision\ContactListener.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Defines\color.h">
@@ -453,6 +459,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\SceneGraph\Component\Collision\TriangleCollisionComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Helpers\Collision\ContactListener.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Helpers\Collision\ContactFilter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

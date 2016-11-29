@@ -19,22 +19,12 @@
 DebugRenderer::DebugRenderer()
 	:b2Draw()
 	,color(255, 255, 255, 187)
-{
+{	
+	this->mat_scale = Matrix2D::createScalingMatrix(Vector2D((float)constants::BOX2D_SCALE, (float)constants::BOX2D_SCALE));
 }
 DebugRenderer::~DebugRenderer()
 {
 
-}
-
-bool DebugRenderer::initialize()
-{
-	this->mat_scale = Matrix2D::createScalingMatrix(Vector2D((float)constants::BOX2D_SCALE, (float)constants::BOX2D_SCALE));
-
-	return true;
-}
-bool DebugRenderer::shutdown()
-{
-	return true;
 }
 
 void DebugRenderer::DrawPoint(const b2Vec2& p, float32 size, const b2Color& color)

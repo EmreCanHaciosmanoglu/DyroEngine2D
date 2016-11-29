@@ -1,9 +1,6 @@
 #ifndef _DEBUGRENDERER_H
 #define _DEBUGRENDERER_H
 
-#include "Helpers\Manager.h"
-#include "Interfaces\IDrawable.h"
-
 #ifndef BOX2D_H
 	#include <Box2D\Box2D.h>
 #endif
@@ -17,14 +14,11 @@
 
 class Scene;
 
-class DebugRenderer : public b2Draw, public Manager
+class DebugRenderer : public b2Draw
 {
 public:
 	DebugRenderer();
 	virtual ~DebugRenderer();
-
-	virtual bool initialize();
-	virtual bool shutdown();
 
 	DebugRenderer(const DebugRenderer&) = delete;
 	DebugRenderer& operator=(const DebugRenderer&) = delete;

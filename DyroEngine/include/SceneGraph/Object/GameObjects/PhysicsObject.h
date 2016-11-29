@@ -23,6 +23,16 @@ public:
 	virtual void drawDebugInfo();
 	virtual bool shutdown();
 
+	virtual bool shouldCollide();
+
+	virtual void onCollisionEnter();
+	virtual void onCollisionStay();
+	virtual void onCollisionLeave();
+
+	virtual void onTriggerEnter();
+	virtual void onTriggerStay();
+	virtual void onTriggerLeave();
+
 	RigidBodyComponent* getRigidBody() const;
 
 private:

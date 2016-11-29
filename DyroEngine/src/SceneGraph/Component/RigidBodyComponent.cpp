@@ -77,6 +77,8 @@ bool RigidBodyComponent::createBody(const Vector2D& position, const float angle)
 	bodyDef.position.Set(pos.x, pos.y);
 	bodyDef.angle = angle;
 
+	bodyDef.userData = (void*)getParent();
+
 	this->body = getParent()->getScene()->getPhyxWorld()->CreateBody(&bodyDef);
 
 	return this->body != nullptr;

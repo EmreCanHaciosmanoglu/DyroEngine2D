@@ -16,6 +16,10 @@ class GameObject;
 class Input;
 class Manager;
 
+class DebugRenderer;
+class ContactListener;
+class ContactFilter;
+
 class b2World;
 
 class Scene : public Object, public IDrawable, public IInput
@@ -52,6 +56,10 @@ private:
 	void setupPyhx();
 
 	b2World* phyx_world;
+
+	DebugRenderer* debug_renderer;
+	ContactListener* contact_listener;
+	ContactFilter* contact_filter;
 
 	bool debug_rendering;
 
