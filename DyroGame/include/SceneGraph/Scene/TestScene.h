@@ -24,6 +24,8 @@ public:
 	virtual void setupInput(Input* input);
 
 private:
+	void addBorder(const Vector2D& position, const Vector2D& scale, float rotation);
+
 	Spaceship* spaceship;
 };
 

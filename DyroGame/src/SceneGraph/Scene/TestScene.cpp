@@ -56,3 +56,10 @@ void TestScene::setupInput(Input* input)
 	input->bindInput(InputBinding(VK_F1, std::bind(&Scene::enableDebugRendering, this), InputStateType::PRESSED));
 	input->bindInput(InputBinding(VK_F2, std::bind(&Scene::disableDebugRendering, this), InputStateType::PRESSED));
 }
+
+void TestScene::addBorder(const Vector2D& position, const Vector2D& scale, float rotation)
+{
+	SceneObject* border = new SceneObject(_T("BORDER"));
+
+	
+}

@@ -3,6 +3,10 @@
 
 #include "SceneGraph\Object\GameObjects\PhysicsObject.h"
 
+#ifndef _VECTOR2D_H
+	#include "Helpers\Math\Vector2D.h"
+#endif
+
 class Input;
 
 class Spaceship : public PhysicsObject
@@ -23,6 +27,8 @@ private:
 	void moveBackward();
 	void rotateRight();
 	void rotateLeft();
+
+	Vector2D direction;
 };
 
 #endif
