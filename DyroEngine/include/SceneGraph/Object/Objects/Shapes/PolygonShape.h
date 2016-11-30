@@ -3,6 +3,7 @@
 
 #include "SceneGraph/Object/Objects/Shapes/Shape.h"
 #include "Interfaces/IFillableShape.h"
+#include "Interfaces/IBoundingBox.h"
 
 #ifndef _VECTOR2D_H
 #include "Helpers/Math/Vector2D.h"
@@ -14,7 +15,7 @@
 
 class Renderer;
 
-class PolygonShape : public Shape, public IFillableShape
+class PolygonShape : public Shape, public IFillableShape, public IBoundingBox
 {
 public:
 	PolygonShape(Vector2D* points, int size, bool close = true, float lineWidth = 0.5f);
@@ -25,6 +26,8 @@ public:
 	virtual bool getFill() const;
 
 	virtual void render(Renderer* renderer);
+
+	virtual Rect2D getBoundingBox() const;
 private:
 	std::vector<Vector2D> vec_points;
 	bool close;

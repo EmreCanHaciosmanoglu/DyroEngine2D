@@ -3,6 +3,7 @@
 
 #include "SceneGraph/Object/Objects/Shapes/Shape.h"
 #include "Interfaces/IFillableShape.h"
+#include "Interfaces/IBoundingBox.h"
 
 #ifndef _VECTOR2D_H
 	#include "Helpers/Math/Vector2D.h"
@@ -13,7 +14,7 @@
 
 class Renderer;
 
-class RectShape : public Shape, public IFillableShape
+class RectShape : public Shape, public IFillableShape, public IBoundingBox
 {
 public:
 	RectShape(double left, double top, double width, double height, float lineWidth = 0.5f);
@@ -25,6 +26,8 @@ public:
 	virtual bool getFill() const;
 
 	virtual void render(Renderer* renderer);
+
+	virtual Rect2D getBoundingBox() const;
 
 private:
 	Rect2D rect;

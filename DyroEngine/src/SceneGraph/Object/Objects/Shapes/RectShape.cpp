@@ -37,3 +37,15 @@ bool RectShape::getFill() const
 {
 	return this->fill;
 }
+
+Rect2D RectShape::getBoundingBox() const
+{
+	Rect2D bounding_rect;
+
+	bounding_rect.left = 0;
+	bounding_rect.top = 0;
+	bounding_rect.right = this->rect.right - this->rect.left;
+	bounding_rect.bottom = this->rect.bottom - this->rect.top;
+
+	return bounding_rect;
+}

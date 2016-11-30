@@ -3,6 +3,7 @@
 
 #include "SceneGraph/Object/Objects/Shapes/Shape.h"
 #include "Interfaces/IFillableShape.h"
+#include "Interfaces/IBoundingBox.h"
 
 #ifndef _VECTOR2D_H
 #include "Helpers/Math/Vector2D.h"
@@ -10,7 +11,7 @@
 
 class Renderer;
 
-class CircleShape : public Shape, public IFillableShape
+class CircleShape : public Shape, public IFillableShape, public IBoundingBox
 {
 public:
 	CircleShape(float xcenter, float ycenter, float r, float lineWidth = 0.5f);
@@ -22,6 +23,7 @@ public:
 
 	virtual void render(Renderer* renderer);
 
+	virtual Rect2D getBoundingBox() const;
 private:
 	Vector2D center;
 	float radius;

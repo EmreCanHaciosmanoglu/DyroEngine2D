@@ -83,6 +83,7 @@
     <ClInclude Include="include\Diagnostics\DebugRenderer.h" />
     <ClInclude Include="include\Helpers\Collision\ContactFilter.h" />
     <ClInclude Include="include\Helpers\Collision\ContactListener.h" />
+    <ClInclude Include="include\Interfaces\IBoundingBox.h" />
     <ClInclude Include="include\SceneGraph\Component\Collision\BoxCollisionComponent.h" />
     <ClInclude Include="include\SceneGraph\Component\Collision\CircleCollisionComponent.h" />
     <ClInclude Include="include\SceneGraph\Component\Collision\CollisionComponent.h" />
@@ -160,6 +161,7 @@
     <ClCompile Include="src\Diagnostics\DebugRenderer.cpp" />
     <ClCompile Include="src\Helpers\Collision\ContactFilter.cpp" />
     <ClCompile Include="src\Helpers\Collision\ContactListener.cpp" />
+    <ClCompile Include="src\Interfaces\IBoundingBox.cpp" />
     <ClCompile Include="src\Interfaces\IDrawableDebugInfo.cpp" />
     <ClCompile Include="src\SceneGraph\Component\Collision\BoxCollisionComponent.cpp" />
     <ClCompile Include="src\SceneGraph\Component\Collision\CircleCollisionComponent.cpp" />

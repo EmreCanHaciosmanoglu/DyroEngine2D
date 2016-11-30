@@ -2,6 +2,7 @@
 #define _IMAGE_H
 
 #include "Core\Resources\Resource.h"
+#include "Interfaces/IBoundingBox.h"
 
 #ifndef _COLOR_H
 #include "Defines/color.h"
@@ -14,7 +15,7 @@
 #include "Helpers/Math/Rect2D.h"
 #endif
 
-class Image : public Resource
+class Image : public Resource , public IBoundingBox
 {
 public:
 	Image(const std::tstring& resourcePath);
@@ -34,6 +35,8 @@ public:
 	const Rect2D& getClip() const;
 
 	void setTransparencyColor(const Color& transparentColor);
+
+	virtual Rect2D getBoundingBox() const;
 
 private:
 	HRESULT LoadBitmapFromFile(ID2D1RenderTarget* renderTargetPtr, IWICImagingFactory* wICFactoryPtr, const std::tstring& uriRef, UINT destinationWidth, UINT destinationHeight, IWICFormatConverter** formatConvertorPtrPtr);

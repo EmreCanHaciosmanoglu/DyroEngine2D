@@ -3,10 +3,11 @@
 
 #include "SceneGraph\Object\GameObjects\GameObject.h"
 #include "Interfaces\IDrawable.h"
+#include "Interfaces\IBoundingBox.h"
 
 class TransformComponent;
 
-class SceneObject :	public GameObject, public IDrawable
+class SceneObject :	public GameObject, public IDrawable, public IBoundingBox
 {
 public:
 	SceneObject(const std::tstring& name = _T(""));
@@ -18,6 +19,8 @@ public:
 	virtual bool shutdown();
 
 	TransformComponent* getTransform() const;
+
+	Rect2D getBoundingBox() const;
 
 private:
 	TransformComponent* transform;

@@ -35,3 +35,15 @@ bool CircleShape::getFill() const
 {
 	return this->fill;
 }
+
+Rect2D CircleShape::getBoundingBox() const
+{
+	Rect2D bounding_rect;
+
+	bounding_rect.left = 0;
+	bounding_rect.top = 0;
+	bounding_rect.right = this->radius * 2;
+	bounding_rect.bottom = this->radius * 2;
+
+	return bounding_rect;
+}

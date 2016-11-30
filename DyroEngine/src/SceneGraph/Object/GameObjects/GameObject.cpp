@@ -132,6 +132,7 @@ void GameObject::removeComponent(Component* component)
 	if (it != this->vec_components.end())
 	{
 		this->vec_components.erase(it);
+		(*it)->shutdown();
 		SafeDelete((*it));
 	}
 }

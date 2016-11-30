@@ -67,3 +67,25 @@ TransformComponent* SceneObject::getTransform() const
 {
 	return this->transform;
 }
+
+Rect2D SceneObject::getBoundingBox() const
+{
+	Rect2D bounding_rect;
+
+	bounding_rect.left = 0;
+	bounding_rect.top = 0;
+
+	for (Component* c : getComponents())
+	{
+		IBoundingBox* bounding_box = dynamic_cast<IBoundingBox*>(c);
+		if (bounding_box != nullptr)
+		{
+			if (bounding_rect.right < bounding_box->getBoundingBox().right)
+				bounding_rect.right = bounding_box->getBoundingBox().right;
+			if (bounding_rect.bottom < bounding_box->getBoundingBox().bottom)
+				bounding_rect.bottom = bounding_box->getBoundingBox().bottom;
+		}
+	}
+
+	return bounding_rect;
+}
