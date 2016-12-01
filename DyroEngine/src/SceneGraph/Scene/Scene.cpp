@@ -13,8 +13,12 @@
 #include "Core\Settings\WorldSettings.h"
 #include "Core\Settings\PhyxSettings.h"
 
+#ifndef _IDRAWABLE_H
 #include "Interfaces\IDrawable.h"
+#endif
+#ifndef _IDRAWABLEDEBUGINFO_H
 #include "Interfaces\IDrawableDebugInfo.h"
+#endif
 
 #include "Diagnostics\DebugRenderer.h"
 

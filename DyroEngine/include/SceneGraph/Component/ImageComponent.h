@@ -2,7 +2,12 @@
 #define _IMAGECOMPONENT_H
 
 #include "SceneGraph/Component/Component.h"
-#include "Interfaces/IDrawable.h"
+#ifndef _IDRAWABLE_H
+#include "Interfaces\IDrawable.h"
+#endif
+#ifndef _IBOUNDINGBOX_H
+#include "Interfaces\IBoundingBox.h"
+#endif
 
 #ifndef _COLOR_H
 #include "Defines/color.h"
@@ -15,7 +20,7 @@
 class Image;
 class TransformComponent;
 
-class ImageComponent : public Component, public IDrawable
+class ImageComponent : public Component, public IDrawable , public IBoundingBox
 {
 public:
 	ImageComponent(Image* image, const std::tstring& name = _T(""));
@@ -43,6 +48,8 @@ public:
 
 	void setClip(const Rect2D& c);
 	const Rect2D& getClip() const;
+
+	virtual Rect2D getBoundingBox() const;
 
 private:
 	Image* image;

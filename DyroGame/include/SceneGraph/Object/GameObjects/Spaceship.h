@@ -4,7 +4,7 @@
 #include "SceneGraph\Object\GameObjects\PhysicsObject.h"
 
 #ifndef _VECTOR2D_H
-	#include "Helpers\Math\Vector2D.h"
+#include "Helpers\Math\Vector2D.h"
 #endif
 
 class Input;

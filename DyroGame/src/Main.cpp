@@ -14,9 +14,7 @@ int _tmain(int argc, char* argv[])
 	UNREFERENCED_PARAMETER(argc);
 	UNREFERENCED_PARAMETER(argv);
 
-	int return_value = WinMain((HINSTANCE)GetModuleHandle(NULL), 0, 0, SW_SHOW);
-
-	return std::cin.get();
+	return WinMain((HINSTANCE)GetModuleHandle(NULL), 0, 0, SW_SHOW);
 }
 #endif
 

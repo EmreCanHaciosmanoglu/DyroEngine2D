@@ -2,7 +2,12 @@
 #define _SHAPECOMPONENT_H
 
 #include "SceneGraph/Component/Component.h"
-#include "Interfaces/IDrawable.h"
+#ifndef _IDRAWABLE_H
+#include "Interfaces\IDrawable.h"
+#endif
+#ifndef _IBOUNDINGBOX_H
+#include "Interfaces\IBoundingBox.h"
+#endif
 
 #ifndef _COLOR_H
 #include "Defines/color.h"
@@ -10,7 +15,7 @@
 
 class Shape;
 
-class ShapeComponent : public Component, public IDrawable
+class ShapeComponent : public Component, public IDrawable, public IBoundingBox
 {
 public:
 	ShapeComponent(Shape* shape);
@@ -27,6 +32,7 @@ public:
 	void setColor(const Color& c);
 	const Color& getColor() const;
 
+	Rect2D getBoundingBox() const;
 private:
 	Shape* shape;
 };

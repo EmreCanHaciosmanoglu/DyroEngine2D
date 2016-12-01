@@ -148,9 +148,21 @@ const Vector2D& TransformComponent::getPosition() const
 {
 	return this->position;
 }
+const Vector2D& TransformComponent::getCenterPosition() const
+{
+	return this->center_position;
+}
 const Vector2D& TransformComponent::getScale() const
 {
 	return this->scaling;
+}
+const Vector2D& TransformComponent::getMirrorX() const
+{
+	return this->mirror_x;
+}
+const Vector2D& TransformComponent::getMirrorY() const
+{
+	return this->mirror_y;
 }
 float TransformComponent::getRotation() const
 {

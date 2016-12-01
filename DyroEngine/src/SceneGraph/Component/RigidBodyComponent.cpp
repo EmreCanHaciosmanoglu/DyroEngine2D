@@ -14,6 +14,9 @@ RigidBodyComponent::RigidBodyComponent(BodyType bodyType, const std::tstring& na
 	,body(nullptr)
 	,body_type(bodyType)
 	,gravity_scale(1.0f)
+	,linear_damping(0.0f)
+	,angular_damping(0.0f)
+	,is_dirty(false)
 {
 	setExecutionOrder(200);
 }
@@ -37,6 +40,15 @@ void RigidBodyComponent::update()
 
 	this->transform->setPosition(Vector2D::toVector2D(position) * (float)constants::BOX2D_SCALE);
 	this->transform->setRotation(rotation);
+
+	if (!is_dirty)
+		return;
+
+	this->is_dirty = false;
+
+	getBody()->SetGravityScale(this->gravity_scale);
+	getBody()->SetLinearDamping(this->linear_damping);
+	getBody()->SetAngularDamping(this->angular_damping);
 }
 bool RigidBodyComponent::shutdown()
 {
@@ -54,11 +66,31 @@ b2Body* RigidBodyComponent::getBody() const
 
 void RigidBodyComponent::setGravityScale(float gravityScale)
 {
+	this->is_dirty = true;
 	this->gravity_scale = gravityScale;
 }
 float RigidBodyComponent::getGravityScale() const
 {
 	return this->gravity_scale;
+}
+
+void RigidBodyComponent::setLinearDamping(float damping)
+{
+	this->is_dirty = true;
+	this->linear_damping = damping;
+}
+float RigidBodyComponent::getLinearDamping() const
+{
+	return this->linear_damping;
+}
+void RigidBodyComponent::setAngularDamping(float damping)
+{
+	this->is_dirty = true;
+	this->angular_damping = damping;
+}
+float RigidBodyComponent::getAngularDamping() const
+{
+	return this->angular_damping;
 }
 
 void RigidBodyComponent::setLinearVelocity(const Vector2D& velocity)
@@ -72,7 +104,7 @@ void RigidBodyComponent::setLinearVelocity(const Vector2D& velocity)
 Vector2D RigidBodyComponent::getLinearVelocity() const
 {
 	b2Vec2 v = this->body->GetLinearVelocity();
-	return Vector2D(v.x, v.y) * constants::BOX2D_SCALE;
+	return Vector2D(v.x, v.y) * (float)constants::BOX2D_SCALE;
 }
 void RigidBodyComponent::setAngularVelocity(float velocity)
 {
@@ -142,7 +174,9 @@ bool RigidBodyComponent::createBody(const Vector2D& position, const float angle)
 
 	bodyDef.position.Set(pos.x, pos.y);
 	bodyDef.angle = angle;
-	bodyDef.gravityScale = gravity_scale;
+	bodyDef.gravityScale = this->gravity_scale;
+	bodyDef.linearDamping = this->linear_damping;
+	bodyDef.angularDamping = this->angular_damping;
 
 	bodyDef.userData = (void*)getParent();
 

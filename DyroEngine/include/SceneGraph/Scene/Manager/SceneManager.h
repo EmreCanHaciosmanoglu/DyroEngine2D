@@ -2,7 +2,9 @@
 #define _SCENEMANAGER_H
 
 #include "Helpers/Manager.h"
+#ifndef _IDRAWABLE_H
 #include "Interfaces\IDrawable.h"
+#endif
 
 #ifndef _STRING_H
 	#include "Defines/string.h"

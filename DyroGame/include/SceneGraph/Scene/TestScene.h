@@ -24,7 +24,7 @@ public:
 	virtual void setupInput(Input* input);
 
 private:
-	void addBorder(const Vector2D& position, const Vector2D& scale, float rotation);
+	void addObstacle(const Vector2D& position, float colliderWidth, float colliderHeight);
 
 	Spaceship* spaceship;
 };

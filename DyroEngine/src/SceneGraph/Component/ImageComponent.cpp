@@ -95,3 +95,20 @@ const Rect2D& ImageComponent::getClip() const
 {
 	return this->image->getClip();
 }
+
+Rect2D ImageComponent::getBoundingBox() const
+{
+	TransformComponent* transform = getParent()->getComponent<TransformComponent>();
+
+	Vector2D scale(1, 1);
+	if (transform != nullptr)
+		scale = transform->getScale();
+
+	Rect2D bounding_rect = Rect2D::empty;
+
+	bounding_rect = this->image->getBoundingBox();
+	bounding_rect.right = bounding_rect.right * scale.x;
+	bounding_rect.bottom = bounding_rect.bottom * scale.y;
+
+	return bounding_rect;
+}

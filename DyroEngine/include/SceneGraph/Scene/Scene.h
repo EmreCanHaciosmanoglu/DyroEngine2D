@@ -2,8 +2,12 @@
 #define _SCENE_H
 
 #include "SceneGraph/Object.h"
+#ifndef _IDRAWABLE_H
 #include "Interfaces\IDrawable.h"
+#endif
+#ifndef _IINPUT_H
 #include "Interfaces\IInput.h"
+#endif
 
 #ifndef _VECTOR_
 #include <vector>

@@ -17,7 +17,9 @@
 #include "Defines/Types/SystemType.h"
 
 //Interface
-#include "Interfaces/IDrawable.h"
+#ifndef _IDRAWABLE_H
+#include "Interfaces\IDrawable.h"
+#endif
 
 //Helpers
 #include "Helpers/Singleton.h"

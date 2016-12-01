@@ -2,7 +2,9 @@
 #define _GAMEOBJECT_H
 
 #include "SceneGraph\Object.h"
+#ifndef _IINPUT_H
 #include "Interfaces\IInput.h"
+#endif
 
 #ifndef _SINGLETON_H
 #include "Helpers/Singleton.h"

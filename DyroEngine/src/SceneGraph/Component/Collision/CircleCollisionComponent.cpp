@@ -49,8 +49,5 @@ bool CircleCollisionComponent::shutdown()
 {
 	b2Body* body = getRigid()->getBody();
 
-	for (b2Fixture* f = body->GetFixtureList(); f; f = f->GetNext())
-		getRigid()->getBody()->DestroyFixture(f);
-
 	return true;
 }

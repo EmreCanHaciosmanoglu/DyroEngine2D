@@ -2,7 +2,9 @@
 #define _IMAGE_H
 
 #include "Core\Resources\Resource.h"
+#ifndef _IBOUNDINGBOX_H
 #include "Interfaces/IBoundingBox.h"
+#endif
 
 #ifndef _COLOR_H
 #include "Defines/color.h"

@@ -28,6 +28,11 @@ public:
 	void setGravityScale(float scale);
 	float getGravityScale() const;
 
+	void setLinearDamping(float damping);
+	float getLinearDamping() const;
+	void setAngularDamping(float damping);
+	float getAngularDamping() const;
+
 	void setLinearVelocity(const Vector2D& velocity);
 	Vector2D getLinearVelocity() const;
 	void setAngularVelocity(float velocity);
@@ -47,7 +52,12 @@ private:
 	b2Body* body;
 	BodyType body_type;
 
+	bool is_dirty;
+
 	float gravity_scale;
+
+	float linear_damping;
+	float angular_damping;
 };
 
 #endif

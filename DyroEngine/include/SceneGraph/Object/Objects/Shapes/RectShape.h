@@ -2,14 +2,18 @@
 #define _RECTSHAPE_H
 
 #include "SceneGraph/Object/Objects/Shapes/Shape.h"
+#ifndef _IFILLABLESHAPE_H
 #include "Interfaces/IFillableShape.h"
-#include "Interfaces/IBoundingBox.h"
+#endif
+#ifndef _IBOUNDINGBOX_H
+#include "Interfaces\IBoundingBox.h"
+#endif
 
 #ifndef _VECTOR2D_H
-	#include "Helpers/Math/Vector2D.h"
+#include "Helpers/Math/Vector2D.h"
 #endif
 #ifndef _RECT2D_H
-	#include "Helpers/Math/Rect2D.h"
+#include "Helpers/Math/Rect2D.h"
 #endif
 
 class Renderer;

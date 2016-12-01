@@ -16,7 +16,7 @@ namespace
 
 	const float PI = 3.1415f;
 
-	const float FORCE = 200.0f;
+	const float FORCE = 300.0f;
 	const float TORQUE = 10.0f;
 }
 
@@ -41,6 +41,9 @@ bool Spaceship::initialize()
 
 	getTransform()->rotate(PI/2);
 	getRigidBody()->setGravityScale(0.0f);
+
+	getRigidBody()->setLinearDamping(0.15f);
+	getRigidBody()->setAngularDamping(0.35f);
 
 	return PhysicsObject::initialize();
 }

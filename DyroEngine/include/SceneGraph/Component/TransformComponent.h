@@ -35,7 +35,10 @@ public:
 	void setRotation(float angle);
 
 	const Vector2D& getPosition() const;
+	const Vector2D& getCenterPosition() const;
 	const Vector2D& getScale() const;
+	const Vector2D& getMirrorX() const;
+	const Vector2D& getMirrorY() const;
 	float getRotation() const;
 
 	const Matrix2D& getWorldMatrix() const;

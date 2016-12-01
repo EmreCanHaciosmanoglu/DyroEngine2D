@@ -3,8 +3,6 @@
 
 #include "SceneGraph/Object/GameObjects/PhysicsObject.h"
 
-class CollisionComponent;
-
 class Obstacle : public PhysicsObject
 {
 public:
@@ -19,11 +17,7 @@ public:
 	void setVisible(bool visible);
 	bool getVisible() const;
 
-	void setCollision(CollisionComponent* collider);
-	CollisionComponent* getCollider() const;
-
 private:
-	CollisionComponent* collider;
 };
 
 #endif

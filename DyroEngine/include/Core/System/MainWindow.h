@@ -2,7 +2,9 @@
 #define _WINDOW_H
 
 #include "System.h"
+#ifndef _IWINDOW_H
 #include "Interfaces/IWindow.h"
+#endif
 
 class MainWindow : public System, public IWindow
 {

@@ -7,7 +7,9 @@
 #include "Core/System/System.h"
 #include "Core/System/Manager/SystemFactory.h"
 
-#include "Interfaces/IDrawable.h"
+#ifndef _IDRAWABLE_H
+#include "Interfaces\IDrawable.h"
+#endif
 
 #include "Defines/Types/SystemType.h"
 #include "Defines/deletemacros.h"

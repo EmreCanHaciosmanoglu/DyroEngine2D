@@ -2,16 +2,17 @@
 #define _PHYSICSOBJECT_H
 
 #include "SceneGraph\Object\GameObjects\SceneObject.h"
+#ifndef _IDRAWABLEDEBUGINFO_H
 #include "Interfaces\IDrawableDebugInfo.h"
-
-#ifndef _BODYTYPE_H
-	#include "Defines\Types\BodyType.h"
 #endif
 
+#ifndef _BODYTYPE_H
+#include "Defines\Types\BodyType.h"
+#endif
 
 class RigidBodyComponent;
 
-class PhysicsObject : public SceneObject , public IDrawableDebugInfo
+class PhysicsObject : public SceneObject, public IDrawableDebugInfo
 {
 public:
 	PhysicsObject(BodyType bodyType, const std::tstring& name = _T(""));

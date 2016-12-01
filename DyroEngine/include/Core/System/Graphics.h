@@ -2,7 +2,9 @@
 #define _GRAPHICS_H
 
 #include "Core/System/System.h"
+#ifndef _IDRAWABLE_H
 #include "Interfaces/IDrawable.h"
+#endif
 
 #ifndef _2DUTILL_H
 	#include "Defines/d2dutill.h"

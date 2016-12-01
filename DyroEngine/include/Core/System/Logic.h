@@ -2,7 +2,9 @@
 #define _LOGIC_H
 
 #include "System.h"
+#ifndef _IDRAWABLE_H
 #include "Interfaces/IDrawable.h"
+#endif
 
 class AbstractGame;
 

@@ -2,8 +2,14 @@
 
 #include "SceneGraph\Object\GameObjects\Camera\FollowCamera.h"
 #include "SceneGraph\Object\GameObjects\Spaceship.h"
+#include "SceneGraph\Object\GameObjects\Obstacle.h"
 
-#include "SceneGraph/Component/TransformComponent.h"
+#include "SceneGraph\Object\Objects\Shapes\RectShape.h"
+
+#include "SceneGraph\Component\TransformComponent.h"
+#include "SceneGraph\Component\ShapeComponent.h"
+
+#include "SceneGraph\Component\Collision\BoxCollisionComponent.h"
 
 #include "Core\System\Input.h"
 
@@ -12,6 +18,15 @@
 #include "Core\Settings\WorldSettings.h"
 #include "Core\Settings\ApplicationSettings.h"
 #include "Core\Settings\GameSettings.h"
+
+namespace
+{
+	const float BORDER_WIDTH = 50.0f;
+	const float BORDER_HEIGHT = 50.0f;
+
+	const float OBSTACLE_WIDTH = 100.0f;
+	const float OBSTACLE_HEIGHT = 100.0f;
+}
 
 TestScene::TestScene()
 	:Scene(_T("TestScene"))
@@ -37,6 +52,15 @@ bool TestScene::initialize()
 	this->spaceship->getTransform()->setPosition(window_width / 2, window_width / 2);
 	addGameObject(this->spaceship);
 
+	//ADD BORDER
+	//addObstacle(Vector2D(0, window_height / 2), BORDER_WIDTH, window_height);
+	//addObstacle(Vector2D(window_width , window_height / 2), BORDER_WIDTH, window_height);
+	//addObstacle(Vector2D(window_width / 2, 0), window_width - BORDER_WIDTH, BORDER_HEIGHT);
+	//addObstacle(Vector2D(window_width / 2, window_height), window_width - BORDER_WIDTH, BORDER_HEIGHT);
+
+	//ADD OBSTACLE
+	addObstacle(Vector2D(window_width / 2, window_height / 2), OBSTACLE_WIDTH, OBSTACLE_HEIGHT);
+
 	//ADD CAMERA
 	addGameObject(new FollowCamera(this->spaceship, _T("Main Camera")));
 
@@ -57,9 +81,14 @@ void TestScene::setupInput(Input* input)
 	input->bindInput(InputBinding(VK_F2, std::bind(&Scene::disableDebugRendering, this), InputStateType::PRESSED));
 }
 
-void TestScene::addBorder(const Vector2D& position, const Vector2D& scale, float rotation)
+void TestScene::addObstacle(const Vector2D& position, float colliderWidth, float colliderHeight)
 {
-	SceneObject* border = new SceneObject(_T("BORDER"));
+	Obstacle* obstacle = new Obstacle(BodyType::STATIC);
 
-	
+	obstacle->getTransform()->setPosition(position);
+
+	obstacle->addComponent(new ShapeComponent(new RectShape(0, 0, colliderWidth, colliderHeight)));
+	obstacle->addComponent(new BoxCollisionComponent(obstacle->getRigidBody(), colliderWidth, colliderHeight));
+
+	addGameObject(obstacle);
 }
