@@ -5,7 +5,9 @@
 #include "Defines/Types/SystemType.h"
 #include "Defines/deletemacros.h"
 
-float MainTimer::delta_time = 0.0f;
+#include <algorithm>
+
+double MainTimer::delta_time = 0.0f;
 
 MainTimer::MainTimer()
 	:System(SystemType::TIMER_SYSTEM)
@@ -55,9 +57,22 @@ Timer* MainTimer::getWorldTimer() const
 
 void MainTimer::addTimer(Timer* timer)
 {
+	std::vector<Timer*>::const_iterator it = std::find(this->vec_timers.begin(), this->vec_timers.end(), timer);
+	if (it != this->vec_timers.end())
+		return;
 
+	this->vec_timers.push_back(timer);
 }
 Timer* MainTimer::getTimer(const std::tstring& name) const
 {
+	std::vector<Timer*>::const_iterator it = std::find_if(this->vec_timers.begin(),this->vec_timers.end(),
+		[name](Timer* timer)
+	{
+		return timer->getName() == name;
+	});
+
+	if (it != this->vec_timers.end())
+		return *it;
+
 	return nullptr;
 }

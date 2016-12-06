@@ -28,7 +28,7 @@ public:
 	void addTimer(Timer* timer);
 	Timer* getTimer(const std::tstring& name) const;
 
-	static float delta_time;
+	static double delta_time;
 
 private:
 	Timer* world_timer;
