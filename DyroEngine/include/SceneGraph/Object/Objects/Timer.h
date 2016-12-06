@@ -3,6 +3,11 @@
 
 #include "SceneGraph\Object.h"
 
+#ifndef _CTIME_
+#include <ctime>
+#endif
+
+
 class Timer : public Object
 {
 public:
@@ -11,28 +16,30 @@ public:
 	virtual ~Timer();
 
 	virtual bool initialize();
+	virtual bool postInitialize();
 	void update();
 	virtual bool shutdown();
 
-	float getTotalTime() const;		//in seconds
-	float getDeltaTime() const;		//in seconds
+	double getTotalTime() const;		//in seconds
+	double getDeltaTime() const;		//in seconds
+
+	void start();
+
+	void pause();
+	void unpause();
 
 	void reset();
 private:
 
-	void start();
-	void stop();
-
-	double secondspercount;
 	double delta_time;
 
-	_int64 base_time;
-	_int64 pause_time;
-	_int64 stop_time;
-	_int64 prev_time;
-	_int64 curr_time;
+	double current_time;
+	double previous_time;
 
-	bool stopped;
+	std::clock_t timer_begin;
+	std::clock_t timer_stop;
+
+	bool paused;
 };
 
 #endif //_GAMETIMER_H
