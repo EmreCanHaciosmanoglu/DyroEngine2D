@@ -246,6 +246,9 @@
     <ClCompile Include="src\Interfaces\IBoundingBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\SceneGraph\Object\GameObjects\UIObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Defines\color.h">
@@ -480,6 +483,9 @@
       <Filter>Header Files\Core\Systems\Timer</Filter>
     </ClInclude>
     <ClInclude Include="include\Defines\collisionlayers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SceneGraph\Object\GameObjects\UIObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

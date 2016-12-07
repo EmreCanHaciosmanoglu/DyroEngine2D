@@ -8,10 +8,16 @@ Object::Object(const std::tstring& name)
 	, destroyed(false)
 
 	,name(name == _T("") ? generateUniqueName<Object>(_T("Object_")) : name)
+	,id(ObjectCounter<Object>::getAmount())
 {
 }
 Object::~Object()
 {
+}
+
+unsigned int Object::getObjectID() const
+{
+	return this->id;
 }
 
 void Object::setInitialized()

@@ -29,6 +29,9 @@ bool MainTimer::initialize()
 }
 void MainTimer::update()
 {
+	if (!getIsActive())
+		return;
+
 	this->world_timer->update();
 	this->delta_time = this->world_timer->getDeltaTime();
 

@@ -1,6 +1,9 @@
 #include "SceneGraph\Component\TransformComponent.h"
 
 #include "SceneGraph\Object\GameObjects\GameObject.h"
+#include "SceneGraph/Scene/Scene.h"
+
+#include "Core/Rendering/Renderer.h"
 
 TransformComponent::TransformComponent(const std::tstring& name)
 	:Component(name == _T("") ? _T("TransformComponent") : name)
@@ -21,6 +24,8 @@ TransformComponent::~TransformComponent()
 
 bool TransformComponent::initialize()
 {
+	calculateWorldMatrix();
+
 	return true;
 }
 void TransformComponent::update()
@@ -28,15 +33,7 @@ void TransformComponent::update()
 	if (!this->is_dirty)
 		return;
 
-	Matrix2D mat_center = Matrix2D::createTranslationMatrix(this->center_position);
-	Matrix2D mat_translation = Matrix2D::createTranslationMatrix(this->position);
-	Matrix2D mat_scale = Matrix2D::createScalingMatrix(this->scaling);
-	Matrix2D mat_rotation = Matrix2D::createRotationMatrix(this->rotation);
-
-	Matrix2D mat_mirror_x = Matrix2D::createScalingMatrix(this->mirror_x);
-	Matrix2D mat_mirror_y = Matrix2D::createScalingMatrix(this->mirror_y);
-
-	this->world_matrix = mat_center*mat_mirror_x*mat_mirror_y*mat_scale*mat_rotation*mat_translation;
+	calculateWorldMatrix();
 
 	this->is_dirty = false;
 }
@@ -172,4 +169,17 @@ float TransformComponent::getRotation() const
 const Matrix2D& TransformComponent::getWorldMatrix() const
 {
 	return this->world_matrix;
+}
+
+void TransformComponent::calculateWorldMatrix()
+{
+	Matrix2D mat_center = Matrix2D::createTranslationMatrix(this->center_position);
+	Matrix2D mat_translation = Matrix2D::createTranslationMatrix(this->position);
+	Matrix2D mat_scale = Matrix2D::createScalingMatrix(this->scaling);
+	Matrix2D mat_rotation = Matrix2D::createRotationMatrix(this->rotation);
+
+	Matrix2D mat_mirror_x = Matrix2D::createScalingMatrix(this->mirror_x);
+	Matrix2D mat_mirror_y = Matrix2D::createScalingMatrix(this->mirror_y);
+
+	this->world_matrix = mat_center*mat_mirror_x*mat_mirror_y*mat_scale*mat_rotation*mat_translation;
 }

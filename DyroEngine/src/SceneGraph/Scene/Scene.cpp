@@ -171,11 +171,6 @@ void Scene::deactive()
 	Object::deactive();
 }
 
-void Scene::destroy()
-{
-	Object::destroy();
-}
-
 void Scene::enableDebugRendering()
 {
 	this->debug_rendering = true;

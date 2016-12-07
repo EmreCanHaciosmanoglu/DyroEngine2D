@@ -46,6 +46,8 @@ public:
 private:
 	bool is_dirty;
 
+	void calculateWorldMatrix();
+
 	Vector2D center_position;
 	Vector2D position;
 	Vector2D scaling;

@@ -17,6 +17,8 @@ public:
 	virtual bool postInitialize() = 0;
 	virtual bool shutdown() = 0;
 
+	unsigned int getObjectID() const;
+
 	void setInitialized();
 	bool getInitialized();
 	void setPostInitialized();
@@ -40,6 +42,8 @@ protected:
 	}
 
 private:
+	unsigned int id;
+
 	bool active;
 
 	bool initialized;
