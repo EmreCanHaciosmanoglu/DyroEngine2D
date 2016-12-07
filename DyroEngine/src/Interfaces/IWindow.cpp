@@ -137,9 +137,7 @@ bool IWindow::setupWindow()
 	this->handle_window = CreateWindowEx(this->extended_style,
 		this->window_classname.c_str(),
 		this->window_title.c_str(),
-		this->style |
-		WS_CLIPSIBLINGS |
-		WS_CLIPCHILDREN,
+		this->style,
 		getWindowPosition().x, getWindowPosition().y,
 		this->window_rect.right - this->window_rect.left,
 		this->window_rect.bottom - this->window_rect.top,

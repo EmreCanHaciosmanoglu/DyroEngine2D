@@ -22,6 +22,9 @@ MainWindow::~MainWindow()
 
 bool MainWindow::initialize()
 {
+	//Set the main window style
+	setStyle(WS_POPUPWINDOW | WS_CLIPSIBLINGS | WS_CLIPCHILDREN);
+
 	if (!createWindow())
 	{
 		shutdown();
