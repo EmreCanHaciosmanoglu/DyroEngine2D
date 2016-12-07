@@ -55,20 +55,20 @@ float FreeCamera::getSpeed() const
 void FreeCamera::moveUp()
 {
 	TransformComponent* transform = getTransform();
-	transform->translate(Vector2D(0, -1) * speed * MainTimer::delta_time);
+	transform->translate(Vector2D(0, -1) * speed * (float)MainTimer::delta_time);
 }
 void FreeCamera::moveDown()
 {
 	TransformComponent* transform = getTransform();
-	transform->translate(Vector2D(0, 1) * speed * MainTimer::delta_time);
+	transform->translate(Vector2D(0, 1) * speed * (float)MainTimer::delta_time);
 }
 void FreeCamera::moveLeft()
 {
 	TransformComponent* transform = getTransform();
-	transform->translate(Vector2D(-1, 0) * speed * MainTimer::delta_time);
+	transform->translate(Vector2D(-1, 0) * speed * (float)MainTimer::delta_time);
 }
 void FreeCamera::moveRight()
 {
 	TransformComponent* transform = getTransform();
-	transform->translate(Vector2D(1, 0) * speed * MainTimer::delta_time);
+	transform->translate(Vector2D(1, 0) * speed * (float)MainTimer::delta_time);
 }
