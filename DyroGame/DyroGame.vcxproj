@@ -130,6 +130,7 @@
   <ItemGroup>
     <ClInclude Include="include\Core\Game\Game.h" />
     <ClInclude Include="include\Main.h" />
+    <ClInclude Include="include\SceneGraph\Object\GameObjects\Astroid.h" />
     <ClInclude Include="include\SceneGraph\Object\GameObjects\Obstacle.h" />
     <ClInclude Include="include\SceneGraph\Scene\MyScene.h" />
     <ClInclude Include="include\SceneGraph\Object\GameObjects\Spaceship.h" />
@@ -138,6 +139,7 @@
   <ItemGroup>
     <ClCompile Include="src\Core\Game\Game.cpp" />
     <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\SceneGraph\Object\GameObjects\Astroid.cpp" />
     <ClCompile Include="src\SceneGraph\Object\GameObjects\Obstacle.cpp" />
     <ClCompile Include="src\SceneGraph\Object\GameObjects\Spaceship.cpp" />
     <ClCompile Include="src\SceneGraph\Scene\MyScene.cpp" />

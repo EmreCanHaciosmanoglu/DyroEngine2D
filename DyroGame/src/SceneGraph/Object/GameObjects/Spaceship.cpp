@@ -10,19 +10,21 @@
 #include "Core/System/Input.h"
 #include "Core/System/MainTimer.h"
 
+#include "Defines\programdefaults.h"
+
 namespace
 {
-	const float SPACESHIP_SCALE = 20.0f;
+	const float SPACESHIP_SCALE = 50.0f;
 
-	const float PI = 3.1415f;
+	const float FORCE = 500.0f;
+	const float TORQUE = 20.0f;
 
-	const float FORCE = 300.0f;
-	const float TORQUE = 10.0f;
+	const float LINEAR_DAMPING = 0.2f;
+	const float ANGULAR_DAMPING = 0.4f;
 }
 
 Spaceship::Spaceship(const std::tstring& name)
 	:PhysicsObject(BodyType::DYNAMIC,name)
-	, direction(Vector2D(-1,0))
 {}
 Spaceship::~Spaceship()
 {}
@@ -31,19 +33,18 @@ bool Spaceship::initialize()
 {
 	std::vector<Vector2D> vertices;
 
-	vertices.push_back(Vector2D(-1 * SPACESHIP_SCALE, 0));
-	vertices.push_back(Vector2D(1 * SPACESHIP_SCALE, 1 * SPACESHIP_SCALE));
-	vertices.push_back(Vector2D(0, 0));
-	vertices.push_back(Vector2D(1 * SPACESHIP_SCALE, -1 * SPACESHIP_SCALE));
+	vertices.push_back(Vector2D(-0.5f * SPACESHIP_SCALE, 0.0f));
+	vertices.push_back(Vector2D(0.5f * SPACESHIP_SCALE, -0.5f * SPACESHIP_SCALE));
+	vertices.push_back(Vector2D(0.25f * SPACESHIP_SCALE, 0.0f));
+	vertices.push_back(Vector2D(0.5f * SPACESHIP_SCALE, 0.5f * SPACESHIP_SCALE));
 
 	addComponent(new ShapeComponent(new PolygonShape(vertices)));
 	addComponent(new PolygonCollisionComponent(getRigidBody(),vertices));
 
-	getTransform()->rotate(PI/2);
 	getRigidBody()->setGravityScale(0.0f);
 
-	getRigidBody()->setLinearDamping(0.15f);
-	getRigidBody()->setAngularDamping(0.35f);
+	getRigidBody()->setLinearDamping(LINEAR_DAMPING);
+	getRigidBody()->setAngularDamping(ANGULAR_DAMPING);
 
 	return PhysicsObject::initialize();
 }
@@ -76,9 +77,10 @@ void Spaceship::moveForward()
 	float angle = rigid->getBody()->GetAngle();
 
 	Vector2D forward;
+	Vector2D direction = Vector2D(-1, 0);
 
-	forward.x = this->direction.x * cos(angle) - this->direction.y * sin(angle);
-	forward.y = this->direction.x * sin(angle) + this->direction.y * cos(angle);
+	forward.x = direction.x * cos(angle) - direction.y * sin(angle);
+	forward.y = direction.x * sin(angle) + direction.y * cos(angle);
 
 	direction.Normalize();
 
@@ -94,9 +96,10 @@ void Spaceship::moveBackward()
 	float angle = rigid->getBody()->GetAngle();
 
 	Vector2D forward;
+	Vector2D direction = Vector2D(-1, 0);
 
-	forward.x = this->direction.x * cos(angle) - this->direction.y * sin(angle);
-	forward.y = this->direction.x * sin(angle) + this->direction.y * cos(angle);
+	forward.x = direction.x * cos(angle) - direction.y * sin(angle);
+	forward.y = direction.x * sin(angle) + direction.y * cos(angle);
 
 	direction.Normalize();
 

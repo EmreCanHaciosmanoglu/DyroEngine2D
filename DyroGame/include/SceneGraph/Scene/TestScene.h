@@ -18,13 +18,17 @@ public:
 	virtual ~TestScene();
 
 	virtual bool initialize();
+	virtual bool postInitialize();
 	virtual void update();
 	virtual bool shutdown();
 
 	virtual void setupInput(Input* input);
 
 private:
-	void addObstacle(const Vector2D& position, float colliderWidth, float colliderHeight);
+	void addBorder(const Vector2D& position, float colliderWidth, float colliderHeight);
+	void addAstroid(const Vector2D& position, float radius, const Vector2D& direction);
+
+	void spawnAstroids(int astroidAmount);
 
 	Spaceship* spaceship;
 };

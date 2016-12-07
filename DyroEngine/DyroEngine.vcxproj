@@ -79,6 +79,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\Defines\collisionlayers.h" />
     <ClInclude Include="include\Defines\Types\BodyType.h" />
     <ClInclude Include="include\Diagnostics\DebugRenderer.h" />
     <ClInclude Include="include\Helpers\Collision\ContactFilter.h" />

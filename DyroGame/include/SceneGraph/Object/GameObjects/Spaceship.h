@@ -27,8 +27,6 @@ private:
 	void moveBackward();
 	void rotateRight();
 	void rotateLeft();
-
-	Vector2D direction;
 };
 
 #endif

@@ -359,9 +359,6 @@
     <ClInclude Include="include\Core\Settings\Settings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\SceneGraph\Object\Objects\Timer.h">
-      <Filter>Header Files\Core\Systems\Timer</Filter>
-    </ClInclude>
     <ClInclude Include="include\Defines\programdefaults.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -372,21 +369,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Core\Rendering\Renderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Object\Objects\Shapes\CircleShape.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Object\Objects\Shapes\LineShape.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Object\Objects\Shapes\PolygonShape.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Object\Objects\Shapes\RectShape.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Object\Objects\Shapes\Shape.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Interfaces\IFillableShape.h">
@@ -434,9 +416,6 @@
     <ClInclude Include="include\SceneGraph\Component\ImageComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\SceneGraph\Object\Objects\Shapes\TriangleShape.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Diagnostics\DebugRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -477,6 +456,30 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Interfaces\IBoundingBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SceneGraph\Object\Objects\Shapes\CircleShape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SceneGraph\Object\Objects\Shapes\LineShape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SceneGraph\Object\Objects\Shapes\PolygonShape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SceneGraph\Object\Objects\Shapes\RectShape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SceneGraph\Object\Objects\Shapes\Shape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SceneGraph\Object\Objects\Shapes\TriangleShape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SceneGraph\Object\Objects\Timer.h">
+      <Filter>Header Files\Core\Systems\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Defines\collisionlayers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
