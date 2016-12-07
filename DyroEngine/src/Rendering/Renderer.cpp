@@ -75,7 +75,7 @@ void Renderer::drawRect(const Vector2D& lefttop, const Vector2D& rightbottom, fl
 }
 void Renderer::drawRect(const Rect2D& rect, float lineWidth)
 {
-	D2D1_RECT_F d2dRect = D2D1::RectF((FLOAT)rect.left, (FLOAT)rect.top, (FLOAT)rect.right, (FLOAT)rect.bottom);
+	D2D1_RECT_F d2dRect = D2D1::RectF((FLOAT)rect.left - (FLOAT)rect.getWidth() / 2, (FLOAT)rect.top - (FLOAT)rect.getHeight() / 2, (FLOAT)rect.right - (FLOAT)rect.getWidth() / 2, (FLOAT)rect.bottom - (FLOAT)rect. getHeight() / 2);
 	this->graphics->getRenderTarget()->DrawRectangle(d2dRect, this->graphics->getColorBrush(), lineWidth);
 }
 
@@ -120,7 +120,7 @@ void Renderer::fillRect(const Vector2D& lefttop, const Vector2D& rightbottom)
 }
 void Renderer::fillRect(const Rect2D& rect)
 {
-	D2D1_RECT_F d2dRect = D2D1::RectF((FLOAT)rect.left, (FLOAT)rect.top, (FLOAT)rect.right, (FLOAT)rect.bottom);
+	D2D1_RECT_F d2dRect = D2D1::RectF((FLOAT)rect.left - (FLOAT)rect.getWidth()/2, (FLOAT)rect.top - (FLOAT)rect.getHeight() / 2, (FLOAT)rect.right - (FLOAT)rect.getWidth() / 2, (FLOAT)rect.bottom - (FLOAT)rect.getHeight() / 2);
 	this->graphics->getRenderTarget()->FillRectangle(d2dRect, this->graphics->getColorBrush());
 }
 
@@ -171,7 +171,7 @@ void Renderer::fillPolygon(Vector2D* points, int size)
 
 	if (SUCCEEDED(hr))
 	{
-		pGeometrySink->BeginFigure(D2D1::Point2F((FLOAT)points[0].x, (FLOAT)points[0].y), D2D1_FIGURE_BEGIN_FILLED);
+		pGeometrySink->BeginFigure(D2D1::Point2F((FLOAT)points[0].x, (FLOAT)points[0].y), D2D1_FIGURE_BEGIN_FILLED );
 
 		for (int i = 0; i < size; ++i)
 			pGeometrySink->AddLine(D2D1::Point2F((FLOAT)points[i].x, (FLOAT)points[i].y));
