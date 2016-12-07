@@ -22,9 +22,6 @@ SceneObject::~SceneObject()
 
 bool SceneObject::initialize()
 {
-	Rect2D bounds = getBoundingBox();
-	getTransform()->center(-bounds.width/2,-bounds.height/2);
-
 	return GameObject::initialize();
 }
 void SceneObject::update()
@@ -75,9 +72,6 @@ Rect2D SceneObject::getBoundingBox() const
 {
 	Rect2D bounding_rect;
 
-	bounding_rect.left = getTransform()->getPosition().x;
-	bounding_rect.top = getTransform()->getPosition().y;
-
 	for (Component* c : getComponents())
 	{
 		IBoundingBox* bounding_box = dynamic_cast<IBoundingBox*>(c);
@@ -90,8 +84,8 @@ Rect2D SceneObject::getBoundingBox() const
 		}
 	}
 
-	bounding_rect.right += getTransform()->getPosition().x;
-	bounding_rect.bottom += getTransform()->getPosition().y;
+	bounding_rect *= getTransform()->getScale();
+	bounding_rect += getTransform()->getPosition();
 
 	return bounding_rect;
 }

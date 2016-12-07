@@ -1,5 +1,4 @@
 #include "SceneGraph/Component/ShapeComponent.h"
-#include "SceneGraph\Component\TransformComponent.h"
 
 #include "SceneGraph/Object/Objects/Shapes/Shape.h"
 #include "SceneGraph/Object/GameObjects/GameObject.h"
@@ -64,21 +63,11 @@ const Color& ShapeComponent::getColor() const
 
 Rect2D ShapeComponent::getBoundingBox() const
 {
-	TransformComponent* transform = getParent()->getComponent<TransformComponent>();
-
-	Vector2D scale(1, 1);
-	if (transform != nullptr)
-		scale = transform->getScale();
-
 	Rect2D bounding_rect = Rect2D::empty;
 
 	IBoundingBox* bounding_box = dynamic_cast<IBoundingBox*>(this->shape);
 	if (bounding_box != nullptr)
-	{
-		bounding_rect = bounding_box->getBoundingBox();
-		bounding_rect.right = bounding_rect.right * scale.x;
-		bounding_rect.bottom = bounding_rect.bottom * scale.y;
-	}
+		return bounding_box->getBoundingBox();
 
 	return bounding_rect;
 }
