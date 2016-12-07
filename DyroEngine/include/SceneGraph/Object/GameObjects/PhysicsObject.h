@@ -24,6 +24,8 @@ public:
 	virtual void drawDebugInfo();
 	virtual bool shutdown();
 
+	void setCollisionLayer(unsigned int layer);
+
 	virtual bool shouldCollide(PhysicsObject* other);
 
 	virtual void onCollisionEnter(PhysicsObject* other);
