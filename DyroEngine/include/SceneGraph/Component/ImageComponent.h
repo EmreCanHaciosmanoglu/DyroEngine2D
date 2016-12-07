@@ -31,13 +31,6 @@ public:
 	virtual void draw();
 	virtual bool shutdown();
 
-	void centerImage();
-	void resetCenter();
-
-	void mirrorImageX();
-	void mirrorImageY();
-	void resetMirror(bool x = true, bool y = true);
-
 	void setTransparencyColor(const Color& color);
 
 	void setImage(Image* image);
@@ -53,7 +46,6 @@ public:
 
 private:
 	Image* image;
-	TransformComponent* transform;
 };
 
 #endif
