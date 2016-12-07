@@ -81,12 +81,18 @@ void ContactListener::computeBeginContact(CollisionComponent* colliderA, Collisi
 {
 	if (colliderA->getIsTrigger())
 	{
+		if (this->vec_triggers.size() == 0)
+			return;
+
 		this->vec_triggers.push_back(ContactData(objectA,objectB,colliderA,colliderB));
 
 		objectA->onTriggerEnter(objectB);
 	}
 	else
 	{
+		if (this->vec_colliders.size() == 0)
+			return;
+
 		this->vec_colliders.push_back(ContactData(objectA, objectB, colliderA, colliderB));
 
 		objectA->onCollisionEnter(objectB);
@@ -98,12 +104,18 @@ void ContactListener::computeEndContact(CollisionComponent* colliderA, Collision
 {
 	if (colliderA->getIsTrigger())
 	{
+		if (this->vec_triggers.size() == 0)
+			return;
+
 		this->vec_triggers.erase(std::find(this->vec_triggers.begin(),this->vec_triggers.end(), ContactData(objectA, objectB, colliderA, colliderB)));
 
 		objectA->onTriggerLeave(objectB);
 	}
 	else
 	{
+		if (this->vec_colliders.size() == 0)
+			return;
+
 		this->vec_colliders.erase(std::find(this->vec_colliders.begin(),this->vec_colliders.end(), ContactData(objectA, objectB, colliderA, colliderB)));
 
 		objectA->onCollisionLeave(objectB);
