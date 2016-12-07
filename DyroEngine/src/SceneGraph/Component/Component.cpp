@@ -12,6 +12,15 @@ Component::~Component()
 {
 }
 
+bool Component::postInitialize()
+{
+	return true;
+}
+void Component::update()
+{
+
+}
+
 int Component::getExecutionOrder() const
 {
 	return this->execution_order;

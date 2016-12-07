@@ -4,9 +4,10 @@ Object::Object(const std::tstring& name)
 	:active(true)
 
 	, initialized(false)
+	, post_initialized(false)
 	, destroyed(false)
 
-	,name(name == _T("") ? generateName<Object>(_T("Object_")) : name)
+	,name(name == _T("") ? generateUniqueName<Object>(_T("Object_")) : name)
 {
 }
 Object::~Object()
@@ -20,6 +21,14 @@ void Object::setInitialized()
 bool Object::getInitialized()
 {
 	return this->initialized;
+}
+void Object::setPostInitialized()
+{
+	this->post_initialized = true;
+}
+bool Object::getPostInitialized()
+{
+	return this->post_initialized;
 }
 
 void Object::activate()
@@ -40,6 +49,7 @@ void Object::destroy()
 	this->destroyed = true;
 
 	this->initialized = false;
+	this->post_initialized = false;
 }
 bool Object::isDestroyed() const
 {

@@ -34,6 +34,13 @@ bool SceneManager::initialize()
 		if (!this->active_scene->initialize())
 			return false;
 		this->active_scene->setInitialized();
+
+		if (!this->active_scene->getPostInitialized())
+		{
+			if (!this->active_scene->postInitialize())
+				return false;
+			this->active_scene->setPostInitialized();
+		}
 	}
 	return true;
 }

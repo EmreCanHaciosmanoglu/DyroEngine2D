@@ -47,10 +47,31 @@ bool GameObject::initialize()
 	}
 	for (GameObject* child_obj : this->vec_childeren)
 	{
-		if (child_obj->initialize())
+		if (child_obj->getInitialized())
 			continue;
 
 		if (!child_obj->initialize())
+			return false;
+	}
+
+	return true;
+}
+bool GameObject::postInitialize()
+{
+	for (Component* obj : this->vec_components)
+	{
+		if (obj->getPostInitialized())
+			continue;
+
+		if (!obj->postInitialize())
+			return false;
+	}
+	for (GameObject* child_obj : this->vec_childeren)
+	{
+		if (child_obj->getPostInitialized())
+			continue;
+
+		if (!child_obj->postInitialize())
 			return false;
 	}
 

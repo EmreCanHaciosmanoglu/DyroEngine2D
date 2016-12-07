@@ -31,6 +31,7 @@ public:
 	virtual ~GameObject();
 
 	virtual bool initialize();
+	virtual bool postInitialize();
 	virtual void update();
 	virtual bool shutdown();
 

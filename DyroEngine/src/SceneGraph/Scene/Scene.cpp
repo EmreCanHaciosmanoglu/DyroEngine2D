@@ -28,11 +28,11 @@
 
 Scene::Scene(const std::tstring& name)
 	:Object(name)
-	,phyx_world(nullptr)
-	,debug_rendering(false)
-	,debug_renderer(nullptr)
-	,contact_filter(nullptr)
-	,contact_listener(nullptr)
+	, phyx_world(nullptr)
+	, debug_rendering(false)
+	, debug_renderer(nullptr)
+	, contact_filter(nullptr)
+	, contact_listener(nullptr)
 {
 }
 Scene::~Scene()
@@ -43,17 +43,30 @@ bool Scene::initialize()
 {
 	setupPyhx();
 
-	Input* input = dynamic_cast<Input*>(Singleton<SystemManager>::getInstance().getSystem(SystemType::INPUT_SYSTEM));
-	this->setupInput(input);
-
 	for (GameObject* obj : this->vec_objects)
 	{
 		if (obj->getInitialized())
 			continue;
 
+		if (!obj->initialize())
+			return false;
+	}
+
+	return true;
+}
+bool Scene::postInitialize()
+{
+	Input* input = dynamic_cast<Input*>(Singleton<SystemManager>::getInstance().getSystem(SystemType::INPUT_SYSTEM));
+	this->setupInput(input);
+
+	for (GameObject* obj : this->vec_objects)
+	{
+		if (obj->getPostInitialized())
+			continue;
+
 		obj->setupInput(input);
 
-		if (!obj->initialize())
+		if (!obj->postInitialize())
 			return false;
 	}
 
@@ -63,7 +76,7 @@ void Scene::update()
 {
 	PhyxSettings* settings = Singleton<WorldSettings>::getInstance().getPhyxSettings();
 
-	if(Vector2D::toBox2DVec(settings->getGravity()) != this->phyx_world->GetGravity())
+	if (Vector2D::toBox2DVec(settings->getGravity()) != this->phyx_world->GetGravity())
 		this->phyx_world = new b2World(Vector2D::toBox2DVec(settings->getGravity()));
 
 	this->phyx_world->Step(settings->getPhyxTimeStep(), settings->getVelocityInterpolation(), settings->getPositionInterpolation());

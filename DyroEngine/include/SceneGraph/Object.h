@@ -14,10 +14,13 @@ public:
 	virtual ~Object();
 
 	virtual bool initialize() = 0;
+	virtual bool postInitialize() = 0;
 	virtual bool shutdown() = 0;
 
 	void setInitialized();
 	bool getInitialized();
+	void setPostInitialized();
+	bool getPostInitialized();
 
 	virtual void activate();
 	virtual void deactive();
@@ -31,7 +34,7 @@ public:
 
 protected:
 	template<typename T>
-	const std::tstring generateName(const std::tstring& partialName)
+	const std::tstring generateUniqueName(const std::tstring& partialName)
 	{
 		return partialName + TOSTRING(ObjectCounter<T>::getAmount());
 	}
@@ -40,6 +43,7 @@ private:
 	bool active;
 
 	bool initialized;
+	bool post_initialized;
 	bool destroyed;
 
 	std::tstring name;
