@@ -2,7 +2,7 @@
 
 #include "SceneGraph/Component/TransformComponent.h"
 
-UIObject::UIObject(const std::tstring& name = _T(""))
+UIObject::UIObject(const std::tstring& name)
 	:GameObject(name)
 	,transform(new TransformComponent())
 {}
@@ -16,9 +16,6 @@ bool UIObject::initialize()
 void UIObject::upddate()
 {
 	GameObject::update();
-}
-void UIObject::draw()
-{
 }
 bool UIObject::shutdown()
 {

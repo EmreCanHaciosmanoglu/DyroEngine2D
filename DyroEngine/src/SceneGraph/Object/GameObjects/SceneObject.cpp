@@ -23,7 +23,7 @@ SceneObject::~SceneObject()
 bool SceneObject::initialize()
 {
 	Rect2D bounds = getBoundingBox();
-	getTransform()->center(-bounds.width/2,-bounds.height/2);
+	getTransform()->center(-(float)bounds.width / 2.0f, -(float)bounds.height / 2.0f);
 
 	return GameObject::initialize();
 }

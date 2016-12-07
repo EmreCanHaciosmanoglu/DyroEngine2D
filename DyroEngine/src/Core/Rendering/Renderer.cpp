@@ -20,44 +20,6 @@ Renderer::~Renderer()
 {
 }
 
-void Renderer::render()
-{
-	for (const RenderItem& render_item : this->vec_renderitems)
-	{
-		if (render_item.drawable->getCanDraw())
-		{
-			setTransformMatrix(render_item.world_matrix);
-
-			render_item.drawable->draw(this);
-		}
-	}
-}
-
-void Renderer::addRenderItem(const RenderItem& item)
-{
-	std::vector<RenderItem>::const_iterator it = std::find(this->vec_renderitems.begin(), this->vec_renderitems.end(), item);
-	if (it == this->vec_renderitems.end())
-		this->vec_renderitems.push_back(item);
-}
-void Renderer::removeRenderItem(const RenderItem& item)
-{
-	std::vector<RenderItem>::const_iterator it = std::find(this->vec_renderitems.begin(), this->vec_renderitems.end(), item);
-	if (it != this->vec_renderitems.end())
-		this->vec_renderitems.erase(it);
-}
-
-void Renderer::updateRenderItem(unsigned int objectID, const Matrix2D& transform)
-{
-	std::vector<RenderItem>::iterator it = std::find(this->vec_renderitems.begin(), this->vec_renderitems.end(), 
-		[objectID](const RenderItem& item)
-	{
-		return item.object_id == objectID;
-	});
-
-	if (it != this->vec_renderitems.end())
-		(*it).world_matrix = transform;
-}
-
 void Renderer::setTransformMatrix(const Matrix2D& transformMatrix)
 {
 	this->graphics->getRenderTarget()->SetTransform(&transformMatrix.toMatrix3x2F());

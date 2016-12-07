@@ -35,9 +35,6 @@ void TransformComponent::update()
 
 	calculateWorldMatrix();
 
-	Renderer* renderer = getParent()->getScene()->getManager<Renderer>();
-	renderer->updateRenderItem(getParent()->getObjectID(), getWorldMatrix());
-
 	this->is_dirty = false;
 }
 bool TransformComponent::shutdown()
