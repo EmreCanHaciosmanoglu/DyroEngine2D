@@ -35,7 +35,7 @@ bool CircleCollisionComponent::initialize()
 
 	fixtureDef.userData = (void *)this;
 
-	//fixtureDef.filter = m_CollisionFilter;
+	fixtureDef.filter = getCollisionLayer();
 
 	b2Fixture *fixturePtr = getRigid()->getBody()->CreateFixture(&fixtureDef);
 	if (fixturePtr == nullptr)

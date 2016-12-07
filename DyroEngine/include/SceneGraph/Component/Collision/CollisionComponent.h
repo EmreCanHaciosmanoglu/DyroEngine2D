@@ -3,7 +3,8 @@
 
 #include "SceneGraph\Component\Component.h"
 
-class b2Fixture;
+#include <Box2D\Box2D.h>
+
 class RigidBodyComponent;
 
 class CollisionComponent : public Component
@@ -16,8 +17,10 @@ public:
 	virtual void update() = 0;
 	virtual bool shutdown() = 0;
 
-	void setAsTrigger(bool trigger);
+	void setCollisionLayer(const b2Filter& filter);
+	const b2Filter& getCollisionLayer() const;
 
+	void setAsTrigger(bool trigger);
 	bool getIsTrigger() const;
 
 protected:
@@ -33,6 +36,8 @@ private:
 	float density;
 
 	bool is_trigger;
+
+	b2Filter collision_layer;
 
 	RigidBodyComponent* rigid;
 };

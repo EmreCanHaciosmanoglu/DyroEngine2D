@@ -3,7 +3,7 @@
 
 #include "SceneGraph\Object\GameObjects\PhysicsObject.h"
 
-#include <Box2D\Box2D.h>
+#include "Defines\collisionlayers.h"
 
 CollisionComponent::CollisionComponent(RigidBodyComponent* rigid, float restitution, float friction, float density , const std::tstring& name)
 	:Component(name)
@@ -17,6 +17,19 @@ CollisionComponent::CollisionComponent(RigidBodyComponent* rigid, float restitut
 CollisionComponent::~CollisionComponent()
 {}
 
+void CollisionComponent::setCollisionLayer(const b2Filter& layer)
+{
+	this->collision_layer = layer;
+
+	//apply on all fixtures
+	for (b2Fixture* fixturePtr = getRigid()->getBody()->GetFixtureList(); fixturePtr != nullptr; fixturePtr = fixturePtr->GetNext())
+		fixturePtr->SetFilterData(layer);
+}
+const b2Filter& CollisionComponent::getCollisionLayer() const
+{
+	return this->collision_layer;
+}
+
 void CollisionComponent::setAsTrigger(bool trigger)
 {
 	this->is_trigger = trigger;
@@ -25,7 +38,6 @@ void CollisionComponent::setAsTrigger(bool trigger)
 		fixture->SetSensor(this->is_trigger);
 	}
 }
-
 bool CollisionComponent::getIsTrigger() const
 {
 	return this->is_trigger;
