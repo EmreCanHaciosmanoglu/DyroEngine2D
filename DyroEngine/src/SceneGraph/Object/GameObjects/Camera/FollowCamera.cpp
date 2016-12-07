@@ -31,7 +31,8 @@ void FollowCamera::update()
 	}
 	else
 	{
-
+		//Apply damping
+		//this->getTransform()->setPosition(target_transform->getPosition());
 	}
 
 	Camera::update();
