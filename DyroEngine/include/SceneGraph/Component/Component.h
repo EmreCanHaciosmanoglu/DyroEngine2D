@@ -16,7 +16,8 @@ public:
 	virtual ~Component();
 
 	virtual bool initialize() = 0;
-	virtual void update() = 0;
+	virtual bool postInitialize();
+	virtual void update();
 	virtual bool shutdown() = 0;
 
 	void setExecutionOrder(int value);
