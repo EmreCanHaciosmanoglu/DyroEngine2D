@@ -42,8 +42,6 @@ public:
 	virtual void activate();
 	virtual void deactive();
 
-	virtual void destroy();
-
 	void enableDebugRendering();
 	void disableDebugRendering();
 
@@ -59,6 +57,11 @@ public:
 private:
 	void setupPyhx();
 
+	bool initializeObjects(std::vector<GameObject*>& objects);
+	void updateObjects(std::vector<GameObject*>& objects);
+	void drawObjects(std::vector<GameObject*>& objects);
+	bool shutdownObjects(std::vector<GameObject*> objects);
+
 	b2World* phyx_world;
 
 	DebugRenderer* debug_renderer;
@@ -68,6 +71,8 @@ private:
 	bool debug_rendering;
 
 	std::vector<GameObject*> vec_objects;
+	std::vector<GameObject*> vec_ui_objects;
+
 	std::vector<Manager*> vec_managers;
 };
 

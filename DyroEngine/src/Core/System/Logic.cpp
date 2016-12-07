@@ -31,6 +31,9 @@ bool Logic::initialize()
 }
 void Logic::update()
 {
+	if (!getIsActive())
+		return;
+
 	Singleton<SceneManager>::getInstance().update();
 }
 void Logic::draw()

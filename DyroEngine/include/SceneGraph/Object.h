@@ -16,6 +16,8 @@ public:
 	virtual bool initialize() = 0;
 	virtual bool shutdown() = 0;
 
+	unsigned int getObjectID() const;
+
 	void setInitialized();
 	bool getInitialized();
 
@@ -37,6 +39,8 @@ protected:
 	}
 
 private:
+	unsigned int id;
+
 	bool active;
 
 	bool initialized;

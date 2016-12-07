@@ -56,9 +56,15 @@ LRESULT MainWindow::handleEvent(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 	case WM_ACTIVATE:
 	{
 		if (!HIWORD(wParam))
-			activate();
+		{
+			for (System* sys : Singleton<SystemManager>::getInstance().getSystems())
+				sys->activate();
+		}
 		else
-			deactivate();
+		{
+			for (System* sys : Singleton<SystemManager>::getInstance().getSystems())
+				sys->deactivate();
+		}
 
 		return 0;
 	}

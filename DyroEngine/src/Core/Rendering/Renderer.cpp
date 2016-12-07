@@ -19,6 +19,45 @@ Renderer::Renderer()
 Renderer::~Renderer()
 {
 }
+
+void Renderer::render()
+{
+	for (const RenderItem& render_item : this->vec_renderitems)
+	{
+		if (render_item.drawable->getCanDraw())
+		{
+			setTransformMatrix(render_item.world_matrix);
+
+			render_item.drawable->draw(this);
+		}
+	}
+}
+
+void Renderer::addRenderItem(const RenderItem& item)
+{
+	std::vector<RenderItem>::const_iterator it = std::find(this->vec_renderitems.begin(), this->vec_renderitems.end(), item);
+	if (it == this->vec_renderitems.end())
+		this->vec_renderitems.push_back(item);
+}
+void Renderer::removeRenderItem(const RenderItem& item)
+{
+	std::vector<RenderItem>::const_iterator it = std::find(this->vec_renderitems.begin(), this->vec_renderitems.end(), item);
+	if (it != this->vec_renderitems.end())
+		this->vec_renderitems.erase(it);
+}
+
+void Renderer::updateRenderItem(unsigned int objectID, const Matrix2D& transform)
+{
+	std::vector<RenderItem>::iterator it = std::find(this->vec_renderitems.begin(), this->vec_renderitems.end(), 
+		[objectID](const RenderItem& item)
+	{
+		return item.object_id == objectID;
+	});
+
+	if (it != this->vec_renderitems.end())
+		(*it).world_matrix = transform;
+}
+
 void Renderer::setTransformMatrix(const Matrix2D& transformMatrix)
 {
 	this->graphics->getRenderTarget()->SetTransform(&transformMatrix.toMatrix3x2F());
@@ -49,7 +88,7 @@ void Renderer::setColor(float r, float g, float b, float a)
 	setColor(Color(r, g, b, a));
 }
 
-void Renderer::drawLine(const Vector2D& v1, const Vector2D& v2, float lineWidth)
+void Renderer::drawLine(const Vector2D& v1, const Vector2D& v2, float lineWidth) const
 {
 	D2D1_POINT_2F p1, p2;
 	p1.x = (FLOAT)v1.x; p1.y = (FLOAT)v1.y;
@@ -57,7 +96,7 @@ void Renderer::drawLine(const Vector2D& v1, const Vector2D& v2, float lineWidth)
 
 	this->graphics->getRenderTarget()->DrawLine(p1, p2, this->graphics->getColorBrush(), lineWidth);
 }
-void Renderer::drawLine(float x1, float y1, float x2, float y2, float lineWidth)
+void Renderer::drawLine(float x1, float y1, float x2, float y2, float lineWidth) const
 {
 	Vector2D v1(x1, y1);
 	Vector2D v2(x2, y2);
@@ -65,31 +104,31 @@ void Renderer::drawLine(float x1, float y1, float x2, float y2, float lineWidth)
 	drawLine(v1, v2, lineWidth);
 }
 
-void Renderer::drawRect(float left, float top, float width, float height, float lineWidth)
+void Renderer::drawRect(float left, float top, float width, float height, float lineWidth) const
 {
 	drawRect(Rect2D(left, top, left + width, top + height), lineWidth);
 }
-void Renderer::drawRect(const Vector2D& lefttop, const Vector2D& rightbottom, float lineWidth)
+void Renderer::drawRect(const Vector2D& lefttop, const Vector2D& rightbottom, float lineWidth) const
 {
 	drawRect(Rect2D(lefttop, rightbottom), lineWidth);
 }
-void Renderer::drawRect(const Rect2D& rect, float lineWidth)
+void Renderer::drawRect(const Rect2D& rect, float lineWidth) const
 {
 	D2D1_RECT_F d2dRect = D2D1::RectF((FLOAT)rect.left, (FLOAT)rect.top, (FLOAT)rect.right, (FLOAT)rect.bottom);
 	this->graphics->getRenderTarget()->DrawRectangle(d2dRect, this->graphics->getColorBrush(), lineWidth);
 }
 
-void Renderer::drawCircle(float xcenter, float ycenter, float r, float lineWidth)
+void Renderer::drawCircle(float xcenter, float ycenter, float r, float lineWidth) const
 {
 	D2D1_ELLIPSE ellipse = D2D1::Ellipse(D2D1::Point2((FLOAT)xcenter, (FLOAT)ycenter), (FLOAT)r, (FLOAT)r);
 	this->graphics->getRenderTarget()->DrawEllipse(ellipse, this->graphics->getColorBrush(), lineWidth);
 }
-void Renderer::drawCircle(const Vector2D& center, float r, float lineWidth)
+void Renderer::drawCircle(const Vector2D& center, float r, float lineWidth) const
 {
 	drawCircle(center.x, center.y, r, lineWidth);
 }
 
-void Renderer::drawPolygon(const std::vector<Vector2D>& vecPoints, bool close, float lineWidth)
+void Renderer::drawPolygon(const std::vector<Vector2D>& vecPoints, bool close, float lineWidth) const
 {
 	Vector2D* points = new Vector2D[(int)vecPoints.size()];
 	for (int i = 0; i < (int)vecPoints.size(); ++i)
@@ -97,7 +136,7 @@ void Renderer::drawPolygon(const std::vector<Vector2D>& vecPoints, bool close, f
 
 	drawPolygon(points, vecPoints.size(), close, lineWidth);
 }
-void Renderer::drawPolygon(Vector2D* points, int size, bool close, float lineWidth)
+void Renderer::drawPolygon(Vector2D* points, int size, bool close, float lineWidth) const
 {
 	//Do not draw an empty polygon
 	if (size < 3)
@@ -110,31 +149,31 @@ void Renderer::drawPolygon(Vector2D* points, int size, bool close, float lineWid
 		drawLine(points[0], points[size - 1], lineWidth);
 }
 
-void Renderer::fillRect(float left, float top, float width, float height)
+void Renderer::fillRect(float left, float top, float width, float height) const
 {
 	fillRect(Rect2D(left, top, left + width, top + height));
 }
-void Renderer::fillRect(const Vector2D& lefttop, const Vector2D& rightbottom)
+void Renderer::fillRect(const Vector2D& lefttop, const Vector2D& rightbottom) const
 {
 	fillRect(Rect2D(lefttop, rightbottom));
 }
-void Renderer::fillRect(const Rect2D& rect)
+void Renderer::fillRect(const Rect2D& rect) const
 {
 	D2D1_RECT_F d2dRect = D2D1::RectF((FLOAT)rect.left, (FLOAT)rect.top, (FLOAT)rect.right, (FLOAT)rect.bottom);
 	this->graphics->getRenderTarget()->FillRectangle(d2dRect, this->graphics->getColorBrush());
 }
 
-void Renderer::fillCircle(const Vector2D& center, float r)
+void Renderer::fillCircle(const Vector2D& center, float r) const
 {
 	fillCircle(center.x, center.y, r);
 }
-void Renderer::fillCircle(float xcenter, float ycenter, float r)
+void Renderer::fillCircle(float xcenter, float ycenter, float r) const
 {
 	D2D1_ELLIPSE ellipse = D2D1::Ellipse(D2D1::Point2((FLOAT)xcenter, (FLOAT)ycenter), (FLOAT)r, (FLOAT)r);
 	this->graphics->getRenderTarget()->FillEllipse(ellipse, this->graphics->getColorBrush());
 }
 
-void Renderer::fillPolygon(const std::vector<Vector2D>& vecPoints)
+void Renderer::fillPolygon(const std::vector<Vector2D>& vecPoints) const
 {
 	Vector2D* points = new Vector2D[(int)vecPoints.size()];
 	for (int i = 0; i < (int)vecPoints.size(); ++i)
@@ -142,7 +181,7 @@ void Renderer::fillPolygon(const std::vector<Vector2D>& vecPoints)
 
 	fillPolygon(points, vecPoints.size());
 }
-void Renderer::fillPolygon(Vector2D* points, int size)
+void Renderer::fillPolygon(Vector2D* points, int size) const
 {
 	if (size < 3)
 		return;
@@ -192,45 +231,40 @@ void Renderer::fillPolygon(Vector2D* points, int size)
 	SafeRelease(pGeometry);
 }
 
-bool Renderer::drawBitmap(Image* imagePtr)
+bool Renderer::drawBitmap(const Image* imagePtr) const
 {
 	assert(imagePtr != nullptr);
 
 	Rect2D srcRect2(0, 0, imagePtr->getWidth(), imagePtr->getHeight());
 	return drawBitmap(imagePtr, Vector2D(0, 0), srcRect2);
 }
-
-bool Renderer::drawBitmap(Image* imagePtr, float x, float y)
+bool Renderer::drawBitmap(const Image* imagePtr, float x, float y) const
 {
 	assert(imagePtr != nullptr);
 
 	Rect2D srcRect(0, 0, imagePtr->getWidth(), imagePtr->getHeight());
 	return drawBitmap(imagePtr, Vector2D(x, y), srcRect);
 }
-
-bool Renderer::drawBitmap(Image* imagePtr, const Vector2D& position)
+bool Renderer::drawBitmap(const Image* imagePtr, const Vector2D& position) const
 {
 	assert(imagePtr != nullptr);
 
 	Rect2D srcRect(0, 0, imagePtr->getWidth(), imagePtr->getHeight());
 	return drawBitmap(imagePtr, position, srcRect);
 }
-
-bool Renderer::drawBitmap(Image* imagePtr, const Rect2D& srcRect)
+bool Renderer::drawBitmap(const Image* imagePtr, const Rect2D& srcRect) const
 {
 	assert(imagePtr != nullptr);
 
 	return drawBitmap(imagePtr, Vector2D(0, 0), srcRect);
 }
-
-bool Renderer::drawBitmap(Image* imagePtr, float x, float y, const Rect2D& srcRect)
+bool Renderer::drawBitmap(const Image* imagePtr, float x, float y, const Rect2D& srcRect) const
 {
 	assert(imagePtr != nullptr);
 
 	return drawBitmap(imagePtr, Vector2D(x, y), srcRect);
 }
-
-bool Renderer::drawBitmap(Image* imagePtr, const Vector2D& position, const Rect2D& srcRect)
+bool Renderer::drawBitmap(const Image* imagePtr, const Vector2D& position, const Rect2D& srcRect) const
 {
 	assert(imagePtr != nullptr);
 

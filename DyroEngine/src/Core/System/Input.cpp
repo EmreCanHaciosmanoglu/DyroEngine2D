@@ -29,6 +29,9 @@ bool Input::initialize()
 }
 void Input::update()
 {
+	if (!getIsActive())
+		return;
+
 	BOOL getKeyboardResult;
 	if (keyboard_state_0_active)
 	{

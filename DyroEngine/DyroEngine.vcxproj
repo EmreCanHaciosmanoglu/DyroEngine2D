@@ -136,6 +136,7 @@
     <ClInclude Include="include\SceneGraph\Object\GameObjects\Camera\Manager\CameraManager.h" />
     <ClInclude Include="include\SceneGraph\Object\GameObjects\GameObject.h" />
     <ClInclude Include="include\SceneGraph\Object\GameObjects\PhysicsObject.h" />
+    <ClInclude Include="include\SceneGraph\Object\GameObjects\UIObject.h" />
     <ClInclude Include="include\SceneGraph\Object\Objects\Shapes\CircleShape.h" />
     <ClInclude Include="include\SceneGraph\Object\Objects\Shapes\LineShape.h" />
     <ClInclude Include="include\SceneGraph\Object\Objects\Shapes\PolygonShape.h" />
@@ -183,6 +184,7 @@
     <ClCompile Include="src\SceneGraph\Object\GameObjects\PhysicsObject.cpp" />
     <ClCompile Include="src\SceneGraph\Object\GameObjects\SceneObject.cpp" />
     <ClCompile Include="src\Interfaces\IFillableShape.cpp" />
+    <ClCompile Include="src\SceneGraph\Object\GameObjects\UIObject.cpp" />
     <ClCompile Include="src\SceneGraph\Object\Objects\Shapes\CircleShape.cpp" />
     <ClCompile Include="src\SceneGraph\Object\Objects\Shapes\LineShape.cpp" />
     <ClCompile Include="src\SceneGraph\Object\Objects\Shapes\PolygonShape.cpp" />
@@ -204,7 +206,7 @@
     <ClCompile Include="src\Diagnostics\Logger.cpp" />
     <ClCompile Include="src\Helpers\Math\Matrix2D.cpp" />
     <ClCompile Include="src\Helpers\Math\Rect2D.cpp" />
-    <ClCompile Include="src\Rendering\Renderer.cpp" />
+    <ClCompile Include="src\Core\Rendering\Renderer.cpp" />
     <ClCompile Include="src\SceneGraph\Component\Component.cpp" />
     <ClCompile Include="src\SceneGraph\Component\ShapeComponent.cpp" />
     <ClCompile Include="src\SceneGraph\Object\GameObjects\GameObject.cpp" />
