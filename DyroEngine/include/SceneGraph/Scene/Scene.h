@@ -59,6 +59,7 @@ private:
 	void setupPyhx();
 
 	bool initializeObjects(std::vector<GameObject*>& objects);
+	bool postInitializeObjects(std::vector<GameObject*>& objects);
 	void updateObjects(std::vector<GameObject*>& objects);
 	void drawObjects(std::vector<GameObject*>& objects);
 	bool shutdownObjects(std::vector<GameObject*> objects);
