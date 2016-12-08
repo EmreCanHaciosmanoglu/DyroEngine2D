@@ -6,6 +6,7 @@ class Visualization;
 
 class VisualizationFactory
 {
+public:
 	VisualizationFactory();
 	~VisualizationFactory();
 

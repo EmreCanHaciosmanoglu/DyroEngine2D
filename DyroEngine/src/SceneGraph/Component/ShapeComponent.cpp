@@ -1,14 +1,8 @@
 #include "SceneGraph/Component/ShapeComponent.h"
 
 #include "Core/Data/DataObjects/Shapes/Shape.h"
-#include "SceneGraph/GameObjects/GameObject.h"
-#include "SceneGraph/Scene/Scene.h"
 
-#include "Core/Rendering/Renderer.h"
-
-#ifndef _IFILLABLE_H
 #include "Interfaces/IFillableShape.h"
-#endif
 
 #include "Defines/deletemacros.h"
 
@@ -26,7 +20,6 @@ bool ShapeComponent::initialize()
 }
 void ShapeComponent::draw()
 {
-	this->shape->render(getParent()->getScene()->getManager<Renderer>());
 }
 void ShapeComponent::update()
 {
@@ -35,6 +28,15 @@ void ShapeComponent::update()
 bool ShapeComponent::shutdown()
 {
 	return true;
+}
+
+void ShapeComponent::setColor(const Color& c)
+{
+	this->shape->setColor(c);
+}
+const Color& ShapeComponent::getColor() const
+{
+	return this->shape->getColor();
 }
 
 void ShapeComponent::setFill(bool fill)
@@ -50,15 +52,6 @@ bool ShapeComponent::getFill() const
 		return fillable->getFill();
 
 	return false;
-}
-
-void ShapeComponent::setColor(const Color& c)
-{
-	this->shape->setColor(c);
-}
-const Color& ShapeComponent::getColor() const
-{
-	return this->shape->getColor();
 }
 
 Rect2D ShapeComponent::getBoundingBox() const

@@ -16,6 +16,8 @@
 #include "Defines\string.h"
 #endif
 
+class Visualization;
+
 class GameObject;
 class Input;
 class Manager;
@@ -51,6 +53,13 @@ public:
 	void addGameObject(GameObject* object);
 	void removeGameObject(GameObject* object);
 
+	void addVisualization(Visualization* visualization);
+	void removeVisualization(Visualization* visualization);
+
+	const std::vector<GameObject*>& getGameObjects() const;
+	const std::vector<GameObject*> getUIObjects() const;
+	const std::vector<Visualization*> getVisualizations() const;
+
 	void addManager(Manager* manager);
 	template<typename T>
 	T* getManager() const;
@@ -76,6 +85,8 @@ private:
 	std::vector<GameObject*> vec_ui_objects;
 
 	std::vector<Manager*> vec_managers;
+
+	std::vector<Visualization*> vec_visualizations;
 };
 
 template <typename T>

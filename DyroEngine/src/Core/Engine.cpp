@@ -4,7 +4,7 @@
 	#include <Windows.h>
 #endif
 
-//System
+//Core
 #include "Core/System/System.h"
 
 #include "Core\System\Logic.h"
@@ -15,6 +15,8 @@
 
 #include "Core/System/Manager/SystemManager.h"
 #include "Defines/Types/SystemType.h"
+
+#include "Core/Rendering/Visualization/Manager/VisualizationFactory.h"
 
 //Interface
 #ifndef _IDRAWABLE_H
@@ -151,6 +153,7 @@ bool Engine::createManagers()
 	Singleton<WorldSettings>::createInstance();
 	Singleton<SystemManager>::createInstance();
 	Singleton<SceneManager>::createInstance();
+	Singleton<VisualizationFactory>::createInstance();
 
 	if (!Singleton<WorldSettings>::getInstance().initialize())
 		return false;
@@ -166,6 +169,7 @@ bool Engine::destroyManagers()
 	if (!Singleton<WorldSettings>::getInstance().shutdown())
 		return false;
 
+	Singleton<VisualizationFactory>::destroyInstance();
 	Singleton<SceneManager>::destroyInstance();
 	Singleton<SystemManager>::destroyInstance();
 	Singleton<WorldSettings>::destroyInstance();

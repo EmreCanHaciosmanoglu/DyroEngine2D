@@ -81,6 +81,10 @@ void Scene::draw()
 }
 bool Scene::shutdown()
 {
+	for (Visualization* visualization : this->vec_visualizations)
+		SafeDelete(visualization);
+	this->vec_visualizations.clear();
+
 	shutdownObjects(this->vec_objects);
 	shutdownObjects(this->vec_ui_objects);
 	this->vec_objects.clear();
@@ -166,6 +170,37 @@ void Scene::removeGameObject(GameObject* object)
 			SafeDelete((*it));
 		}
 	}
+}
+
+void Scene::addVisualization(Visualization* visualization)
+{
+	std::vector<Visualization*>::const_iterator it = std::find(this->vec_visualizations.begin(), this->vec_visualizations.end(), visualization);
+	if (it != this->vec_visualizations.end())
+		return;
+
+	this->vec_visualizations.push_back(visualization);
+}
+void Scene::removeVisualization(Visualization* visualization)
+{
+	std::vector<Visualization*>::const_iterator it = std::find(this->vec_visualizations.begin(), this->vec_visualizations.end(), visualization);
+	if (it == this->vec_visualizations.end())
+		return;
+
+	this->vec_visualizations.erase(it);
+	SafeDelete(visualization);
+}
+
+const std::vector<GameObject*>& Scene::getGameObjects() const
+{
+	return this->vec_objects;
+}
+const std::vector<GameObject*> Scene::getUIObjects() const
+{
+	return this->vec_ui_objects;
+}
+const std::vector<Visualization*> Scene::getVisualizations() const
+{
+	return this->vec_visualizations;
 }
 
 void Scene::addManager(Manager* manager)

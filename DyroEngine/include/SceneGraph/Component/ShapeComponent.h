@@ -26,11 +26,11 @@ public:
 	virtual void update();
 	virtual bool shutdown();
 
-	void setFill(bool fill);
-	bool getFill() const;
-
 	void setColor(const Color& c);
 	const Color& getColor() const;
+
+	void setFill(bool fill);
+	bool getFill() const;
 
 	Rect2D getBoundingBox() const;
 private:
