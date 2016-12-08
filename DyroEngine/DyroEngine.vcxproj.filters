@@ -249,6 +249,9 @@
     <ClCompile Include="src\SceneGraph\Object\DataObjects\Timer.cpp">
       <Filter>Header Files\Core\Systems\Timer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Core\Rendering\Visualization\Visualization.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Defines\color.h">
@@ -487,6 +490,9 @@
     </ClInclude>
     <ClInclude Include="include\SceneGraph\Object\DataObjects\Timer.h">
       <Filter>Header Files\Core\Systems\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\Rendering\Visualization\Visualization.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
