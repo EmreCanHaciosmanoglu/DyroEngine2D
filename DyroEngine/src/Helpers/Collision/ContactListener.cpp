@@ -1,6 +1,6 @@
 #include "Helpers\Collision\ContactListener.h"
 
-#include "SceneGraph/Object/GameObjects/PhysicsObject.h"
+#include "SceneGraph/GameObjects/PhysicsObject.h"
 
 #include "SceneGraph/Component/RigidBodyComponent.h"
 #include "SceneGraph/Component/Collision/CollisionComponent.h"

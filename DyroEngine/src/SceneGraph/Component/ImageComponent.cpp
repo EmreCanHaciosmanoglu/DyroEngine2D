@@ -1,6 +1,6 @@
 #include "SceneGraph/Component/ImageComponent.h"
 
-#include "SceneGraph/Object/GameObjects/GameObject.h"
+#include "SceneGraph/GameObjects/GameObject.h"
 #include "SceneGraph/Scene/Scene.h"
 
 #include "Core/Rendering/Renderer.h"

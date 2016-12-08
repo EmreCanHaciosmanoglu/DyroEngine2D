@@ -1,6 +1,6 @@
 #include "SceneGraph/Component/Component.h"
 
-#include "SceneGraph/Object/GameObjects/GameObject.h"
+#include "SceneGraph/GameObjects/GameObject.h"
 
 Component::Component(const std::tstring& name)
 	:Object(name)

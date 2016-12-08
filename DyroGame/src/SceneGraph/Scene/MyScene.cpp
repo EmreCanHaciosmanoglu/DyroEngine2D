@@ -1,9 +1,9 @@
 #include "SceneGraph\Scene\MyScene.h"
 
-#include "SceneGraph\Object\GameObjects\Camera\FreeCamera.h"
+#include "SceneGraph\GameObjects\Camera\FreeCamera.h"
 
-#include "SceneGraph\Object\GameObjects\SceneObject.h"
-#include "SceneGraph\Object\GameObjects\PhysicsObject.h"
+#include "SceneGraph\GameObjects\SceneObject.h"
+#include "SceneGraph\GameObjects\PhysicsObject.h"
 
 //#include "SceneGraph\Object\Objects\Shapes\RectShape.h"
 //#include "SceneGraph\Object\Objects\Shapes\CircleShape.h"

@@ -1,7 +1,7 @@
 #include "SceneGraph\Component\RigidBodyComponent.h"
 #include "SceneGraph\Component\TransformComponent.h"
 
-#include "SceneGraph\Object\GameObjects\SceneObject.h"
+#include "SceneGraph\GameObjects\SceneObject.h"
 
 #include "SceneGraph\Scene\Scene.h"
 

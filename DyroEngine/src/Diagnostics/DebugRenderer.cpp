@@ -10,8 +10,8 @@
 
 #include "Core\Rendering\Renderer.h"
 
-#include "SceneGraph\Object\GameObjects\Camera\Manager\CameraManager.h"
-#include "SceneGraph\Object\GameObjects\Camera\FreeCamera.h"
+#include "SceneGraph\GameObjects\Camera\Manager\CameraManager.h"
+#include "SceneGraph\GameObjects\Camera\FreeCamera.h"
 #include "SceneGraph\Component\CameraComponent.h"
 
 #include "Defines\programdefaults.h"

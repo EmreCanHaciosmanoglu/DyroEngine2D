@@ -1,17 +1,17 @@
 #include "SceneGraph\Scene\TestScene.h"
 
-#include "SceneGraph\Object\GameObjects\Camera\FollowCamera.h"
-#include "SceneGraph\Object\GameObjects\Camera\FreeCamera.h"
+#include "SceneGraph\GameObjects\Camera\FollowCamera.h"
+#include "SceneGraph\GameObjects\Camera\FreeCamera.h"
 
-#include "SceneGraph\Object\GameObjects\PhysicsObject.h"
-#include "SceneGraph\Object\GameObjects\Obstacle.h"
+#include "SceneGraph\GameObjects\PhysicsObject.h"
+#include "SceneGraph\GameObjects\Obstacle.h"
 
-#include "SceneGraph\Object\GameObjects\Spaceship.h"
-#include "SceneGraph\Object\GameObjects\Astroid.h"
+#include "SceneGraph\GameObjects\Spaceship.h"
+#include "SceneGraph\GameObjects\Astroid.h"
 
-#include "SceneGraph\Object\DataObjects\Shapes\RectShape.h"
-#include "SceneGraph\Object\DataObjects\Shapes\CircleShape.h"
-#include "SceneGraph\Object\DataObjects\Timer.h"
+#include "Core/Data/DataObjects\Shapes\RectShape.h"
+#include "Core/Data/DataObjects\Shapes\CircleShape.h"
+#include "Core/Data/DataObjects\Timer.h"
 
 #include "SceneGraph\Component\TransformComponent.h"
 #include "SceneGraph\Component\ShapeComponent.h"

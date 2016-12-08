@@ -1,6 +1,6 @@
 #include "Helpers\Collision\ContactFilter.h"
 
-#include "SceneGraph/Object/GameObjects/PhysicsObject.h"
+#include "SceneGraph/GameObjects/PhysicsObject.h"
 
 ContactFilter::ContactFilter()
 {}

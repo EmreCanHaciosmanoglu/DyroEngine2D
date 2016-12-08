@@ -24,16 +24,16 @@
     <ClInclude Include="include\Main.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\SceneGraph\Object\GameObjects\Spaceship.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\SceneGraph\Scene\TestScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\SceneGraph\Object\GameObjects\Obstacle.h">
+    <ClInclude Include="include\SceneGraph\GameObjects\Astroid.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\SceneGraph\Object\GameObjects\Astroid.h">
+    <ClInclude Include="include\SceneGraph\GameObjects\Obstacle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SceneGraph\GameObjects\Spaceship.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -47,16 +47,16 @@
     <ClCompile Include="src\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\SceneGraph\Object\GameObjects\Spaceship.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\SceneGraph\Scene\TestScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\SceneGraph\Object\GameObjects\Obstacle.cpp">
+    <ClCompile Include="src\SceneGraph\GameObjects\Astroid.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\SceneGraph\Object\GameObjects\Astroid.cpp">
+    <ClCompile Include="src\SceneGraph\GameObjects\Obstacle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneGraph\GameObjects\Spaceship.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -14,7 +14,7 @@
 
 #include "Core/Rendering/Renderer.h"
 #include "Core/Resources/Manager/ResourceManager.h"
-#include "SceneGraph/Object/GameObjects/Camera/Manager/CameraManager.h"
+#include "SceneGraph/GameObjects/Camera/Manager/CameraManager.h"
 
 #ifndef _VECTOR_
 #include <vector>

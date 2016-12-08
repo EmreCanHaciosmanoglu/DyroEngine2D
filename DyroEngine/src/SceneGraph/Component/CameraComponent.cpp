@@ -1,7 +1,7 @@
 #include "SceneGraph\Component\CameraComponent.h"
 #include "SceneGraph\Component\TransformComponent.h"
 
-#include "SceneGraph\Object\GameObjects\GameObject.h"
+#include "SceneGraph\GameObjects\GameObject.h"
 
 #include "Defines\assert.h"
 

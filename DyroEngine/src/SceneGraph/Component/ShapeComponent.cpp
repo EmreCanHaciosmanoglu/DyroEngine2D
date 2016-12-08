@@ -1,7 +1,7 @@
 #include "SceneGraph/Component/ShapeComponent.h"
 
-#include "SceneGraph/Object/DataObjects/Shapes/Shape.h"
-#include "SceneGraph/Object/GameObjects/GameObject.h"
+#include "Core/Data/DataObjects/Shapes/Shape.h"
+#include "SceneGraph/GameObjects/GameObject.h"
 #include "SceneGraph/Scene/Scene.h"
 
 #include "Core/Rendering/Renderer.h"

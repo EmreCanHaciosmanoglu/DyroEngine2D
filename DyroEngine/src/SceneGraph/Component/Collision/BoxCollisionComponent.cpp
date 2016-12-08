@@ -2,7 +2,7 @@
 #include "SceneGraph\Component\RigidBodyComponent.h"
 #include "SceneGraph\Component\TransformComponent.h"
 
-#include "SceneGraph/Object/GameObjects/PhysicsObject.h"
+#include "SceneGraph/GameObjects/PhysicsObject.h"
 
 #include "Defines\programdefaults.h"
 #include "Defines\assert.h"

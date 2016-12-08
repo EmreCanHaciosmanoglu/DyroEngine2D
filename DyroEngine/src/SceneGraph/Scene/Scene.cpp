@@ -1,5 +1,5 @@
 #include "SceneGraph\Scene\Scene.h"
-#include "SceneGraph\Object\GameObjects\GameObject.h"
+#include "SceneGraph\GameObjects\GameObject.h"
 
 #include "Core\System\Input.h"
 #include "Core\System\Manager\SystemManager.h"

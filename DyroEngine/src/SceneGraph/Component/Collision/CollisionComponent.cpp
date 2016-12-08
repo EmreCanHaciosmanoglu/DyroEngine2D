@@ -1,7 +1,7 @@
 #include "SceneGraph\Component\Collision\CollisionComponent.h"
 #include "SceneGraph\Component\RigidBodyComponent.h"
 
-#include "SceneGraph\Object\GameObjects\PhysicsObject.h"
+#include "SceneGraph\GameObjects\PhysicsObject.h"
 
 #include "Defines\collisionlayers.h"
 
