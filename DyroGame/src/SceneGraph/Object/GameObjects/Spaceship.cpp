@@ -5,7 +5,7 @@
 #include "SceneGraph/Component/TransformComponent.h"
 #include "SceneGraph/Component/Collision/PolygonCollisionComponent.h"
 
-#include "SceneGraph/Object/Objects/Shapes/PolygonShape.h"
+#include "SceneGraph/Object/DataObjects/Shapes/PolygonShape.h"
 
 #include "Core/System/Input.h"
 #include "Core/System/MainTimer.h"

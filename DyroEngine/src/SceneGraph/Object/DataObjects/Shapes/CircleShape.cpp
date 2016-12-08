@@ -1,4 +1,4 @@
-#include "SceneGraph/Object/Objects/Shapes/CircleShape.h"
+#include "SceneGraph/Object/DataObjects/Shapes/CircleShape.h"
 
 #include "Core/Rendering/Renderer.h"
 

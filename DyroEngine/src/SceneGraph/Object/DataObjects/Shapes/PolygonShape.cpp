@@ -1,4 +1,4 @@
-#include "SceneGraph/Object/Objects/Shapes/PolygonShape.h"
+#include "SceneGraph/Object/DataObjects/Shapes/PolygonShape.h"
 
 #include "Core/Rendering/Renderer.h"
 

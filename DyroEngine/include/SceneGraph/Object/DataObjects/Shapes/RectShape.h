@@ -1,7 +1,7 @@
 #ifndef _RECTSHAPE_H
 #define _RECTSHAPE_H
 
-#include "SceneGraph/Object/Objects/Shapes/Shape.h"
+#include "SceneGraph/Object/DataObjects/Shapes/Shape.h"
 #ifndef _IFILLABLESHAPE_H
 #include "Interfaces/IFillableShape.h"
 #endif

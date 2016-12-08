@@ -1,7 +1,7 @@
 #ifndef _TRIANGLESHAPE_H
 #define _TRIANGLESHAPE_H
 
-#include "SceneGraph\Object\Objects\Shapes\PolygonShape.h"
+#include "SceneGraph\Object\DataObjects\Shapes\PolygonShape.h"
 
 class TriangleShape : public PolygonShape
 {

@@ -1,4 +1,4 @@
-#include "SceneGraph\Object\Objects\Timer.h"
+#include "SceneGraph\Object\DataObjects\Timer.h"
 
 //Additional Include Files
 #ifndef _WINDOWS_

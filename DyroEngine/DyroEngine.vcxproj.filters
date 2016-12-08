@@ -96,9 +96,6 @@
     <ClCompile Include="src\SceneGraph\Object.cpp">
       <Filter>Header Files\SceneGraph\Base</Filter>
     </ClCompile>
-    <ClCompile Include="src\SceneGraph\Object\Objects\Timer.cpp">
-      <Filter>Header Files\Core\Systems\Timer</Filter>
-    </ClCompile>
     <ClCompile Include="src\Helpers\Math\Matrix2D.cpp">
       <Filter>Header Files\Math</Filter>
     </ClCompile>
@@ -144,24 +141,6 @@
     <ClCompile Include="src\SceneGraph\Object\GameObjects\GameObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Rendering\Renderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneGraph\Object\Objects\Shapes\CircleShape.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneGraph\Object\Objects\Shapes\LineShape.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneGraph\Object\Objects\Shapes\PolygonShape.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneGraph\Object\Objects\Shapes\RectShape.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneGraph\Object\Objects\Shapes\Shape.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Interfaces\IFillableShape.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -202,9 +181,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\SceneGraph\Component\ImageComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneGraph\Object\Objects\Shapes\TriangleShape.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Diagnostics\DebugRenderer.cpp">
@@ -248,6 +224,30 @@
     </ClCompile>
     <ClCompile Include="src\SceneGraph\Object\GameObjects\UIObject.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Rendering\Renderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneGraph\Object\DataObjects\Shapes\CircleShape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneGraph\Object\DataObjects\Shapes\LineShape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneGraph\Object\DataObjects\Shapes\PolygonShape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneGraph\Object\DataObjects\Shapes\RectShape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneGraph\Object\DataObjects\Shapes\Shape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneGraph\Object\DataObjects\Shapes\TriangleShape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneGraph\Object\DataObjects\Timer.cpp">
+      <Filter>Header Files\Core\Systems\Timer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -461,32 +461,32 @@
     <ClInclude Include="include\Interfaces\IBoundingBox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\SceneGraph\Object\Objects\Shapes\CircleShape.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Object\Objects\Shapes\LineShape.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Object\Objects\Shapes\PolygonShape.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Object\Objects\Shapes\RectShape.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Object\Objects\Shapes\Shape.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Object\Objects\Shapes\TriangleShape.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Object\Objects\Timer.h">
-      <Filter>Header Files\Core\Systems\Timer</Filter>
-    </ClInclude>
     <ClInclude Include="include\Defines\collisionlayers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\SceneGraph\Object\GameObjects\UIObject.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SceneGraph\Object\DataObjects\Shapes\CircleShape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SceneGraph\Object\DataObjects\Shapes\LineShape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SceneGraph\Object\DataObjects\Shapes\PolygonShape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SceneGraph\Object\DataObjects\Shapes\RectShape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SceneGraph\Object\DataObjects\Shapes\Shape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SceneGraph\Object\DataObjects\Shapes\TriangleShape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SceneGraph\Object\DataObjects\Timer.h">
+      <Filter>Header Files\Core\Systems\Timer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

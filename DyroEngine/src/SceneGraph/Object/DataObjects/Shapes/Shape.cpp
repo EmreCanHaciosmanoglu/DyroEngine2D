@@ -1,4 +1,4 @@
-#include "SceneGraph/Object/Objects/Shapes/Shape.h"
+#include "SceneGraph/Object/DataObjects/Shapes/Shape.h"
 
 Shape::Shape()
 	:color(1,1,1,1)

@@ -1,7 +1,7 @@
 #ifndef _LINESHAPE_H
 #define _LINESHAPE_H
 
-#include "SceneGraph/Object/Objects/Shapes/Shape.h"
+#include "SceneGraph/Object/DataObjects/Shapes/Shape.h"
 
 #ifndef _VECTOR2D_H
 #include "Helpers/Math/Vector2D.h"

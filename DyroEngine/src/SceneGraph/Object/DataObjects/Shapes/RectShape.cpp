@@ -1,4 +1,4 @@
-#include "SceneGraph/Object/Objects/Shapes/RectShape.h"
+#include "SceneGraph/Object/DataObjects/Shapes/RectShape.h"
 
 #include "Core/Rendering/Renderer.h"
 

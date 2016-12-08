@@ -1,4 +1,4 @@
-#include "SceneGraph/Object/Objects/Shapes/LineShape.h"
+#include "SceneGraph/Object/DataObjects/Shapes/LineShape.h"
 
 #include "Core/Rendering/Renderer.h"
 

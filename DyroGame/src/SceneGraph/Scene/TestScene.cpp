@@ -9,9 +9,9 @@
 #include "SceneGraph\Object\GameObjects\Spaceship.h"
 #include "SceneGraph\Object\GameObjects\Astroid.h"
 
-#include "SceneGraph\Object\Objects\Shapes\RectShape.h"
-#include "SceneGraph\Object\Objects\Shapes\CircleShape.h"
-#include "SceneGraph\Object\Objects\Timer.h"
+#include "SceneGraph\Object\DataObjects\Shapes\RectShape.h"
+#include "SceneGraph\Object\DataObjects\Shapes\CircleShape.h"
+#include "SceneGraph\Object\DataObjects\Timer.h"
 
 #include "SceneGraph\Component\TransformComponent.h"
 #include "SceneGraph\Component\ShapeComponent.h"

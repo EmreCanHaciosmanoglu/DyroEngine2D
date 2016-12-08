@@ -4,7 +4,7 @@
 #include "SceneGraph/Component/RigidBodyComponent.h"
 #include "SceneGraph/Component/Collision/PolygonCollisionComponent.h"
 
-#include "SceneGraph/Object/Objects/Shapes/PolygonShape.h"
+#include "SceneGraph/Object/DataObjects/Shapes/PolygonShape.h"
 
 #include "Defines\programdefaults.h"
 
