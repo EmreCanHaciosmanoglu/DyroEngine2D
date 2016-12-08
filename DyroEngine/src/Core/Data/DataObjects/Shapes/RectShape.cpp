@@ -4,16 +4,19 @@
 
 #include "Defines/assert.h"
 
-RectShape::RectShape(double left, double top, double width, double height, float lineWidth)
-	:RectShape(Rect2D(left, top, left + width, top + height), lineWidth)
+RectShape::RectShape(double left, double top, double width, double height, float lineWidth, const std::tstring& name)
+	:RectShape(Rect2D(left, top, left + width, top + height), lineWidth, name)
 {}
-RectShape::RectShape(const Vector2D& lefttop, const Vector2D& rightbottom, float lineWidth)
-	: RectShape(Rect2D(lefttop, rightbottom), lineWidth)
+RectShape::RectShape(const Vector2D& lefttop, const Vector2D& rightbottom, float lineWidth, const std::tstring& name)
+	: RectShape(Rect2D(lefttop, rightbottom), lineWidth, name)
 {}
-RectShape::RectShape(const Rect2D& rect, float lineWidth)
-	:rect(rect)
+RectShape::RectShape(const Rect2D& rect, float lineWidth, const std::tstring& name)
+	:Shape(name)
+	,rect(rect)
 	,line_width(lineWidth)
-{}
+{
+	DATA_OBJECT_INIT(_T("RectShape"));
+}
 RectShape::~RectShape()
 {}
 

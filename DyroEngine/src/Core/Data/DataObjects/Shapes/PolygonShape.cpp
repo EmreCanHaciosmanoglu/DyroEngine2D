@@ -4,14 +4,17 @@
 
 #include "Defines/assert.h"
 
-PolygonShape::PolygonShape(Vector2D* points, int size, bool close, float lineWidth)
-	:PolygonShape(std::vector<Vector2D>(points,points + size),close,lineWidth)
+PolygonShape::PolygonShape(Vector2D* points, int size, bool close, float lineWidth, const std::tstring& name)
+	:PolygonShape(std::vector<Vector2D>(points,points + size),close,lineWidth,name)
 {}
-PolygonShape::PolygonShape(const std::vector<Vector2D>& vecPoints, bool close, float lineWidth)
-	:vec_points(vecPoints)
+PolygonShape::PolygonShape(const std::vector<Vector2D>& vecPoints, bool close, float lineWidth, const std::tstring& name)
+	:Shape(name)
+	,vec_points(vecPoints)
 	,close(close)
 	,line_width(lineWidth)
-{}
+{
+	DATA_OBJECT_INIT(_T("PolygonShape"));
+}
 PolygonShape::~PolygonShape()
 {}
 

@@ -21,10 +21,6 @@ bool MainTimer::initialize()
 {
 	this->world_timer = new Timer(_T("WorldTimer"));
 
-	if (!this->world_timer->initialize())
-		return false;
-	this->world_timer->setInitialized();
-
 	return true;
 }
 void MainTimer::update()
@@ -44,9 +40,6 @@ bool MainTimer::shutdown()
 
 	for (Timer* t : this->vec_timers)
 	{
-		if (!t->shutdown())
-			return false;
-
 		SafeDelete(t);
 	}
 

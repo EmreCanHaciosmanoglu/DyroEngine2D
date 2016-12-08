@@ -4,14 +4,17 @@
 
 #include "Defines/assert.h"
 
-CircleShape::CircleShape(float xcenter, float ycenter, float r, float lineWidth)
-	:CircleShape(Vector2D(xcenter,ycenter),r,lineWidth)
+CircleShape::CircleShape(float xcenter, float ycenter, float r, float lineWidth, const std::tstring& name)
+	:CircleShape(Vector2D(xcenter,ycenter),r,lineWidth, name)
 {}
-CircleShape::CircleShape(const Vector2D& center, float r, float lineWidth)
-	:center(center)
+CircleShape::CircleShape(const Vector2D& center, float r, float lineWidth, const std::tstring& name)
+	:Shape(name)
+	,center(center)
 	,radius(r)
 	,line_width(lineWidth)
-{}
+{
+	DATA_OBJECT_INIT(_T("CircleShape"));
+}
 CircleShape::~CircleShape()
 {}
 

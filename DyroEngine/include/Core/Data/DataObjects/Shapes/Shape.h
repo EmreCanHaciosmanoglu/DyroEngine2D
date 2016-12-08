@@ -1,16 +1,18 @@
 #ifndef _SHAPE_H
 #define _SHAPE_H
 
-class Renderer;
+#include "Core/Data/DataObjects/DataObject.h"
 
 #ifndef _COLOR_H
 #include "Defines/color.h"
 #endif
 
-class Shape
+class Renderer;
+
+class Shape : public DataObject
 {
 public:
-	Shape();
+	Shape(const std::tstring& name = _T(""));
 	virtual ~Shape();
 
 	virtual void render(Renderer* renderer) = 0;

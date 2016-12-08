@@ -18,8 +18,8 @@ class Renderer;
 class CircleShape : public Shape, public IFillableShape, public IBoundingBox
 {
 public:
-	CircleShape(float xcenter, float ycenter, float r, float lineWidth = 0.5f);
-	CircleShape(const Vector2D& center, float r, float lineWidth = 0.5f);
+	CircleShape(float xcenter, float ycenter, float r, float lineWidth = 0.5f, const std::tstring& name = _T(""));
+	CircleShape(const Vector2D& center, float r, float lineWidth = 0.5f, const std::tstring& name = _T(""));
 	virtual ~CircleShape();
 
 	virtual void setFill(bool fill);

@@ -21,9 +21,9 @@ class Renderer;
 class RectShape : public Shape, public IFillableShape, public IBoundingBox
 {
 public:
-	RectShape(double left, double top, double width, double height, float lineWidth = 0.5f);
-	RectShape(const Vector2D& lefttop, const Vector2D& rightbottom, float lineWidth = 0.5f);
-	RectShape(const Rect2D& rect, float lineWidth = 0.5f);
+	RectShape(double left, double top, double width, double height, float lineWidth = 0.5f, const std::tstring& name = _T(""));
+	RectShape(const Vector2D& lefttop, const Vector2D& rightbottom, float lineWidth = 0.5f, const std::tstring& name = _T(""));
+	RectShape(const Rect2D& rect, float lineWidth = 0.5f, const std::tstring& name = _T(""));
 	virtual ~RectShape();
 
 	virtual void setFill(bool fill);

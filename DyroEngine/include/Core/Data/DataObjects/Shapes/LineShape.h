@@ -12,8 +12,8 @@ class Renderer;
 class LineShape : public Shape
 {
 public:
-	LineShape(float x1, float y1, float x2, float y2, float lineWidth = 0.5f);
-	LineShape(const Vector2D& v1, const Vector2D& v2, float lineWidth = 0.5f);
+	LineShape(float x1, float y1, float x2, float y2, float lineWidth = 0.5f, const std::tstring& name = _T(""));
+	LineShape(const Vector2D& v1, const Vector2D& v2, float lineWidth = 0.5f, const std::tstring& name = _T(""));
 	virtual ~LineShape();
 
 	virtual void render(Renderer* renderer);

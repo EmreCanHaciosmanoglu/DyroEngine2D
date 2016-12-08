@@ -6,7 +6,7 @@
 class TriangleShape : public PolygonShape
 {
 public:
-	TriangleShape(float xScale = 1.0f, float yScale = 1.0f, float lineWidth = 0.5f);
+	TriangleShape(float xScale = 1.0f, float yScale = 1.0f, float lineWidth = 0.5f, const std::tstring& name = _T(""));
 	virtual ~TriangleShape();
 };
 

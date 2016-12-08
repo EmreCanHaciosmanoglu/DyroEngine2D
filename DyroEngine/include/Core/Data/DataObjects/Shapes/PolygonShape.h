@@ -22,8 +22,8 @@ class Renderer;
 class PolygonShape : public Shape, public IFillableShape, public IBoundingBox
 {
 public:
-	PolygonShape(Vector2D* points, int size, bool close = true, float lineWidth = 0.5f);
-	PolygonShape(const std::vector<Vector2D>& vecPoints, bool close = true, float lineWidth = 0.5f);
+	PolygonShape(Vector2D* points, int size, bool close = true, float lineWidth = 0.5f, const std::tstring& name = _T(""));
+	PolygonShape(const std::vector<Vector2D>& vecPoints, bool close = true, float lineWidth = 0.5f, const std::tstring& name = _T(""));
 	virtual ~PolygonShape();
 
 	virtual void setFill(bool fill);

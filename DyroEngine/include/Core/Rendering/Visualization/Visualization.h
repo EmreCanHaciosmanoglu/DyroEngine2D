@@ -1,8 +1,6 @@
 #ifndef _VISUALIZATION_H
 #define _VISUALIZATION_H
 
-#include "Interfaces/IBoundingBox.h"
-
 #ifndef _RENDERITEM_H
 #include "Core/Rendering/RenderItem.h"
 #endif
@@ -11,23 +9,21 @@
 #include <vector>
 #endif
 
-class Object;
+class DataObject;
 
-class Visualization : public IBoundingBox
+class Visualization
 {
 public:
-	Visualization();
+	Visualization(DataObject* object);
 	virtual ~Visualization();
 
 	const std::vector<RenderItem>& getRenderItems();
-	Object* getObject();
+	DataObject* getDataObject() const;
 
-	virtual Rect2D getBoundingBox() const = 0;
-
-private:
+protected:
 
 	std::vector<RenderItem> vec_renderitems;
-	Object* object;
+	DataObject* data_object;
 };
 
 #endif
