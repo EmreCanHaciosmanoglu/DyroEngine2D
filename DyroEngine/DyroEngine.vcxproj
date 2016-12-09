@@ -134,7 +134,7 @@
     <ClInclude Include="include\Defines\Types\ResourceType.h" />
     <ClInclude Include="include\Defines\Types\SystemType.h" />
     <ClInclude Include="include\Helpers\Manager.h" />
-    <ClInclude Include="include\Interfaces\IDrawable.h" />
+    <ClInclude Include="include\Interfaces\IRenderable.h" />
     <ClInclude Include="include\Interfaces\IInput.h" />
     <ClInclude Include="include\Interfaces\IWindow.h" />
     <ClInclude Include="include\Diagnostics\Logger.h" />
@@ -224,7 +224,7 @@
     <ClCompile Include="src\Core\System\Manager\SystemFactory.cpp" />
     <ClCompile Include="src\Core\System\Manager\SystemManager.cpp" />
     <ClCompile Include="src\Helpers\Manager.cpp" />
-    <ClCompile Include="src\Interfaces\IDrawable.cpp" />
+    <ClCompile Include="src\Interfaces\IRenderable.cpp" />
     <ClCompile Include="src\Interfaces\IWindow.cpp" />
     <ClCompile Include="src\Diagnostics\Logger.cpp" />
     <ClCompile Include="src\Helpers\Math\Matrix2D.cpp" />

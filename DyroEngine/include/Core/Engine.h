@@ -14,7 +14,6 @@ public:
 private:
 
 	int initialize();
-	void draw();
 	void update();
 	int shutDown();
 

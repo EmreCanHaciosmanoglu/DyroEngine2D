@@ -16,7 +16,6 @@ public:
 	virtual ~Spaceship();
 
 	virtual bool initialize();
-	virtual void draw();
 	virtual void update();
 	virtual bool shutdown();
 

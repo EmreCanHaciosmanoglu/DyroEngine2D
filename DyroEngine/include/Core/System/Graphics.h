@@ -2,9 +2,6 @@
 #define _GRAPHICS_H
 
 #include "Core/System/System.h"
-#ifndef _IDRAWABLE_H
-#include "Interfaces/IDrawable.h"
-#endif
 
 #ifndef _2DUTILL_H
 	#include "Defines/d2dutill.h"
@@ -12,7 +9,7 @@
 
 class MainWindow;
 
-class Graphics : public System, public IDrawable
+class Graphics : public System
 {
 public:
 	Graphics();
@@ -20,11 +17,12 @@ public:
 
 	virtual bool initialize();
 	virtual void update();
-	virtual void draw();
 	virtual bool shutdown();
 
 	void beginDraw();
 	HRESULT endDraw();
+
+	void clear();
 
 	HRESULT onResize(UINT width, UINT height);
 

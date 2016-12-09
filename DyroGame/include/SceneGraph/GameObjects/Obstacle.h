@@ -11,7 +11,6 @@ public:
 
 	virtual bool initialize();
 	virtual void update();
-	virtual void draw();
 	virtual bool shutdown();
 
 	void setVisible(bool visible);

@@ -16,7 +16,6 @@ public:
 	virtual bool initialize();
 	virtual bool postInitialize();
 	virtual void update();
-	virtual void draw();
 	virtual bool shutdown();
 
 	void setDirection(const Vector2D& direction);

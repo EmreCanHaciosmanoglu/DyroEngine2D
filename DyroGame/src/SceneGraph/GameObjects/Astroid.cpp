@@ -56,10 +56,6 @@ void Astroid::update()
 {
 	Obstacle::update();
 }
-void Astroid::draw()
-{
-	Obstacle::draw();
-}
 bool Astroid::shutdown()
 {
 	return Obstacle::shutdown();

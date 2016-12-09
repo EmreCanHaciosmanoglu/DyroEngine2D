@@ -18,11 +18,6 @@
 
 #include "Core/Rendering/Visualization/Manager/VisualizationFactory.h"
 
-//Interface
-#ifndef _IDRAWABLE_H
-#include "Interfaces\IDrawable.h"
-#endif
-
 //Helpers
 #include "Helpers/Singleton.h"
 
@@ -61,7 +56,7 @@ int Engine::mainLoop()
 	}
 
 	// Seed the random number generator
-	srand(GetTickCount());
+	srand(GetTickCount64());
 
 	MSG msg = {};
 	while (msg.message != WM_QUIT)
@@ -73,7 +68,6 @@ int Engine::mainLoop()
 		}
 
 		update();
-		draw();
 	}
 
 	if (!shutDown())
@@ -120,20 +114,6 @@ int Engine::initialize()
 		return FALSE;
 
 	return TRUE;
-}
-void Engine::draw()
-{
-	Graphics* graphics = dynamic_cast<Graphics*>(Singleton<SystemManager>::getInstance().getSystem(SystemType::GRAPHICS_SYSTEM));
-	graphics->beginDraw();
-
-	for (System* system : Singleton<SystemManager>::getInstance().getDrawableSystems())
-	{
-		IDrawable* drawable_system = dynamic_cast<IDrawable*>(system);
-		if (drawable_system->getCanDraw())
-			drawable_system->draw();
-	}
-
-	graphics->endDraw();
 }
 void Engine::update()
 {

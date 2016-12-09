@@ -2,9 +2,6 @@
 #define _IMAGECOMPONENT_H
 
 #include "SceneGraph/Component/Component.h"
-#ifndef _IDRAWABLE_H
-#include "Interfaces\IDrawable.h"
-#endif
 #ifndef _IBOUNDINGBOX_H
 #include "Interfaces\IBoundingBox.h"
 #endif
@@ -18,9 +15,8 @@
 #endif
 
 class Image;
-class TransformComponent;
 
-class ImageComponent : public Component, public IDrawable , public IBoundingBox
+class ImageComponent : public Component, public IBoundingBox
 {
 public:
 	ImageComponent(Image* image, const std::tstring& name = _T(""));
@@ -28,7 +24,6 @@ public:
 
 	virtual bool initialize();
 	virtual void update();
-	virtual void draw();
 	virtual bool shutdown();
 
 	void setTransparencyColor(const Color& color);

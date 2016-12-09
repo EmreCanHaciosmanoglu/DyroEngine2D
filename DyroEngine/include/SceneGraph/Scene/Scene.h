@@ -2,9 +2,6 @@
 #define _SCENE_H
 
 #include "SceneGraph/Object.h"
-#ifndef _IDRAWABLE_H
-#include "Interfaces\IDrawable.h"
-#endif
 #ifndef _IINPUT_H
 #include "Interfaces\IInput.h"
 #endif
@@ -28,7 +25,7 @@ class ContactFilter;
 
 class b2World;
 
-class Scene : public Object, public IDrawable, public IInput
+class Scene : public Object, public IInput
 {
 public:
 	Scene(const std::tstring& name);
@@ -37,7 +34,6 @@ public:
 	virtual bool initialize();
 	virtual bool postInitialize();
 	virtual void update();
-	virtual void draw();
 	virtual bool shutdown();
 
 	virtual void setupInput(Input* input);
@@ -53,9 +49,6 @@ public:
 	void addGameObject(GameObject* object);
 	void removeGameObject(GameObject* object);
 
-	void addVisualization(Visualization* visualization);
-	void removeVisualization(Visualization* visualization);
-
 	const std::vector<GameObject*>& getGameObjects() const;
 	const std::vector<GameObject*> getUIObjects() const;
 	const std::vector<Visualization*> getVisualizations() const;
@@ -70,7 +63,6 @@ private:
 	bool initializeObjects(std::vector<GameObject*>& objects);
 	bool postInitializeObjects(std::vector<GameObject*>& objects);
 	void updateObjects(std::vector<GameObject*>& objects);
-	void drawObjects(std::vector<GameObject*>& objects);
 	bool shutdownObjects(std::vector<GameObject*> objects);
 
 	b2World* phyx_world;

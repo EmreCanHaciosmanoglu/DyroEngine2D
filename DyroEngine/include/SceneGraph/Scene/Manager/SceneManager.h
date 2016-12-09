@@ -2,9 +2,6 @@
 #define _SCENEMANAGER_H
 
 #include "Helpers/Manager.h"
-#ifndef _IDRAWABLE_H
-#include "Interfaces\IDrawable.h"
-#endif
 
 #ifndef _STRING_H
 	#include "Defines/string.h"
@@ -14,6 +11,7 @@
 
 #include "Core/Rendering/Renderer.h"
 #include "Core/Resources/Manager/ResourceManager.h"
+#include "Core\Data\DataObjects\Manager\DataObjectManager.h"
 #include "SceneGraph/GameObjects/Camera/Manager/CameraManager.h"
 
 #ifndef _VECTOR_
@@ -22,7 +20,7 @@
 
 class Scene;
 
-class SceneManager : public Manager, public IDrawable
+class SceneManager : public Manager
 {
 public:
 	SceneManager();
@@ -30,7 +28,6 @@ public:
 
 	virtual bool initialize();
 	void update();
-	virtual void draw();
 	virtual bool shutdown();
 
 	void addScene(Scene* scene);

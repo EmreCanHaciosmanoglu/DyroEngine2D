@@ -14,7 +14,7 @@
 class DataObject;
 class Visualization;
 
-class DataObjectManager : Manager
+class DataObjectManager : public Manager
 {
 public:
 	DataObjectManager();

@@ -2,7 +2,6 @@
 #define _SHAPE_H
 
 #include "Core/Data/DataObjects/DataObject.h"
-#include "Interfaces/IDrawable.h"
 
 #ifndef _COLOR_H
 #include "Defines/color.h"
@@ -10,7 +9,7 @@
 
 class Renderer;
 
-class Shape : public DataObject, public IDrawable
+class Shape : public DataObject
 {
 public:
 	Shape(const std::tstring& name = _T(""));
@@ -18,6 +17,7 @@ public:
 
 	void setColor(const Color& c);
 	const Color& getColor() const;
+
 private:
 	Color color;
 };

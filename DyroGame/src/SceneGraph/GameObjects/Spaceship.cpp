@@ -48,10 +48,6 @@ bool Spaceship::initialize()
 
 	return PhysicsObject::initialize();
 }
-void Spaceship::draw()
-{
-	return PhysicsObject::draw();
-}
 void Spaceship::update()
 {
 	return PhysicsObject::update();

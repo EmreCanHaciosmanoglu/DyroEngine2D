@@ -5,6 +5,10 @@
 #include "Core\System\Input.h"
 #include "Core\System\Manager\SystemManager.h"
 
+#include "Core\Rendering\Visualization\Visualization.h"
+
+#include "Core\Data\DataObjects\Manager\DataObjectManager.h"
+
 #include "Defines\deletemacros.h"
 
 #include "Helpers\Singleton.h"
@@ -13,13 +17,6 @@
 
 #include "Core\Settings\WorldSettings.h"
 #include "Core\Settings\PhyxSettings.h"
-
-#ifndef _IDRAWABLE_H
-#include "Interfaces\IDrawable.h"
-#endif
-#ifndef _IDRAWABLEDEBUGINFO_H
-#include "Interfaces\IDrawableDebugInfo.h"
-#endif
 
 #include "Diagnostics\DebugRenderer.h"
 
@@ -73,11 +70,6 @@ void Scene::update()
 
 	updateObjects(this->vec_objects);
 	updateObjects(this->vec_ui_objects);
-}
-void Scene::draw()
-{
-	drawObjects(this->vec_objects);
-	drawObjects(this->vec_ui_objects);
 }
 bool Scene::shutdown()
 {
@@ -172,24 +164,6 @@ void Scene::removeGameObject(GameObject* object)
 	}
 }
 
-void Scene::addVisualization(Visualization* visualization)
-{
-	std::vector<Visualization*>::const_iterator it = std::find(this->vec_visualizations.begin(), this->vec_visualizations.end(), visualization);
-	if (it != this->vec_visualizations.end())
-		return;
-
-	this->vec_visualizations.push_back(visualization);
-}
-void Scene::removeVisualization(Visualization* visualization)
-{
-	std::vector<Visualization*>::const_iterator it = std::find(this->vec_visualizations.begin(), this->vec_visualizations.end(), visualization);
-	if (it == this->vec_visualizations.end())
-		return;
-
-	this->vec_visualizations.erase(it);
-	SafeDelete(visualization);
-}
-
 const std::vector<GameObject*>& Scene::getGameObjects() const
 {
 	return this->vec_objects;
@@ -200,7 +174,7 @@ const std::vector<GameObject*> Scene::getUIObjects() const
 }
 const std::vector<Visualization*> Scene::getVisualizations() const
 {
-	return this->vec_visualizations;
+	return getManager<DataObjectManager>()->getVisualizations();
 }
 
 void Scene::addManager(Manager* manager)
@@ -242,6 +216,8 @@ bool Scene::initializeObjects(std::vector<GameObject*>& objects)
 		if (!obj->initialize())
 			return false;
 	}
+
+	return true;
 }
 bool Scene::postInitializeObjects(std::vector<GameObject*>& objects)
 {
@@ -257,6 +233,8 @@ bool Scene::postInitializeObjects(std::vector<GameObject*>& objects)
 		if (!obj->postInitialize())
 			return false;
 	}
+
+	return true;
 }
 void Scene::updateObjects(std::vector<GameObject*>& objects)
 {
@@ -266,35 +244,35 @@ void Scene::updateObjects(std::vector<GameObject*>& objects)
 			obj->update();
 	}
 }
-void Scene::drawObjects(std::vector<GameObject*>& objects)
-{
-	if (!this->debug_rendering)
-	{
-		for (GameObject* obj : this->vec_objects)
-		{
-			IDrawable* drawable_obj = dynamic_cast<IDrawable*>(obj);
-			if (drawable_obj == nullptr)
-				continue;
-
-			if (drawable_obj->getCanDraw())
-				drawable_obj->draw();
-		}
-	}
-	else
-	{
-		this->phyx_world->DrawDebugData();
-
-		for (GameObject* obj : this->vec_objects)
-		{
-			IDrawableDebugInfo* drawable_obj = dynamic_cast<IDrawableDebugInfo*>(obj);
-			if (drawable_obj == nullptr)
-				continue;
-
-			if (drawable_obj->getCanDrawDebugInfo())
-				drawable_obj->drawDebugInfo();
-		}
-	}
-}
+//void Scene::drawObjects(std::vector<GameObject*>& objects)
+//{
+//	if (!this->debug_rendering)
+//	{
+//		for (GameObject* obj : this->vec_objects)
+//		{
+//			IDrawable* drawable_obj = dynamic_cast<IDrawable*>(obj);
+//			if (drawable_obj == nullptr)
+//				continue;
+//
+//			if (drawable_obj->getCanDraw())
+//				drawable_obj->draw();
+//		}
+//	}
+//	else
+//	{
+//		this->phyx_world->DrawDebugData();
+//
+//		for (GameObject* obj : this->vec_objects)
+//		{
+//			IDrawableDebugInfo* drawable_obj = dynamic_cast<IDrawableDebugInfo*>(obj);
+//			if (drawable_obj == nullptr)
+//				continue;
+//
+//			if (drawable_obj->getCanDrawDebugInfo())
+//				drawable_obj->drawDebugInfo();
+//		}
+//	}
+//}
 bool Scene::shutdownObjects(std::vector<GameObject*> objects)
 {
 	for (GameObject* obj : objects)
@@ -303,4 +281,6 @@ bool Scene::shutdownObjects(std::vector<GameObject*> objects)
 			return false;
 		SafeDelete(obj);
 	}
+
+	return true;
 }

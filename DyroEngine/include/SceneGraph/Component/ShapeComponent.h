@@ -2,9 +2,7 @@
 #define _SHAPECOMPONENT_H
 
 #include "SceneGraph/Component/Component.h"
-#ifndef _IDRAWABLE_H
-#include "Interfaces\IDrawable.h"
-#endif
+
 #ifndef _IBOUNDINGBOX_H
 #include "Interfaces\IBoundingBox.h"
 #endif
@@ -15,14 +13,13 @@
 
 class Shape;
 
-class ShapeComponent : public Component, public IDrawable, public IBoundingBox
+class ShapeComponent : public Component, public IBoundingBox
 {
 public:
 	ShapeComponent(Shape* shape);
 	virtual ~ShapeComponent();
 
 	virtual bool initialize();
-	virtual void draw();
 	virtual void update();
 	virtual bool shutdown();
 

@@ -21,12 +21,14 @@ SceneManager::~SceneManager()
 
 bool SceneManager::initialize()
 {
+	setupManager<DataObjectManager>();
 	setupManager<Renderer>();
 	setupManager<CameraManager>();
 	setupManager<ResourceManager>();
 
 	if (!this->active_scene->getInitialized())
 	{
+		this->active_scene->addManager(&Singleton<DataObjectManager>::getInstance());
 		this->active_scene->addManager(&Singleton<Renderer>::getInstance());
 		this->active_scene->addManager(&Singleton<CameraManager>::getInstance());
 		this->active_scene->addManager(&Singleton<ResourceManager>::getInstance());
@@ -52,14 +54,6 @@ void SceneManager::update()
 	if (this->active_scene->isActive())
 		this->active_scene->update();
 }
-void SceneManager::draw()
-{
-	//Initialize the scene before trying to draw it.
-	assert(this->active_scene->getInitialized());
-
-	if (this->active_scene->getCanDraw() && this->active_scene->isActive())
-		this->active_scene->draw();
-}
 bool SceneManager::shutdown()
 {
 	for (Scene* scene : this->vec_scenes)
@@ -76,9 +70,10 @@ bool SceneManager::shutdown()
 		SafeDelete(scene);
 	}
 
-	destroyManager<Renderer>();
-	destroyManager<CameraManager>();
 	destroyManager<ResourceManager>();
+	destroyManager<CameraManager>();
+	destroyManager<Renderer>();
+	destroyManager<DataObjectManager>();
 
 	return true;
 }

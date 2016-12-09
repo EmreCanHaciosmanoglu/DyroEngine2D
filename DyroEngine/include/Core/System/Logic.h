@@ -2,13 +2,10 @@
 #define _LOGIC_H
 
 #include "System.h"
-#ifndef _IDRAWABLE_H
-#include "Interfaces/IDrawable.h"
-#endif
 
 class AbstractGame;
 
-class Logic : public System, public IDrawable
+class Logic : public System
 {
 public:
 	Logic();
@@ -16,7 +13,6 @@ public:
 
 	virtual bool initialize();
 	void update();
-	void draw();
 	virtual bool shutdown();
 
 	void setGame(AbstractGame* game);

@@ -2,16 +2,13 @@
 #define _SCENEOBJECT_H
 
 #include "SceneGraph\GameObjects\GameObject.h"
-#ifndef _IDRAWABLE_H
-#include "Interfaces\IDrawable.h"
-#endif
 #ifndef _IBOUNDINGBOX_H
 #include "Interfaces\IBoundingBox.h"
 #endif
 
 class TransformComponent;
 
-class SceneObject : public GameObject, public IDrawable, public IBoundingBox
+class SceneObject : public GameObject, public IBoundingBox
 {
 public:
 	SceneObject(const std::tstring& name = _T(""));
@@ -19,7 +16,6 @@ public:
 
 	virtual bool initialize();
 	virtual void update();
-	virtual void draw();
 	virtual bool shutdown();
 
 	TransformComponent* getTransform() const;

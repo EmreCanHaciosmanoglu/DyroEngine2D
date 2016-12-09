@@ -18,9 +18,29 @@ Timer::Timer(const std::tstring& name)
 	, previous_time(0)
 {
 	this->timer_begin = clock();
+	start();
 }
 Timer::~Timer()
 {
+}
+
+void Timer::start()
+{
+	this->previous_time = getTotalTime();
+}
+void Timer::update()
+{
+
+	this->previous_time = this->current_time;
+	this->current_time = getTotalTime();
+
+	this->delta_time = this->current_time - this->previous_time;
+
+	//Force nonnegative,
+	//the DXSKS's CDXUTTimer metions that if the processor goes into power save mode or we get shuffled to another processor,
+	//then this->delta_time can be negative.
+	if (this->delta_time < 0.0)
+		this->delta_time = 0.0;
 }
 
 double Timer::getTotalTime()const
@@ -42,11 +62,6 @@ void Timer::reset()
 	this->current_time = 0;
 }
 
-void Timer::start()
-{
-	this->previous_time = getTotalTime();
-}
-
 void Timer::pause()
 {
 	this->paused = true;
@@ -56,32 +71,4 @@ void Timer::unpause()
 {
 	this->paused = false;
 	Singleton<Logger>::getInstance().log(_T("Implement timer unpause"), LOGTYPE_TODO);
-}
-
-bool Timer::initialize()
-{
-	start();
-	return true;
-}
-bool Timer::postInitialize()
-{
-	return true;
-}
-void Timer::update()
-{
-
-	this->previous_time = this->current_time;
-	this->current_time = getTotalTime();
-
-	this->delta_time = this->current_time - this->previous_time;
-
-	//Force nonnegative,
-	//the DXSKS's CDXUTTimer metions that if the processor goes into power save mode or we get shuffled to another processor,
-	//then this->delta_time can be negative.
-	if (this->delta_time < 0.0)
-		this->delta_time = 0.0;
-}
-bool Timer::shutdown()
-{
-	return true;
 }

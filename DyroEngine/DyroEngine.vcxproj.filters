@@ -117,9 +117,6 @@
     <ClCompile Include="src\Core\System\Manager\SystemManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Interfaces\IDrawable.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Interfaces\IWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -282,6 +279,9 @@
     <ClCompile Include="src\Core\Data\DataObjects\Manager\DataObjectManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Interfaces\IRenderable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Defines\color.h">
@@ -375,9 +375,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Core\System\Manager\SystemManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Interfaces\IDrawable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Interfaces\IWindow.h">
@@ -552,6 +549,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Core\Data\DataObjects\Manager\DataObjectManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Interfaces\IRenderable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

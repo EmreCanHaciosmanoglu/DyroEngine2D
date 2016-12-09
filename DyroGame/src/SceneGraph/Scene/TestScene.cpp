@@ -82,7 +82,6 @@ bool TestScene::initialize()
 
 	//ADD SPAWNTIMER
 	Timer* astroid_spawn_timer = new Timer(ASTROID_SPAWN_TIMER_NAME);
-	astroid_spawn_timer->initialize();
 
 	MainTimer* main_timer = dynamic_cast<MainTimer*>(Singleton<SystemManager>::getInstance().getSystem(SystemType::TIMER_SYSTEM));
 	main_timer->addTimer(astroid_spawn_timer);

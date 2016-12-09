@@ -2,9 +2,6 @@
 #define _PHYSICSOBJECT_H
 
 #include "SceneGraph\GameObjects\SceneObject.h"
-#ifndef _IDRAWABLEDEBUGINFO_H
-#include "Interfaces\IDrawableDebugInfo.h"
-#endif
 
 #ifndef _BODYTYPE_H
 #include "Defines\Types\BodyType.h"
@@ -12,7 +9,7 @@
 
 class RigidBodyComponent;
 
-class PhysicsObject : public SceneObject, public IDrawableDebugInfo
+class PhysicsObject : public SceneObject
 {
 public:
 	PhysicsObject(BodyType bodyType, const std::tstring& name = _T(""));
@@ -20,8 +17,6 @@ public:
 
 	virtual bool initialize();
 	virtual void update();
-	virtual void draw();
-	virtual void drawDebugInfo();
 	virtual bool shutdown();
 
 	void setCollisionLayer(unsigned int layer);

@@ -6,7 +6,7 @@
 
 #include "Helpers/Singleton.h"
 
-#include "Interfaces/IDrawable.h"
+#include "Interfaces/IRenderable.h"
 
 #include "Defines/deletemacros.h"
 
@@ -42,7 +42,7 @@ void DataObjectManager::addDataObject(DataObject* object)
 
 	this->vec_dataobjects.push_back(object);
 
-	if (dynamic_cast<IDrawable*>(object) != nullptr)
+	if (dynamic_cast<IRenderable*>(object) != nullptr)
 	{
 		Visualization* visualization = Singleton<VisualizationFactory>::getInstance().createVisualization(object);
 		this->vec_visualizations.push_back(visualization);
@@ -54,7 +54,7 @@ void DataObjectManager::removeDataObject(DataObject* object)
 	if (it == this->vec_dataobjects.end())
 		return;
 
-	if (dynamic_cast<IDrawable*>(object) != nullptr)
+	if (dynamic_cast<IRenderable*>(object) != nullptr)
 	{
 		Visualization* visualization = getVisualization(object);
 		if (visualization != nullptr)

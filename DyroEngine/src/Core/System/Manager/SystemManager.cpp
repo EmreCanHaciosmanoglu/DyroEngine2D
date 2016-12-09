@@ -7,10 +7,6 @@
 #include "Core/System/System.h"
 #include "Core/System/Manager/SystemFactory.h"
 
-#ifndef _IDRAWABLE_H
-#include "Interfaces\IDrawable.h"
-#endif
-
 #include "Defines/Types/SystemType.h"
 #include "Defines/deletemacros.h"
 
@@ -35,18 +31,11 @@ System* SystemManager::getSystem(SystemType type)
 		return (*it);
 
 	System* new_system = this->factory->createSystem(type);
-
-	if (dynamic_cast<IDrawable*>(new_system) != nullptr)
-		this->vec_drawable_systems.push_back(new_system);
 	this->vec_systems.push_back(new_system);
 
 	return new_system;
 }
 
-std::vector<System*>& SystemManager::getDrawableSystems()
-{
-	return this->vec_drawable_systems;
-}
 std::vector<System*>& SystemManager::getSystems()
 {
 	return this->vec_systems;
@@ -72,7 +61,6 @@ bool SystemManager::shutdown()
 	}
 
 	this->vec_systems.clear();
-	this->vec_drawable_systems.clear();
 
 	return result;
 }

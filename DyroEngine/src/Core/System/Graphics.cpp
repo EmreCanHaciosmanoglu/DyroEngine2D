@@ -52,10 +52,6 @@ bool Graphics::initialize()
 void Graphics::update()
 {
 }
-void Graphics::draw()
-{
-	this->render_target->Clear(Singleton<WorldSettings>::getInstance().getGameSettings()->getBackgroundColor().toColorF());
-}
 bool Graphics::shutdown()
 {
 	SafeRelease(this->image_factory);
@@ -100,6 +96,11 @@ HRESULT Graphics::createDeviceDependantResources()
 void Graphics::discardDeviceResources()
 {
 	SafeRelease(this->render_target);
+}
+
+void Graphics::clear()
+{
+	this->render_target->Clear(Singleton<WorldSettings>::getInstance().getGameSettings()->getBackgroundColor().toColorF());
 }
 
 void Graphics::beginDraw()

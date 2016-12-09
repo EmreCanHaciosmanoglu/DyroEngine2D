@@ -36,11 +36,6 @@ void Logic::update()
 
 	Singleton<SceneManager>::getInstance().update();
 }
-void Logic::draw()
-{
-	if (Singleton<SceneManager>::getInstance().getCanDraw())
-		Singleton<SceneManager>::getInstance().draw();
-}
 bool Logic::shutdown()
 {
 	if (!Singleton<SceneManager>::getInstance().shutdown())

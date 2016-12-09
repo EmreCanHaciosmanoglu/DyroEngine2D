@@ -14,10 +14,6 @@ void Obstacle::update()
 {
 	PhysicsObject::update();
 }
-void Obstacle::draw()
-{
-	PhysicsObject::draw();
-}
 bool Obstacle::shutdown()
 {
 	return PhysicsObject::shutdown();
@@ -25,9 +21,8 @@ bool Obstacle::shutdown()
 
 void Obstacle::setVisible(bool visible)
 {
-	setCanDraw(visible);
 }
 bool Obstacle::getVisible() const
 {
-	return getCanDraw();
+	return true;
 }

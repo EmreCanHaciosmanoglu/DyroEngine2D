@@ -22,14 +22,6 @@ void PhysicsObject::update()
 {
 	SceneObject::update();
 }
-void PhysicsObject::draw()
-{
-	SceneObject::draw();
-}
-void PhysicsObject::drawDebugInfo()
-{
-
-}
 bool PhysicsObject::shutdown()
 {
 	return SceneObject::shutdown();
