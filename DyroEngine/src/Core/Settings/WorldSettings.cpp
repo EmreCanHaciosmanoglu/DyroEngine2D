@@ -10,16 +10,12 @@ WorldSettings::~WorldSettings()
 {
 }
 
-bool WorldSettings::initialize()
+bool WorldSettings::loadSetttings()
 {
-	application_settings.initialize(_T("resources/INI/Engine.ini"));
-	phyx_settings.initialize(_T("resources/INI/Engine.ini"));
-	game_settings.initialize(_T("resources/INI/Engine.ini"));
+	application_settings.loadSettings(_T("resources/INI/Engine.ini"));
+	phyx_settings.loadSettings(_T("resources/INI/Engine.ini"));
+	game_settings.loadSettings(_T("resources/INI/Engine.ini"));
 
-	return true;
-}
-bool WorldSettings::shutdown()
-{
 	return true;
 }
 

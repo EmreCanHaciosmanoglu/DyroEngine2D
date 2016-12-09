@@ -1,8 +1,6 @@
 #ifndef _RENDERER_H
 #define _RENDERER_H
 
-#include "Helpers/Manager.h"
-
 #ifndef _WINDOWS_H
 #include <Windows.h>
 #endif
@@ -27,14 +25,11 @@
 class Graphics;
 class Image;
 
-class Renderer :  public Manager
+class Renderer
 {
 public:
 	Renderer();
 	virtual ~Renderer();
-
-	virtual bool initialize();
-	virtual bool shutdown();
 
 	void setTransformMatrix(const Matrix2D& transformMatrix);
 	void setInterpolationMode(D2D1_BITMAP_INTERPOLATION_MODE i);

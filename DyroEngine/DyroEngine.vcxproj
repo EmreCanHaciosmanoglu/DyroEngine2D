@@ -80,7 +80,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\Core\Data\DataObjects\DataObject.h" />
-    <ClInclude Include="include\Core\Data\DataObjects\Manager\DataObjectManager.h" />
     <ClInclude Include="include\Core\Rendering\RenderItem.h" />
     <ClInclude Include="include\Core\Rendering\Visualization\Manager\VisualizationFactory.h" />
     <ClInclude Include="include\Core\Rendering\Visualization\Shapes\CircleShapeVisualization.h" />
@@ -172,7 +171,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Core\Data\DataObjects\DataObject.cpp" />
-    <ClCompile Include="src\Core\Data\DataObjects\Manager\DataObjectManager.cpp" />
     <ClCompile Include="src\Core\Rendering\RenderItem.cpp" />
     <ClCompile Include="src\Core\Rendering\Visualization\Manager\VisualizationFactory.cpp" />
     <ClCompile Include="src\Core\Rendering\Visualization\Shapes\CircleShapeVisualization.cpp" />

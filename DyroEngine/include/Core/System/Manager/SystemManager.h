@@ -14,7 +14,7 @@
 class System;
 class SystemFactory;
 
-class SystemManager : public Manager
+class SystemManager : public Manager<System>
 {
 public:
 	SystemManager();
@@ -24,15 +24,9 @@ public:
 	virtual bool shutdown();
 
 	System* getSystem(SystemType type);
-
-	std::vector<System*>& getDrawableSystems();
-	std::vector<System*>& getSystems();
+	std::vector<System*> getSystems();
 
 private:
-
-	std::vector<System*> vec_systems;
-	std::vector<System*> vec_drawable_systems;
-
 	SystemFactory* factory;
 };
 

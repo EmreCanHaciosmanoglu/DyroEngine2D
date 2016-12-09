@@ -1,20 +1,17 @@
 #ifndef _WORLDSETTINGS_H
 #define _WORLDSETTINGS_H
 
-#include "Helpers/Manager.h"
-
 #include "ApplicationSettings.h"
 #include "PhyxSettings.h"
 #include "GameSettings.h"
 
-class WorldSettings : public Manager
+class WorldSettings
 {
 public:
 	WorldSettings();
 	virtual ~WorldSettings();
 	
-	virtual bool initialize();
-	virtual bool shutdown();
+	bool loadSetttings();
 
 	void setApplicationSettings(const ApplicationSettings& settings);
 	ApplicationSettings* getApplicationSettings();

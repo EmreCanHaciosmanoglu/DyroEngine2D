@@ -17,7 +17,7 @@ class Visualization;
 
 class GameObject;
 class Input;
-class Manager;
+class AbstractManager;
 
 class DebugRenderer;
 class ContactListener;
@@ -53,7 +53,7 @@ public:
 	const std::vector<GameObject*> getUIObjects() const;
 	const std::vector<Visualization*> getVisualizations() const;
 
-	void addManager(Manager* manager);
+	void addManager(AbstractManager* manager);
 	template<typename T>
 	T* getManager() const;
 
@@ -76,7 +76,7 @@ private:
 	std::vector<GameObject*> vec_objects;
 	std::vector<GameObject*> vec_ui_objects;
 
-	std::vector<Manager*> vec_managers;
+	std::vector<AbstractManager*> vec_managers;
 
 	std::vector<Visualization*> vec_visualizations;
 };
@@ -84,7 +84,7 @@ private:
 template <typename T>
 T* Scene::getManager() const
 {
-	for (Manager* m : this->vec_managers)
+	for (AbstractManager* m : this->vec_managers)
 	{
 		T* new_m = dynamic_cast<T*>(m);
 		if (new_m == nullptr)

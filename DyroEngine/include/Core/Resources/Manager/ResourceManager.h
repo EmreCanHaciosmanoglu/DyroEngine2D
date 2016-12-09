@@ -18,7 +18,7 @@
 #include <algorithm>
 #endif
 
-class ResourceManager : public Manager
+class ResourceManager : public Manager<Resource>
 {
 public:
 	ResourceManager();
@@ -28,24 +28,37 @@ public:
 	virtual bool shutdown();
 
 	template<typename T> T* getResource(const std::tstring& path);
-
-private:
-
-	std::map<const std::tstring, Resource*> resources;
+	template<typename T> T* getResource(unsigned int id);
 };
 
 template<typename T>
 T* ResourceManager::getResource(const std::tstring& path)
 {
-	if (this->resources[path] != nullptr)
-		return dynamic_cast<T*>(this->resources[path]);
+	std::map<unsigned int, Resource*>::const_iterator it = std::find_if(this->map_objects.begin(),this->map_objects.end(),
+		[path](std::pair<unsigned int, Resource*> pair)
+	{
+		return path == pair.second->getResourcePath();
+	})
+
+	if (it != this->map_objects.end())
+		return dynamic_cast<T*>((*it).second);
 
 	T * new_r = new T(path);
 	new_r->initialize();
 
-	this->resources[path] = new_r;
+	addObject(new_r->getResourceID(), new_r);
 
 	return new_r;
 }
+template<typename T>
+T* ResourceManager::getResource(unsigned int id)
+{
+	Resource* resource = getObject(id);
+	if (resource == nullptr)
+		return nullptr;
+
+	return dynamic_cast<T*>(resource);
+}
+
 
 #endif

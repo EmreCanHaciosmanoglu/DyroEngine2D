@@ -31,16 +31,7 @@ Logger::Logger(void)
 }
 Logger::~Logger(void)
 {
-}
-
-bool Logger::initialize()
-{
-	return true;
-}
-bool Logger::shutdown()
-{
 	this->log_messages.clear();
-	return true;
 }
 
 void Logger::log(const std::tstring& Message, LogType type, int ln, const std::tstring& fn)

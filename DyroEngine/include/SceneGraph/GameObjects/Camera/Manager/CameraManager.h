@@ -4,16 +4,12 @@
 #include "Helpers/Manager.h"
 
 #ifndef _STRING_H
-#include "Defines\string.h"
-#endif
-
-#ifndef _VECTOR_
-#include <vector>
+	#include "Defines\string.h"
 #endif
 
 class Camera;
 
-class CameraManager : public Manager
+class CameraManager : public Manager<Camera>
 {
 public:
 	CameraManager();
@@ -22,7 +18,7 @@ public:
 	virtual bool initialize();
 	virtual bool shutdown();
 
-	void setActiveCamera(const std::tstring& name);
+	void setActiveCamera(unsigned int id);
 	void setActiveCamera(Camera* camera);
 
 	Camera* getActiveCamera() const;
@@ -30,7 +26,6 @@ public:
 	void addCamera(Camera* camera, bool setActive = true);
 
 private:
-	std::vector<Camera*> vec_cameras;
 	Camera* active_camera;
 };
 

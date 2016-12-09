@@ -84,6 +84,9 @@ int Engine::initialize()
 	if (!createManagers())
 		return FALSE;
 
+	if (!Singleton<SystemManager>::getInstance().initialize())
+		return FALSE;
+
 	MainWindow* window = dynamic_cast<MainWindow*>(Singleton<SystemManager>::getInstance().getSystem(SystemType::WINDOW_SYSTEM));
 	if (window == nullptr)
 		return FALSE;
@@ -122,6 +125,9 @@ void Engine::update()
 }
 int Engine::shutDown()
 {
+	if (!Singleton<SystemManager>::getInstance().shutdown())
+		return FALSE;
+
 	if (!destroyManagers())
 		return FALSE;
 
@@ -135,20 +141,10 @@ bool Engine::createManagers()
 	Singleton<SceneManager>::createInstance();
 	Singleton<VisualizationFactory>::createInstance();
 
-	if (!Singleton<WorldSettings>::getInstance().initialize())
-		return false;
-	if (!Singleton<SystemManager>::getInstance().initialize())
-		return false;
-
 	return true;
 }
 bool Engine::destroyManagers()
 {
-	if (!Singleton<SystemManager>::getInstance().shutdown())
-		return false;
-	if (!Singleton<WorldSettings>::getInstance().shutdown())
-		return false;
-
 	Singleton<VisualizationFactory>::destroyInstance();
 	Singleton<SceneManager>::destroyInstance();
 	Singleton<SystemManager>::destroyInstance();

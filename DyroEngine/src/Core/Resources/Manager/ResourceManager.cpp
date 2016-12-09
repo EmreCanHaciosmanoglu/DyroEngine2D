@@ -14,9 +14,11 @@ ResourceManager::~ResourceManager()
 
 bool ResourceManager::initialize()
 {
-	for (std::pair<const std::tstring, Resource*>& pair : this->resources)
+	std::vector<Resource*> resources = getObjects();
+
+	for (Resource* r : resources)
 	{
-		if (!pair.second->initialize())
+		if (!r->initialize())
 			return false;
 	}
 
@@ -24,14 +26,15 @@ bool ResourceManager::initialize()
 }
 bool ResourceManager::shutdown()
 {
-	for (std::pair<const std::tstring, Resource*>& pair : this->resources)
+	std::vector<Resource*> resources = getObjects();
+
+	for (Resource* r : resources)
 	{
-		if (!pair.second->shutdown())
+		if (!r->shutdown())
 			return false;
 
-		SafeDelete(pair.second);
+		SafeDelete(r);
 	}
-	this->resources.clear();
 
 	return true;
 }

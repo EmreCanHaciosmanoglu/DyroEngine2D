@@ -7,8 +7,6 @@
 
 #include "Core\Rendering\Visualization\Visualization.h"
 
-#include "Core\Data\DataObjects\Manager\DataObjectManager.h"
-
 #include "Defines\deletemacros.h"
 
 #include "Helpers\Singleton.h"
@@ -177,9 +175,9 @@ const std::vector<Visualization*> Scene::getVisualizations() const
 	return getManager<DataObjectManager>()->getVisualizations();
 }
 
-void Scene::addManager(Manager* manager)
+void Scene::addManager(AbstractManager* manager)
 {
-	std::vector<Manager*>::const_iterator it = std::find(this->vec_managers.begin(), this->vec_managers.end(), manager);
+	std::vector<AbstractManager*>::const_iterator it = std::find(this->vec_managers.begin(), this->vec_managers.end(), manager);
 	if (it != this->vec_managers.end())
 		return;
 

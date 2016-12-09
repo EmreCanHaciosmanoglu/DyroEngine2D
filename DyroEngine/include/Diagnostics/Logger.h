@@ -1,8 +1,6 @@
 #ifndef _LOGGER_H
 #define _LOGGER_H
 
-#include "Helpers/Manager.h"
-
 #ifndef _VECTOR_
 #include <vector>
 #endif
@@ -31,14 +29,11 @@ struct LogData
 #define LOGTYPE_ERROR LogType::ERROR_LOG,__LINE__,__FILEW__
 #define LOGTYPE_TODO LogType::TODO_LOG,__LINE__,__FILEW__
 
-class Logger : public Manager
+class Logger
 {
 public:
 	Logger(void);
 	virtual ~Logger(void);
-
-	bool initialize();
-	bool shutdown();
 
 	void log(const std::tstring& Message, LogType type, int ln, const std::tstring& fn);
 	void writeLogFile();

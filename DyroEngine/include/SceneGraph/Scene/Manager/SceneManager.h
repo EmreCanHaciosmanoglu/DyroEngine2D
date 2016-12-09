@@ -9,9 +9,7 @@
 
 #include "Diagnostics/Logger.h"
 
-#include "Core/Rendering/Renderer.h"
 #include "Core/Resources/Manager/ResourceManager.h"
-#include "Core\Data\DataObjects\Manager\DataObjectManager.h"
 #include "SceneGraph/GameObjects/Camera/Manager/CameraManager.h"
 
 #ifndef _VECTOR_
@@ -20,7 +18,7 @@
 
 class Scene;
 
-class SceneManager : public Manager
+class SceneManager : public Manager<Scene>
 {
 public:
 	SceneManager();
@@ -32,7 +30,9 @@ public:
 
 	void addScene(Scene* scene);
 
+	void setActiveScene(unsigned int id);
 	void setActiveScene(const std::tstring& name);
+
 	Scene* getActiveScene() const;
 
 private:
@@ -56,7 +56,6 @@ private:
 	}
 
 	Scene* active_scene;
-	std::vector<Scene*> vec_scenes;
 };
 
 #endif _SCENEMANAGER_H

@@ -18,12 +18,12 @@ Settings::~Settings()
 {
 }
 
-void Settings::initialize(const std::tstring& filePath)
+bool Settings::loadSettings(const std::tstring& filePath)
 {
-	loadFile(filePath);
+	return loadFile(filePath);
 }
 
-void Settings::loadFile(const std::tstring& filePath)
+bool Settings::loadFile(const std::tstring& filePath)
 {
 	std::tifstream file;
 	file.open(filePath, std::ios::in);
@@ -46,5 +46,9 @@ void Settings::loadFile(const std::tstring& filePath)
 	{
 		int value = GetLastError();
 		Singleton<Logger>::getInstance().log(_T("Could not open file: ") + filePath, LOGTYPE_ERROR);
+
+		return false;
 	}
+
+	return true;
 }

@@ -21,15 +21,11 @@ SceneManager::~SceneManager()
 
 bool SceneManager::initialize()
 {
-	setupManager<DataObjectManager>();
-	setupManager<Renderer>();
 	setupManager<CameraManager>();
 	setupManager<ResourceManager>();
 
 	if (!this->active_scene->getInitialized())
 	{
-		this->active_scene->addManager(&Singleton<DataObjectManager>::getInstance());
-		this->active_scene->addManager(&Singleton<Renderer>::getInstance());
 		this->active_scene->addManager(&Singleton<CameraManager>::getInstance());
 		this->active_scene->addManager(&Singleton<ResourceManager>::getInstance());
 
@@ -56,7 +52,8 @@ void SceneManager::update()
 }
 bool SceneManager::shutdown()
 {
-	for (Scene* scene : this->vec_scenes)
+	std::vector<Scene*> scenes = getObjects();
+	for (Scene* scene : scenes)
 	{
 		if (!scene->getInitialized())
 		{
@@ -72,29 +69,20 @@ bool SceneManager::shutdown()
 
 	destroyManager<ResourceManager>();
 	destroyManager<CameraManager>();
-	destroyManager<Renderer>();
-	destroyManager<DataObjectManager>();
 
 	return true;
 }
 
 void SceneManager::addScene(Scene* scene)
 {
-	std::vector<Scene*>::iterator it = std::find(vec_scenes.begin(), vec_scenes.end(), scene);
-	if (it == vec_scenes.end())
-		vec_scenes.push_back(scene);
+	addObject(scene->getObjectID(), scene);
 }
 
-void SceneManager::setActiveScene(const std::tstring& name)
+void SceneManager::setActiveScene(unsigned int id)
 {
-	std::vector<Scene*>::iterator it = std::find_if(vec_scenes.begin(), vec_scenes.end(), 
-		[name](Scene* scene) -> bool
-	{
-		return scene->getName() == name;
-	});
-
-	//Scene with given name was not found.
-	assert(it != vec_scenes.end());
+	Scene* scene = getObject(id);
+	if (scene == nullptr)
+		return;
 
 	if (this->active_scene)
 	{
@@ -102,9 +90,20 @@ void SceneManager::setActiveScene(const std::tstring& name)
 		this->active_scene->destroy();
 	}
 
-	this->active_scene = (*it);
+	this->active_scene = scene;
 	this->active_scene->activate();
+}
+void SceneManager::setActiveScene(const std::tstring& name)
+{
+	std::vector<Scene*> scenes = getObjects();
 
+	std::vector<Scene*>::const_iterator it = std::find_if(scenes.begin(), scenes.end(),
+		[name](Scene* scene) -> bool
+	{
+		return scene->getName() == name;
+	});
+
+	setActiveScene((*it)->getObjectID());
 }
 Scene* SceneManager::getActiveScene() const
 {

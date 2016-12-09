@@ -276,9 +276,6 @@
     <ClCompile Include="src\Core\Rendering\Visualization\Shapes\TriangleShapeVisualization.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Core\Data\DataObjects\Manager\DataObjectManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Interfaces\IRenderable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -546,9 +543,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Core\Rendering\Visualization\Shapes\TriangleShapeVisualization.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Data\DataObjects\Manager\DataObjectManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Interfaces\IRenderable.h">
