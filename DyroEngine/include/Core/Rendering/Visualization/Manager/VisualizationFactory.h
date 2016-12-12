@@ -1,7 +1,7 @@
 #ifndef _VISUALIZATIONFACTORY_H
 #define _VISUALIZATIONFACTORY_H
 
-class DataObject;
+class GameObject;
 class Visualization;
 
 class VisualizationFactory
@@ -10,7 +10,7 @@ public:
 	VisualizationFactory();
 	~VisualizationFactory();
 
-	Visualization* createVisualization(DataObject* object);
+	Visualization* createVisualization(GameObject* object);
 };
 
 #endif

@@ -2,7 +2,7 @@
 
 #include "Core/Data/DataObjects/Shapes/TriangleShape.h"
 
-TriangleShapeVisualization::TriangleShapeVisualization(DataObject* object)
+TriangleShapeVisualization::TriangleShapeVisualization(GameObject* object)
 	:ShapeVisualization(object)
 {
 
@@ -14,7 +14,7 @@ TriangleShapeVisualization::~TriangleShapeVisualization()
 
 Rect2D TriangleShapeVisualization::getBoundingBox() const
 {
-	DataObject* object = getDataObject();
+	GameObject* object = getDataObject();
 
 	return dynamic_cast<TriangleShape*>(object)->getBoundingBox();
 }

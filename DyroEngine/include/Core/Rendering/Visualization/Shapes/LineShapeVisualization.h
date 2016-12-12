@@ -3,12 +3,12 @@
 
 #include "Core/Rendering/Visualization/Shapes/ShapeVisualization.h"
 
-class DataObject;
+class GameObject;
 
 class LineShapeVisualization : public ShapeVisualization
 {
 public:
-	LineShapeVisualization(DataObject* object);
+	LineShapeVisualization(GameObject* object);
 	virtual ~LineShapeVisualization();
 };
 

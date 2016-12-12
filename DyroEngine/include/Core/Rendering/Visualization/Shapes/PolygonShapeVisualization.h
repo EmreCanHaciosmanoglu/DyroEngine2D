@@ -4,12 +4,12 @@
 #include "Core/Rendering/Visualization/Shapes/ShapeVisualization.h"
 #include "Interfaces/IBoundingBox.h"
 
-class DataObject;
+class GameObject;
 
 class PolygonShapeVisualization : public ShapeVisualization, public IBoundingBox
 {
 public:
-	PolygonShapeVisualization(DataObject* object);
+	PolygonShapeVisualization(GameObject* object);
 	virtual ~PolygonShapeVisualization();
 
 	virtual Rect2D getBoundingBox() const;

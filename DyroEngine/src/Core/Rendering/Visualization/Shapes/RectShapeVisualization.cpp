@@ -2,7 +2,7 @@
 
 #include "Core/Data/DataObjects/Shapes/RectShape.h"
 
-RectShapeVisualization::RectShapeVisualization(DataObject* object)
+RectShapeVisualization::RectShapeVisualization(GameObject* object)
 	:ShapeVisualization(object)
 {
 
@@ -14,7 +14,7 @@ RectShapeVisualization::~RectShapeVisualization()
 
 Rect2D RectShapeVisualization::getBoundingBox() const
 {
-	DataObject* object = getDataObject();
+	GameObject* object = getDataObject();
 
 	return dynamic_cast<RectShape*>(object)->getBoundingBox();
 }

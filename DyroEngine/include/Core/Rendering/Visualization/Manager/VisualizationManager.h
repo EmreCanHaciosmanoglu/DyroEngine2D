@@ -14,7 +14,7 @@ public:
 	virtual bool initialize();
 	virtual bool shutdown();
 
-	void addVisualization(unsigned int id, Visualization* v);
+	void addVisualization(Visualization* v);
 	
 	void removeVisualization(unsigned int id);
 	void removeVisualization(Visualization* v);

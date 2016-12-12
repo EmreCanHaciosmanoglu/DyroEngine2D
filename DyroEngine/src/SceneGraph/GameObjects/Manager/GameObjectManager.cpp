@@ -5,8 +5,6 @@
 #include "Core\Rendering\Visualization\Manager\VisualizationFactory.h"
 #include "Core\Rendering\Visualization\Manager\VisualizationManager.h"
 
-#include "Interfaces\IRenderable.h"
-
 #include "Helpers\Singleton.h"
 
 #include "Defines\assert.h"
@@ -101,16 +99,7 @@ bool GameObjectManager::addObject(unsigned int id, GameObject* object)
 		return false;
 
 	VisualizationFactory factory = Singleton<VisualizationFactory>::getInstance();
-
-	std::vector<Component*> components = object->getComponents();
-	for (Component* component : components)
-	{
-		IRenderable* renderable = dynamic_cast<IRenderable*>(component);
-		if (renderable == nullptr)
-			continue;
-
-		this->visualization_manager->addVisualization(id, factory.createVisualization(object));
-	}
+	this->visualization_manager->addVisualization(factory.createVisualization(object));
 }
 
 bool GameObjectManager::removeObject(unsigned int id)

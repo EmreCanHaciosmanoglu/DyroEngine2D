@@ -2,7 +2,7 @@
 
 #include "Core/Data/DataObjects/Shapes/PolygonShape.h"
 
-PolygonShapeVisualization::PolygonShapeVisualization(DataObject* object)
+PolygonShapeVisualization::PolygonShapeVisualization(GameObject* object)
 	:ShapeVisualization(object)
 {
 
@@ -14,7 +14,7 @@ PolygonShapeVisualization::~PolygonShapeVisualization()
 
 Rect2D PolygonShapeVisualization::getBoundingBox() const
 {
-	DataObject* object = getDataObject();
+	GameObject* object = getDataObject();
 
 	return dynamic_cast<PolygonShape*>(object)->getBoundingBox();
 }

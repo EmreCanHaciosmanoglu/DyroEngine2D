@@ -28,36 +28,6 @@ void SceneObject::update()
 {
 	return GameObject::update();
 }
-//void SceneObject::draw()
-//{
-//	Matrix2D world_matrix = getTransform()->getWorldMatrix();
-//	Matrix2D view_matrix = getScene()->getManager<CameraManager>()->getActiveCamera()->getCamera()->getViewMatrix();
-//
-//	Renderer* renderer = getScene()->getManager<Renderer>();
-//
-//	renderer->setTransformMatrix(world_matrix * view_matrix);
-//
-//	for (Component* obj : getComponents())
-//	{
-//		IDrawable* drawable_obj = dynamic_cast<IDrawable*>(obj);
-//		if (drawable_obj == nullptr)
-//			continue;
-//
-//		if (drawable_obj->getCanDraw())
-//			drawable_obj->draw();
-//	}
-//	for (GameObject* obj : getChilderen())
-//	{
-//		IDrawable* drawable_obj = dynamic_cast<IDrawable*>(obj);
-//		if (drawable_obj == nullptr)
-//			continue;
-//
-//		if (drawable_obj->getCanDraw())
-//			drawable_obj->draw();
-//	}
-//
-//	renderer->setTransformMatrix(Matrix2D::createIdentityMatrix());
-//}
 bool SceneObject::shutdown()
 {
 	return GameObject::shutdown();

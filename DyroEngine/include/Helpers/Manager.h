@@ -37,7 +37,7 @@ public:
 	virtual bool shutdown() = 0;
 
 	bool exists(unsigned int id);
-	bool exists(GameObject* object);
+	bool exists(T* object);
 
 protected:
 	virtual bool addObject(unsigned int id, T* object);

@@ -7,6 +7,7 @@
 #endif
 
 class TransformComponent;
+class VisualizationManager;
 
 class SceneObject : public GameObject, public IBoundingBox
 {

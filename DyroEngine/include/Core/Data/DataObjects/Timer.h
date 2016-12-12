@@ -1,19 +1,27 @@
 #ifndef _TIMER_H
 #define _TIMER_H
 
-#include "Core\Data\DataObjects\DataObject.h"
+#include "Helpers/ObjectCounter.h"
+
+#ifndef _STRING_H
+#include "Defines/string.h"
+#endif
 
 #ifndef _CTIME_
 #include <ctime>
 #endif
 
-
-class Timer : public DataObject
+class Timer : public ObjectCounter<Timer>
 {
 public:
 
 	Timer(const std::tstring& name);
 	virtual ~Timer();
+
+	unsigned int getTimerID();
+
+	void setName(const std::tstring& name);
+	const std::tstring& getName() const;
 
 	double getTotalTime() const;		//in seconds
 	double getDeltaTime() const;		//in seconds
@@ -26,6 +34,8 @@ public:
 
 	void reset();
 private:
+	unsigned int id;
+	std::tstring name;
 
 	double delta_time;
 

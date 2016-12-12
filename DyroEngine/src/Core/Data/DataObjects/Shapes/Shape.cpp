@@ -1,7 +1,7 @@
 #include "Core/Data/DataObjects/Shapes/Shape.h"
 
 Shape::Shape(const std::tstring& name)
-	:DataObject(name)
+	:GameObject(name)
 	,color(1,1,1,1)
 {
 	DATA_OBJECT_INIT(_T("Shape"));

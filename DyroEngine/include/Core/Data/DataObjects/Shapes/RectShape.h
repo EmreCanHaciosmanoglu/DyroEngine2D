@@ -2,6 +2,7 @@
 #define _RECTSHAPE_H
 
 #include "Core/Data/DataObjects/Shapes/Shape.h"
+
 #ifndef _IFILLABLESHAPE_H
 #include "Interfaces/IFillableShape.h"
 #endif

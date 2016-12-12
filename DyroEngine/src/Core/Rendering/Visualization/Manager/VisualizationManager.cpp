@@ -23,9 +23,9 @@ bool VisualizationManager::shutdown()
 	return true;
 }
 
-void VisualizationManager::addVisualization(unsigned int id, Visualization* v)
+void VisualizationManager::addVisualization(Visualization* v)
 {
-	addObject(id, v);
+	addObject(v->getVisualizationID(), v);
 }
 
 void VisualizationManager::removeVisualization(unsigned int id)

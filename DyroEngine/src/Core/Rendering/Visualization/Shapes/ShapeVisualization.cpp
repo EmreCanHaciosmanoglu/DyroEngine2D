@@ -2,7 +2,7 @@
 
 #include "Core/Data/DataObjects/Shapes/Shape.h"
 
-ShapeVisualization::ShapeVisualization(DataObject* object)
+ShapeVisualization::ShapeVisualization(GameObject* object)
 	:Visualization(object)
 {
 
