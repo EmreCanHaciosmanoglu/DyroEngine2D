@@ -3,7 +3,6 @@
 #include "SceneGraph\Scene\Scene.h"
 
 #include "Core/Data/DataObjects/Shapes/Shape.h"
-#include "Core\Data\DataObjects\Manager\DataObjectManager.h"
 
 #include "Interfaces/IFillableShape.h"
 
@@ -19,8 +18,6 @@ ShapeComponent::~ShapeComponent()
 
 bool ShapeComponent::initialize()
 {
-	getDataObjectManager()->addDataObject(this->shape);
-
 	return true;
 }
 void ShapeComponent::update()

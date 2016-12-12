@@ -34,12 +34,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 #endif
 
 	Singleton<Logger>::createInstance();
-	Singleton<Logger>::getInstance().initialize();
 
 	Engine engine(new Game());
 	int result = engine.mainLoop();
 
-	Singleton<Logger>::getInstance().shutdown();
 	Singleton<Logger>::destroyInstance();
 
 	return result;

@@ -60,12 +60,16 @@ LRESULT MainWindow::handleEvent(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 	{
 		if (!HIWORD(wParam))
 		{
-			for (System* sys : Singleton<SystemManager>::getInstance().getSystems())
+			std::vector<System*> systems;
+			Singleton<SystemManager>::getInstance().getSystems(systems);
+			for (System* sys : systems)
 				sys->activate();
 		}
 		else
 		{
-			for (System* sys : Singleton<SystemManager>::getInstance().getSystems())
+			std::vector<System*> systems;
+			Singleton<SystemManager>::getInstance().getSystems(systems);
+			for (System* sys : systems)
 				sys->deactivate();
 		}
 

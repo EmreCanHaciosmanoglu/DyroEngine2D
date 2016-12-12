@@ -18,11 +18,12 @@
 class AbstractManager
 {
 public:
-	AbstractManager();
-	virtual ~AbstractManager();
-
 	virtual bool initialize() = 0;
 	virtual bool shutdown() = 0;
+
+protected:
+	AbstractManager() {};
+	virtual ~AbstractManager() {};
 };
 
 template <typename T>
@@ -35,20 +36,25 @@ public:
 	virtual bool initialize() = 0;
 	virtual bool shutdown() = 0;
 
-protected:
-	virtual void addObject(unsigned int id, T* object);
+	bool exists(unsigned int id);
+	bool exists(GameObject* object);
 
-	virtual void removeObject(unsigned int id);
-	virtual void removeObject(T* object);
+protected:
+	virtual bool addObject(unsigned int id, T* object);
+
+	virtual bool removeObject(unsigned int id);
+	virtual bool removeObject(T* object);
 
 	T* getObject(unsigned int id) const;
-	std::vector<T*> getObjects() const;
-
-	std::map<unsigned int, T*> map_objects;
+	
+	void getObjects(std::vector<T*>& objects);
+	void getObjects(std::map<unsigned int, T*>& objects);
 
 private:
-	typename std::map<unsigned int, T*>::const_iterator& getIteratorWithID(unsigned int id) const;
-	typename std::map<unsigned int, T*>::const_iterator& getIteratorWithObject(T* object) const;
+	std::map<unsigned int, T*> map_objects;
+
+	typename std::map<unsigned int, T*>::const_iterator getIteratorWithID(unsigned int id) const;
+	typename std::map<unsigned int, T*>::const_iterator getIteratorWithObject(T* object) const;
 };
 template <typename T>
 Manager<T>::Manager()
@@ -60,56 +66,71 @@ Manager<T>::~Manager()
 }
 
 template <typename T>
-void Manager<T>::addObject(unsigned int id, T* object)
+bool Manager<T>::exists(unsigned int id)
 {
-	if (typename getIteratorWithID<T>(id) != this->map_objects.end())
-		return;
+	return getIteratorWithID(id) != this->map_objects.end();
+}
+template <typename T>
+bool Manager<T>::exists(T* object)
+{
+	return getIteratorWithObject(object) != this->map_objects.end();
+}
+
+template <typename T>
+bool Manager<T>::addObject(unsigned int id, T* object)
+{
+	if (getIteratorWithID(id) != this->map_objects.end())
+		return false;
 
 	this->map_objects[id] = object;
+	return true;
 }
 
 template <typename T>
-void Manager<T>::removeObject(T* object)
+bool Manager<T>::removeObject(T* object)
 {
-	typename std::map<unsigned int, T*>::const_iterator it = getIteratorWithObject<T>(object);
+	std::map<unsigned int, T*>::const_iterator it = getIteratorWithObject(object);
 	if (it == this->map_objects.end())
-		return;
+		return false;
 
 	this->map_objects.erase(it);
-	SafeDelete((*it));
+	return true;
 }
 template <typename T>
-void Manager<T>::removeObject(unsigned int id)
+bool Manager<T>::removeObject(unsigned int id)
 {
-	typename std::map<unsigned int, T*>::const_iterator it = getIteratorWithID<T>(id);
+	std::map<unsigned int, T*>::const_iterator it = getIteratorWithID(id);
 	if (it == this->map_objects.end())
-		return;
+		return false;
 
 	this->map_objects.erase(it);
-	SafeDelete((*it).second);
+	return true;
 }
 
 template <typename T>
 T* Manager<T>::getObject(unsigned int id) const
 {
-	typename std::map<unsigned int, T*>::const_iterator it = getIteratorWithID<T>(id);
+	std::map<unsigned int, T*>::const_iterator it = getIteratorWithID(id);
 	if (it == this->map_objects.end())
 		return nullptr;
 
-	return (*it);
+	return (*it).second;
 }
+
 template <typename T>
-std::vector<T*> Manager<T>::getObjects() const
+void Manager<T>::getObjects(std::vector<T*>& objects)
 {
-	std::vector<T*> objects(this->map_objects.size(), nullptr);
 	for (std::map<unsigned int, T*>::const_iterator it = this->map_objects.begin(); it != this->map_objects.end(); ++it)
 		objects.push_back((*it).second);
-
-	return objects;
+}
+template <typename T>
+void Manager<T>::getObjects(std::map<unsigned int, T*>& objects)
+{
+	objects = this->map_objects;
 }
 
 template <typename T>
-typename std::map<unsigned int, T*>::const_iterator& Manager<T>::getIteratorWithID(unsigned int id) const
+typename std::map<unsigned int, T*>::const_iterator Manager<T>::getIteratorWithID(unsigned int id) const
 {
 	std::map<unsigned int, T*>::const_iterator it = std::find_if(this->map_objects.begin(), this->map_objects.end(),
 		[id](std::pair<unsigned int, T*> pair)
@@ -120,7 +141,7 @@ typename std::map<unsigned int, T*>::const_iterator& Manager<T>::getIteratorWith
 	return it;
 }
 template <typename T>
-typename std::map<unsigned int, T*>::const_iterator& Manager<T>::getIteratorWithObject(T* object) const
+typename std::map<unsigned int, T*>::const_iterator Manager<T>::getIteratorWithObject(T* object) const
 {
 	std::map<unsigned int, T*>::const_iterator it = std::find_if(this->map_objects.begin(), this->map_objects.end(),
 		[object](std::pair<unsigned int, T*> pair)

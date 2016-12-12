@@ -56,7 +56,7 @@ int Engine::mainLoop()
 	}
 
 	// Seed the random number generator
-	srand(GetTickCount64());
+	srand(GetTickCount());
 
 	MSG msg = {};
 	while (msg.message != WM_QUIT)
@@ -120,7 +120,9 @@ int Engine::initialize()
 }
 void Engine::update()
 {
-	for (System* system : Singleton<SystemManager>::getInstance().getSystems())
+	std::vector<System*> systems;
+	Singleton<SystemManager>::getInstance().getSystems(systems);
+	for (System* system : systems)
 		system->update();
 }
 int Engine::shutDown()

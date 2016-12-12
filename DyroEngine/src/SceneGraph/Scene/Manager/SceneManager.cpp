@@ -52,7 +52,9 @@ void SceneManager::update()
 }
 bool SceneManager::shutdown()
 {
-	std::vector<Scene*> scenes = getObjects();
+	std::vector<Scene*> scenes;
+	getObjects(scenes);
+
 	for (Scene* scene : scenes)
 	{
 		if (!scene->getInitialized())
@@ -95,7 +97,8 @@ void SceneManager::setActiveScene(unsigned int id)
 }
 void SceneManager::setActiveScene(const std::tstring& name)
 {
-	std::vector<Scene*> scenes = getObjects();
+	std::vector<Scene*> scenes;
+	getObjects(scenes);
 
 	std::vector<Scene*>::const_iterator it = std::find_if(scenes.begin(), scenes.end(),
 		[name](Scene* scene) -> bool

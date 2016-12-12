@@ -12,7 +12,7 @@ GameSettings::~GameSettings()
 
 void GameSettings::initialize(const std::tstring& filePath)
 {
-	Settings::initialize(filePath);
+	Settings::loadSettings(filePath);
 }
 
 void GameSettings::setDefaultSceneName(const std::tstring& name)

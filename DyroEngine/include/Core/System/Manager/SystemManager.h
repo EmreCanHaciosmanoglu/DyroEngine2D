@@ -7,11 +7,13 @@
 	#include <vector>
 #endif
 
+#ifndef _SYSTEM_H
+	#include "Core\System\System.h"
+#endif
 #ifndef _SYSTEMTYPE_H
 	#include "Defines/Types/SystemType.h"
 #endif
 
-class System;
 class SystemFactory;
 
 class SystemManager : public Manager<System>
@@ -24,7 +26,7 @@ public:
 	virtual bool shutdown();
 
 	System* getSystem(SystemType type);
-	std::vector<System*> getSystems();
+	void getSystems(std::vector<System*>& systems);
 
 private:
 	SystemFactory* factory;

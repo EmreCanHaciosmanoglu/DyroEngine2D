@@ -7,8 +7,23 @@
 #include "Defines/string.h"
 #endif
 
+#ifndef _VECTOR_H
+#include <vector>
+#endif
+
+// Macro for the hard coded methods.
+#define OBJECT_STATICS( class_type_id ) \
+    public: \
+    static const std::tstring getClassTypeId() { return _T( class_type_id ); } \
+    virtual const std::tstring getTypeId() const { return _T( class_type_id ); }
+
 class Object : public ObjectCounter<Object>
 {
+	/**
+	\note Must be present in every subclass definition.
+	*/
+	OBJECT_STATICS("Object")
+
 public:
 	Object(const std::tstring& name = _T(""));
 	virtual ~Object();
@@ -17,6 +32,8 @@ public:
 	virtual bool postInitialize() = 0;
 	virtual bool shutdown() = 0;
 
+	bool isOfType(const std::tstring& classTypeId) const;
+	const std::vector<std::tstring>& getInheritanceList() const;
 	unsigned int getObjectID() const;
 
 	void setInitialized();
@@ -35,6 +52,8 @@ public:
 	const std::tstring& getName() const;
 
 protected:
+	void OBJECT_INIT(const std::tstring& classTypeId);
+
 	template<typename T>
 	const std::tstring generateUniqueName(const std::tstring& partialName)
 	{
@@ -51,6 +70,7 @@ private:
 	bool destroyed;
 
 	std::tstring name;
+	std::vector<std::tstring> inheritance_list;
 };
 
 #endif //_OBJECT_H

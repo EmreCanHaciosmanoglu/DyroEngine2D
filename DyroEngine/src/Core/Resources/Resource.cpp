@@ -3,7 +3,7 @@
 Resource::Resource(const std::tstring& resourcePath, ResourceType type)
 	:resource_path(resourcePath)
 	, resource_type(type)
-	, id(ObjectCounter<Resource>::getAmount())
+	, resource_id(ObjectCounter<Resource>::getAmount())
 {
 	int start_index = this->resource_path.find_last_of('\\');
 	if (start_index == std::tstring::npos)

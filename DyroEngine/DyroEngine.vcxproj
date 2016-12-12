@@ -82,6 +82,7 @@
     <ClInclude Include="include\Core\Data\DataObjects\DataObject.h" />
     <ClInclude Include="include\Core\Rendering\RenderItem.h" />
     <ClInclude Include="include\Core\Rendering\Visualization\Manager\VisualizationFactory.h" />
+    <ClInclude Include="include\Core\Rendering\Visualization\Manager\VisualizationManager.h" />
     <ClInclude Include="include\Core\Rendering\Visualization\Shapes\CircleShapeVisualization.h" />
     <ClInclude Include="include\Core\Rendering\Visualization\Shapes\LineShapeVisualization.h" />
     <ClInclude Include="include\Core\Rendering\Visualization\Shapes\PolygonShapeVisualization.h" />
@@ -146,6 +147,7 @@
     <ClInclude Include="include\SceneGraph\GameObjects\Camera\FreeCamera.h" />
     <ClInclude Include="include\SceneGraph\GameObjects\Camera\Manager\CameraManager.h" />
     <ClInclude Include="include\SceneGraph\GameObjects\GameObject.h" />
+    <ClInclude Include="include\SceneGraph\GameObjects\Manager\GameObjectManager.h" />
     <ClInclude Include="include\SceneGraph\GameObjects\PhysicsObject.h" />
     <ClInclude Include="include\SceneGraph\GameObjects\UIObject.h" />
     <ClInclude Include="include\Core\Data\DataObjects\Shapes\CircleShape.h" />
@@ -173,6 +175,7 @@
     <ClCompile Include="src\Core\Data\DataObjects\DataObject.cpp" />
     <ClCompile Include="src\Core\Rendering\RenderItem.cpp" />
     <ClCompile Include="src\Core\Rendering\Visualization\Manager\VisualizationFactory.cpp" />
+    <ClCompile Include="src\Core\Rendering\Visualization\Manager\VisualizationManager.cpp" />
     <ClCompile Include="src\Core\Rendering\Visualization\Shapes\CircleShapeVisualization.cpp" />
     <ClCompile Include="src\Core\Rendering\Visualization\Shapes\LineShapeVisualization.cpp" />
     <ClCompile Include="src\Core\Rendering\Visualization\Shapes\PolygonShapeVisualization.cpp" />
@@ -202,6 +205,7 @@
     <ClCompile Include="src\SceneGraph\GameObjects\Camera\FollowCamera.cpp" />
     <ClCompile Include="src\SceneGraph\GameObjects\Camera\FreeCamera.cpp" />
     <ClCompile Include="src\SceneGraph\GameObjects\Camera\Manager\CameraManager.cpp" />
+    <ClCompile Include="src\SceneGraph\GameObjects\Manager\GameObjectManager.cpp" />
     <ClCompile Include="src\SceneGraph\GameObjects\PhysicsObject.cpp" />
     <ClCompile Include="src\SceneGraph\GameObjects\SceneObject.cpp" />
     <ClCompile Include="src\Interfaces\IFillableShape.cpp" />

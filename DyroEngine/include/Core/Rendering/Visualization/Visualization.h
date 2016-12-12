@@ -9,21 +9,21 @@
 #include <vector>
 #endif
 
-class DataObject;
+class GameObject;
 
 class Visualization
 {
 public:
-	Visualization(DataObject* object);
+	Visualization(GameObject* object);
 	virtual ~Visualization();
 
 	const std::vector<RenderItem>& getRenderItems();
-	DataObject* getDataObject() const;
+	GameObject* getGameObject() const;
 
 protected:
 
 	std::vector<RenderItem> vec_renderitems;
-	DataObject* data_object;
+	GameObject* game_object;
 };
 
 #endif

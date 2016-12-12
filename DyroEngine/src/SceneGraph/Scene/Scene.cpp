@@ -170,10 +170,10 @@ const std::vector<GameObject*> Scene::getUIObjects() const
 {
 	return this->vec_ui_objects;
 }
-const std::vector<Visualization*> Scene::getVisualizations() const
-{
-	return getManager<DataObjectManager>()->getVisualizations();
-}
+//const std::vector<Visualization*> Scene::getVisualizations() const
+//{
+//	return getManager<DataObjectManager>()->getVisualizations();
+//}
 
 void Scene::addManager(AbstractManager* manager)
 {

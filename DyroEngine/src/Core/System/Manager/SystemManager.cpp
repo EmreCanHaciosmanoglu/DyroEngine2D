@@ -25,9 +25,9 @@ System* SystemManager::getSystem(SystemType type)
 
 	return new_system;
 }
-std::vector<System*> SystemManager::getSystems()
+void SystemManager::getSystems(std::vector<System*>& systems)
 {
-	return getObjects();
+	getObjects(systems);
 }
 
 
@@ -41,8 +41,11 @@ bool SystemManager::shutdown()
 {
 	SafeDelete(this->factory);
 
+	std::vector<System*> systems;
+	getObjects(systems);
+
 	bool result = true;
-	for (System* system : getObjects())
+	for (System* system : systems)
 	{
 		if (!system->shutdown())
 			result = false;

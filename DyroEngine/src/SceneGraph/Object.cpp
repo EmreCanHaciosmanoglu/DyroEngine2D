@@ -10,11 +10,20 @@ Object::Object(const std::tstring& name)
 	,name(name == _T("") ? generateUniqueName<Object>(_T("Object_")) : name)
 	,id(ObjectCounter<Object>::getAmount())
 {
+	OBJECT_INIT(_T("Object"));
 }
 Object::~Object()
 {
 }
 
+bool Object::isOfType(const std::tstring& classTypeId) const
+{
+	return std::find(this->inheritance_list.begin(), this->inheritance_list.end(), classTypeId) != this->inheritance_list.end();
+}
+const std::vector<std::tstring>& Object::getInheritanceList() const
+{
+	return this->inheritance_list;
+}
 unsigned int Object::getObjectID() const
 {
 	return this->id;

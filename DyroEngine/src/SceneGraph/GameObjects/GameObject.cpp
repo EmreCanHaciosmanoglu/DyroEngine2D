@@ -163,7 +163,6 @@ void GameObject::addComponent(Component* component)
 	{
 		this->vec_components.push_back(component);
 		component->setParent(this);
-		component->setDataObjectManager(getScene()->getManager<DataObjectManager>());
 	}
 }
 void GameObject::removeComponent(Component* component)

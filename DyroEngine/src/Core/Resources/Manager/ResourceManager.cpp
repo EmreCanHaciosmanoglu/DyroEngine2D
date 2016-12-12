@@ -14,7 +14,8 @@ ResourceManager::~ResourceManager()
 
 bool ResourceManager::initialize()
 {
-	std::vector<Resource*> resources = getObjects();
+	std::vector<Resource*> resources;
+	getObjects(resources);
 
 	for (Resource* r : resources)
 	{
@@ -26,7 +27,8 @@ bool ResourceManager::initialize()
 }
 bool ResourceManager::shutdown()
 {
-	std::vector<Resource*> resources = getObjects();
+	std::vector<Resource*> resources;
+	getObjects(resources);
 
 	for (Resource* r : resources)
 	{
