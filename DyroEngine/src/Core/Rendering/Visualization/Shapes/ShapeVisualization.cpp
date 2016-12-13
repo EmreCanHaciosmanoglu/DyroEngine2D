@@ -2,8 +2,8 @@
 
 #include "Core/Data/Shapes/Shape.h"
 
-ShapeVisualization::ShapeVisualization(GameObject* object)
-	:Visualization(object)
+ShapeVisualization::ShapeVisualization(GameObject* object, Component* component, const std::tstring& name)
+	:Visualization(object, component, name)
 {
 
 }

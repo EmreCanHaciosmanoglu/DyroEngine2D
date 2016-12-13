@@ -12,12 +12,13 @@
 #endif
 
 class GameObject;
+class Component;
 class VisualizationManager;
 
 class Visualization : public TaggedObject<Visualization>
 {
 public:
-	Visualization(GameObject* object, const std::tstring& name = _T(""));
+	Visualization(GameObject* object, Component* component, const std::tstring& name = _T(""));
 	virtual ~Visualization();
 
 	virtual const std::vector<RenderItem>& getRenderItems() const;
@@ -35,6 +36,7 @@ protected:
 	std::vector<RenderItem> render_items;
 
 	GameObject* game_object;
+	Component* root_component;
 
 	Visualization* parent_visualization;
 	VisualizationManager* visualization_manager;

@@ -2,8 +2,8 @@
 
 #include "Core/Data/Shapes/CircleShape.h"
 
-CircleShapeVisualization::CircleShapeVisualization(GameObject* object)
-	:ShapeVisualization(object)
+CircleShapeVisualization::CircleShapeVisualization(GameObject* object, Component* component)
+	:ShapeVisualization(object, component, _T("CircleVisualization"))
 {
 }
 CircleShapeVisualization::~CircleShapeVisualization()

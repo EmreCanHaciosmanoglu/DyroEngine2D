@@ -4,11 +4,12 @@
 #include "Core/Rendering/Visualization/Visualization.h"
 
 class GameObject;
+class Component;
 
 class ShapeVisualization : public Visualization
 {
 public:
-	ShapeVisualization(GameObject* object);
+	ShapeVisualization(GameObject* object, Component* component, const std::tstring& name = _T("ShapeVisualization"));
 	virtual ~ShapeVisualization();
 };
 

@@ -2,8 +2,8 @@
 
 #include "Core/Data/Shapes/RectShape.h"
 
-RectShapeVisualization::RectShapeVisualization(GameObject* object)
-	:ShapeVisualization(object)
+RectShapeVisualization::RectShapeVisualization(GameObject* object, Component* component)
+	:ShapeVisualization(object, component, _T("RectVisualization"))
 {
 }
 RectShapeVisualization::~RectShapeVisualization()

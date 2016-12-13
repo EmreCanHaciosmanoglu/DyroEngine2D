@@ -4,11 +4,12 @@
 #include "Core/Rendering/Visualization/Shapes/ShapeVisualization.h"
 
 class GameObject;
+class Component;
 
 class LineShapeVisualization : public ShapeVisualization
 {
 public:
-	LineShapeVisualization(GameObject* object);
+	LineShapeVisualization(GameObject* object, Component* component);
 	virtual ~LineShapeVisualization();
 };
 

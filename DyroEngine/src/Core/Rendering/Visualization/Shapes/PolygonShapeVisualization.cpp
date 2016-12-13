@@ -2,8 +2,8 @@
 
 #include "Core/Data/Shapes/PolygonShape.h"
 
-PolygonShapeVisualization::PolygonShapeVisualization(GameObject* object)
-	:ShapeVisualization(object)
+PolygonShapeVisualization::PolygonShapeVisualization(GameObject* object, Component* component)
+	:ShapeVisualization(object, component, _T("PolygonVisualization"))
 {
 
 }

@@ -5,11 +5,12 @@
 #include "Interfaces/IBoundingBox.h"
 
 class GameObject;
+class Component;
 
 class PolygonShapeVisualization : public ShapeVisualization, public IBoundingBox
 {
 public:
-	PolygonShapeVisualization(GameObject* object);
+	PolygonShapeVisualization(GameObject* object, Component* component);
 	virtual ~PolygonShapeVisualization();
 
 	virtual Rect2D getBoundingBox() const;

@@ -3,9 +3,10 @@
 
 #include "Defines\deletemacros.h"
 
-Visualization::Visualization(GameObject* object, const std::tstring& name)
+Visualization::Visualization(GameObject* object, Component* component, const std::tstring& name)
 	:TaggedObject(name)
 	,parent_visualization(nullptr)
+	,root_component(component)
 	,game_object(object)
 {
 	this->visualization_manager = new VisualizationManager();

@@ -2,8 +2,8 @@
 
 #include "Core/Data/Shapes/Shape.h"
 
-LineShapeVisualization::LineShapeVisualization(GameObject* object)
-	:ShapeVisualization(object)
+LineShapeVisualization::LineShapeVisualization(GameObject* object, Component* component)
+	:ShapeVisualization(object, component, _T("LineVisualization"))
 {
 
 }

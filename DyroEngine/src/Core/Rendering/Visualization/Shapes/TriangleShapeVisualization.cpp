@@ -2,8 +2,8 @@
 
 #include "Core/Data/Shapes/TriangleShape.h"
 
-TriangleShapeVisualization::TriangleShapeVisualization(GameObject* object)
-	:ShapeVisualization(object)
+TriangleShapeVisualization::TriangleShapeVisualization(GameObject* object, Component* component)
+	:ShapeVisualization(object, component, _T("TriangleVisualization"))
 {
 
 }

@@ -54,23 +54,23 @@ Visualization* VisualizationFactory::createVisualization(GameObject* object, boo
 
 			if (component->getTypeId() == CircleShapeComponent::getClassTypeId())
 			{
-				root->addVisualizationChildNode(new CircleShapeVisualization(object));
+				root->addVisualizationChildNode(new CircleShapeVisualization(object, component));
 			}
 			else if (component->getTypeId() == LineShapeComponent::getClassTypeId())
 			{
-				root->addVisualizationChildNode(new LineShapeVisualization(object));
+				root->addVisualizationChildNode(new LineShapeVisualization(object, component));
 			}
 			else if (component->getTypeId() == PolygonShapeComponent::getClassTypeId())
 			{
-				root->addVisualizationChildNode(new PolygonShapeVisualization(object));
+				root->addVisualizationChildNode(new PolygonShapeVisualization(object, component));
 			}
 			else if (component->getTypeId() == RectShapeComponent::getClassTypeId())
 			{
-				root->addVisualizationChildNode(new RectShapeVisualization(object));
+				root->addVisualizationChildNode(new RectShapeVisualization(object, component));
 			}
 			else if (component->getTypeId() == TriangleShapeComponent::getClassTypeId())
 			{
-				root->addVisualizationChildNode(new TriangleShapeVisualization(object));
+				root->addVisualizationChildNode(new TriangleShapeVisualization(object, component));
 			}
 		}
 	}
