@@ -22,6 +22,9 @@ public:
 
 	virtual const std::vector<RenderItem>& getRenderItems() const;
 	
+	void setParent(Visualization* visualization);
+	Visualization* getParent() const;
+
 	GameObject* getGameObject() const;
 
 	void addVisualizationChildNode(Visualization* visualization);
@@ -32,6 +35,8 @@ protected:
 	std::vector<RenderItem> render_items;
 
 	GameObject* game_object;
+
+	Visualization* parent_visualization;
 	VisualizationManager* visualization_manager;
 };
 

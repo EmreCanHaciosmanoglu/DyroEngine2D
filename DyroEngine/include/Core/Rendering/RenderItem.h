@@ -22,9 +22,6 @@ public:
 
 	virtual bool isTransparant() const = 0;
 
-	void setTransform(const Matrix2D& transform);
-	const Matrix2D& getTransform() const;
-
 private:
 
 	unsigned int layer;

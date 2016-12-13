@@ -10,7 +10,7 @@ public:
 	VisualizationFactory();
 	~VisualizationFactory();
 
-	Visualization* createVisualization(GameObject* object);
+	Visualization* createVisualization(GameObject* object, bool generateChildVisualizations = true);
 };
 
 #endif

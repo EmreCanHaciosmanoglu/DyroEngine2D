@@ -42,6 +42,8 @@ public:
 	void setParent(GameObject* parent);
 	GameObject* getParent() const;
 
+	bool hasChilderen() const;
+
 	std::vector<GameObject*> getChilderen() const;
 
 	template <typename T> T* getComponent() const;

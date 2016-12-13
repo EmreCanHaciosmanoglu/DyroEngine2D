@@ -17,6 +17,8 @@ public:
 
 	virtual void render(Renderer* renderer) = 0;
 
+	virtual bool isTransparant() const;
+
 	void setColor(const Color& c);
 	const Color& getColor() const;
 

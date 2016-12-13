@@ -16,3 +16,8 @@ const Color& Shape::getColor() const
 {
 	return this->color;
 }
+
+bool Shape::isTransparant() const
+{
+	return this->color.alpha != 1.0f;
+}

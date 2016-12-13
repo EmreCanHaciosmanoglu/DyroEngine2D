@@ -31,7 +31,7 @@ VisualizationFactory::~VisualizationFactory()
 
 }
 
-Visualization* VisualizationFactory::createVisualization(GameObject* object)
+Visualization* VisualizationFactory::createVisualization(GameObject* object, bool generateChildVisualizations)
 {
 	Visualization* root = nullptr;
 
@@ -45,33 +45,40 @@ Visualization* VisualizationFactory::createVisualization(GameObject* object)
 		IRenderable* renderable = dynamic_cast<IRenderable*>(component);
 		if (renderable == nullptr)
 			continue;
-	
-	for (Component* component : object->getComponents())
-		{
-		IRenderable* renderable = dynamic_cast<IRenderable*>(component);
-		if (renderable == nullptr)
-			continue;
 
-		if (component->getTypeId() == CircleShapeComponent::getClassTypeId())
+		for (Component* component : object->getComponents())
 		{
-			root->addVisualizationChildNode(new CircleShapeVisualization(object));
+			IRenderable* renderable = dynamic_cast<IRenderable*>(component);
+			if (renderable == nullptr)
+				continue;
+
+			if (component->getTypeId() == CircleShapeComponent::getClassTypeId())
+			{
+				root->addVisualizationChildNode(new CircleShapeVisualization(object));
+			}
+			else if (component->getTypeId() == LineShapeComponent::getClassTypeId())
+			{
+				root->addVisualizationChildNode(new LineShapeVisualization(object));
+			}
+			else if (component->getTypeId() == PolygonShapeComponent::getClassTypeId())
+			{
+				root->addVisualizationChildNode(new PolygonShapeVisualization(object));
+			}
+			else if (component->getTypeId() == RectShapeComponent::getClassTypeId())
+			{
+				root->addVisualizationChildNode(new RectShapeVisualization(object));
+			}
+			else if (component->getTypeId() == TriangleShapeComponent::getClassTypeId())
+			{
+				root->addVisualizationChildNode(new TriangleShapeVisualization(object));
+			}
 		}
-		else if (component->getTypeId() == LineShapeComponent::getClassTypeId())
-		{
-			root->addVisualizationChildNode(new LineShapeVisualization(object));
-		}
-		else if (component->getTypeId() == PolygonShapeComponent::getClassTypeId())
-		{
-			root->addVisualizationChildNode(new PolygonShapeVisualization(object));
-		}
-		else if (component->getTypeId() == RectShapeComponent::getClassTypeId())
-		{
-			root->addVisualizationChildNode(new RectShapeVisualization(object));
-		}
-		else if (component->getTypeId() == TriangleShapeComponent::getClassTypeId())
-		{
-			root->addVisualizationChildNode(new TriangleShapeVisualization(object));
-		}
+	}
+
+	if (generateChildVisualizations)
+	{
+		for (GameObject* child : object->getChilderen())
+			root->addVisualizationChildNode(createVisualization(child, child->hasChilderen()));
 	}
 
 	return root;

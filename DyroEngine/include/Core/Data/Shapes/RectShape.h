@@ -27,10 +27,10 @@ public:
 	RectShape(const Rect2D& rect, float lineWidth = 0.5f, const std::tstring& name = _T(""));
 	virtual ~RectShape();
 
+	virtual void render(Renderer* renderer);
+
 	virtual void setFill(bool fill);
 	virtual bool getFill() const;
-
-	virtual void render(Renderer* renderer);
 
 	virtual Rect2D getBoundingBox() const;
 

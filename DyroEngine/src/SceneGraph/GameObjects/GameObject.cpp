@@ -148,6 +148,11 @@ GameObject* GameObject::getParent() const
 	return this->parent;
 }
 
+bool GameObject::hasChilderen() const
+{
+	return this->vec_childeren.size() > 0;
+}
+
 std::vector<GameObject*> GameObject::getChilderen() const
 {
 	return this->vec_childeren;
