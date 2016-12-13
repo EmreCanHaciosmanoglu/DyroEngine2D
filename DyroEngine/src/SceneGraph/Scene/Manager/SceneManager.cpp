@@ -77,7 +77,7 @@ bool SceneManager::shutdown()
 
 void SceneManager::addScene(Scene* scene)
 {
-	addObject(scene->getObjectID(), scene);
+	addObject(scene->getID(), scene);
 }
 
 void SceneManager::setActiveScene(unsigned int id)
@@ -106,7 +106,7 @@ void SceneManager::setActiveScene(const std::tstring& name)
 		return scene->getName() == name;
 	});
 
-	setActiveScene((*it)->getObjectID());
+	setActiveScene((*it)->getID());
 }
 Scene* SceneManager::getActiveScene() const
 {

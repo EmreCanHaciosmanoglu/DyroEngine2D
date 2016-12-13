@@ -16,6 +16,8 @@ TransformComponent::TransformComponent(const std::tstring& name)
 	, mirror_y(Vector2D(1, 1))
 	, center_position(0,0)
 {
+	OBJECT_INIT(_T("TransformComponent"));
+
 	setExecutionOrder(100);
 }
 TransformComponent::~TransformComponent()

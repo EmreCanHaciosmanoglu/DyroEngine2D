@@ -1,7 +1,7 @@
 #ifndef _VISUALIZATION_H
 #define _VISUALIZATION_H
 
-#include "Helpers/ObjectCounter.h"
+#include "Helpers\TaggedObject.h"
 
 #ifndef _RENDERITEM_H
 #include "Core/Rendering/RenderItem.h"
@@ -14,23 +14,20 @@
 class GameObject;
 class VisualizationManager;
 
-class Visualization : public ObjectCounter<Visualization>
+class Visualization : public TaggedObject<Visualization>
 {
 public:
-	Visualization(GameObject* object);
+	Visualization(GameObject* object, const std::tstring& name = _T(""));
 	virtual ~Visualization();
 
 	virtual const std::vector<RenderItem>& getRenderItems() const;
-
-	unsigned int getVisualizationID() const;
+	
 	GameObject* getGameObject() const;
 
 	void addVisualizationChildNode(Visualization* visualization);
 	void removeVisualizationChildNode(Visualization* visualization);
 
 protected:
-
-	unsigned int id;
 
 	std::vector<RenderItem> render_items;
 

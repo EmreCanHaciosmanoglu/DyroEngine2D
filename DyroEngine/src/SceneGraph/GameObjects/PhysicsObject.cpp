@@ -9,6 +9,8 @@ PhysicsObject::PhysicsObject(BodyType bodyType, const std::tstring& name)
 	:SceneObject(name)
 	,rigid(new RigidBodyComponent(bodyType))
 {
+	OBJECT_INIT(_T("PhysicsObject"));
+
 	addComponent(this->rigid);
 }
 PhysicsObject::~PhysicsObject()

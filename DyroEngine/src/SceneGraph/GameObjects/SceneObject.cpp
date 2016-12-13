@@ -14,6 +14,8 @@ SceneObject::SceneObject(const std::tstring& name)
 	:GameObject(name)
 	,transform(new TransformComponent())
 {
+	OBJECT_INIT(_T("SceneObject"));
+
 	addComponent(this->transform);
 }
 SceneObject::~SceneObject()

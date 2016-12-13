@@ -14,6 +14,7 @@ GameObject::GameObject(const std::tstring& name)
 	, current_scene(nullptr)
 	, parent(nullptr)
 {
+	OBJECT_INIT(_T("GameObject"));
 }
 GameObject::~GameObject()
 {

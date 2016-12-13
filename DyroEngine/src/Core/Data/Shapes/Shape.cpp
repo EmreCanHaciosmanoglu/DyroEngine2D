@@ -1,10 +1,9 @@
-#include "Core/Data/DataObjects/Shapes/Shape.h"
+#include "Core/Data/Shapes/Shape.h"
 
 Shape::Shape(const std::tstring& name)
-	:GameObject(name)
+	:TaggedObject(name)
 	,color(1,1,1,1)
 {
-	DATA_OBJECT_INIT(_T("Shape"));
 }
 Shape::~Shape()
 {}

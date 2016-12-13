@@ -29,3 +29,11 @@ const Matrix2D& RenderItem::getTransform() const
 	return this->transform;
 }
 
+void RenderItem::setTransform(const Matrix2D& transform)
+{
+	this->transform = transform;
+}
+const Matrix2D& RenderItem::getTransform() const
+{
+	return this->transform;
+}

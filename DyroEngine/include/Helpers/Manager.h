@@ -47,8 +47,8 @@ protected:
 
 	T* getObject(unsigned int id) const;
 	
-	void getObjects(std::vector<T*>& objects);
-	void getObjects(std::map<unsigned int, T*>& objects);
+	void getObjects(std::vector<T*>& objects) const;
+	const std::map<unsigned int, T*>& getObjects() const;
 
 private:
 	std::map<unsigned int, T*> map_objects;
@@ -118,15 +118,15 @@ T* Manager<T>::getObject(unsigned int id) const
 }
 
 template <typename T>
-void Manager<T>::getObjects(std::vector<T*>& objects)
+void Manager<T>::getObjects(std::vector<T*>& objects) const
 {
 	for (std::map<unsigned int, T*>::const_iterator it = this->map_objects.begin(); it != this->map_objects.end(); ++it)
 		objects.push_back((*it).second);
 }
 template <typename T>
-void Manager<T>::getObjects(std::map<unsigned int, T*>& objects)
+const std::map<unsigned int, T*>& Manager<T>::getObjects() const
 {
-	objects = this->map_objects;
+	return this->map_objects;
 }
 
 template <typename T>

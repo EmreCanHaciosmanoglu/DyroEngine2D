@@ -12,6 +12,8 @@ CollisionComponent::CollisionComponent(RigidBodyComponent* rigid, float restitut
 	, density(density)
 	, rigid(rigid)
 {
+	OBJECT_INIT(_T("CollisionComponent"));
+
 	setExecutionOrder(300);
 }
 CollisionComponent::~CollisionComponent()

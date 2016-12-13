@@ -1,11 +1,11 @@
 #include "SceneGraph/GameObjects/Spaceship.h"
 
-#include "SceneGraph/Component/ShapeComponent.h"
+#include "SceneGraph/Component/Shapes/ShapeComponent.h"
 #include "SceneGraph/Component/RigidBodyComponent.h"
 #include "SceneGraph/Component/TransformComponent.h"
 #include "SceneGraph/Component/Collision/PolygonCollisionComponent.h"
 
-#include "Core/Data/DataObjects/Shapes/PolygonShape.h"
+#include "Core/Data/Shapes/PolygonShape.h"
 
 #include "Core/System/Input.h"
 #include "Core/System/MainTimer.h"

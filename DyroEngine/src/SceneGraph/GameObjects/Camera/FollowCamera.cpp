@@ -9,7 +9,9 @@ FollowCamera::FollowCamera(SceneObject* target, const std::tstring& name, float 
 	:Camera(name)
 	, damping(damping)
 	, target(target)
-{}
+{
+	OBJECT_INIT(_T("FollowCamera"));
+}
 FollowCamera::~FollowCamera()
 {}
 

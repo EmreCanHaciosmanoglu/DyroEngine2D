@@ -1,14 +1,14 @@
 #include "SceneGraph/Object.h"
 
-Object::Object(const std::tstring& name)
-	:active(true)
+#include "Helpers\Singleton.h"
+#include "Diagnostics\Logger.h"
 
+Object::Object(const std::tstring& name)
+	: TaggedObject(name)
+	, active(true)
 	, initialized(false)
 	, post_initialized(false)
 	, destroyed(false)
-
-	,name(name == _T("") ? generateUniqueName<Object>(_T("Object_")) : name)
-	,id(ObjectCounter<Object>::getAmount())
 {
 	OBJECT_INIT(_T("Object"));
 }
@@ -23,10 +23,6 @@ bool Object::isOfType(const std::tstring& classTypeId) const
 const std::vector<std::tstring>& Object::getInheritanceList() const
 {
 	return this->inheritance_list;
-}
-unsigned int Object::getObjectID() const
-{
-	return this->id;
 }
 
 void Object::setInitialized()
@@ -71,11 +67,14 @@ bool Object::isDestroyed() const
 	return this->destroyed;
 }
 
-void Object::setName(const std::tstring& name)
+void Object::OBJECT_INIT(const std::tstring& classTypeId)
 {
-	this->name = name;
-}
-const std::tstring& Object::getName() const
-{
-	return this->name;
+	std::vector<std::tstring>::const_iterator it = std::find(this->inheritance_list.begin(), this->inheritance_list.end(), classTypeId);
+	if (it != this->inheritance_list.end())
+	{
+		Singleton<Logger>::getInstance().log(_T("DataObject : duplicate class type id detected; ignored:") + classTypeId, LOGTYPE_INFO);
+		return;
+	}
+
+	this->inheritance_list.push_back(classTypeId);
 }

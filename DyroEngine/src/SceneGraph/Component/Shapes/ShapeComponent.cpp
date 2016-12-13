@@ -1,16 +1,19 @@
-#include "SceneGraph/Component/ShapeComponent.h"
+#include "SceneGraph/Component/Shapes/ShapeComponent.h"
 #include "SceneGraph\GameObjects\GameObject.h"
 #include "SceneGraph\Scene\Scene.h"
 
-#include "Core/Data/DataObjects/Shapes/Shape.h"
+#include "Core/Data/Shapes/Shape.h"
 
 #include "Interfaces/IFillableShape.h"
 
 #include "Defines/deletemacros.h"
 
-ShapeComponent::ShapeComponent(Shape* shape)
-	:shape(shape)
-{}
+ShapeComponent::ShapeComponent(Shape* shape, const std::tstring& name)
+	:Component(name)
+	,shape(shape)
+{
+	OBJECT_INIT(_T("ShapeComponent"));
+}
 ShapeComponent::~ShapeComponent()
 {
 	SafeDelete(this->shape);
@@ -53,13 +56,7 @@ bool ShapeComponent::getFill() const
 	return false;
 }
 
-Rect2D ShapeComponent::getBoundingBox() const
+Shape* ShapeComponent::getShape() const
 {
-	Rect2D bounding_rect = Rect2D::empty;
-
-	IBoundingBox* bounding_box = dynamic_cast<IBoundingBox*>(this->shape);
-	if (bounding_box != nullptr)
-		return bounding_box->getBoundingBox();
-
-	return bounding_rect;
+	return this->shape;
 }

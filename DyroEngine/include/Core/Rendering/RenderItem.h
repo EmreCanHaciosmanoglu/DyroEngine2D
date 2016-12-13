@@ -5,11 +5,15 @@
 #include "Helpers/Math/Matrix2D.h"
 #endif
 
+class Renderer;
+
 class RenderItem
 {
 public:
 	RenderItem();
 	virtual ~RenderItem();
+
+	virtual void render(Renderer* renderer) = 0;
 
 	void setLayer(unsigned int layer);
 	unsigned int getLayer() const;
@@ -18,7 +22,8 @@ public:
 
 	virtual bool isTransparant() const = 0;
 
-	virtual void render() = 0;
+	void setTransform(const Matrix2D& transform);
+	const Matrix2D& getTransform() const;
 
 private:
 

@@ -3,20 +3,16 @@
 
 #include "SceneGraph/Component/Component.h"
 
-#ifndef _IBOUNDINGBOX_H
-#include "Interfaces\IBoundingBox.h"
-#endif
-
 #ifndef _COLOR_H
 #include "Defines/color.h"
 #endif
 
 class Shape;
 
-class ShapeComponent : public Component, public IBoundingBox
+class ShapeComponent : public Component
 {
 public:
-	ShapeComponent(Shape* shape);
+	ShapeComponent(Shape* shape, const std::tstring& name = _T(""));
 	virtual ~ShapeComponent();
 
 	virtual bool initialize();
@@ -29,7 +25,7 @@ public:
 	void setFill(bool fill);
 	bool getFill() const;
 
-	Rect2D getBoundingBox() const;
+	Shape* getShape() const;
 private:
 	Shape* shape;
 };

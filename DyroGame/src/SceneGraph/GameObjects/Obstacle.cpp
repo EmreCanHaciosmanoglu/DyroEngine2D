@@ -2,7 +2,9 @@
 
 Obstacle::Obstacle(BodyType bodyType, const std::tstring& name)
 	:PhysicsObject(bodyType, name)
-{}
+{
+	OBJECT_INIT(_T("Obstacle"));
+}
 Obstacle::~Obstacle()
 {}
 

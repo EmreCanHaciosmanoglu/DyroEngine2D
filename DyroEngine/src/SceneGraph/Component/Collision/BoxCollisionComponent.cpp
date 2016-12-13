@@ -14,7 +14,9 @@ BoxCollisionComponent::BoxCollisionComponent(RigidBodyComponent* rigid, float wi
 	,width(width)
 	,height(height)
 
-{}
+{
+	OBJECT_INIT(_T("BoxCollisionComponent"));
+}
 BoxCollisionComponent::~BoxCollisionComponent()
 {}
 

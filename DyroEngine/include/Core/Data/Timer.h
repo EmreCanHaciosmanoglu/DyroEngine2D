@@ -1,8 +1,7 @@
 #ifndef _TIMER_H
 #define _TIMER_H
 
-#include "Helpers/ObjectCounter.h"
-
+#include "Helpers\TaggedObject.h"
 #ifndef _STRING_H
 #include "Defines/string.h"
 #endif
@@ -11,17 +10,11 @@
 #include <ctime>
 #endif
 
-class Timer : public ObjectCounter<Timer>
+class Timer : public TaggedObject<Timer>
 {
 public:
-
 	Timer(const std::tstring& name);
 	virtual ~Timer();
-
-	unsigned int getTimerID();
-
-	void setName(const std::tstring& name);
-	const std::tstring& getName() const;
 
 	double getTotalTime() const;		//in seconds
 	double getDeltaTime() const;		//in seconds
@@ -34,9 +27,6 @@ public:
 
 	void reset();
 private:
-	unsigned int id;
-	std::tstring name;
-
 	double delta_time;
 
 	double current_time;
@@ -48,4 +38,4 @@ private:
 	bool paused;
 };
 
-#endif //_GAMETIMER_H
+#endif //_TIMER_H

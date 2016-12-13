@@ -11,6 +11,8 @@ Camera::Camera(const std::tstring& name, bool setActive)
 	,camera(new CameraComponent())
 	,transform(new TransformComponent())
 {
+	OBJECT_INIT(_T("Camera"));
+
 	Singleton<CameraManager>::getInstance().addCamera(this, setActive);
 
 	addComponent(this->transform);

@@ -1,10 +1,10 @@
 #include "SceneGraph\GameObjects\Astroid.h"
 
-#include "SceneGraph/Component/ShapeComponent.h"
+#include "SceneGraph/Component/Shapes/ShapeComponent.h"
 #include "SceneGraph/Component/RigidBodyComponent.h"
 #include "SceneGraph/Component/Collision/PolygonCollisionComponent.h"
 
-#include "Core/Data/DataObjects/Shapes/PolygonShape.h"
+#include "Core/Data/Shapes/PolygonShape.h"
 
 #include "Defines\programdefaults.h"
 
@@ -20,9 +20,11 @@ namespace
 }
 
 Astroid::Astroid(float radius)
-	:Obstacle(BodyType::DYNAMIC,generateUniqueName<Astroid>(_T("Astroid")))
+	:Obstacle(BodyType::DYNAMIC)
 	, radius(radius)
-{}
+{
+	OBJECT_INIT(_T("Astroid"));
+}
 Astroid::~Astroid()
 {}
 

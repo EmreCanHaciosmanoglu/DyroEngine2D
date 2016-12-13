@@ -9,7 +9,7 @@
 //#include "SceneGraph\Object\Objects\Shapes\CircleShape.h"
 //#include "SceneGraph\Object\Objects\Shapes\TriangleShape.h"
 
-#include "SceneGraph\Component\ShapeComponent.h"
+#include "SceneGraph\Component\Shapes\ShapeComponent.h"
 #include "SceneGraph\Component\TransformComponent.h"
 #include "SceneGraph\Component\Collision\BoxCollisionComponent.h"
 #include "SceneGraph\Component\Collision\CircleCollisionComponent.h"
@@ -43,6 +43,7 @@ namespace
 MyScene::MyScene()
 	:Scene(_T("MyScene"))
 {
+	OBJECT_INIT(_T("MyScene"));
 }
 MyScene::~MyScene()
 {

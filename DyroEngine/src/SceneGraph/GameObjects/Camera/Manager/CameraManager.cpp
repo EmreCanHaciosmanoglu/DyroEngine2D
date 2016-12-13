@@ -46,7 +46,7 @@ void CameraManager::addCamera(Camera* camera, bool setActive)
 	//Camera cannot be null
 	assert(camera != nullptr);
 
-	addObject(camera->getObjectID(), camera);
+	addObject(camera->getID(), camera);
 	if (setActive)
 	{
 		setActiveCamera(camera);

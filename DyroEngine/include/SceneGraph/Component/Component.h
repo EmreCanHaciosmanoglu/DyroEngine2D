@@ -8,7 +8,6 @@
 #endif
 
 class GameObject;
-class DataObjectManager;
 
 class Component : public Object
 {
@@ -27,14 +26,10 @@ public:
 	void setParent(GameObject* parent);
 	GameObject* getParent() const;
 
-	void setDataObjectManager(DataObjectManager* manager);
-	DataObjectManager* getDataObjectManager() const;
-
 	static const int INVALID_ORDER_ID = -1;
 
 private:
 	GameObject* parent;
-	DataObjectManager* manager;
 
 	int execution_order;
 };

@@ -1,7 +1,7 @@
 #ifndef _TRIANGLESHAPE_H
 #define _TRIANGLESHAPE_H
 
-#include "Core\Data\DataObjects\Shapes\PolygonShape.h"
+#include "Core\Data\Shapes\PolygonShape.h"
 
 class TriangleShape : public PolygonShape
 {

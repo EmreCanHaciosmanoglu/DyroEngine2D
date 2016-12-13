@@ -12,6 +12,7 @@ FreeCamera::FreeCamera(const std::tstring& name, float speed)
 	:Camera(name)
 	,speed(speed)
 {
+	OBJECT_INIT(_T("FreeCamera"));
 }
 FreeCamera::~FreeCamera()
 {

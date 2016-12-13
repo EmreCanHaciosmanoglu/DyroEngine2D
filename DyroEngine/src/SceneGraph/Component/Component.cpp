@@ -6,8 +6,8 @@ Component::Component(const std::tstring& name)
 	:Object(name)
 	, parent(nullptr)
 	, execution_order(INVALID_ORDER_ID)
-	, manager(nullptr)
 {
+	OBJECT_INIT(_T("Component"));
 }
 Component::~Component()
 {
@@ -38,13 +38,4 @@ void Component::setParent(GameObject* parent)
 GameObject* Component::getParent() const
 {
 	return this->parent;
-}
-
-void Component::setDataObjectManager(DataObjectManager* manager)
-{
-	this->manager = manager;
-}
-DataObjectManager* Component::getDataObjectManager() const
-{
-	return this->manager;
 }
