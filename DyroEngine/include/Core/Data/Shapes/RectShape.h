@@ -1,7 +1,8 @@
 #ifndef _RECTSHAPE_H
 #define _RECTSHAPE_H
 
-#include "Core/Data/DataObjects/Shapes/Shape.h"
+#include "Core/Data/Shapes/Shape.h"
+
 #ifndef _IFILLABLESHAPE_H
 #include "Interfaces/IFillableShape.h"
 #endif

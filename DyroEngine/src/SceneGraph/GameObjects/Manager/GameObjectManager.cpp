@@ -7,14 +7,17 @@
 
 #include "Interfaces\IRenderable.h"
 
-#include "Helpers\Singleton.h"
-
 #include "Defines\assert.h"
 
 #include <algorithm>
 
 GameObjectManager::GameObjectManager()
-{}
+	:visualization_factory(nullptr)
+	,visualization_manager(nullptr)
+{
+	this->visualization_manager = new VisualizationManager();
+	this->visualization_factory = new VisualizationFactory();
+}
 GameObjectManager::~GameObjectManager()
 {}
 
@@ -39,6 +42,11 @@ bool GameObjectManager::initialize()
 }
 bool GameObjectManager::shutdown()
 {
+	this->visualization_manager->shutdown();
+
+	SafeDelete(this->visualization_manager);
+	SafeDelete(this->visualization_factory);
+
 	std::vector<GameObject*> objects;
 	getObjects(objects);
 
@@ -56,7 +64,7 @@ void GameObjectManager::addGameObject(GameObject* object)
 {
 	assert(object == nullptr);
 
-	addObject(object->getObjectID(), object);
+	addObject(object->getID(), object);
 }
 
 void GameObjectManager::removeGameObject(unsigned int id)
@@ -68,7 +76,7 @@ void GameObjectManager::removeGameObject(GameObject* object)
 	removeObject(object);
 }
 
-GameObject* GameObjectManager::getGameObject(const std::tstring& name)
+GameObject* GameObjectManager::getGameObject(const std::tstring& name) const
 {
 	std::vector<GameObject*> game_objects;
 	getObjects(game_objects);
@@ -79,20 +87,28 @@ GameObject* GameObjectManager::getGameObject(const std::tstring& name)
 		return name == object->getName();
 	});
 
-	return getObject((*it)->getObjectID());
+	return getObject((*it)->getID());
 }
-GameObject* GameObjectManager::getGameObject(unsigned int id)
+GameObject* GameObjectManager::getGameObject(unsigned int id) const
 {
 	return getObject(id);
 }
 
-void GameObjectManager::getGameObjects(std::vector<GameObject*>& objects)
+void GameObjectManager::getGameObjects(std::vector<GameObject*>& objects) const
 {
 	getObjects(objects);
 }
-void GameObjectManager::getGameObjects(std::map<unsigned int, GameObject*>& objects)
+const std::map<unsigned int, GameObject*>& GameObjectManager::getGameObjects() const
 {
-	getObjects(objects);
+	return getObjects();
+}
+void GameObjectManager::getVisualizations(std::vector<Visualization*>& visualizations) const
+{
+	this->visualization_manager->getVisualizations(visualizations);
+}
+const std::map<unsigned int, Visualization*> GameObjectManager::getVisualizations() const
+{
+	return this->visualization_manager->getVisualizations();
 }
 
 bool GameObjectManager::addObject(unsigned int id, GameObject* object)
@@ -100,30 +116,19 @@ bool GameObjectManager::addObject(unsigned int id, GameObject* object)
 	if (!Manager<GameObject>::addObject(id, object))
 		return false;
 
-	VisualizationFactory factory = Singleton<VisualizationFactory>::getInstance();
-
-	std::vector<Component*> components = object->getComponents();
-	for (Component* component : components)
-	{
-		IRenderable* renderable = dynamic_cast<IRenderable*>(component);
-		if (renderable == nullptr)
-			continue;
-
-		this->visualization_manager->addVisualization(id, factory.createVisualization(object));
-	}
+	this->visualization_manager->addVisualization(this->visualization_factory->createVisualization(object));
+	return true;
 }
 
 bool GameObjectManager::removeObject(unsigned int id)
 {
-	if (!Manager<GameObject>::removeObject(id))
-		return false;
-
-	this->visualization_manager->removeVisualization(id);
+	return Manager<GameObject>::removeObject(getObject(id));
 }
 bool GameObjectManager::removeObject(GameObject* object)
 {
 	if (!Manager<GameObject>::removeObject(object))
 		return false;
 
-	this->visualization_manager->removeVisualization(object->getObjectID());
+	this->visualization_manager->removeVisualizations(object);
+	return true;
 }

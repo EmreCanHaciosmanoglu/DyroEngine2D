@@ -9,7 +9,9 @@
 PolygonCollisionComponent::PolygonCollisionComponent(RigidBodyComponent* rigid, std::vector<Vector2D> vertices, float restitution, float friction, float density, const std::tstring& name)
 	:CollisionComponent(rigid,restitution,friction,density, name == _T("") ? _T("PolygonCollisionComponent") : name)
 	,vertices(vertices)
-{}
+{
+	OBJECT_INIT(_T("PolygonCollisionComponent"));
+}
 PolygonCollisionComponent::~PolygonCollisionComponent()
 {}
 

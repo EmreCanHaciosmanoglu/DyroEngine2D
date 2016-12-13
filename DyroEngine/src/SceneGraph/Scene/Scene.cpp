@@ -30,6 +30,7 @@ Scene::Scene(const std::tstring& name)
 	, contact_filter(nullptr)
 	, contact_listener(nullptr)
 {
+	OBJECT_INIT(_T("Scene"));
 }
 Scene::~Scene()
 {
@@ -172,7 +173,7 @@ const std::vector<GameObject*> Scene::getUIObjects() const
 }
 //const std::vector<Visualization*> Scene::getVisualizations() const
 //{
-//	return getManager<DataObjectManager>()->getVisualizations();
+//	return getManager<GameObjectManager>()->getVisualizations();
 //}
 
 void Scene::addManager(AbstractManager* manager)
@@ -242,35 +243,6 @@ void Scene::updateObjects(std::vector<GameObject*>& objects)
 			obj->update();
 	}
 }
-//void Scene::drawObjects(std::vector<GameObject*>& objects)
-//{
-//	if (!this->debug_rendering)
-//	{
-//		for (GameObject* obj : this->vec_objects)
-//		{
-//			IDrawable* drawable_obj = dynamic_cast<IDrawable*>(obj);
-//			if (drawable_obj == nullptr)
-//				continue;
-//
-//			if (drawable_obj->getCanDraw())
-//				drawable_obj->draw();
-//		}
-//	}
-//	else
-//	{
-//		this->phyx_world->DrawDebugData();
-//
-//		for (GameObject* obj : this->vec_objects)
-//		{
-//			IDrawableDebugInfo* drawable_obj = dynamic_cast<IDrawableDebugInfo*>(obj);
-//			if (drawable_obj == nullptr)
-//				continue;
-//
-//			if (drawable_obj->getCanDrawDebugInfo())
-//				drawable_obj->drawDebugInfo();
-//		}
-//	}
-//}
 bool Scene::shutdownObjects(std::vector<GameObject*> objects)
 {
 	for (GameObject* obj : objects)

@@ -1,4 +1,4 @@
-#include "Core/Data/DataObjects/Shapes/PolygonShape.h"
+#include "Core/Data/Shapes/PolygonShape.h"
 
 #include "Core/Rendering/Renderer.h"
 
@@ -13,7 +13,6 @@ PolygonShape::PolygonShape(const std::vector<Vector2D>& vecPoints, bool close, f
 	,close(close)
 	,line_width(lineWidth)
 {
-	DATA_OBJECT_INIT(_T("PolygonShape"));
 }
 PolygonShape::~PolygonShape()
 {}

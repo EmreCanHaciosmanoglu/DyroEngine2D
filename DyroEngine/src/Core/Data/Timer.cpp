@@ -1,4 +1,4 @@
-#include "Core\Data\DataObjects\Timer.h"
+#include "Core\Data\Timer.h"
 
 //Additional Include Files
 #ifndef _WINDOWS_
@@ -12,7 +12,7 @@
 
 //Class GameTimer
 Timer::Timer(const std::tstring& name)
-	:DataObject(name)
+	:TaggedObject(name)
 	, delta_time(-1.0)
 	, current_time(0)
 	, previous_time(0)

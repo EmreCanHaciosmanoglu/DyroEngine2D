@@ -3,8 +3,18 @@
 
 #include "Helpers\Manager.h"
 
+#ifndef _VECTOR_H
+#include <vector>
+#endif
+#ifndef _MAP_
+#include <map>
+#endif
+
 class GameObject;
+
+class Visualization;
 class VisualizationManager;
+class VisualizationFactory;
 
 class GameObjectManager : public Manager<GameObject>
 {
@@ -20,11 +30,14 @@ public:
 	void removeGameObject(unsigned int id);
 	void removeGameObject(GameObject* object);
 
-	GameObject* getGameObject(const std::tstring& name);
-	GameObject* getGameObject(unsigned int id);
+	GameObject* getGameObject(const std::tstring& name) const;
+	GameObject* getGameObject(unsigned int id) const;
 
-	void getGameObjects(std::vector<GameObject*>& objects);
-	void getGameObjects(std::map<unsigned int, GameObject*>& objects);
+	void getGameObjects(std::vector<GameObject*>& objects) const;
+	const std::map<unsigned int, GameObject*>& getGameObjects() const;
+
+	void getVisualizations(std::vector<Visualization*>& visualizations) const;
+	const std::map<unsigned int, Visualization*> getVisualizations() const;
 
 protected:
 
@@ -34,6 +47,7 @@ protected:
 	virtual bool removeObject(GameObject* object);
 
 private:
+	VisualizationFactory* visualization_factory;
 	VisualizationManager* visualization_manager;
 };
 

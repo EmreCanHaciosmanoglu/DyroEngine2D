@@ -18,6 +18,8 @@ RigidBodyComponent::RigidBodyComponent(BodyType bodyType, const std::tstring& na
 	,angular_damping(0.0f)
 	,is_dirty(false)
 {
+	OBJECT_INIT(_T("RigidBodyComponent"));
+
 	setExecutionOrder(200);
 }
 RigidBodyComponent::~RigidBodyComponent()

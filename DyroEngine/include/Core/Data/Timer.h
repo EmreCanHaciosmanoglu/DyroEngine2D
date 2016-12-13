@@ -1,17 +1,16 @@
 #ifndef _TIMER_H
 #define _TIMER_H
 
-#include "Core\Data\DataObjects\DataObject.h"
+#include "Helpers\Manager.h"
+#include "Helpers\TaggedObject.h"
 
 #ifndef _CTIME_
 #include <ctime>
 #endif
 
-
-class Timer : public DataObject
+class Timer : public TaggedObject<Timer>
 {
 public:
-
 	Timer(const std::tstring& name);
 	virtual ~Timer();
 
@@ -26,7 +25,6 @@ public:
 
 	void reset();
 private:
-
 	double delta_time;
 
 	double current_time;

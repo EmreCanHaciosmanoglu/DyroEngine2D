@@ -1,4 +1,4 @@
-#include "Core/Data/DataObjects/Shapes/LineShape.h"
+#include "Core/Data/Shapes/LineShape.h"
 
 #include "Core/Rendering/Renderer.h"
 
@@ -13,7 +13,6 @@ LineShape::LineShape(const Vector2D& v1, const Vector2D& v2, float lineWidth, co
 	,v2(v2)
 	,line_width(lineWidth)
 {
-	DATA_OBJECT_INIT(_T("LineShape"));
 }
 LineShape::~LineShape()
 {}

@@ -9,7 +9,9 @@
 CircleCollisionComponent::CircleCollisionComponent(RigidBodyComponent* rigid, float radius, float restitution, float friction, float density, const std::tstring& name)
 	:CollisionComponent(rigid,restitution,friction,density, name == _T("") ? _T("CircleCollisionComponent") : name)
 	,radius(radius)
-{}
+{
+	OBJECT_INIT(_T("CircleCollisionComponent"));
+}
 CircleCollisionComponent::~CircleCollisionComponent()
 {}
 

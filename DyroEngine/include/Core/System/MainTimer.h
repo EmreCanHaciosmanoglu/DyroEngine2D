@@ -2,18 +2,15 @@
 #define _MAINTIMER_H
 
 #include "Core/System/System.h"
+#include "Helpers\Manager.h"
 
 #ifndef _STRING_H
 #include "Defines/string.h"
 #endif
 
-#ifndef _VECTOR_
-#include <vector>
-#endif
-
 class Timer;
 
-class MainTimer : public System
+class MainTimer : public System, public Manager<Timer>
 {
 public:
 	MainTimer();
@@ -32,7 +29,6 @@ public:
 
 private:
 	Timer* world_timer;
-	std::vector<Timer*> vec_timers;
 };
 
 #endif //_GAMETIMER_H

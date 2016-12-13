@@ -9,12 +9,12 @@
 #include "SceneGraph\GameObjects\Spaceship.h"
 #include "SceneGraph\GameObjects\Astroid.h"
 
-#include "Core/Data/DataObjects\Shapes\RectShape.h"
-#include "Core/Data/DataObjects\Shapes\CircleShape.h"
-#include "Core/Data/DataObjects\Timer.h"
+#include "Core/Data/Shapes\RectShape.h"
+#include "Core/Data/Shapes\CircleShape.h"
+#include "Core/Data/Timer.h"
 
 #include "SceneGraph\Component\TransformComponent.h"
-#include "SceneGraph\Component\ShapeComponent.h"
+#include "SceneGraph\Component\Shapes/ShapeComponent.h"
 
 #include "SceneGraph\Component\Collision\BoxCollisionComponent.h"
 #include "SceneGraph\Component\Collision\CircleCollisionComponent.h"
@@ -47,6 +47,7 @@ TestScene::TestScene()
 	:Scene(_T("TestScene"))
 	, spaceship(nullptr)
 {
+	OBJECT_INIT(_T("TestScene"));
 }
 TestScene::~TestScene()
 {

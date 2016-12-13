@@ -1,16 +1,18 @@
 #include "Core/System/MainTimer.h"
 
-#include "Core/Data/DataObjects/Timer.h"
+#include "Core/Data/Timer.h"
 
 #include "Defines/Types/SystemType.h"
 #include "Defines/deletemacros.h"
 
 #include <algorithm>
+#include <vector>
 
 double MainTimer::delta_time = 0.0f;
 
 MainTimer::MainTimer()
 	:System(SystemType::TIMER_SYSTEM)
+	, world_timer(nullptr)
 {
 }
 MainTimer::~MainTimer()
@@ -31,17 +33,21 @@ void MainTimer::update()
 	this->world_timer->update();
 	this->delta_time = this->world_timer->getDeltaTime();
 
-	for (Timer* t : this->vec_timers)
+	std::vector<Timer*> timers;
+	getObjects(timers);
+
+	for (Timer* t : timers)
 		t->update();
 }
 bool MainTimer::shutdown()
 {
 	SafeDelete(this->world_timer);
 
-	for (Timer* t : this->vec_timers)
-	{
+	std::vector<Timer*> timers;
+	getObjects(timers);
+
+	for (Timer* t : timers)
 		SafeDelete(t);
-	}
 
 	return true;
 }
@@ -53,22 +59,21 @@ Timer* MainTimer::getWorldTimer() const
 
 void MainTimer::addTimer(Timer* timer)
 {
-	std::vector<Timer*>::const_iterator it = std::find(this->vec_timers.begin(), this->vec_timers.end(), timer);
-	if (it != this->vec_timers.end())
-		return;
-
-	this->vec_timers.push_back(timer);
+	addObject(timer->getID(), timer);
 }
 Timer* MainTimer::getTimer(const std::tstring& name) const
 {
-	std::vector<Timer*>::const_iterator it = std::find_if(this->vec_timers.begin(),this->vec_timers.end(),
+	std::vector<Timer*> timers;
+	getObjects(timers);
+
+	std::vector<Timer*>::const_iterator it = std::find_if(timers.begin(), timers.end(),
 		[name](Timer* timer)
 	{
 		return timer->getName() == name;
 	});
 
-	if (it != this->vec_timers.end())
-		return *it;
+	if (it == timers.end())
+		return nullptr;
 
-	return nullptr;
+	return (*it);
 }

@@ -1,8 +1,8 @@
 #include "Core/Rendering/Visualization/Shapes/LineShapeVisualization.h"
 
-#include "Core/Data/DataObjects/Shapes/Shape.h"
+#include "Core/Data/Shapes/Shape.h"
 
-LineShapeVisualization::LineShapeVisualization(DataObject* object)
+LineShapeVisualization::LineShapeVisualization(GameObject* object)
 	:ShapeVisualization(object)
 {
 

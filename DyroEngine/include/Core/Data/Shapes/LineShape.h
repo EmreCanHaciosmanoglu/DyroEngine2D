@@ -1,7 +1,7 @@
 #ifndef _LINESHAPE_H
 #define _LINESHAPE_H
 
-#include "Core/Data/DataObjects/Shapes/Shape.h"
+#include "Core/Data/Shapes/Shape.h"
 
 #ifndef _VECTOR2D_H
 #include "Helpers/Math/Vector2D.h"

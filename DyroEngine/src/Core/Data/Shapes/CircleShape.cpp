@@ -1,4 +1,4 @@
-#include "Core/Data/DataObjects/Shapes/CircleShape.h"
+#include "Core/Data/Shapes/CircleShape.h"
 
 #include "Core/Rendering/Renderer.h"
 
@@ -13,7 +13,6 @@ CircleShape::CircleShape(const Vector2D& center, float r, float lineWidth, const
 	,radius(r)
 	,line_width(lineWidth)
 {
-	DATA_OBJECT_INIT(_T("CircleShape"));
 }
 CircleShape::~CircleShape()
 {}

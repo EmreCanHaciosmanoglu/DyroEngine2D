@@ -1,4 +1,4 @@
-#include "Core/Data/DataObjects/Shapes/RectShape.h"
+#include "Core/Data/Shapes/RectShape.h"
 
 #include "Core/Rendering/Renderer.h"
 
@@ -15,7 +15,6 @@ RectShape::RectShape(const Rect2D& rect, float lineWidth, const std::tstring& na
 	,rect(rect)
 	,line_width(lineWidth)
 {
-	DATA_OBJECT_INIT(_T("RectShape"));
 }
 RectShape::~RectShape()
 {}
