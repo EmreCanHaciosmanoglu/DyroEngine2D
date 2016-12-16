@@ -82,12 +82,7 @@
     <ClInclude Include="include\Core\Rendering\RenderItem.h" />
     <ClInclude Include="include\Core\Rendering\Visualization\Manager\VisualizationFactory.h" />
     <ClInclude Include="include\Core\Rendering\Visualization\Manager\VisualizationManager.h" />
-    <ClInclude Include="include\Core\Rendering\Visualization\Shapes\CircleShapeVisualization.h" />
-    <ClInclude Include="include\Core\Rendering\Visualization\Shapes\LineShapeVisualization.h" />
-    <ClInclude Include="include\Core\Rendering\Visualization\Shapes\PolygonShapeVisualization.h" />
-    <ClInclude Include="include\Core\Rendering\Visualization\Shapes\RectShapeVisualization.h" />
-    <ClInclude Include="include\Core\Rendering\Visualization\Shapes\ShapeVisualization.h" />
-    <ClInclude Include="include\Core\Rendering\Visualization\Shapes\TriangleShapeVisualization.h" />
+    <ClInclude Include="include\Core\Rendering\Visualization\ShapeVisualization.h" />
     <ClInclude Include="include\Core\Rendering\Visualization\Visualization.h" />
     <ClInclude Include="include\Defines\collisionlayers.h" />
     <ClInclude Include="include\Defines\Types\BodyType.h" />
@@ -180,12 +175,7 @@
     <ClCompile Include="src\Core\Rendering\RenderItem.cpp" />
     <ClCompile Include="src\Core\Rendering\Visualization\Manager\VisualizationFactory.cpp" />
     <ClCompile Include="src\Core\Rendering\Visualization\Manager\VisualizationManager.cpp" />
-    <ClCompile Include="src\Core\Rendering\Visualization\Shapes\CircleShapeVisualization.cpp" />
-    <ClCompile Include="src\Core\Rendering\Visualization\Shapes\LineShapeVisualization.cpp" />
-    <ClCompile Include="src\Core\Rendering\Visualization\Shapes\PolygonShapeVisualization.cpp" />
-    <ClCompile Include="src\Core\Rendering\Visualization\Shapes\RectShapeVisualization.cpp" />
-    <ClCompile Include="src\Core\Rendering\Visualization\Shapes\ShapeVisualization.cpp" />
-    <ClCompile Include="src\Core\Rendering\Visualization\Shapes\TriangleShapeVisualization.cpp" />
+    <ClCompile Include="src\Core\Rendering\Visualization\ShapeVisualization.cpp" />
     <ClCompile Include="src\Core\Rendering\Visualization\Visualization.cpp" />
     <ClCompile Include="src\Diagnostics\DebugRenderer.cpp" />
     <ClCompile Include="src\Helpers\Collision\ContactFilter.cpp" />
