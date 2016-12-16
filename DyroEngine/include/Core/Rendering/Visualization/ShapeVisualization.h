@@ -3,14 +3,17 @@
 
 #include "Core/Rendering/Visualization/Visualization.h"
 
-class GameObject;
-class Component;
+class Object;
 
 class ShapeVisualization : public Visualization
 {
 public:
-	ShapeVisualization(GameObject* object, Component* component, const std::tstring& name = _T("ShapeVisualization"));
+	ShapeVisualization(Object* object, const std::tstring& name = _T("ShapeVisualization"));
 	virtual ~ShapeVisualization();
+
+protected:
+
+	virtual void generateRenderItems(std::vector<RenderItem*>& items);
 };
 
 #endif

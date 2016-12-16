@@ -3,11 +3,10 @@
 
 #include "Defines\deletemacros.h"
 
-Visualization::Visualization(GameObject* object, Component* component, const std::tstring& name)
+Visualization::Visualization(Object* object, const std::tstring& name)
 	:TaggedObject(name)
 	,parent_visualization(nullptr)
-	,root_component(component)
-	,game_object(object)
+	,object(object)
 {
 	this->visualization_manager = new VisualizationManager();
 	this->visualization_manager->initialize();
@@ -18,9 +17,16 @@ Visualization::~Visualization()
 	SafeDelete(this->visualization_manager);
 }
 
-const std::vector<RenderItem>& Visualization::getRenderItems() const
+void Visualization::getRenderItems(std::vector<RenderItem*>& items)
 {
-	return this->render_items;
+	generateRenderItems(items);
+
+	std::vector<Visualization*> visualizations;
+	this->visualization_manager->getVisualizations(visualizations);
+	for (Visualization* visualization : visualizations)
+	{
+		visualization->getRenderItems(items);
+	}
 }
 
 void Visualization::setParent(Visualization* visualization)
@@ -32,9 +38,9 @@ Visualization* Visualization::Visualization::getParent() const
 	return this->parent_visualization;
 }
 
-GameObject* Visualization::getGameObject() const
+Object* Visualization::getObject() const
 {
-	return this->game_object;
+	return this->object;
 }
 
 void Visualization::addVisualizationChildNode(Visualization* visualization)
@@ -45,4 +51,9 @@ void Visualization::addVisualizationChildNode(Visualization* visualization)
 void Visualization::removeVisualizationChildNode(Visualization* visualization)
 {
 	this->visualization_manager->removeVisualization(visualization->getID());
+}
+
+void Visualization::generateRenderItems(std::vector<RenderItem*>& items)
+{
+
 }

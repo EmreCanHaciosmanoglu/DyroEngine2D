@@ -3,14 +3,17 @@
 
 #include "Core/Rendering/Visualization/Shapes/ShapeVisualization.h"
 
-class GameObject;
-class Component;
+class Object;
 
 class LineShapeVisualization : public ShapeVisualization
 {
 public:
-	LineShapeVisualization(GameObject* object, Component* component);
+	LineShapeVisualization(Object* object, const std::tstring& name = _T("LineVisualization"));
 	virtual ~LineShapeVisualization();
+
+protected:
+
+	virtual void generateRenderItems(std::vector<RenderItem*>& items);
 };
 
 #endif

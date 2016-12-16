@@ -114,7 +114,9 @@ bool GameObjectManager::addObject(unsigned int id, GameObject* object)
 	if (!Manager<GameObject>::addObject(id, object))
 		return false;
 
-	this->visualization_manager->addVisualization(this->visualization_factory->createVisualization(object, object->hasChilderen()));
+	Visualization* visualization = this->visualization_factory->createVisualization(object, object->hasChilderen());
+	if(visualization != nullptr)
+		this->visualization_manager->addVisualization(visualization);
 	return true;
 }
 

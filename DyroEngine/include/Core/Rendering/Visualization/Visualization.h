@@ -11,33 +11,32 @@
 #include <vector>
 #endif
 
-class GameObject;
-class Component;
+class Object;
+class RenderItem;
 class VisualizationManager;
 
 class Visualization : public TaggedObject<Visualization>
 {
 public:
-	Visualization(GameObject* object, Component* component, const std::tstring& name = _T(""));
+	Visualization(Object* object, const std::tstring& name = _T(""));
 	virtual ~Visualization();
 
-	virtual const std::vector<RenderItem>& getRenderItems() const;
+	void getRenderItems(std::vector<RenderItem*>& items);
 	
 	void setParent(Visualization* visualization);
 	Visualization* getParent() const;
 
-	GameObject* getGameObject() const;
+	Object* getObject() const;
 
 	void addVisualizationChildNode(Visualization* visualization);
 	void removeVisualizationChildNode(Visualization* visualization);
 
 protected:
 
-	std::vector<RenderItem> render_items;
+	virtual void generateRenderItems(std::vector<RenderItem*>& items);
 
-	GameObject* game_object;
-	Component* root_component;
-
+	Object* object;
+	
 	Visualization* parent_visualization;
 	VisualizationManager* visualization_manager;
 };

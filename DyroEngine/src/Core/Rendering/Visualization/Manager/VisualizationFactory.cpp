@@ -1,23 +1,18 @@
 #include "Core/Rendering/Visualization/Manager/VisualizationFactory.h"
 
-#include "Core/Rendering/Visualization/Shapes/CircleShapeVisualization.h"
-#include "Core/Rendering/Visualization/Shapes/LineShapeVisualization.h"
-#include "Core/Rendering/Visualization/Shapes/PolygonShapeVisualization.h"
-#include "Core/Rendering/Visualization/Shapes/RectShapeVisualization.h"
-#include "Core/Rendering/Visualization/Shapes/TriangleShapeVisualization.h"
+#include "Core/Rendering/Visualization/ShapeVisualization.h"
 
-#include "SceneGraph\Component/Shapes/CircleShapeComponent.h"
-#include "SceneGraph\Component/Shapes/LineShapeComponent.h"
-#include "SceneGraph\Component/Shapes/PolygonShapeComponent.h"
-#include "SceneGraph\Component/Shapes/RectShapeComponent.h"
-#include "SceneGraph\Component/Shapes/TriangleShapeComponent.h"
+#include "SceneGraph\Component/Shapes/ShapeComponent.h"
+#include "SceneGraph\Component\ImageComponent.h"
 
 #include "SceneGraph\GameObjects\GameObject.h"
 #include "SceneGraph\Component\Component.h"
 
 #include "Interfaces\IRenderable.h"
 
+#include "SceneGraph\GameObjects\SceneObject.h"
 #include "SceneGraph/GameObjects/GameObject.h"
+
 #include "SceneGraph/Component/Component.h"
 
 #include "Interfaces\IRenderable.h"
@@ -35,7 +30,10 @@ Visualization* VisualizationFactory::createVisualization(GameObject* object, boo
 {
 	Visualization* root = nullptr;
 
-	if (object == nullptr)
+	//A normal game object will never have any visualization.
+	//That's why we check if it's a scene object or not, if not we don't need to go through all the steps to check if there are any visualizations.
+	SceneObject* scene_object = dynamic_cast<SceneObject*>(object);
+	if (scene_object == nullptr)
 		return root;
 
 	root = new Visualization(object);
@@ -52,25 +50,13 @@ Visualization* VisualizationFactory::createVisualization(GameObject* object, boo
 			if (renderable == nullptr)
 				continue;
 
-			if (component->getTypeId() == CircleShapeComponent::getClassTypeId())
+			if (component->getTypeId() == ShapeComponent::getClassTypeId())
 			{
-				root->addVisualizationChildNode(new CircleShapeVisualization(object, component));
+				root->addVisualizationChildNode(new ShapeVisualization(component));
 			}
-			else if (component->getTypeId() == LineShapeComponent::getClassTypeId())
+			else if (component->getTypeId() == ImageComponent::getClassTypeId())
 			{
-				root->addVisualizationChildNode(new LineShapeVisualization(object, component));
-			}
-			else if (component->getTypeId() == PolygonShapeComponent::getClassTypeId())
-			{
-				root->addVisualizationChildNode(new PolygonShapeVisualization(object, component));
-			}
-			else if (component->getTypeId() == RectShapeComponent::getClassTypeId())
-			{
-				root->addVisualizationChildNode(new RectShapeVisualization(object, component));
-			}
-			else if (component->getTypeId() == TriangleShapeComponent::getClassTypeId())
-			{
-				root->addVisualizationChildNode(new TriangleShapeVisualization(object, component));
+				//root->addVisualizationChildNode(new ImageVisualization(component));
 			}
 		}
 	}
