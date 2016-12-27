@@ -8,18 +8,18 @@
 #include "Defines/deletemacros.h"
 #include "Defines\color.h"
 
-#include "Helpers/Singleton.h"
+#include "Helpers/Patterns/Singleton.h"
 #include "Core\Settings\WorldSettings.h"
 #include "Core\Settings\GameSettings.h"
 
 Graphics::Graphics()
 	: System(SystemType::GRAPHICS_SYSTEM)
-, render_target(nullptr)
-, D2D_factory(nullptr)
-, color_brush(nullptr)
-, image_factory(nullptr)
+	, render_target(nullptr)
+	, D2D_factory(nullptr)
+	, color_brush(nullptr)
+	, image_factory(nullptr)
 
-, main_window(nullptr)
+	, main_window(nullptr)
 {
 }
 Graphics::~Graphics()
@@ -28,7 +28,7 @@ Graphics::~Graphics()
 
 HRESULT Graphics::onResize(UINT width, UINT height)
 {
-	// Note: 
+	// Note:
 	// This method can fail, but it's okay to ignore the error here,
 	// because the error will be returned again the next time EndDraw is called.
 	if (this->render_target)

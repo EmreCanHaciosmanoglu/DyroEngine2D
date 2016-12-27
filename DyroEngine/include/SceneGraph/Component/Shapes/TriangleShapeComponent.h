@@ -3,15 +3,21 @@
 
 #include "SceneGraph\Component\Shapes\PolygonShapeComponent.h"
 
-class TriangleShape;
+class TriangleShapeDescription;
 
 class TriangleShapeComponent : public PolygonShapeComponent
 {
 public:
-	TriangleShapeComponent(TriangleShape* shape, const std::tstring& name = _T(""));
+	TriangleShapeComponent(TriangleShapeDescription* shape, const std::tstring& name = _T(""));
 	virtual ~TriangleShapeComponent();
 
-	TriangleShape* getTriangleShape() const;
+	void setXScale(float scale);
+	void setYScale(float scale);
+
+	float getXScale() const;
+	float getYScale() const;
+
+	TriangleShapeDescription* getTriangleDescription() const;
 };
 
 #endif

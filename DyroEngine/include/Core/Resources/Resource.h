@@ -1,7 +1,7 @@
 #ifndef _RESOURCE_H
 #define _RESOURCE_H
 
-#include "Helpers/ObjectCounter.h"
+#include "Helpers/Patterns/ObjectCounter.h"
 
 #ifndef _STRING_H
 #include "Defines\string.h"
@@ -35,4 +35,3 @@ private:
 };
 
 #endif
-

@@ -2,21 +2,21 @@
 #include "SceneGraph\GameObjects\GameObject.h"
 #include "SceneGraph\Scene\Scene.h"
 
-#include "Core/Data/Shapes/Shape.h"
+#include "Core/Data/Objects/Descriptions/Shapes/ShapeDescription.h"
 
 #include "Interfaces/IFillableShape.h"
 
 #include "Defines/deletemacros.h"
 
-ShapeComponent::ShapeComponent(Shape* shape, const std::tstring& name)
+ShapeComponent::ShapeComponent(ShapeDescription* description, const std::tstring& name)
 	:Component(name)
-	,shape(shape)
+	, description(description)
 {
 	OBJECT_INIT(_T("ShapeComponent"));
 }
 ShapeComponent::~ShapeComponent()
 {
-	SafeDelete(this->shape);
+	SafeDelete(this->description);
 }
 
 bool ShapeComponent::initialize()
@@ -25,7 +25,6 @@ bool ShapeComponent::initialize()
 }
 void ShapeComponent::update()
 {
-
 }
 bool ShapeComponent::shutdown()
 {
@@ -34,29 +33,23 @@ bool ShapeComponent::shutdown()
 
 void ShapeComponent::setColor(const Color& c)
 {
-	this->shape->setColor(c);
+	this->description->setColor(c);
 }
+void ShapeComponent::setLineWidth(float lineWidth)
+{
+	this->description->setLineWidth(lineWidth);
+}
+
 const Color& ShapeComponent::getColor() const
 {
-	return this->shape->getColor();
+	return this->description->getColor();
+}
+float ShapeComponent::getLineWidth() const
+{
+	return this->description->getLineWidth();
 }
 
-void ShapeComponent::setFill(bool fill)
+ShapeDescription* ShapeComponent::getDescription() const
 {
-	IFillableShape* fillable = dynamic_cast<IFillableShape*>(this->shape);
-	if (fillable)
-		fillable->setFill(fill);
-}
-bool ShapeComponent::getFill() const
-{
-	IFillableShape* fillable = dynamic_cast<IFillableShape*>(this->shape);
-	if (fillable)
-		return fillable->getFill();
-
-	return false;
-}
-
-Shape* ShapeComponent::getShape() const
-{
-	return this->shape;
+	return this->description;
 }

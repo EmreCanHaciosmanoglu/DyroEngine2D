@@ -2,10 +2,10 @@
 #define _SYSTEM_H
 
 #ifndef _SYSTEMTYPE_H
-	#include "Defines/Types/SystemType.h"
+#include "Defines/Types/SystemType.h"
 #endif
 
-class System 
+class System
 {
 public:
 	System(SystemType type);
@@ -28,4 +28,3 @@ private:
 };
 
 #endif // _SYSTEM_H
-

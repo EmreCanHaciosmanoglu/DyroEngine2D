@@ -1,21 +1,22 @@
 #include "Core/Rendering/RenderItem.h"
 
-RenderItem::RenderItem()
-	:layer(0)
-	,transform(Matrix2D::createIdentityMatrix())
-{
+#include "Core\Data\Objects\Layer.h"
 
+RenderItem::RenderItem(const std::tstring& name)
+	:TaggedObject<RenderItem>(name)
+	, layer(nullptr)
+	, transform(Matrix2D::createIdentityMatrix())
+{
 }
 RenderItem::~RenderItem()
 {
-
 }
 
-void RenderItem::setLayer(unsigned int layer)
+void RenderItem::setLayer(Layer* layer)
 {
 	this->layer = layer;
 }
-unsigned int RenderItem::getLayer() const
+Layer* RenderItem::getLayer() const
 {
 	return this->layer;
 }

@@ -2,6 +2,7 @@
 #define _SCENEOBJECT_H
 
 #include "SceneGraph\GameObjects\GameObject.h"
+
 #ifndef _IBOUNDINGBOX_H
 #include "Interfaces\IBoundingBox.h"
 #endif
@@ -20,7 +21,6 @@ public:
 	virtual bool shutdown();
 
 	TransformComponent* getTransform() const;
-
 	Rect2D getBoundingBox() const;
 
 private:

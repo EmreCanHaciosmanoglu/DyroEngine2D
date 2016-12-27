@@ -23,7 +23,7 @@
 #include "Core\System\Input.h"
 #include "Core\System\MainTimer.h"
 
-#include "Helpers\Singleton.h"
+#include "Helpers\Patterns/Singleton.h"
 
 #include "Core\Settings\WorldSettings.h"
 #include "Core\Settings\ApplicationSettings.h"
@@ -68,7 +68,7 @@ bool TestScene::initialize()
 	this->spaceship->getTransform()->rotate(PI / 2);
 	this->spaceship->getTransform()->setPosition(window_width / 2, window_height / 2);
 	addGameObject(this->spaceship);
-	
+
 	//ADD BORDER
 	addBorder(Vector2D(0, window_height / 2), BORDER_WIDTH, window_height);
 	addBorder(Vector2D(window_width, window_height / 2), BORDER_WIDTH, window_height);

@@ -1,14 +1,14 @@
 #include "Core/Settings/Settings.h"
 
 #ifndef _WINDOWS_
-	#include <Windows.h>
+#include <Windows.h>
 #endif
 
 #ifndef _FSTREAM_H
-	#include "Defines/fstream.h"
+#include "Defines/fstream.h"
 #endif
 
-#include "Helpers\Singleton.h"
+#include "Helpers\Patterns/Singleton.h"
 #include "Diagnostics\Logger.h"
 
 Settings::Settings()

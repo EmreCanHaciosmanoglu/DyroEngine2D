@@ -1,15 +1,15 @@
 #include "Core\Resources\Image.h"
 
-#include "Helpers/Singleton.h"
+#include "Helpers/Patterns/Singleton.h"
 #include "Core/System/Manager/SystemManager.h"
 #include "Core/System/Graphics.h"
 
 Image::Image(const std::tstring& resourcePath)
-	:Resource(resourcePath,ResourceType::IMAGE_RESOURCE)
-	,bitmap(nullptr)
-	,converter(nullptr)
-	,opacity(1.0f)
-	,clip(Rect2D::empty)
+	:Resource(resourcePath, ResourceType::IMAGE_RESOURCE)
+	, bitmap(nullptr)
+	, converter(nullptr)
+	, opacity(1.0f)
+	, clip(Rect2D::empty)
 {}
 Image::~Image()
 {}
@@ -25,7 +25,7 @@ bool Image::initialize()
 
 	// Create a Direct2D bitmap from the WIC bitmap.
 	hr = renderTargetPtr->CreateBitmapFromWicBitmap(this->converter, &this->bitmap);
-	
+
 	if (FAILED(hr))
 		return false;
 
@@ -57,7 +57,7 @@ HRESULT Image::LoadBitmapFromFile(ID2D1RenderTarget *renderTargetPtr, IWICImagin
 	hr = decoderPtr->GetFrame(0, &sourcePtr);
 	if (FAILED(hr))
 	{
-		if (decoderPtr != nullptr) 
+		if (decoderPtr != nullptr)
 			decoderPtr->Release();
 
 		return hr;
@@ -84,7 +84,7 @@ HRESULT Image::LoadBitmapFromFile(ID2D1RenderTarget *renderTargetPtr, IWICImagin
 		{
 			if (decoderPtr != nullptr)
 				decoderPtr->Release();
-			if (sourcePtr != nullptr)  
+			if (sourcePtr != nullptr)
 				sourcePtr->Release();
 
 			return hr;
@@ -119,7 +119,7 @@ HRESULT Image::LoadBitmapFromFile(ID2D1RenderTarget *renderTargetPtr, IWICImagin
 				decoderPtr->Release();
 			if (sourcePtr != nullptr)
 				sourcePtr->Release();
-			if (scalerPtr != nullptr)  
+			if (scalerPtr != nullptr)
 				scalerPtr->Release();
 
 			return hr;
@@ -142,7 +142,6 @@ HRESULT Image::LoadBitmapFromFile(ID2D1RenderTarget *renderTargetPtr, IWICImagin
 	{
 		hr = (*FormatConverterPtr)->Initialize(sourcePtr, GUID_WICPixelFormat32bppPBGRA, WICBitmapDitherTypeNone, NULL, 0.f, WICBitmapPaletteTypeMedianCut);
 	}
-
 
 	if (decoderPtr != nullptr) decoderPtr->Release();
 	if (sourcePtr != nullptr)  sourcePtr->Release();
@@ -188,11 +187,11 @@ void Image::setTransparencyColor(const Color& transparentColor)
 	COLORREF color = RGB((int)(transparentColor.red * 255), (int)(transparentColor.green * 255), (int)(transparentColor.blue * 255));
 
 	UINT width = 0, height = 0;
-	
+
 	WICPixelFormatGUID pixelFormat;
 	this->converter->GetPixelFormat(&pixelFormat);
 	this->converter->GetSize(&width, &height);
-	
+
 	UINT bitmapStride = 4 * width;
 	UINT size = width * height * 4;
 	unsigned char* pixelsPtr = new unsigned char[size]; // create 32 bit buffer
@@ -215,16 +214,16 @@ void Image::setTransparencyColor(const Color& transparentColor)
 	HRESULT hr = iWICFactoryPtr->CreateBitmapFromMemory(width, height, GUID_WICPixelFormat32bppPBGRA, bitmapStride, size, pixelsPtr, &iWICBitmapPtr);
 
 	delete[] pixelsPtr; //destroy buffer
-	
+
 	if (hr == S_OK)
 	{
 		ID2D1RenderTarget *renderTargetPtr = dynamic_cast<Graphics*>(Singleton<SystemManager>::getInstance().getSystem(SystemType::GRAPHICS_SYSTEM))->getRenderTarget();
 
-		if (this->bitmap != nullptr) 
+		if (this->bitmap != nullptr)
 			this->bitmap->Release();
 
 		renderTargetPtr->CreateBitmapFromWicBitmap(iWICBitmapPtr, &this->bitmap);
-		
+
 		iWICBitmapPtr->Release();
 	}
 }

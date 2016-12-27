@@ -2,8 +2,8 @@
 
 WorldSettings::WorldSettings()
 	:application_settings()
-	,phyx_settings()
-	,game_settings()
+	, phyx_settings()
+	, game_settings()
 {
 }
 WorldSettings::~WorldSettings()

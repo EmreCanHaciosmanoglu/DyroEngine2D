@@ -2,10 +2,10 @@
 
 PhyxSettings::PhyxSettings()
 	:Settings()
-	,gravity(0.0f, 9.81f)
-	,velocity_interpolation(8)
-	,position_interpolation(3)
-	,phyx_time_step(1.0f / 60.0f)
+	, gravity(0.0f, 9.81f)
+	, velocity_interpolation(8)
+	, position_interpolation(3)
+	, phyx_time_step(1.0f / 60.0f)
 {
 }
 PhyxSettings::~PhyxSettings()
@@ -14,7 +14,7 @@ PhyxSettings::~PhyxSettings()
 
 void PhyxSettings::setGravity(float gravity)
 {
-	this->gravity = Vector2D(0.0f,gravity);
+	this->gravity = Vector2D(0.0f, gravity);
 }
 const Vector2D& PhyxSettings::getGravity()
 {

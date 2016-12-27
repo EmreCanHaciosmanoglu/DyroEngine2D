@@ -3,16 +3,16 @@
 
 //C Runtime Header Files
 #ifndef _IOSTREAM_
-	#include <iostream>
+#include <iostream>
 #endif
 
 //Defines
 #ifdef UNICODE
-	#define tcout wcout
-	#define tcin wcin
+#define tcout wcout
+#define tcin wcin
 #else
-	#define tcout cout
-	#define tcin cin
+#define tcout cout
+#define tcin cin
 #endif
 
 #endif //_IOSTREAM_H

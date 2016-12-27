@@ -4,11 +4,11 @@
 #include "SceneGraph\Component\Collision\CollisionComponent.h"
 
 #ifndef _VECTOR2D_H
-	#include "Helpers\Math\Vector2D.h"
+#include "Helpers\Math\Vector2D.h"
 #endif
 
 #ifndef _VECTOR_
-	#include <vector>
+#include <vector>
 #endif
 
 class RigidBodyComponent;

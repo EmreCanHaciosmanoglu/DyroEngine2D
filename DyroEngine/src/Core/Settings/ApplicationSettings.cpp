@@ -1,17 +1,17 @@
 #include "Core/Settings/ApplicationSettings.h"
 
 #ifndef _PROGRAMDEFAULTS_H
-	#include "Defines/programdefaults.h"
+#include "Defines/programdefaults.h"
 #endif
 
 ApplicationSettings::ApplicationSettings()
 	:Settings()
-	,window_width(1280)
-	,window_height(720)
-	,window_bits_per_pixel(constants::BITS_PER_PIXEL_16)
-	,fullscreen(false)
-	,window_title(_T(""))
-	,content_root_path(_T("./Resources/"))
+	, window_width(1280)
+	, window_height(720)
+	, window_bits_per_pixel(constants::BITS_PER_PIXEL_16)
+	, fullscreen(false)
+	, window_title(_T(""))
+	, content_root_path(_T("./Resources/"))
 {
 }
 ApplicationSettings::~ApplicationSettings()

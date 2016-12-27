@@ -5,7 +5,7 @@
 
 #include "Defines\collisionlayers.h"
 
-CollisionComponent::CollisionComponent(RigidBodyComponent* rigid, float restitution, float friction, float density , const std::tstring& name)
+CollisionComponent::CollisionComponent(RigidBodyComponent* rigid, float restitution, float friction, float density, const std::tstring& name)
 	:Component(name)
 	, restitution(restitution)
 	, friction(friction)

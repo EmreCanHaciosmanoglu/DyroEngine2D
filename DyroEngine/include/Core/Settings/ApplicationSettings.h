@@ -4,7 +4,7 @@
 #include "Settings.h"
 
 #ifndef _STRING_H
-	#include "Defines/string.h"
+#include "Defines/string.h"
 #endif
 
 class ApplicationSettings : public Settings

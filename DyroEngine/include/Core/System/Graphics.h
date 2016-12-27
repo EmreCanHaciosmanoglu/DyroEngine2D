@@ -4,7 +4,7 @@
 #include "Core/System/System.h"
 
 #ifndef _2DUTILL_H
-	#include "Defines/d2dutill.h"
+#include "Defines/d2dutill.h"
 #endif
 
 class MainWindow;
@@ -26,10 +26,10 @@ public:
 
 	HRESULT onResize(UINT width, UINT height);
 
-	ID2D1HwndRenderTarget* getRenderTarget(){ return this->render_target; }
-	IWICImagingFactory* getImageFactory(){ return this->image_factory; }
-	ID2D1SolidColorBrush* getColorBrush(){ return this->color_brush; }
-	ID2D1Factory* getD2DFactory(){ return this->D2D_factory; }
+	ID2D1HwndRenderTarget* getRenderTarget() { return this->render_target; }
+	IWICImagingFactory* getImageFactory() { return this->image_factory; }
+	ID2D1SolidColorBrush* getColorBrush() { return this->color_brush; }
+	ID2D1Factory* getD2DFactory() { return this->D2D_factory; }
 
 private:
 	HRESULT createDeviceIndependentResources();

@@ -2,16 +2,20 @@
 #include "SceneGraph\GameObjects\GameObject.h"
 #include "SceneGraph\Component\Component.h"
 
-#include "Core\Rendering\Visualization\Manager\VisualizationFactory.h"
+#include "Core\System\Input.h"
+
+#include "Core\Rendering\Visualization\Objects\Visualization.h"
+#include "Core\Rendering\Visualization\Factory\VisualizationFactory.h"
 #include "Core\Rendering\Visualization\Manager\VisualizationManager.h"
 
 #include "Defines\assert.h"
+#include "Defines\deletemacros.h"
 
 #include <algorithm>
 
 GameObjectManager::GameObjectManager()
 	:visualization_factory(nullptr)
-	,visualization_manager(nullptr)
+	, visualization_manager(nullptr)
 {
 	this->visualization_manager = new VisualizationManager();
 	this->visualization_factory = new VisualizationFactory();
@@ -24,35 +28,67 @@ bool GameObjectManager::initialize()
 	this->visualization_manager = new VisualizationManager();
 	this->visualization_manager->initialize();
 
-	std::vector<GameObject*> objects;
-	getObjects(objects);
-
-	for (GameObject* obj : objects)
+	for (const std::pair<unsigned int, GameObject*>& pair : getObjects())
 	{
-		if (obj->getInitialized())
+		if (pair.second->getInitialized())
 			continue;
 
-		if (!obj->initialize())
+		if (!pair.second->initialize())
 			return false;
 	}
 
 	return true;
 }
+bool GameObjectManager::postInitialize()
+{
+	std::vector<GameObject*> objects;
+	getObjects(objects);
+
+	for (const std::pair<unsigned int, GameObject*>& pair : getObjects())
+	{
+		if (pair.second->getPostInitialized())
+			continue;
+
+		if (!pair.second->postInitialize())
+			return false;
+	}
+
+	return true;
+}
+void GameObjectManager::setupInput(Input* input)
+{
+	std::vector<GameObject*> objects;
+	getObjects(objects);
+
+	for (const std::pair<unsigned int, GameObject*>& pair : getObjects())
+		pair.second->setupInput(input);
+}
+void GameObjectManager::update()
+{
+	std::vector<GameObject*> objects;
+	getObjects(objects);
+
+	for (const std::pair<unsigned int, GameObject*>& pair : getObjects())
+	{
+		if (pair.second->isActive())
+			pair.second->update();
+	}
+}
 bool GameObjectManager::shutdown()
 {
-	this->visualization_manager->shutdown();
+	bool result = true;
+
+	if (!this->visualization_manager->shutdown())
+		result = false;
 
 	SafeDelete(this->visualization_manager);
 	SafeDelete(this->visualization_factory);
 
-	std::vector<GameObject*> objects;
-	getObjects(objects);
-
-	for (GameObject* obj : objects)
+	for (const std::pair<unsigned int, GameObject*>& pair : getObjects())
 	{
-		if (!obj->shutdown())
-			return false;
-		SafeDelete(obj);
+		if (!pair.second->shutdown())
+			result = false;
+		delete pair.second;
 	}
 
 	return true;
@@ -60,8 +96,6 @@ bool GameObjectManager::shutdown()
 
 void GameObjectManager::addGameObject(GameObject* object)
 {
-	assert(object == nullptr);
-
 	addObject(object->getID(), object);
 }
 
@@ -76,16 +110,14 @@ void GameObjectManager::removeGameObject(GameObject* object)
 
 GameObject* GameObjectManager::getGameObject(const std::tstring& name) const
 {
-	std::vector<GameObject*> game_objects;
-	getObjects(game_objects);
-
-	std::vector<GameObject*>::const_iterator it = std::find_if(game_objects.begin(),game_objects.end(),
-		[name](GameObject* object) -> bool
+	std::map<unsigned int, GameObject*> game_objects = getObjects();
+	std::map<unsigned int, GameObject*>::const_iterator it = std::find_if(game_objects.begin(), game_objects.end(),
+		[name](std::pair<unsigned int, GameObject*> pair) -> bool
 	{
-		return name == object->getName();
+		return name == pair.second->getName();
 	});
 
-	return getObject((*it)->getID());
+	return (*it).second;
 }
 GameObject* GameObjectManager::getGameObject(unsigned int id) const
 {
@@ -115,8 +147,10 @@ bool GameObjectManager::addObject(unsigned int id, GameObject* object)
 		return false;
 
 	Visualization* visualization = this->visualization_factory->createVisualization(object, object->hasChilderen());
-	if(visualization != nullptr)
+	if (visualization != nullptr)
+	{
 		this->visualization_manager->addVisualization(visualization);
+	}
 	return true;
 }
 

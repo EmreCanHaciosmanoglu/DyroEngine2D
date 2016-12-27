@@ -4,10 +4,10 @@
 #include "Settings.h"
 
 #ifndef _STRING_H
-	#include "Defines/string.h"
+#include "Defines/string.h"
 #endif
 #ifndef _COLOR_H
-	#include "Defines\color.h"
+#include "Defines\color.h"
 #endif
 
 class GameSettings : public Settings

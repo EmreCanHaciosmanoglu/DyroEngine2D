@@ -1,20 +1,25 @@
 #include "SceneGraph\Component\Shapes\RectShapeComponent.h"
-#include "Core\Data\Shapes\RectShape.h"
+#include "Core\Data\Objects\Descriptions\Shapes\RectShapeDescription.h"
 
-RectShapeComponent::RectShapeComponent(RectShape* shape, const std::tstring& name)
-	:ShapeComponent(shape,name)
+RectShapeComponent::RectShapeComponent(RectShapeDescription* description, const std::tstring& name)
+	:ShapeComponent(description, name)
 {
 	OBJECT_INIT(_T("RectShapeVisualization"));
 }
 RectShapeComponent::~RectShapeComponent()
 {}
 
-RectShape* RectShapeComponent::getRectShape() const
+void RectShapeComponent::setRect(const Rect2D& rect)
 {
-	return dynamic_cast<RectShape*>(getShape());
+	getRectDescription()->setRect(rect);
 }
 
-Rect2D RectShapeComponent::getBoundingBox() const
+const Rect2D& RectShapeComponent::getRect()
 {
-	return getRectShape()->getBoundingBox();
+	return getRectDescription()->getRect();
+}
+
+RectShapeDescription* RectShapeComponent::getRectDescription() const
+{
+	return dynamic_cast<RectShapeDescription*>(getDescription());
 }

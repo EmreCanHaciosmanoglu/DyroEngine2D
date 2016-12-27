@@ -12,7 +12,7 @@
 
 SceneObject::SceneObject(const std::tstring& name)
 	:GameObject(name)
-	,transform(new TransformComponent())
+	, transform(new TransformComponent())
 {
 	OBJECT_INIT(_T("SceneObject"));
 
@@ -39,12 +39,14 @@ TransformComponent* SceneObject::getTransform() const
 {
 	return this->transform;
 }
-
 Rect2D SceneObject::getBoundingBox() const
 {
 	Rect2D bounding_rect;
 
-	for (Component* c : getComponents())
+	std::vector<Component*> components;
+	getComponents(components);
+
+	for (Component* c : components)
 	{
 		IBoundingBox* bounding_box = dynamic_cast<IBoundingBox*>(c);
 		if (bounding_box != nullptr)

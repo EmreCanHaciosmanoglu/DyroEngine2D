@@ -2,17 +2,20 @@
 #define _MANAGER_H
 
 #ifndef _STRING_H
-	#include "Defines/string.h"
+#include "Defines/string.h"
+#endif
+#ifndef _ASSERT_H
+#include "Defines\assert.h"
 #endif
 
 #ifndef _VECTOR_
-	#include <vector>
+#include <vector>
 #endif
 #ifndef _MAP_
-	#include <map>	
+#include <map>
 #endif
 #ifndef _ALGORITHM_
-	#include <algorithm>
+#include <algorithm>
 #endif
 
 class AbstractManager
@@ -39,6 +42,8 @@ public:
 	bool exists(unsigned int id);
 	bool exists(T* object);
 
+	size_t getSize();
+
 protected:
 	virtual bool addObject(unsigned int id, T* object);
 
@@ -46,7 +51,7 @@ protected:
 	virtual bool removeObject(T* object);
 
 	T* getObject(unsigned int id) const;
-	
+
 	void getObjects(std::vector<T*>& objects) const;
 	const std::map<unsigned int, T*>& getObjects() const;
 
@@ -77,8 +82,16 @@ bool Manager<T>::exists(T* object)
 }
 
 template <typename T>
+size_t Manager<T>::getSize()
+{
+	return this->map_objects.size();
+}
+
+template <typename T>
 bool Manager<T>::addObject(unsigned int id, T* object)
 {
+	assert(object != nullptr);
+
 	if (getIteratorWithID(id) != this->map_objects.end())
 		return false;
 
@@ -153,4 +166,3 @@ typename std::map<unsigned int, T*>::const_iterator Manager<T>::getIteratorWithO
 }
 
 #endif //_MANAGER_H
-

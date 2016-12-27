@@ -16,6 +16,8 @@ class Visualization;
 class VisualizationManager;
 class VisualizationFactory;
 
+class Input;
+
 class GameObjectManager : public Manager<GameObject>
 {
 public:
@@ -23,6 +25,9 @@ public:
 	virtual ~GameObjectManager();
 
 	virtual bool initialize();
+	virtual bool postInitialize();
+	virtual void setupInput(Input* input);
+	virtual void update();
 	virtual bool shutdown();
 
 	void addGameObject(GameObject* object);

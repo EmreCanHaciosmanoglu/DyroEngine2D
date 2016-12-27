@@ -2,13 +2,13 @@
 #define _MATRIX2D_H
 
 #ifndef _VECTOR2D_H
-	#include "Helpers/Math/Vector2D.h"
+#include "Helpers/Math/Vector2D.h"
 #endif
 #ifndef _FSTREAM_H
-	#include "Defines/fstream.h"
+#include "Defines/fstream.h"
 #endif
 #ifndef _2DUTILL_H
-	#include "Defines/d2dutill.h"
+#include "Defines/d2dutill.h"
 #endif
 
 //-----------------------------------------------------------------
@@ -17,14 +17,14 @@
 struct Matrix2D
 {
 	// -------------------------
-	// Friend declarations 
+	// Friend declarations
 	// -------------------------
 	friend Matrix2D operator*(const Matrix2D& f1, const Matrix2D& f2); 				// Multiply or transform matrix f1 by matrix f2 (operator form)
 	friend std::ostream& operator<<(std::ostream& os, const Matrix2D& right);		// Print to a stream.
 	friend std::wostream& operator<<(std::wostream& wos, const Matrix2D& right);	// Print to a wstream.
 
 	// -------------------------
-	// Constructors 
+	// Constructors
 	// -------------------------
 	//! Default constructor results in a unity matrix
 	Matrix2D(Vector2D dirX = Vector2D(1, 0), Vector2D dirY = Vector2D(0, 1), Vector2D orig = Vector2D(0, 0));
@@ -36,7 +36,7 @@ struct Matrix2D
 	Matrix2D(const D2D1::Matrix3x2F& mat);
 
 	// -------------------------
-	// Operators 
+	// Operators
 	// -------------------------
 	//! Are two matrices exactly equal?				p == q
 	bool operator==(const Matrix2D& other) const;
@@ -44,12 +44,12 @@ struct Matrix2D
 	bool operator!=(const Matrix2D& other) const;
 
 	// -------------------------
-	// General Methods 
+	// General Methods
 	// -------------------------
-	//! Transform a vector by this matrix, no translation			
+	//! Transform a vector by this matrix, no translation
 	//! Vector2D w = b.Transform(v);
 	Vector2D				transformVector(const Vector2D& v) const;
-	//! Transform a point by this matrix, including translation			
+	//! Transform a point by this matrix, including translation
 	//! Vector2D q = f.Transform(p);
 	Vector2D				transformPoint(const Vector2D& p) const;
 	//! Calculate the determinant
@@ -75,30 +75,29 @@ struct Matrix2D
 	void setAsScale(float s);
 
 	// -------------------------
-	// Static Methods 
+	// Static Methods
 	// -------------------------
-	//! Instantiate a rotation matrix: 
+	//! Instantiate a rotation matrix:
 	//! Matrix r = Matrix::Rotation(M_PI/2);
 	static Matrix2D createRotationMatrix(float radians);
-	//! Instantiate an identity matrix: 
+	//! Instantiate an identity matrix:
 	//! Matrix2D m = Matrix2D::Identity();
 	static Matrix2D createIdentityMatrix();
-	//! Instantiate a scale matrix: 
+	//! Instantiate a scale matrix:
 	//! Matrix s = Matrix::Scaling(2);
 	static Matrix2D createScalingMatrix(float scale);
-	//! Instantiate a scale matrix: 
+	//! Instantiate a scale matrix:
 	//! Matrix s = Matrix::Scaling(2,-3);
 	static Matrix2D createScalingMatrix(float scaleX, float scaleY);
-	//! Instantiate a scale matrix: 
+	//! Instantiate a scale matrix:
 	//! Matrix s = Matrix::Scaling( Vector2D(2,-3) );
 	static Matrix2D createScalingMatrix(Vector2D scaleXY);
-	//! Instantiate a translation matrix: 
+	//! Instantiate a translation matrix:
 	//! Matrix t = Matrix::Translation( Point2(2,3) );
 	static Matrix2D createTranslationMatrix(Vector2D origin);
-	//! Instantiate a translation matrix: 
+	//! Instantiate a translation matrix:
 	//! Matrix t = Matrix::Translation(2,3);
 	static Matrix2D createTranslationMatrix(float tx, float ty);
-
 
 	// -------------------------
 	// Data members
@@ -109,4 +108,3 @@ struct Matrix2D
 };
 
 #endif
-

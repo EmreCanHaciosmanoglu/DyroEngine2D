@@ -1,6 +1,6 @@
 #include "Core/Game/Game.h"
 
-#include "Helpers/Singleton.h"
+#include "Helpers/Patterns/Singleton.h"
 
 #include "SceneGraph/Scene/MyScene.h"
 #include "SceneGraph/Scene/TestScene.h"

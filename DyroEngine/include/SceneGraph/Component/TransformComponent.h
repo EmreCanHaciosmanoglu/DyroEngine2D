@@ -6,7 +6,7 @@
 #include "Helpers\Math\Matrix2D.h"
 #include "Helpers\Math\Vector2D.h"
 
-class TransformComponent :	public Component
+class TransformComponent : public Component
 {
 public:
 	TransformComponent(const std::tstring& name = _T(""));
@@ -42,6 +42,12 @@ public:
 	float getRotation() const;
 
 	const Matrix2D& getWorldMatrix() const;
+
+protected:
+	void clearIsDirty();
+
+	void setIsDirty();
+	bool getIsDirty() const;
 
 private:
 	bool is_dirty;

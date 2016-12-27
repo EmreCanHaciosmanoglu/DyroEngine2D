@@ -1,9 +1,9 @@
 #include "Diagnostics\DebugRenderer.h"
 
-#include "Helpers\Singleton.h"
+#include "Helpers\Patterns/Singleton.h"
 #include "Helpers\Math\Matrix2D.h"
 
-#include "Helpers\Singleton.h"
+#include "Helpers\Patterns/Singleton.h"
 
 #include "Core\Settings\WorldSettings.h"
 #include "Core\Settings\ApplicationSettings.h"
@@ -18,13 +18,12 @@
 
 DebugRenderer::DebugRenderer()
 	:b2Draw()
-	,color(255, 255, 255, 187)
-{	
+	, color(255, 255, 255, 187)
+{
 	this->mat_scale = Matrix2D::createScalingMatrix(Vector2D((float)constants::BOX2D_SCALE, (float)constants::BOX2D_SCALE));
 }
 DebugRenderer::~DebugRenderer()
 {
-
 }
 
 void DebugRenderer::DrawPoint(const b2Vec2& p, float32 size, const b2Color& color)
@@ -34,7 +33,7 @@ void DebugRenderer::DrawPoint(const b2Vec2& p, float32 size, const b2Color& colo
 
 	renderer.setTransformMatrix(this->mat_scale * mat_view);
 	renderer.setColor(Color(color.r, color.g, color.b, color.a));
-	renderer.fillCircle(p.x,p.y, size);
+	renderer.fillCircle(p.x, p.y, size);
 }
 
 void DebugRenderer::DrawPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color)
@@ -45,7 +44,7 @@ void DebugRenderer::DrawPolygon(const b2Vec2* vertices, int32 vertexCount, const
 	std::vector<Vector2D> vertexsArr;
 	for (int i = 0; i < vertexCount; i++)
 		vertexsArr.push_back(Vector2D(vertices[i].x, vertices[i].y));
-	
+
 	renderer.setTransformMatrix(this->mat_scale * mat_view);
 	renderer.setColor(Color(color.r, color.g, color.b, color.a));
 	renderer.drawPolygon(vertexsArr, true, 1 / constants::BOX2D_SCALE);
@@ -113,5 +112,4 @@ void DebugRenderer::DrawTransform(const b2Transform& xf)
 	y = (y / (float)constants::BOX2D_SCALE) * 20.0f;
 	renderer.setColor(Color(0, 1.0f, 0));
 	renderer.drawLine(Vector2D(xf.p.x, xf.p.y), Vector2D(xf.p.x, xf.p.y) + y, 1.0f / constants::BOX2D_SCALE);
-
 }

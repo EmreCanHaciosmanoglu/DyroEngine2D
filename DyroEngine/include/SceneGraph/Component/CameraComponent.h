@@ -7,7 +7,7 @@
 
 class TransformComponent;
 
-class CameraComponent :	public Component
+class CameraComponent : public Component
 {
 public:
 	CameraComponent(const std::tstring& name = _T(""));

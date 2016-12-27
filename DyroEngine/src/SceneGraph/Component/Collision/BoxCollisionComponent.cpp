@@ -11,8 +11,8 @@
 
 BoxCollisionComponent::BoxCollisionComponent(RigidBodyComponent* rigid, float width, float height, float restitution, float friction, float density, const std::tstring& name)
 	:CollisionComponent(rigid, restitution, friction, density, name == _T("") ? _T("BoxCollisionComponent") : name)
-	,width(width)
-	,height(height)
+	, width(width)
+	, height(height)
 
 {
 	OBJECT_INIT(_T("BoxCollisionComponent"));
@@ -26,8 +26,8 @@ bool BoxCollisionComponent::initialize()
 	assert(getRigid() != nullptr);
 
 	b2FixtureDef fixtureDef;
-	
-	this->width /= constants::BOX2D_SCALE; 
+
+	this->width /= constants::BOX2D_SCALE;
 	this->height /= constants::BOX2D_SCALE;
 
 	b2PolygonShape shape;
@@ -58,4 +58,3 @@ bool BoxCollisionComponent::shutdown()
 {
 	return true;
 }
-

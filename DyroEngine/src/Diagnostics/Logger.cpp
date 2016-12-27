@@ -1,7 +1,7 @@
 #include "Diagnostics/Logger.h"
 
 #ifndef _WINDOWS_
-	#include <Windows.h>
+#include <Windows.h>
 #endif
 
 #include "Defines/stringstream.h"

@@ -4,7 +4,7 @@
 //C Runtime Header Files
 //----------------------
 #ifndef _SSTREAM_
-	#include <sstream>
+#include <sstream>
 #endif
 
 //Defines

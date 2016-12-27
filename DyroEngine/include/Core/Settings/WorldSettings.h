@@ -10,7 +10,7 @@ class WorldSettings
 public:
 	WorldSettings();
 	virtual ~WorldSettings();
-	
+
 	bool loadSetttings();
 
 	void setApplicationSettings(const ApplicationSettings& settings);

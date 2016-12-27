@@ -2,7 +2,7 @@
 #define _MAIN_H
 
 #ifndef _WINDOW_
-	#include <Windows.h>
+#include <Windows.h>
 #endif
 
 int _tmain(int argc, char* argv[]);

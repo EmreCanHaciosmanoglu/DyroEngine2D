@@ -3,10 +3,10 @@
 
 #include "Helpers\Manager.h"
 
-class GameObject;
+class Object;
 class Visualization;
 
-class VisualizationManager : Manager<Visualization>
+class VisualizationManager : public Manager<Visualization>
 {
 public:
 	VisualizationManager();
@@ -16,11 +16,11 @@ public:
 	virtual bool shutdown();
 
 	void addVisualization(Visualization* v);
-	
+
 	void removeVisualization(unsigned int id);
 	void removeVisualization(Visualization* v);
 
-	void removeVisualizations(GameObject* gameObject);
+	void removeVisualizations(Object* gameObject);
 
 	void getVisualizations(std::vector<Visualization*>& visualizations) const;
 	const std::map<unsigned int, Visualization*>& getVisualizations() const;

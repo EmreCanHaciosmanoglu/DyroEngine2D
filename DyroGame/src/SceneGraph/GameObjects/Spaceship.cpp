@@ -24,7 +24,7 @@ namespace
 }
 
 Spaceship::Spaceship(const std::tstring& name)
-	:PhysicsObject(BodyType::DYNAMIC,name)
+	:PhysicsObject(BodyType::DYNAMIC, name)
 {}
 Spaceship::~Spaceship()
 {}
@@ -39,7 +39,7 @@ bool Spaceship::initialize()
 	vertices.push_back(Vector2D(0.5f * SPACESHIP_SCALE, 0.5f * SPACESHIP_SCALE));
 
 	addComponent(new ShapeComponent(new PolygonShape(vertices)));
-	addComponent(new PolygonCollisionComponent(getRigidBody(),vertices));
+	addComponent(new PolygonCollisionComponent(getRigidBody(), vertices));
 
 	getRigidBody()->setGravityScale(0.0f);
 

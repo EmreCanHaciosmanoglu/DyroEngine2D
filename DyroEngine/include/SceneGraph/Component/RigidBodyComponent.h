@@ -4,10 +4,10 @@
 #include "SceneGraph\Component\Component.h"
 
 #ifndef _VECTOR2D_H
-	#include "Helpers\Math\Vector2D.h"
+#include "Helpers\Math\Vector2D.h"
 #endif
 #ifndef _BODYTYPE_H
-	#include "Defines\Types\BodyType.h"
+#include "Defines\Types\BodyType.h"
 #endif
 
 class b2Body;

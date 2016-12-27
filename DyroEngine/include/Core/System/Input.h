@@ -21,13 +21,13 @@ struct InputBinding
 {
 	InputBinding(unsigned int key, std::function<void()> fn, InputStateType type)
 		:key(key)
-		,callback_function(fn)
-		,type(type)
+		, callback_function(fn)
+		, type(type)
 	{}
 	InputBinding(const InputBinding& ref)
 		:key(ref.key)
-		,callback_function(ref.callback_function)
-		,type(ref.type)
+		, callback_function(ref.callback_function)
+		, type(ref.type)
 	{}
 
 	InputBinding operator= (const InputBinding& ref)

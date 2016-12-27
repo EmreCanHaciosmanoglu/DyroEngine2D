@@ -3,7 +3,7 @@
 
 #include "SceneGraph/Scene/Manager/SceneManager.h"
 
-#include "Helpers/Singleton.h"
+#include "Helpers/Patterns/Singleton.h"
 
 #include "Defines\Types\SystemType.h"
 #include "Defines\assert.h"

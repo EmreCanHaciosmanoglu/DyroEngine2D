@@ -1,7 +1,7 @@
 #ifndef _TaggedObject_H
 #define _TaggedObject_H
 
-#include "Helpers\ObjectCounter.h"
+#include "Helpers\Patterns/ObjectCounter.h"
 
 #ifndef _STRING_H
 #include "Defines\string.h"
@@ -11,7 +11,7 @@ template <typename T>
 class TaggedObject : public ObjectCounter<T>
 {
 public:
-	TaggedObject(const std::tstring& name = _T(""));
+	TaggedObject(const std::tstring& name);
 	virtual ~TaggedObject();
 
 	unsigned int getID();
@@ -19,22 +19,22 @@ public:
 	void setName(const std::tstring& name);
 	const std::tstring& getName() const;
 
+	static std::tstring BASE_NAME;
+
 private:
 	std::tstring generateUniqueName(const std::tstring& baseName = TaggedObject<T>::BASE_NAME);
 
 	unsigned int id;
 	std::tstring name;
-
-	static const std::tstring BASE_NAME;
 };
 
 template <typename T>
-const std::tstring TaggedObject<T>::BASE_NAME = _T("Object");
+std::tstring TaggedObject<T>::BASE_NAME = _T("Object");
 
 template <typename T>
 TaggedObject<T>::TaggedObject(const std::tstring& name)
 	:id(ObjectCounter<T>::getAmount())
-	,name(name == _T("") ? generateUniqueName(_T("Object")) : name)
+	, name(name == _T("") ? generateUniqueName(_T("Object")) : name)
 {}
 template <typename T>
 TaggedObject<T>::~TaggedObject()
@@ -62,6 +62,5 @@ std::tstring TaggedObject<T>::generateUniqueName(const std::tstring& baseName)
 {
 	return std::tstring(baseName + TOSTRING(this->id));
 }
-
 
 #endif

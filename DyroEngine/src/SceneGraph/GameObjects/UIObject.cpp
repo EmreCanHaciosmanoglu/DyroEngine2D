@@ -4,7 +4,7 @@
 
 UIObject::UIObject(const std::tstring& name)
 	:GameObject(name)
-	,transform(new TransformComponent())
+	, transform(new TransformComponent())
 {
 	OBJECT_INIT(_T("UIObject"));
 }

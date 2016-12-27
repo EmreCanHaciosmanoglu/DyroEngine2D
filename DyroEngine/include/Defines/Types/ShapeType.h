@@ -1,0 +1,13 @@
+#ifndef _SHAPETYPE_H
+#define _SHAPETYPE_H
+
+enum class ShapeType
+{
+	LINE_SHAPE,
+	CIRCLE_SHAPE,
+	POLYGON_SHAPE,
+	TRIANGLE_SHAPE,
+	RECTANGLE_SHAPE
+};
+
+#endif

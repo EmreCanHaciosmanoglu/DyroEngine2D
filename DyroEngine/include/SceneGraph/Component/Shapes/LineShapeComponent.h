@@ -3,15 +3,25 @@
 
 #include "SceneGraph\Component\Shapes\ShapeComponent.h"
 
-class LineShape;
+#ifndef _VECTOR2D_H
+#include "Helpers\Math\Vector2D.h"
+#endif
+
+class LineShapeDescription;
 
 class LineShapeComponent : public ShapeComponent
 {
 public:
-	LineShapeComponent(LineShape* shape, const std::tstring& name = _T(""));
+	LineShapeComponent(LineShapeDescription* description, const std::tstring& name = _T(""));
 	virtual ~LineShapeComponent();
 
-	LineShape* getLineShape() const;
+	void setStartPosition(const Vector2D& start);
+	void setEndPosition(const Vector2D& end);
+
+	const Vector2D& getStartPosition() const;
+	const Vector2D& getEndPosition() const;
+
+	LineShapeDescription* getLineDescription() const;
 };
 
 #endif

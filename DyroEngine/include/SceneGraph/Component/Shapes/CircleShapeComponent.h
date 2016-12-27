@@ -2,21 +2,26 @@
 #define _CIRCLESHAPCOMPONENT_H
 
 #include "SceneGraph\Component\Shapes\ShapeComponent.h"
-#ifndef _IBOUNDINGBOX_H
-#include "Interfaces\IBoundingBox.h"
+
+#ifndef _VECTOR2D_H
+#include "Helpers\Math\Vector2D.h"
 #endif
 
-class CircleShape;
+class CircleShapeDescription;
 
-class CircleShapeComponent : public ShapeComponent , public IBoundingBox
+class CircleShapeComponent : public ShapeComponent
 {
 public:
-	CircleShapeComponent(CircleShape* shape, const std::tstring& name = _T(""));
+	CircleShapeComponent(CircleShapeDescription* description, const std::tstring& name = _T(""));
 	virtual ~CircleShapeComponent();
 
-	CircleShape* getCircleShape() const;
+	void setCenterPosition(const Vector2D& center);
+	void setRadius(float radius);
 
-	Rect2D getBoundingBox() const;
+	const Vector2D& getCenterPosition() const;
+	float getRadius() const;
+
+	CircleShapeDescription* getCircleDescription() const;
 };
 
 #endif

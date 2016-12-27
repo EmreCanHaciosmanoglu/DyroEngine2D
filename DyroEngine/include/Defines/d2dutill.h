@@ -7,8 +7,8 @@
 #define _WIN32_WINNT 0x0600 // Vista
 #endif
 
-// Enable extra D3D debugging in debug builds if using the debug DirectX runtime.  
-// This makes D3D objects work well in the debugger watch window, but slows down 
+// Enable extra D3D debugging in debug builds if using the debug DirectX runtime.
+// This makes D3D objects work well in the debugger watch window, but slows down
 // performance slightly.
 #if defined(DEBUG) || defined(_DEBUG)
 #ifndef D3D_DEBUG_INFO
@@ -30,7 +30,7 @@
 
 // libs used for Direct2D
 //-----------------------
-#pragma comment(lib, "d2d1.lib")			
+#pragma comment(lib, "d2d1.lib")
 #pragma comment(lib, "WindowsCodecs.lib")	//WIC
 #pragma comment(lib, "dwrite.lib")			//WIC
 

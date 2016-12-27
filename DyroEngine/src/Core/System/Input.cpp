@@ -2,15 +2,15 @@
 #include "Core\System\MainWindow.h"
 #include "Core\System\Manager\SystemManager.h"
 
-#include "Helpers\Singleton.h"
+#include "Helpers\Patterns/Singleton.h"
 
 Input::Input()
 	:System(SystemType::INPUT_SYSTEM)
-	,current_keyboard_state(nullptr)
-	,previous_keyboard_state(nullptr)
-	,keyboard_state_0(nullptr)
-	,keyboard_state_1(nullptr)
-	,main_window(nullptr)
+	, current_keyboard_state(nullptr)
+	, previous_keyboard_state(nullptr)
+	, keyboard_state_0(nullptr)
+	, keyboard_state_1(nullptr)
+	, main_window(nullptr)
 {}
 Input::~Input()
 {}
@@ -61,7 +61,7 @@ void Input::update()
 				binding.execute();
 			break;
 		case InputStateType::RELEASD:
-			if(isKeyReleased(binding.key))
+			if (isKeyReleased(binding.key))
 				binding.execute();
 			break;
 		case InputStateType::DOWN:

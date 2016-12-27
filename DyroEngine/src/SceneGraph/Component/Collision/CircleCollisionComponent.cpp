@@ -7,8 +7,8 @@
 #include <Box2D\Box2D.h>
 
 CircleCollisionComponent::CircleCollisionComponent(RigidBodyComponent* rigid, float radius, float restitution, float friction, float density, const std::tstring& name)
-	:CollisionComponent(rigid,restitution,friction,density, name == _T("") ? _T("CircleCollisionComponent") : name)
-	,radius(radius)
+	:CollisionComponent(rigid, restitution, friction, density, name == _T("") ? _T("CircleCollisionComponent") : name)
+	, radius(radius)
 {
 	OBJECT_INIT(_T("CircleCollisionComponent"));
 }
@@ -24,7 +24,7 @@ bool CircleCollisionComponent::initialize()
 
 	this->radius /= constants::BOX2D_SCALE;
 
-	b2CircleShape shape; 
+	b2CircleShape shape;
 	shape.m_radius = (float)radius;
 
 	fixtureDef.shape = &shape;

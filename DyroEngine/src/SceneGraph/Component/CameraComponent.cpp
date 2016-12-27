@@ -7,7 +7,7 @@
 
 CameraComponent::CameraComponent(const std::tstring& name)
 	:Component(name == _T("") ? _T("CameraComponent") : name)
-	,transform(nullptr)
+	, transform(nullptr)
 {
 }
 CameraComponent::~CameraComponent()

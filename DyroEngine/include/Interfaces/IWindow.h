@@ -2,10 +2,10 @@
 #define _IWINDOW_H
 
 #ifndef _WINDOWS_
-	#include <windows.h>
+#include <windows.h>
 #endif
 #ifndef _STRING_H
-	#include "Defines/string.h"
+#include "Defines/string.h"
 #endif
 
 class IWindow

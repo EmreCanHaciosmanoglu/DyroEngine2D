@@ -6,8 +6,8 @@ class Input;
 class IInput
 {
 public:
-	IInput(){}
-	virtual ~IInput(){}
+	IInput() {}
+	virtual ~IInput() {}
 
 	virtual void setupInput(Input* input) = 0;
 };

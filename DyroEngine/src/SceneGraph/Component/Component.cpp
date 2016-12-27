@@ -19,7 +19,6 @@ bool Component::postInitialize()
 }
 void Component::update()
 {
-
 }
 
 int Component::getExecutionOrder() const

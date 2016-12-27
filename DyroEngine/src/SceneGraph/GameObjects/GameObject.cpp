@@ -3,8 +3,11 @@
 #include "SceneGraph\Component\Component.h"
 #include "SceneGraph\Scene\Scene.h"
 
+#include "Core\Data\Objects\Layer.h"
+#include "Core\Data\Manager\LayerManager.h"
+
 #ifndef _ALGORITHM_
-	#include <algorithm>
+#include <algorithm>
 #endif
 
 #include "Defines\deletemacros.h"
@@ -13,8 +16,13 @@ GameObject::GameObject(const std::tstring& name)
 	:Object(name)
 	, current_scene(nullptr)
 	, parent(nullptr)
+	, childeren(nullptr)
+	, components(nullptr)
 {
 	OBJECT_INIT(_T("GameObject"));
+
+	this->childeren = new GameObjectManager();
+	this->components = new ComponentManager();
 }
 GameObject::~GameObject()
 {
@@ -22,113 +30,40 @@ GameObject::~GameObject()
 
 bool GameObject::initialize()
 {
-	//Setup order of the components
-	//FIFO -> first in first out ( destruction principle of the components )
-	std::sort(this->vec_components.begin(), this->vec_components.end(),
-		[](const Component * c1, const Component * c2) -> bool
-	{
-		if (c1->getExecutionOrder() == Component::INVALID_ORDER_ID && c2->getExecutionOrder() == Component::INVALID_ORDER_ID)
-			return false;
-
-		else if (c1->getExecutionOrder() == Component::INVALID_ORDER_ID)
-			return false;
-		else if (c2->getExecutionOrder() == Component::INVALID_ORDER_ID)
-			return true;
-
-		return c1->getExecutionOrder() < c2->getExecutionOrder();
-	});
-
-	for (Component* obj : this->vec_components)
-	{
-		if (obj->getInitialized())
-			continue;
-
-		if (!obj->initialize())
-			return false;
-	}
-	for (GameObject* child_obj : this->vec_childeren)
-	{
-		if (child_obj->getInitialized())
-			continue;
-
-		if (!child_obj->initialize())
-			return false;
-	}
+	if (!this->components->initialize())
+		return false;
+	if (!this->childeren->initialize())
+		return false;
 
 	return true;
 }
 bool GameObject::postInitialize()
 {
-	for (Component* obj : this->vec_components)
-	{
-		if (obj->getPostInitialized())
-			continue;
-
-		if (!obj->postInitialize())
-			return false;
-	}
-	for (GameObject* child_obj : this->vec_childeren)
-	{
-		if (child_obj->getPostInitialized())
-			continue;
-
-		if (!child_obj->postInitialize())
-			return false;
-	}
+	if (!this->components->postInitialize())
+		return false;
+	if (!this->childeren->postInitialize())
+		return false;
 
 	return true;
 }
 void GameObject::update()
 {
-	for (Component* obj : this->vec_components)
-	{
-		if (obj->isActive())
-			obj->update();
-	}
-	for (GameObject* child_obj : this->vec_childeren)
-	{
-		if (child_obj->isActive())
-			child_obj->update();
-	}
+	this->components->update();
+	this->childeren->update();
 }
 bool GameObject::shutdown()
 {
-	//Setup order of the components
-	//FIFO -> first in first out ( destruction principle of the components )
-	std::sort(this->vec_components.begin(), this->vec_components.end(),
-		[](const Component * c1, const Component * c2) -> bool
-	{
-		if (c1->getExecutionOrder() == Component::INVALID_ORDER_ID && c2->getExecutionOrder() == Component::INVALID_ORDER_ID)
-			return true;
+	bool result = true;
+	if (!this->components->shutdown())
+		result = false;
+	if (!this->childeren->shutdown())
+		result = false;
 
-		else if (c1->getExecutionOrder() == Component::INVALID_ORDER_ID)
-			return true;
-		else if (c2->getExecutionOrder() == Component::INVALID_ORDER_ID)
-			return false;
-
-		return c1->getExecutionOrder() > c2->getExecutionOrder();
-	});
-
-	for (Component* obj : this->vec_components)
-	{
-		if (!obj->shutdown())
-			return false;
-		SafeDelete(obj);
-	}
-	this->vec_components.clear();
-	for (GameObject* child_obj : this->vec_childeren)
-	{
-		if (!child_obj->shutdown())
-			return false;
-		SafeDelete(child_obj);
-	}
-	this->vec_childeren.clear();
 	return true;
 }
 
 void GameObject::setupInput(Input* input)
 {
-
 }
 
 void GameObject::setScene(Scene* scene)
@@ -150,53 +85,58 @@ GameObject* GameObject::getParent() const
 
 bool GameObject::hasChilderen() const
 {
-	return this->vec_childeren.size() > 0;
+	return (int)this->childeren->getSize() > 0;
 }
 
-std::vector<GameObject*> GameObject::getChilderen() const
+void GameObject::getChilderen(std::vector<GameObject*>& childeren) const
 {
-	return this->vec_childeren;
+	this->childeren->getGameObjects(childeren);
 }
-std::vector<Component*> GameObject::getComponents() const
+void GameObject::getComponents(std::vector<Component*>& components) const
 {
-	return this->vec_components;
+	this->components->getComponents(components);
 }
 
 void GameObject::addComponent(Component* component)
 {
-	std::vector<Component*>::iterator it = std::find(this->vec_components.begin(), this->vec_components.end(), component);
-	if (it == this->vec_components.end())
-	{
-		this->vec_components.push_back(component);
-		component->setParent(this);
-	}
+	component->setParent(this);
+	this->components->addComponent(component);
 }
 void GameObject::removeComponent(Component* component)
 {
-	std::vector<Component*>::iterator it = std::find(this->vec_components.begin(), this->vec_components.end(), component);
-	if (it != this->vec_components.end())
-	{
-		this->vec_components.erase(it);
-		(*it)->shutdown();
-		SafeDelete((*it));
-	}
+	this->components->removeComponent(component);
+	SafeDelete(component);
+}
+void GameObject::removeComponent(unsigned int id)
+{
+	Component* c = this->components->getComponent(id);
+	this->components->removeComponent(id);
+	SafeDelete(c);
 }
 void GameObject::addChild(GameObject* child)
 {
-	std::vector<GameObject*>::iterator it = std::find(this->vec_childeren.begin(), this->vec_childeren.end(), child);
-	if (it == this->vec_childeren.end())
-	{
-		this->vec_childeren.push_back(child);
-		child->setParent(this);
-		child->setScene(getScene());
-	}
+	child->setParent(this);
+	child->setScene(getScene());
+	this->childeren->addGameObject(child);
 }
 void GameObject::removeChild(GameObject* child)
 {
-	std::vector<GameObject*>::iterator it = std::find(this->vec_childeren.begin(), this->vec_childeren.end(), child);
-	if (it != this->vec_childeren.end())
-	{
-		this->vec_childeren.erase(it);
-		SafeDelete((*it));
-	}
+	this->childeren->removeGameObject(child);
+	SafeDelete(child);
+}
+void GameObject::removeChild(unsigned int id)
+{
+	GameObject* c = this->childeren->getGameObject(id);
+	this->childeren->removeGameObject(id);
+	SafeDelete(c);
+}
+
+void GameObject::setLayer(Layer* layer)
+{
+	this->layer_id = layer->getID();
+	getScene()->getManager<LayerManager>()->addLayer(layer);
+}
+Layer* GameObject::getLayer() const
+{
+	return getScene()->getManager<LayerManager>()->getLayer(this->layer_id);
 }

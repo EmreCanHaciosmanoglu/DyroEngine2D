@@ -1,5 +1,3 @@
-//#pragma once
-
 #ifndef _IBOUNDINGBOX_H
 #define _IBOUNDINGBOX_H
 
@@ -10,8 +8,8 @@
 class IBoundingBox
 {
 public:
-	IBoundingBox(){}
-	virtual ~IBoundingBox(){}
+	IBoundingBox() {}
+	virtual ~IBoundingBox() {}
 
 	virtual Rect2D getBoundingBox() const = 0;
 };

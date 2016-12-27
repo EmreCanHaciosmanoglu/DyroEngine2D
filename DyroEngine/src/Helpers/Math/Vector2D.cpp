@@ -20,49 +20,49 @@ float Vector2D::Dot(const Vector2D& rhs) const
 {
 	return (x*rhs.x + y*rhs.y);
 }
-Vector2D Vector2D::operator-() const 
+Vector2D Vector2D::operator-() const
 {
 	return Vector2D(-x, -y);
 }
 
-Vector2D Vector2D::operator+(const Vector2D& rhs) const 
+Vector2D Vector2D::operator+(const Vector2D& rhs) const
 {
 	return Vector2D(x + rhs.x, y + rhs.y);
 }
-Vector2D Vector2D::operator-(const Vector2D& rhs) const 
+Vector2D Vector2D::operator-(const Vector2D& rhs) const
 {
 	return Vector2D(x - rhs.x, y - rhs.y);
 }
-Vector2D& Vector2D::operator+=(const Vector2D& rhs) 
+Vector2D& Vector2D::operator+=(const Vector2D& rhs)
 {
 	x += rhs.x; y += rhs.y; return *this;
 }
-Vector2D& Vector2D::operator-=(const Vector2D& rhs) 
+Vector2D& Vector2D::operator-=(const Vector2D& rhs)
 {
 	x -= rhs.x; y -= rhs.y; return *this;
 }
 
-Vector2D Vector2D::operator*(const float a) const 
+Vector2D Vector2D::operator*(const float a) const
 {
 	return Vector2D(x*a, y*a);
 }
-Vector2D Vector2D::operator*(const Vector2D& rhs) const 
+Vector2D Vector2D::operator*(const Vector2D& rhs) const
 {
 	return Vector2D(x*rhs.x, y*rhs.y);
 }
-Vector2D& Vector2D::operator*=(const float a) 
+Vector2D& Vector2D::operator*=(const float a)
 {
 	x *= a; y *= a; return *this;
 }
-Vector2D& Vector2D::operator*=(const Vector2D& rhs) 
+Vector2D& Vector2D::operator*=(const Vector2D& rhs)
 {
 	x *= rhs.x; y *= rhs.y; return *this;
 }
-Vector2D Vector2D::operator/(const float a) const 
+Vector2D Vector2D::operator/(const float a) const
 {
 	return Vector2D(x / a, y / a);
 }
-Vector2D& Vector2D::operator/=(const float a) 
+Vector2D& Vector2D::operator/=(const float a)
 {
 	x /= a; y /= a; return *this;
 }
@@ -75,16 +75,16 @@ Vector2D& Vector2D::operator/=(const int a)
 	x /= a; y /= a; return *this;
 }
 
-bool Vector2D::operator==(const Vector2D& rhs) const 
+bool Vector2D::operator==(const Vector2D& rhs) const
 {
 	return (x == rhs.x) && (y == rhs.y);
 }
-bool Vector2D::operator!=(const Vector2D& rhs) const 
+bool Vector2D::operator!=(const Vector2D& rhs) const
 {
 	return (x != rhs.x) || (y != rhs.y);
 }
 
-bool Vector2D::operator<(const Vector2D& rhs) const 
+bool Vector2D::operator<(const Vector2D& rhs) const
 {
 	if (x < rhs.x) return true;
 	if (x > rhs.x) return false;

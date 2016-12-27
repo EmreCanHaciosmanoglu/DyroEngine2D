@@ -3,11 +3,11 @@
 
 //C Runtime Header Files
 #ifndef _INC_MATH
-	#include <math.h>
+#include <math.h>
 #endif
 
 #ifndef BOX2D_H
-	#include <Box2D\Box2D.h>
+#include <Box2D\Box2D.h>
 #endif
 
 #pragma region Disable Waring 4172
@@ -20,10 +20,10 @@
 // compile with: /W1 /LD
 // float f = 10;
 //
-// const float& bar() 
+// const float& bar()
 // {
 //  //try the following line instead
-//	// const float& bar() 
+//	// const float& bar()
 //	   {
 //			return f;   // C4172
 //	   }
@@ -83,4 +83,3 @@ public:
 };
 
 #endif
-

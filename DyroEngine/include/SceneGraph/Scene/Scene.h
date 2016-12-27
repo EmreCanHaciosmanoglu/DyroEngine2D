@@ -17,7 +17,10 @@ class Visualization;
 
 class GameObject;
 class Input;
+
 class AbstractManager;
+class GameObjectManager;
+class VisualizationManager;
 
 class DebugRenderer;
 class ContactListener;
@@ -47,11 +50,12 @@ public:
 	b2World* getPhyxWorld();
 
 	void addGameObject(GameObject* object);
-	void removeGameObject(GameObject* object);
 
-	const std::vector<GameObject*>& getGameObjects() const;
-	const std::vector<GameObject*> getUIObjects() const;
-	const std::vector<Visualization*> getVisualizations() const;
+	void removeGameObject(GameObject* object);
+	void removeGameObject(unsigned int id);
+
+	void getGameObjects(std::vector<GameObject*>& objects) const;
+	void getVisualizations(std::vector<Visualization*>& visualizations) const;
 
 	void addManager(AbstractManager* manager);
 	template<typename T>
@@ -59,11 +63,6 @@ public:
 
 private:
 	void setupPyhx();
-
-	bool initializeObjects(std::vector<GameObject*>& objects);
-	bool postInitializeObjects(std::vector<GameObject*>& objects);
-	void updateObjects(std::vector<GameObject*>& objects);
-	bool shutdownObjects(std::vector<GameObject*> objects);
 
 	b2World* phyx_world;
 
@@ -73,12 +72,9 @@ private:
 
 	bool debug_rendering;
 
-	std::vector<GameObject*> vec_objects;
-	std::vector<GameObject*> vec_ui_objects;
+	GameObjectManager* game_object_manager;
 
 	std::vector<AbstractManager*> vec_managers;
-
-	std::vector<Visualization*> vec_visualizations;
 };
 
 template <typename T>
@@ -97,4 +93,3 @@ T* Scene::getManager() const
 }
 
 #endif //_SCENE_H
-

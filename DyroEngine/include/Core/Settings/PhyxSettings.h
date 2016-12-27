@@ -4,10 +4,10 @@
 #include "Settings.h"
 
 #ifndef _STRING_H
-	#include "Defines/string.h"
+#include "Defines/string.h"
 #endif
 #ifndef _VECTOR2D_H
-	#include "Helpers\Math\Vector2D.h"
+#include "Helpers\Math\Vector2D.h"
 #endif
 
 class PhyxSettings : public Settings

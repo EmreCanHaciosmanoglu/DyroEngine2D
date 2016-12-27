@@ -56,7 +56,7 @@ Matrix2D Matrix2D::inverse() const
 	//calculate determinant
 	float det = determinant();
 	//1)calculate matrix of minors
-	//2)Use the alternating law of signs to produce the matrix of cofactors 
+	//2)Use the alternating law of signs to produce the matrix of cofactors
 	//3)Transpose
 	//4)the inverse matrix is 1/Determinant * the resulting matrix
 	return Matrix2D(Vector2D(+dirY.y, -dirX.y) / det,
@@ -76,7 +76,7 @@ bool Matrix2D::operator==(const Matrix2D& other) const
 
 bool Matrix2D::operator!=(const Matrix2D& other) const
 {
-	return !(*this == other);
+	return dirX != other.dirX || dirY != other.dirY || orig != other.orig;
 }
 
 const D2D1::Matrix3x2F Matrix2D::toMatrix3x2F() const
@@ -166,4 +166,3 @@ Matrix2D Matrix2D::createTranslationMatrix(float tx, float ty)
 {
 	return createTranslationMatrix(Vector2D(tx, ty));
 }
-

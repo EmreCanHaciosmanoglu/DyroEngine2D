@@ -9,7 +9,7 @@
 
 ImageComponent::ImageComponent(Image* image, const std::tstring& name)
 	:Component(name == _T("") ? _T("ImageComponent") : name)
-	,image(image)
+	, image(image)
 {
 	OBJECT_INIT(_T("ImageComponent"));
 }
@@ -22,7 +22,6 @@ bool ImageComponent::initialize()
 }
 void ImageComponent::update()
 {
-
 }
 bool ImageComponent::shutdown()
 {

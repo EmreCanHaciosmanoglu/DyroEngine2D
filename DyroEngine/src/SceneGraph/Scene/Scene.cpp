@@ -1,15 +1,17 @@
 #include "SceneGraph\Scene\Scene.h"
+
 #include "SceneGraph\GameObjects\GameObject.h"
-#include "SceneGraph\GameObjects\UIObject.h"
+#include "SceneGraph\GameObjects\Manager\GameObjectManager.h"
 
 #include "Core\System\Input.h"
 #include "Core\System\Manager\SystemManager.h"
 
-#include "Core\Rendering\Visualization\Visualization.h"
+#include "Core\Rendering\Visualization\Objects\Visualization.h"
+#include "Core\Rendering\Visualization\Manager\VisualizationManager.h"
 
 #include "Defines\deletemacros.h"
 
-#include "Helpers\Singleton.h"
+#include "Helpers\Patterns/Singleton.h"
 #include "Helpers\Collision\ContactListener.h"
 #include "Helpers\Collision\ContactFilter.h"
 
@@ -29,8 +31,12 @@ Scene::Scene(const std::tstring& name)
 	, debug_renderer(nullptr)
 	, contact_filter(nullptr)
 	, contact_listener(nullptr)
+	, game_object_manager(nullptr)
 {
 	OBJECT_INIT(_T("Scene"));
+
+	this->game_object_manager = new GameObjectManager();
+	addManager(this->game_object_manager);
 }
 Scene::~Scene()
 {
@@ -40,8 +46,8 @@ bool Scene::initialize()
 {
 	setupPyhx();
 
-	initializeObjects(this->vec_objects);
-	initializeObjects(this->vec_ui_objects);
+	if (!this->game_object_manager->initialize())
+		return false;
 
 	return true;
 }
@@ -50,8 +56,9 @@ bool Scene::postInitialize()
 	Input* input = dynamic_cast<Input*>(Singleton<SystemManager>::getInstance().getSystem(SystemType::INPUT_SYSTEM));
 	this->setupInput(input);
 
-	postInitializeObjects(this->vec_objects);
-	postInitializeObjects(this->vec_ui_objects);
+	this->game_object_manager->setupInput(input);
+	if (!this->game_object_manager->postInitialize())
+		return false;
 
 	return true;
 }
@@ -67,32 +74,27 @@ void Scene::update()
 	//Update the contact listener so we can handle collision check when objects when still colliding
 	this->contact_listener->update();
 
-	updateObjects(this->vec_objects);
-	updateObjects(this->vec_ui_objects);
+	this->game_object_manager->update();
 }
 bool Scene::shutdown()
 {
-	for (Visualization* visualization : this->vec_visualizations)
-		SafeDelete(visualization);
-	this->vec_visualizations.clear();
+	bool result = true;
 
-	shutdownObjects(this->vec_objects);
-	shutdownObjects(this->vec_ui_objects);
-	this->vec_objects.clear();
-	this->vec_ui_objects.clear();
+	if (!this->game_object_manager->shutdown())
+		result = false;
 
+	SafeDelete(this->game_object_manager);
 	SafeDelete(this->debug_renderer);
 	SafeDelete(this->contact_filter);
 	SafeDelete(this->contact_listener);
 
 	SafeDelete(this->phyx_world);
 
-	return true;
+	return result;
 }
 
 void Scene::setupInput(Input* input)
 {
-
 }
 
 void Scene::activate()
@@ -120,61 +122,26 @@ b2World* Scene::getPhyxWorld()
 
 void Scene::addGameObject(GameObject* object)
 {
-	if (dynamic_cast<UIObject*>(object) == nullptr)
-	{
-		std::vector<GameObject*>::iterator it = std::find(this->vec_objects.begin(), this->vec_objects.end(), object);
-		if (it == this->vec_objects.end())
-		{
-			this->vec_objects.push_back(object);
-			object->setScene(this);
-		}
-	}
-	else
-	{
-		std::vector<GameObject*>::iterator it = std::find(this->vec_ui_objects.begin(), this->vec_ui_objects.end(), object);
-		if (it == this->vec_ui_objects.end())
-		{
-			this->vec_ui_objects.push_back(object);
-			object->setScene(this);
-		}
-	}
+	object->setScene(this);
+	this->game_object_manager->addGameObject(object);
 }
 void Scene::removeGameObject(GameObject* object)
 {
-	if (dynamic_cast<UIObject*>(object) == nullptr)
-	{
-		std::vector<GameObject*>::iterator it = std::find(this->vec_objects.begin(), this->vec_objects.end(), object);
-		if (it != this->vec_objects.end())
-		{
-			this->vec_objects.erase(it);
-			(*it)->shutdown();
-			SafeDelete((*it));
-		}
-	}
-	else
-	{
-		std::vector<GameObject*>::iterator it = std::find(this->vec_ui_objects.begin(), this->vec_ui_objects.end(), object);
-		if (it != this->vec_ui_objects.end())
-		{
-			this->vec_ui_objects.erase(it);
-			(*it)->shutdown();
-			SafeDelete((*it));
-		}
-	}
+	this->game_object_manager->removeGameObject(object);
+}
+void Scene::removeGameObject(unsigned int id)
+{
+	this->game_object_manager->removeGameObject(id);
 }
 
-const std::vector<GameObject*>& Scene::getGameObjects() const
+void Scene::getGameObjects(std::vector<GameObject*>& objects) const
 {
-	return this->vec_objects;
+	this->game_object_manager->getGameObjects(objects);
 }
-const std::vector<GameObject*> Scene::getUIObjects() const
+void Scene::getVisualizations(std::vector<Visualization*>& visualizations) const
 {
-	return this->vec_ui_objects;
+	this->game_object_manager->getVisualizations(visualizations);
 }
-//const std::vector<Visualization*> Scene::getVisualizations() const
-//{
-//	return getManager<GameObjectManager>()->getVisualizations();
-//}
 
 void Scene::addManager(AbstractManager* manager)
 {
@@ -203,54 +170,4 @@ void Scene::setupPyhx()
 	this->phyx_world->SetDebugDraw(debug_renderer);
 	this->phyx_world->SetContactFilter(this->contact_filter);
 	this->phyx_world->SetContactListener(this->contact_listener);
-}
-
-bool Scene::initializeObjects(std::vector<GameObject*>& objects)
-{
-	for (GameObject* obj : objects)
-	{
-		if (obj->getInitialized())
-			continue;
-
-		if (!obj->initialize())
-			return false;
-	}
-
-	return true;
-}
-bool Scene::postInitializeObjects(std::vector<GameObject*>& objects)
-{
-	Input* input = dynamic_cast<Input*>(Singleton<SystemManager>::getInstance().getSystem(SystemType::INPUT_SYSTEM));
-
-	for (GameObject* obj : objects)
-	{
-		if (obj->getPostInitialized())
-			continue;
-
-		obj->setupInput(input);
-
-		if (!obj->postInitialize())
-			return false;
-	}
-
-	return true;
-}
-void Scene::updateObjects(std::vector<GameObject*>& objects)
-{
-	for (GameObject* obj : objects)
-	{
-		if (obj->isActive())
-			obj->update();
-	}
-}
-bool Scene::shutdownObjects(std::vector<GameObject*> objects)
-{
-	for (GameObject* obj : objects)
-	{
-		if (!obj->shutdown())
-			return false;
-		SafeDelete(obj);
-	}
-
-	return true;
 }

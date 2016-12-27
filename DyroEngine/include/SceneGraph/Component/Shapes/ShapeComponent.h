@@ -7,12 +7,12 @@
 #include "Defines/color.h"
 #endif
 
-class Shape;
+class ShapeDescription;
 
 class ShapeComponent : public Component
 {
 public:
-	ShapeComponent(Shape* shape, const std::tstring& name = _T(""));
+	ShapeComponent(ShapeDescription* description, const std::tstring& name = _T(""));
 	virtual ~ShapeComponent();
 
 	virtual bool initialize();
@@ -20,14 +20,16 @@ public:
 	virtual bool shutdown();
 
 	void setColor(const Color& c);
+	void setLineWidth(float width);
+
 	const Color& getColor() const;
+	float getLineWidth() const;
 
-	void setFill(bool fill);
-	bool getFill() const;
+protected:
+	ShapeDescription* getDescription() const;
 
-	Shape* getShape() const;
 private:
-	Shape* shape;
+	ShapeDescription* description;
 };
 
 #endif

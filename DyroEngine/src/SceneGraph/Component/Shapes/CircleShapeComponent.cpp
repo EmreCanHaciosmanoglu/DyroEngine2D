@@ -1,20 +1,34 @@
 #include "SceneGraph\Component\Shapes\CircleShapeComponent.h"
-#include "Core\Data\Shapes\CircleShape.h"
 
-CircleShapeComponent::CircleShapeComponent(CircleShape* shape, const std::tstring& name)
-	:ShapeComponent(shape, name)
+#include "Core\Data\Objects\Descriptions\Shapes\CircleShapeDescription.h"
+
+CircleShapeComponent::CircleShapeComponent(CircleShapeDescription* description, const std::tstring& name)
+	:ShapeComponent(description, name)
 {
 	OBJECT_INIT(_T("CircleShapeComponent"));
 }
 CircleShapeComponent::~CircleShapeComponent()
 {}
 
-CircleShape* CircleShapeComponent::getCircleShape() const
+void CircleShapeComponent::setCenterPosition(const Vector2D& center)
 {
-	return dynamic_cast<CircleShape*>(getShape());
+	getCircleDescription()->setCenter(center);
+}
+void CircleShapeComponent::setRadius(float radius)
+{
+	getCircleDescription()->setRadius(radius);
 }
 
-Rect2D CircleShapeComponent::getBoundingBox() const
+const Vector2D& CircleShapeComponent::getCenterPosition() const
 {
-	return getCircleShape()->getBoundingBox();
+	return getCircleDescription()->getCenter();
+}
+float CircleShapeComponent::getRadius() const
+{
+	return getCircleDescription()->getRadius();
+}
+
+CircleShapeDescription* CircleShapeComponent::getCircleDescription() const
+{
+	return dynamic_cast<CircleShapeDescription*>(getDescription());
 }

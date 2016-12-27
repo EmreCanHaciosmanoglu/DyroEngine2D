@@ -3,13 +3,13 @@
 #include "SceneGraph\Component\TransformComponent.h"
 #include "SceneGraph\Component\CameraComponent.h"
 
-#include "Helpers/Singleton.h"
+#include "Helpers/Patterns/Singleton.h"
 #include "SceneGraph/GameObjects/Camera/Manager/CameraManager.h"
 
 Camera::Camera(const std::tstring& name, bool setActive)
 	:GameObject(name)
-	,camera(new CameraComponent())
-	,transform(new TransformComponent())
+	, camera(new CameraComponent())
+	, transform(new TransformComponent())
 {
 	OBJECT_INIT(_T("Camera"));
 

@@ -5,7 +5,7 @@
 #include "SceneGraph/Component/RigidBodyComponent.h"
 #include "SceneGraph/Component/Collision/CollisionComponent.h"
 
-//#include "Helpers/Singleton.h"
+//#include "Helpers/Patterns/Singleton.h"
 //#include "Diagnostics/Logger.h"
 
 ContactListener::ContactListener()
@@ -74,7 +74,7 @@ void ContactListener::PreSolve(b2Contact* contact, const b2Manifold* oldManifold
 }
 void ContactListener::PostSolve(b2Contact* contact, const b2ContactImpulse* impulse)
 {
-	/// This allows you to inspect a contact after the solver is finished. 
+	/// This allows you to inspect a contact after the solver is finished.
 }
 
 void ContactListener::computeBeginContact(CollisionComponent* colliderA, CollisionComponent* colliderB, b2Fixture* fixtureA, b2Fixture* fixtureB, PhysicsObject* objectA, PhysicsObject* objectB)
@@ -84,7 +84,7 @@ void ContactListener::computeBeginContact(CollisionComponent* colliderA, Collisi
 		if (this->vec_triggers.size() == 0)
 			return;
 
-		this->vec_triggers.push_back(ContactData(objectA,objectB,colliderA,colliderB));
+		this->vec_triggers.push_back(ContactData(objectA, objectB, colliderA, colliderB));
 
 		objectA->onTriggerEnter(objectB);
 	}
@@ -107,7 +107,7 @@ void ContactListener::computeEndContact(CollisionComponent* colliderA, Collision
 		if (this->vec_triggers.size() == 0)
 			return;
 
-		this->vec_triggers.erase(std::find(this->vec_triggers.begin(),this->vec_triggers.end(), ContactData(objectA, objectB, colliderA, colliderB)));
+		this->vec_triggers.erase(std::find(this->vec_triggers.begin(), this->vec_triggers.end(), ContactData(objectA, objectB, colliderA, colliderB)));
 
 		objectA->onTriggerLeave(objectB);
 	}
@@ -116,7 +116,7 @@ void ContactListener::computeEndContact(CollisionComponent* colliderA, Collision
 		if (this->vec_colliders.size() == 0)
 			return;
 
-		this->vec_colliders.erase(std::find(this->vec_colliders.begin(),this->vec_colliders.end(), ContactData(objectA, objectB, colliderA, colliderB)));
+		this->vec_colliders.erase(std::find(this->vec_colliders.begin(), this->vec_colliders.end(), ContactData(objectA, objectB, colliderA, colliderB)));
 
 		objectA->onCollisionLeave(objectB);
 

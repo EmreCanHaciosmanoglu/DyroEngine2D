@@ -3,8 +3,8 @@
 #include "Defines/Types/SystemType.h"
 
 System::System(SystemType type)
-:system_type(type)
-,active(true)
+	:system_type(type)
+	, active(true)
 {
 }
 System::~System()

@@ -1,6 +1,8 @@
 #include "SceneGraph\Component\TransformComponent.h"
 
 #include "SceneGraph\GameObjects\GameObject.h"
+#include "SceneGraph\GameObjects\SceneObject.h"
+
 #include "SceneGraph/Scene/Scene.h"
 
 #include "Core/Rendering/Renderer.h"
@@ -14,7 +16,7 @@ TransformComponent::TransformComponent(const std::tstring& name)
 	, world_matrix()
 	, mirror_x(Vector2D(1, 1))
 	, mirror_y(Vector2D(1, 1))
-	, center_position(0,0)
+	, center_position(0, 0)
 {
 	OBJECT_INIT(_T("TransformComponent"));
 
@@ -32,12 +34,12 @@ bool TransformComponent::initialize()
 }
 void TransformComponent::update()
 {
-	if (!this->is_dirty)
+	if (!getIsDirty())
 		return;
 
 	calculateWorldMatrix();
 
-	this->is_dirty = false;
+	clearIsDirty();
 }
 bool TransformComponent::shutdown()
 {
@@ -46,44 +48,47 @@ bool TransformComponent::shutdown()
 
 void TransformComponent::mirrorX()
 {
-	this->is_dirty = true;
+	setIsDirty();
 	this->mirror_x *= Vector2D(-1, 1);
 }
 void TransformComponent::mirrorY()
 {
-	this->is_dirty = true;
+	setIsDirty();
 	this->mirror_y *= Vector2D(1, -1);
 }
 void TransformComponent::resetMirror(bool x, bool y)
 {
-	this->is_dirty = true;
+	setIsDirty();
 	if (x)
 		this->mirror_x = Vector2D(1, 1);
 	if (y)
 		this->mirror_y = Vector2D(1, 1);
 }
 
-void TransformComponent::center(float xCenter, float yCenter) 
+void TransformComponent::center(float xCenter, float yCenter)
 {
-	this->is_dirty = true;
+	setIsDirty();
 	center(Vector2D(xCenter, yCenter));
 }
 void TransformComponent::center(const Vector2D& centerPosition)
 {
-	this->is_dirty = true;
+	setIsDirty();
 	this->center_position = centerPosition;
 }
 void TransformComponent::resetCenter()
 {
-	this->is_dirty = true;
+	setIsDirty();
 	center(Vector2D(0, 0));
 }
 
 void TransformComponent::translate(const Vector2D& translation)
 {
 	setPosition(getPosition() + translation);
-	
-	for (GameObject* obj : getParent()->getChilderen())
+
+	std::vector<GameObject*> childeren;
+	getParent()->getChilderen(childeren);
+
+	for (GameObject* obj : childeren)
 	{
 		TransformComponent* transform = obj->getComponent<TransformComponent>();
 		if (!transform)
@@ -96,7 +101,10 @@ void TransformComponent::scale(const Vector2D& scale)
 {
 	setScale(getScale() + scale);
 
-	for (GameObject* obj : getParent()->getChilderen())
+	std::vector<GameObject*> childeren;
+	getParent()->getChilderen(childeren);
+
+	for (GameObject* obj : childeren)
 	{
 		TransformComponent* transform = obj->getComponent<TransformComponent>();
 		if (!transform)
@@ -109,7 +117,10 @@ void TransformComponent::rotate(float rotation)
 {
 	setRotation(getRotation() + rotation);
 
-	for (GameObject* obj : getParent()->getChilderen())
+	std::vector<GameObject*> childeren;
+	getParent()->getChilderen(childeren);
+
+	for (GameObject* obj : childeren)
 	{
 		TransformComponent* transform = obj->getComponent<TransformComponent>();
 		if (!transform)
@@ -121,7 +132,7 @@ void TransformComponent::rotate(float rotation)
 
 void TransformComponent::setPosition(const Vector2D& position)
 {
-	this->is_dirty = true;
+	setIsDirty();
 	this->position = position;
 }
 void TransformComponent::setPosition(float x, float y)
@@ -130,7 +141,7 @@ void TransformComponent::setPosition(float x, float y)
 }
 void TransformComponent::setScale(const Vector2D& scale)
 {
-	this->is_dirty = true;
+	setIsDirty();
 	this->scaling = scale;
 }
 void TransformComponent::setScale(float x, float y)
@@ -139,7 +150,7 @@ void TransformComponent::setScale(float x, float y)
 }
 void TransformComponent::setRotation(float angle)
 {
-	this->is_dirty = true;
+	setIsDirty();
 	this->rotation = angle;
 }
 
@@ -171,6 +182,20 @@ float TransformComponent::getRotation() const
 const Matrix2D& TransformComponent::getWorldMatrix() const
 {
 	return this->world_matrix;
+}
+
+void TransformComponent::clearIsDirty()
+{
+	this->is_dirty = false;
+}
+
+void TransformComponent::setIsDirty()
+{
+	this->is_dirty = true;
+}
+bool TransformComponent::getIsDirty() const
+{
+	return this->is_dirty;
 }
 
 void TransformComponent::calculateWorldMatrix()

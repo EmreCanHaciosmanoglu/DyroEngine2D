@@ -2,7 +2,7 @@
 #define _SETTINGS_H
 
 #ifndef _STRING_H
-	#include "Defines/string.h"
+#include "Defines/string.h"
 #endif
 
 class Settings
@@ -22,4 +22,3 @@ private:
 };
 
 #endif
-

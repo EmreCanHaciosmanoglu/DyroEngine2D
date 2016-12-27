@@ -1,6 +1,6 @@
 #include "SceneGraph/Object.h"
 
-#include "Helpers\Singleton.h"
+#include "Helpers\Patterns/Singleton.h"
 #include "Diagnostics\Logger.h"
 
 Object::Object(const std::tstring& name)

@@ -2,13 +2,13 @@
 #include "SceneGraph/Scene/Scene.h"
 
 #ifndef _ALGORITHM_
-	#include <algorithm>
+#include <algorithm>
 #endif
 
 #include "Defines/assert.h"
 #include "Defines/deletemacros.h"
 
-#include "Helpers\Singleton.h"
+#include "Helpers\Patterns/Singleton.h"
 #include "Helpers\Manager.h"
 
 SceneManager::SceneManager()
@@ -21,11 +21,13 @@ SceneManager::~SceneManager()
 
 bool SceneManager::initialize()
 {
+	setupManager<LayerManager>();
 	setupManager<CameraManager>();
 	setupManager<ResourceManager>();
 
 	if (!this->active_scene->getInitialized())
 	{
+		this->active_scene->addManager(&Singleton<LayerManager>::getInstance());
 		this->active_scene->addManager(&Singleton<CameraManager>::getInstance());
 		this->active_scene->addManager(&Singleton<ResourceManager>::getInstance());
 
@@ -71,6 +73,7 @@ bool SceneManager::shutdown()
 
 	destroyManager<ResourceManager>();
 	destroyManager<CameraManager>();
+	destroyManager<LayerManager>();
 
 	return true;
 }

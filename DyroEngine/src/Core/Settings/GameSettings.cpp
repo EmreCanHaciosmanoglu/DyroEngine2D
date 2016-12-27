@@ -2,8 +2,8 @@
 
 GameSettings::GameSettings()
 	:Settings()
-	,default_scene_name(_T(""))
-	,background_color(Color(0.0f,1.0f,1.0f))
+	, default_scene_name(_T(""))
+	, background_color(Color(0.0f, 1.0f, 1.0f))
 {
 }
 GameSettings::~GameSettings()
@@ -38,6 +38,5 @@ void GameSettings::parseSettingsFile(const std::tstring& valueName, const std::t
 		setDefaultSceneName(valueData);
 	else if (valueName == _T("BACKGROUNDCOLOR"))
 	{
-
 	}
 }

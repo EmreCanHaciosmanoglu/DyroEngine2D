@@ -1,7 +1,7 @@
 #include "Core/System/Manager/SystemManager.h"
 
 #include "Core/System/System.h"
-#include "Core/System/Manager/SystemFactory.h"
+#include "Core/System/Factory/SystemFactory.h"
 
 #include "Defines/Types/SystemType.h"
 #include "Defines/deletemacros.h"
@@ -29,7 +29,6 @@ void SystemManager::getSystems(std::vector<System*>& systems)
 {
 	getObjects(systems);
 }
-
 
 bool SystemManager::initialize()
 {

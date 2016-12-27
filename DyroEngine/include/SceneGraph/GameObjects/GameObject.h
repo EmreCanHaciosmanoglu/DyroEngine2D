@@ -2,27 +2,26 @@
 #define _GAMEOBJECT_H
 
 #include "SceneGraph\Object.h"
+
 #ifndef _IINPUT_H
 #include "Interfaces\IInput.h"
 #endif
 
-#ifndef _SINGLETON_H
-#include "Helpers/Singleton.h"
-#endif
-#ifndef _LOGGER_H
-#include "Diagnostics/Logger.h"
-#endif
-
-#ifndef _VECTOR_
-#include <vector>
-#endif
 #ifndef _LIMITS_
 #include <limits>
 #endif
 
-class Component;
+#ifndef _GAMEOBJECTMANAGER_H
+#include "SceneGraph\GameObjects\Manager\GameObjectManager.h"
+#endif
+#ifndef _COMPONENTMANAGER_H
+#include "SceneGraph\Component\Manager\ComponentManager.h"
+#endif
+
 class Scene;
 class Input;
+
+class Layer;
 
 class GameObject : public Object, public IInput
 {
@@ -44,39 +43,39 @@ public:
 
 	bool hasChilderen() const;
 
-	std::vector<GameObject*> getChilderen() const;
+	void getChilderen(std::vector<GameObject*>& childeren) const;
+	void getComponents(std::vector<Component*>& components) const;
 
 	template <typename T> T* getComponent() const;
-	std::vector<Component*> getComponents() const;
+	Component* getComponent(const std::tstring& name);
+	Component* getComponent(unsigned int id);
 
 	void addComponent(Component* component);
 	void removeComponent(Component* component);
+	void removeComponent(unsigned int id);
 
 	void addChild(GameObject* object);
 	void removeChild(GameObject* object);
+	void removeChild(unsigned int id);
+
+	void setLayer(Layer* layer);
+	Layer* getLayer() const;
 
 private:
-	std::vector<GameObject*> vec_childeren;
-	std::vector<Component*> vec_components;
+	GameObjectManager* childeren;
+	ComponentManager* components;
 
 	GameObject* parent;
 
 	Scene* current_scene;
+
+	unsigned int layer_id;
 };
 
 template <typename T>
 T* GameObject::getComponent() const
 {
-	for (Component* c : this->vec_components)
-	{
-		T* new_c = dynamic_cast<T*>(c);
-		if (new_c == nullptr)
-			continue;
-
-		return new_c;
-	}
-
-	return nullptr;
+	return this->components->getComponent<T>();
 }
 
 #endif

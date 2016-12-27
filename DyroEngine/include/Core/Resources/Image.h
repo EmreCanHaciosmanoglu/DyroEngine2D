@@ -17,7 +17,7 @@
 #include "Helpers/Math/Rect2D.h"
 #endif
 
-class Image : public Resource , public IBoundingBox
+class Image : public Resource, public IBoundingBox
 {
 public:
 	Image(const std::tstring& resourcePath);

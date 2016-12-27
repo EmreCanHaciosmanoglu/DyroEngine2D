@@ -4,7 +4,7 @@
 #include <Box2D\Box2D.h>
 
 #ifndef _VECTOR_
-	#include <vector>
+#include <vector>
 #endif
 
 class CollisionComponent;
@@ -57,13 +57,13 @@ private:
 			, collider_b(colliderB)
 		{}
 
-		bool operator== (const ContactData& ref) const 
+		bool operator== (const ContactData& ref) const
 		{
 			return this->object_a == ref.object_a && this->object_b == ref.object_b && this->collider_a == ref.collider_a && this->collider_b == ref.collider_b;
 		}
 		bool operator!= (const ContactData& ref) const
 		{
-			return !((*this) == ref);
+			return this->object_a != ref.object_a || this->object_b != ref.object_b || this->collider_a != ref.collider_a || this->collider_b != ref.collider_b;
 		}
 
 		PhysicsObject* object_a;

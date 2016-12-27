@@ -4,14 +4,14 @@
 #include "Helpers/Manager.h"
 
 #ifndef _VECTOR_
-	#include <vector>
+#include <vector>
 #endif
 
 #ifndef _SYSTEM_H
-	#include "Core\System\System.h"
+#include "Core\System\System.h"
 #endif
 #ifndef _SYSTEMTYPE_H
-	#include "Defines/Types/SystemType.h"
+#include "Defines/Types/SystemType.h"
 #endif
 
 class SystemFactory;

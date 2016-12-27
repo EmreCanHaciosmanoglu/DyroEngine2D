@@ -3,7 +3,7 @@
 #include "Core/Engine.h"
 #include "Core/Game/Game.h"
 
-#include "Helpers/Singleton.h"
+#include "Helpers/Patterns/Singleton.h"
 #include "Diagnostics/Logger.h"
 
 #include "Defines/iostream.h"

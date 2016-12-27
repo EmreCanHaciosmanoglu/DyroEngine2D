@@ -10,7 +10,7 @@
 
 #include "Diagnostics/Logger.h"
 
-#include "Helpers/Singleton.h"
+#include "Helpers/Patterns/Singleton.h"
 
 MainWindow::MainWindow()
 	:System(SystemType::WINDOW_SYSTEM)
@@ -35,7 +35,6 @@ bool MainWindow::initialize()
 }
 void MainWindow::update()
 {
-
 }
 bool MainWindow::shutdown()
 {

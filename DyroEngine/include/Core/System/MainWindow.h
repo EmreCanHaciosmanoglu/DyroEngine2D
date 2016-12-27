@@ -29,4 +29,3 @@ private:
 };
 
 #endif //_WINDOW_H
-

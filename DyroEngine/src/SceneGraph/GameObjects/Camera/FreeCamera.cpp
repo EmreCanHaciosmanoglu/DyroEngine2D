@@ -3,14 +3,16 @@
 #include "SceneGraph\Component\TransformComponent.h"
 #include "SceneGraph\Component\CameraComponent.h"
 
-#include "Helpers\Singleton.h"
+#include "Helpers\Patterns/Singleton.h"
+
 #include "Core\System\Manager\SystemManager.h"
 #include "Core\System\Input.h"
-#include "Core\System\MainTimer.h"
+
+#include "Core\Data\Objects\Timers\WorldTimer.h"
 
 FreeCamera::FreeCamera(const std::tstring& name, float speed)
 	:Camera(name)
-	,speed(speed)
+	, speed(speed)
 {
 	OBJECT_INIT(_T("FreeCamera"));
 }
@@ -56,20 +58,20 @@ float FreeCamera::getSpeed() const
 void FreeCamera::moveUp()
 {
 	TransformComponent* transform = getTransform();
-	transform->translate(Vector2D(0, -1) * speed * (float)MainTimer::delta_time);
+	transform->translate(Vector2D(0, -1) * speed * (float)WorldTimer::getWorldDeltaTime());
 }
 void FreeCamera::moveDown()
 {
 	TransformComponent* transform = getTransform();
-	transform->translate(Vector2D(0, 1) * speed * (float)MainTimer::delta_time);
+	transform->translate(Vector2D(0, 1) * speed * (float)WorldTimer::getWorldDeltaTime());
 }
 void FreeCamera::moveLeft()
 {
 	TransformComponent* transform = getTransform();
-	transform->translate(Vector2D(-1, 0) * speed * (float)MainTimer::delta_time);
+	transform->translate(Vector2D(-1, 0) * speed * (float)WorldTimer::getWorldDeltaTime());
 }
 void FreeCamera::moveRight()
 {
 	TransformComponent* transform = getTransform();
-	transform->translate(Vector2D(1, 0) * speed * (float)MainTimer::delta_time);
+	transform->translate(Vector2D(1, 0) * speed * (float)WorldTimer::getWorldDeltaTime());
 }

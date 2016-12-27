@@ -2,21 +2,27 @@
 #define _RECTSHAPECOMPONENT_H
 
 #include "SceneGraph\Component\Shapes\ShapeComponent.h"
-#ifndef _IBOUNDINGBOX_H
-#include "Interfaces\IBoundingBox.h"
+
+#ifndef _VECTOR2D_H
+#include "Helpers\Math\Vector2D.h"
+#endif
+#ifndef _RECT2D_H
+#include "Helpers\Math\Rect2D.h"
 #endif
 
-class RectShape;
+class RectShapeDescription;
 
-class RectShapeComponent : public ShapeComponent , public IBoundingBox
+class RectShapeComponent : public ShapeComponent
 {
 public:
-	RectShapeComponent(RectShape* shape, const std::tstring& name = _T(""));
+	RectShapeComponent(RectShapeDescription* description, const std::tstring& name = _T(""));
 	virtual ~RectShapeComponent();
 
-	RectShape* getRectShape() const;
+	void setRect(const Rect2D& rect);
 
-	Rect2D getBoundingBox() const;
+	const Rect2D& getRect();
+
+	RectShapeDescription* getRectDescription() const;
 };
 
 #endif

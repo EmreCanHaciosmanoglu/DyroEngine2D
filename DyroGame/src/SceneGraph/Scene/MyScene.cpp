@@ -17,7 +17,7 @@
 
 #include "Core\System\Input.h"
 
-#include "Helpers\Singleton.h"
+#include "Helpers\Patterns/Singleton.h"
 
 #include "Core\Settings\WorldSettings.h"
 #include "Core\Settings\ApplicationSettings.h"
@@ -53,7 +53,7 @@ bool MyScene::initialize()
 {
 	ApplicationSettings* app_settings = Singleton<WorldSettings>::getInstance().getApplicationSettings();
 	GameSettings* game_settings = Singleton<WorldSettings>::getInstance().getGameSettings();
-	
+
 	float window_width = (float)app_settings->getWindowWidth();
 	float window_height = (float)app_settings->getWindowHeight();
 

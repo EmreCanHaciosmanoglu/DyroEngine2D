@@ -4,11 +4,12 @@
 #include "Helpers/Manager.h"
 
 #ifndef _STRING_H
-	#include "Defines/string.h"
+#include "Defines/string.h"
 #endif
 
 #include "Diagnostics/Logger.h"
 
+#include "Core\Data\Manager\LayerManager.h"
 #include "Core/Resources/Manager/ResourceManager.h"
 #include "SceneGraph/GameObjects/Camera/Manager/CameraManager.h"
 

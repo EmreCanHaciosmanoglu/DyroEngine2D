@@ -11,12 +11,12 @@
 
 RigidBodyComponent::RigidBodyComponent(BodyType bodyType, const std::tstring& name)
 	:Component(name == _T("") ? _T("RigidBodyComponent") : name)
-	,body(nullptr)
-	,body_type(bodyType)
-	,gravity_scale(1.0f)
-	,linear_damping(0.0f)
-	,angular_damping(0.0f)
-	,is_dirty(false)
+	, body(nullptr)
+	, body_type(bodyType)
+	, gravity_scale(1.0f)
+	, linear_damping(0.0f)
+	, angular_damping(0.0f)
+	, is_dirty(false)
 {
 	OBJECT_INIT(_T("RigidBodyComponent"));
 
@@ -168,7 +168,6 @@ bool RigidBodyComponent::createBody(const Vector2D& position, const float angle)
 	case BodyType::KINEMATIC:
 		bodyDef.type = b2_kinematicBody;
 		break;
-
 	}
 
 	pos.x /= constants::BOX2D_SCALE;

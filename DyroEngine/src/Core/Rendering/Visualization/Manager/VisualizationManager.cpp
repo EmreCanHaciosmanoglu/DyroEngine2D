@@ -1,5 +1,5 @@
 #include "Core\Rendering\Visualization\Manager\VisualizationManager.h"
-#include "Core\Rendering\Visualization\Visualization.h"
+#include "Core\Rendering\Visualization\Objects\Visualization.h"
 
 #include "Defines\deletemacros.h"
 
@@ -37,14 +37,14 @@ void VisualizationManager::removeVisualization(Visualization* v)
 	removeObject(v);
 }
 
-void VisualizationManager::removeVisualizations(GameObject* gameObject)
+void VisualizationManager::removeVisualizations(Object* gameObject)
 {
 	std::map<unsigned int, Visualization*> visualizations = getObjects();
 	std::vector<unsigned int> to_remove;
 
 	for (std::map<unsigned int, Visualization*>::const_iterator it = visualizations.begin(); it != visualizations.end(); ++it)
 	{
-		if ((*it).second->getGameObject() == gameObject)
+		if ((*it).second->getObject() == gameObject)
 			to_remove.push_back((*it).first);
 	}
 

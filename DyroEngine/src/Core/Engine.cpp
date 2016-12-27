@@ -1,7 +1,7 @@
 #include "Core/Engine.h"
 
 #ifndef _WINDOWS_
-	#include <Windows.h>
+#include <Windows.h>
 #endif
 
 //Core
@@ -10,16 +10,15 @@
 #include "Core\System\Logic.h"
 #include "Core\System\MainWindow.h"
 #include "Core\System\Graphics.h"
-#include "Core\System\MainTimer.h"
 #include "Core\System\Input.h"
 
 #include "Core/System/Manager/SystemManager.h"
 #include "Defines/Types/SystemType.h"
 
-#include "Core/Rendering/Visualization/Manager/VisualizationFactory.h"
+#include "Core/Rendering/Visualization/Factory/VisualizationFactory.h"
 
 //Helpers
-#include "Helpers/Singleton.h"
+#include "Helpers/Patterns/Singleton.h"
 
 //Diagnostics
 #include "Diagnostics/Logger.h"
@@ -84,6 +83,8 @@ int Engine::initialize()
 	if (!createManagers())
 		return FALSE;
 
+	if (!Singleton<WorldSettings>::getInstance().loadSetttings())
+		return FALSE;
 	if (!Singleton<SystemManager>::getInstance().initialize())
 		return FALSE;
 
@@ -92,9 +93,6 @@ int Engine::initialize()
 		return FALSE;
 	Input* input = dynamic_cast<Input*>(Singleton<SystemManager>::getInstance().getSystem(SystemType::INPUT_SYSTEM));
 	if (input == nullptr)
-		return FALSE;
-	MainTimer* timer = dynamic_cast<MainTimer*>(Singleton<SystemManager>::getInstance().getSystem(SystemType::TIMER_SYSTEM));
-	if (timer == nullptr)
 		return FALSE;
 	Graphics* graphics = dynamic_cast<Graphics*>(Singleton<SystemManager>::getInstance().getSystem(SystemType::GRAPHICS_SYSTEM));
 	if (graphics == nullptr)
@@ -107,8 +105,6 @@ int Engine::initialize()
 		return FALSE;
 	if (!input->initialize())
 		return false;
-	if (!timer->initialize())
-		return FALSE;
 	if (!graphics->initialize())
 		return FALSE;
 

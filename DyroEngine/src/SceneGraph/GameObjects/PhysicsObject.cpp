@@ -7,7 +7,7 @@
 
 PhysicsObject::PhysicsObject(BodyType bodyType, const std::tstring& name)
 	:SceneObject(name)
-	,rigid(new RigidBodyComponent(bodyType))
+	, rigid(new RigidBodyComponent(bodyType))
 {
 	OBJECT_INIT(_T("PhysicsObject"));
 
@@ -31,7 +31,7 @@ bool PhysicsObject::shutdown()
 
 bool PhysicsObject::shouldCollide(PhysicsObject* other)
 {
-	return true; 
+	return true;
 }
 
 void PhysicsObject::onCollisionEnter(PhysicsObject* other)

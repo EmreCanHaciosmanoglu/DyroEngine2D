@@ -7,7 +7,7 @@ public:
 	IFillableShape()
 		:fill(true)
 	{}
-	virtual ~IFillableShape(){}
+	virtual ~IFillableShape() {}
 
 	virtual void setFill(bool fill) = 0;
 	virtual bool getFill() const = 0;

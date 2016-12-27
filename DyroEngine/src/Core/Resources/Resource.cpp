@@ -17,7 +17,6 @@ Resource::~Resource()
 {
 }
 
-
 unsigned int Resource::getResourceID() const
 {
 	return this->resource_id;

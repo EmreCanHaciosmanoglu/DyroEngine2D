@@ -9,7 +9,7 @@ struct Color
 		: red(0)
 		, green(0)
 		, blue(0)
-		, alpha(0)
+		, alpha(1)
 	{}
 	Color(float r, float g, float b, float a = 1.0f)
 		: red(r)
@@ -31,7 +31,16 @@ struct Color
 
 	D2D1::ColorF toColorF() const
 	{
-		return D2D1::ColorF (this->red,this->green,this->blue,this->alpha);
+		return D2D1::ColorF(this->red, this->green, this->blue, this->alpha);
+	}
+
+	bool operator== (const Color& ref) const
+	{
+		return this->red == ref.red && this->green == ref.green && this->blue == ref.blue && this->alpha == ref.alpha;
+	}
+	bool operator!=(const Color& ref) const
+	{
+		return this->red != ref.red || this->green != ref.green || this->blue != ref.blue || this->alpha != ref.alpha;
 	}
 };
 

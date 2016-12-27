@@ -179,12 +179,9 @@ Rect2D& Rect2D::operator/=(const Vector2D& rhs)
 
 bool Rect2D::operator== (const Rect2D& other) const
 {
-	if (this->left == other.left && this->right == other.right && this->top == other.top && this->bottom == other.bottom)
-		return true;
-
-	return false;
+	return this->left == other.left && this->right == other.right && this->top == other.top && this->bottom == other.bottom;
 }
 bool Rect2D::operator!= (const Rect2D& other) const
 {
-	return !((*this) == other);
+	return this->left != other.left || this->right != other.right || this->top != other.top || this->bottom != other.bottom;
 }

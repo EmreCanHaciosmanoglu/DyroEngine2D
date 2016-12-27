@@ -1,3 +1,3 @@
-#include "Helpers/Manager.h"
+#include "Helpers\Manager.h"
 
-// No implemantation
+//Nothing to implement
