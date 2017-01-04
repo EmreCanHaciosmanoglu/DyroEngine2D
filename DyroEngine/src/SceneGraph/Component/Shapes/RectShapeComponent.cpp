@@ -4,7 +4,7 @@
 RectShapeComponent::RectShapeComponent(RectShapeDescription* description, const std::tstring& name)
 	:ShapeComponent(description, name)
 {
-	OBJECT_INIT(_T("RectShapeVisualization"));
+	OBJECT_INIT(_T("RectShapeComponent"));
 }
 RectShapeComponent::~RectShapeComponent()
 {}

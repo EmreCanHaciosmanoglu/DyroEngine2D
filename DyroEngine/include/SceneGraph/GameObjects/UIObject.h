@@ -7,6 +7,11 @@ class TransformComponent;
 
 class UIObject : public GameObject
 {
+	/**
+	\note Must be present in every subclass definition.
+	*/
+	OBJECT_STATICS("UIObject")
+
 public:
 	UIObject(const std::tstring& name = _T(""));
 	virtual ~UIObject();

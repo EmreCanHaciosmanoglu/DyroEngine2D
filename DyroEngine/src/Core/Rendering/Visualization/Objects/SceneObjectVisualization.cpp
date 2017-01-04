@@ -21,17 +21,7 @@ SceneObjectVisualization::~SceneObjectVisualization()
 	SafeDelete(this->visualization_manager);
 }
 
-void SceneObjectVisualization::notify()
-{
-	std::vector<Visualization*> visualizations;
-	this->visualization_manager->getVisualizations(visualizations);
-	for (Visualization* visualization : visualizations)
-	{
-		visualization->notify();
-	}
-}
-
-void SceneObjectVisualization::getRenderItems(std::vector<RenderItem>& items)
+void SceneObjectVisualization::getRenderItems(std::vector<RenderItem*>& items)
 {
 	std::vector<Visualization*> visualizations;
 	this->visualization_manager->getVisualizations(visualizations);

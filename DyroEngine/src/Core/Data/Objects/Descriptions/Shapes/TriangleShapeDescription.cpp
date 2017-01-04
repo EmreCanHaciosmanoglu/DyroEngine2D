@@ -12,10 +12,10 @@ TriangleShapeDescription::TriangleShapeDescription(const TriangleShapeDescriptio
 	,x_scale(ref.x_scale)
 	,y_scale(ref.y_scale)
 {}
-TriangleShapeDescription::TriangleShapeDescription(float xScale, float yScale, float lineWidth = 0.5f)
+TriangleShapeDescription::TriangleShapeDescription(float xScale, float yScale, bool fill, float lineWidth)
 	: PolygonShapeDescription(std::vector<Vector2D> { Vector2D(-0.5f * xScale, 0.0f),
 		Vector2D(0.5f * xScale, -0.5f * yScale),
-		Vector2D(0.5f * xScale, 0.5f * yScale)}, true, lineWidth)
+		Vector2D(0.5f * xScale, 0.5f * yScale)}, true, fill, lineWidth)
 	, x_scale(xScale)
 	, y_scale(yScale)
 {}
@@ -28,7 +28,7 @@ bool TriangleShapeDescription::operator==(const TriangleShapeDescription& ref) c
 	if (value == false)
 		return false;
 
-	return getXScale() == ref.getXScale() && getYScale() == ref.getYScale;
+	return getXScale() == ref.getXScale() && getYScale() == ref.getYScale();
 }
 bool TriangleShapeDescription::operator!=(const TriangleShapeDescription& ref) const
 {
@@ -36,7 +36,7 @@ bool TriangleShapeDescription::operator!=(const TriangleShapeDescription& ref) c
 	if (value == false)
 		return false;
 
-	return getXScale() != ref.getXScale() || getYScale != ref.getYScale;
+	return getXScale() != ref.getXScale() || getYScale() != ref.getYScale();
 }
 
 TriangleShapeDescription& TriangleShapeDescription::operator=(const TriangleShapeDescription& ref)

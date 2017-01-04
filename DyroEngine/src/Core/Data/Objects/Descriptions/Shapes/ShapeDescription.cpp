@@ -10,7 +10,7 @@ ShapeDescription::ShapeDescription(const ShapeDescription& ref)
 	:color(ref.getColor())
 	,line_width(ref.getLineWidth())
 {}
-ShapeDescription::ShapeDescription(const Color& color, float lineWidth = 0.5f)
+ShapeDescription::ShapeDescription(const Color& color, float lineWidth)
 	:color(color)
 	,line_width(lineWidth)
 {}

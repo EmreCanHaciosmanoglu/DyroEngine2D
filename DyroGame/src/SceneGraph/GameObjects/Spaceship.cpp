@@ -5,10 +5,9 @@
 #include "SceneGraph/Component/TransformComponent.h"
 #include "SceneGraph/Component/Collision/PolygonCollisionComponent.h"
 
-#include "Core/Data/Shapes/PolygonShape.h"
+#include "Core/Data/Objects/Shapes/PolygonShape.h"
 
 #include "Core/System/Input.h"
-#include "Core/System/MainTimer.h"
 
 #include "Defines\programdefaults.h"
 
@@ -31,20 +30,20 @@ Spaceship::~Spaceship()
 
 bool Spaceship::initialize()
 {
-	std::vector<Vector2D> vertices;
+	//std::vector<Vector2D> vertices;
 
-	vertices.push_back(Vector2D(-0.5f * SPACESHIP_SCALE, 0.0f));
-	vertices.push_back(Vector2D(0.5f * SPACESHIP_SCALE, -0.5f * SPACESHIP_SCALE));
-	vertices.push_back(Vector2D(0.25f * SPACESHIP_SCALE, 0.0f));
-	vertices.push_back(Vector2D(0.5f * SPACESHIP_SCALE, 0.5f * SPACESHIP_SCALE));
+	//vertices.push_back(Vector2D(-0.5f * SPACESHIP_SCALE, 0.0f));
+	//vertices.push_back(Vector2D(0.5f * SPACESHIP_SCALE, -0.5f * SPACESHIP_SCALE));
+	//vertices.push_back(Vector2D(0.25f * SPACESHIP_SCALE, 0.0f));
+	//vertices.push_back(Vector2D(0.5f * SPACESHIP_SCALE, 0.5f * SPACESHIP_SCALE));
 
-	addComponent(new ShapeComponent(new PolygonShape(vertices)));
-	addComponent(new PolygonCollisionComponent(getRigidBody(), vertices));
+	//addComponent(new ShapeComponent(new PolygonShape(vertices)));
+	//addComponent(new PolygonCollisionComponent(getRigidBody(), vertices));
 
-	getRigidBody()->setGravityScale(0.0f);
+	//getRigidBody()->setGravityScale(0.0f);
 
-	getRigidBody()->setLinearDamping(LINEAR_DAMPING);
-	getRigidBody()->setAngularDamping(ANGULAR_DAMPING);
+	//getRigidBody()->setLinearDamping(LINEAR_DAMPING);
+	//getRigidBody()->setAngularDamping(ANGULAR_DAMPING);
 
 	return PhysicsObject::initialize();
 }

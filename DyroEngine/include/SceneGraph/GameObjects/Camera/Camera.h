@@ -8,6 +8,11 @@ class TransformComponent;
 
 class Camera : public GameObject
 {
+	/**
+	\note Must be present in every subclass definition.
+	*/
+	OBJECT_STATICS("Camera")
+
 public:
 	Camera(const std::tstring& name = _T(""), bool setActive = true);
 	virtual ~Camera();

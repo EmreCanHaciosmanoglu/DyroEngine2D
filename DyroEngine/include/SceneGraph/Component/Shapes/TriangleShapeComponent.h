@@ -7,6 +7,11 @@ class TriangleShapeDescription;
 
 class TriangleShapeComponent : public PolygonShapeComponent
 {
+	/**
+	\note Must be present in every subclass definition.
+	*/
+	OBJECT_STATICS("TriangleShapeComponent")
+
 public:
 	TriangleShapeComponent(TriangleShapeDescription* shape, const std::tstring& name = _T(""));
 	virtual ~TriangleShapeComponent();

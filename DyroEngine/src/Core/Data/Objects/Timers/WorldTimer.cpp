@@ -1,4 +1,4 @@
-#include "Core\Data\Objects\WorldTimer.h"
+#include "Core\Data\Objects\Timers\WorldTimer.h"
 
 float WorldTimer::world_delta_time = 0.0f;
 float WorldTimer::world_total_time = 0.0f;
@@ -15,8 +15,8 @@ void WorldTimer::start()
 }
 void WorldTimer::update()
 {
-	WorldTimer::world_delta_time = getDeltaTime();
-	WorldTimer::world_total_time = getTotalTime();
+	WorldTimer::world_delta_time = (float)getDeltaTime();
+	WorldTimer::world_total_time = (float)getTotalTime();
 
 	Timer::update();
 }

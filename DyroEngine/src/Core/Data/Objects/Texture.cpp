@@ -1,4 +1,4 @@
-#include "Core\Data\Texture.h"
+#include "Core\Data\Objects\Texture.h"
 #include "Core\Resources\Image.h"
 
 #include "Core\Rendering\Renderer.h"

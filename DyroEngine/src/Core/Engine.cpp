@@ -15,6 +15,7 @@
 #include "Core/System/Manager/SystemManager.h"
 #include "Defines/Types/SystemType.h"
 
+#include "Core/Rendering/Visualization/Manager/VisualizationManager.h"
 #include "Core/Rendering/Visualization/Factory/VisualizationFactory.h"
 
 //Helpers
@@ -31,6 +32,9 @@
 
 //Game
 #include "Core/Game/AbstractGame.h"
+
+//#include <ctime>
+//#include <iostream>
 
 namespace
 {
@@ -66,7 +70,17 @@ int Engine::mainLoop()
 			DispatchMessage(&msg);
 		}
 
+		//clock_t current_ticks, delta_ticks;
+		//clock_t fps = 0;
+
+		//current_ticks = clock();
+
 		update();
+
+		//delta_ticks = clock() - current_ticks; //the time, in ms, that took to render the scene
+		//if (delta_ticks > 0)
+		//	fps = CLOCKS_PER_SEC / delta_ticks;
+		//std::cout << fps << std::endl;
 	}
 
 	if (!shutDown())

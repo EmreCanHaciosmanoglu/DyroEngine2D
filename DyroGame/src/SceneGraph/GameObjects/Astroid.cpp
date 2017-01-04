@@ -4,7 +4,7 @@
 #include "SceneGraph/Component/RigidBodyComponent.h"
 #include "SceneGraph/Component/Collision/PolygonCollisionComponent.h"
 
-#include "Core/Data/Shapes/PolygonShape.h"
+#include "Core/Data/Objects/Shapes/PolygonShape.h"
 
 #include "Defines\programdefaults.h"
 
@@ -30,19 +30,19 @@ Astroid::~Astroid()
 
 bool Astroid::initialize()
 {
-	std::vector<Vector2D> vertices;
-	generateVertices(vertices);
+	//std::vector<Vector2D> vertices;
+	//generateVertices(vertices);
 
-	ShapeComponent* shape_component = new ShapeComponent(new PolygonShape(vertices));
-	shape_component->setColor(Color(0.5f, 0.5f, 0.0f));
+	//ShapeComponent* shape_component = new ShapeComponent(new PolygonShape(vertices));
+	//shape_component->setColor(Color(0.5f, 0.5f, 0.0f));
 
-	addComponent(shape_component);
-	addComponent(new PolygonCollisionComponent(getRigidBody(), vertices));
+	//addComponent(shape_component);
+	//addComponent(new PolygonCollisionComponent(getRigidBody(), vertices));
 
-	getRigidBody()->setGravityScale(0.0f);
+	//getRigidBody()->setGravityScale(0.0f);
 
-	getRigidBody()->setLinearDamping(LINEAR_DAMPING);
-	getRigidBody()->setAngularDamping(ANGULAR_DAMPING);
+	//getRigidBody()->setLinearDamping(LINEAR_DAMPING);
+	//getRigidBody()->setAngularDamping(ANGULAR_DAMPING);
 
 	return Obstacle::initialize();
 }

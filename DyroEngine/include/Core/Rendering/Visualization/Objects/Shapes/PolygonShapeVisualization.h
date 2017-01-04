@@ -13,7 +13,7 @@ public:
 
 protected:
 
-	virtual void generateRenderItems(std::vector<RenderItem>& items);
+	virtual void generateRenderItems(std::vector<RenderItem*>& items);
 };
 
 #endif

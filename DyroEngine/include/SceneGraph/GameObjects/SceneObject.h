@@ -12,6 +12,11 @@ class VisualizationManager;
 
 class SceneObject : public GameObject, public IBoundingBox
 {
+	/**
+	\note Must be present in every subclass definition.
+	*/
+	OBJECT_STATICS("SceneObject")
+
 public:
 	SceneObject(const std::tstring& name = _T(""));
 	virtual ~SceneObject();

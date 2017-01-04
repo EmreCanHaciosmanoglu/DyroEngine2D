@@ -15,6 +15,11 @@ class RigidBodyComponent;
 
 class PolygonCollisionComponent : public CollisionComponent
 {
+	/**
+	\note Must be present in every subclass definition.
+	*/
+	OBJECT_STATICS("PolygonCollisionComponent")
+
 public:
 	PolygonCollisionComponent(RigidBodyComponent* rigid, std::vector<Vector2D> vertices, float restitution = 0.5f, float friction = 0.5f, float density = 1.0f, const std::tstring& name = _T(""));
 	virtual ~PolygonCollisionComponent();

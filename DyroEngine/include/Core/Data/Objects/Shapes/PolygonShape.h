@@ -3,13 +3,6 @@
 
 #include "Core/Data/Objects/Shapes/Shape.h"
 
-#ifndef _IFILLABLESHAPE_H
-#include "Interfaces/IFillableShape.h"
-#endif
-#ifndef _IBOUNDINGBOX_H
-#include "Interfaces\IBoundingBox.h"
-#endif
-
 #ifndef _POLYGONSHAPEDESCRIPTION_H
 #include "Core\Data\Objects\Descriptions\Shapes\PolygonShapeDescription.h"
 #endif
@@ -24,21 +17,16 @@
 
 class Renderer;
 
-class PolygonShape : public Shape, public IFillableShape, public IBoundingBox
+class PolygonShape : public Shape
 {
 public:
 	PolygonShape(const std::tstring& name = _T(""));
 	PolygonShape(PolygonShapeDescription* description, const std::tstring& name = _T(""));
 	virtual ~PolygonShape();
 
-	virtual void setFill(bool fill);
-	virtual bool getFill() const;
-
 	virtual void render(Renderer* renderer);
 
 	PolygonShapeDescription* getPolygonShapeDescription() const;
-
-	virtual Rect2D getBoundingBox() const;
 
 private:
 };

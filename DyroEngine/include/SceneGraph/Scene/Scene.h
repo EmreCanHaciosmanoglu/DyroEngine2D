@@ -13,23 +13,29 @@
 #include "Defines\string.h"
 #endif
 
-class Visualization;
-
-class GameObject;
 class Input;
+
+class Visualization;
+class GameObject;
 
 class AbstractManager;
 class GameObjectManager;
 class VisualizationManager;
 
+class Renderer;
 class DebugRenderer;
+
 class ContactListener;
 class ContactFilter;
-
 class b2World;
 
 class Scene : public Object, public IInput
 {
+	/**
+	\note Must be present in every subclass definition.
+	*/
+	OBJECT_STATICS("Scene")
+
 public:
 	Scene(const std::tstring& name);
 	virtual ~Scene();
@@ -63,10 +69,13 @@ public:
 
 private:
 	void setupPyhx();
+	void triggerRender();
 
 	b2World* phyx_world;
 
+	Renderer* renderer;
 	DebugRenderer* debug_renderer;
+
 	ContactListener* contact_listener;
 	ContactFilter* contact_filter;
 

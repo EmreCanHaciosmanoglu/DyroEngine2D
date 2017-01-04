@@ -25,7 +25,6 @@ GameObjectManager::~GameObjectManager()
 
 bool GameObjectManager::initialize()
 {
-	this->visualization_manager = new VisualizationManager();
 	this->visualization_manager->initialize();
 
 	for (const std::pair<unsigned int, GameObject*>& pair : getObjects())
@@ -136,7 +135,7 @@ void GameObjectManager::getVisualizations(std::vector<Visualization*>& visualiza
 {
 	this->visualization_manager->getVisualizations(visualizations);
 }
-const std::map<unsigned int, Visualization*> GameObjectManager::getVisualizations() const
+const std::map<unsigned int, Visualization*>& GameObjectManager::getVisualizations() const
 {
 	return this->visualization_manager->getVisualizations();
 }

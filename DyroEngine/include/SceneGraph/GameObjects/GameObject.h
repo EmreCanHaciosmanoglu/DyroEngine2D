@@ -25,6 +25,11 @@ class Layer;
 
 class GameObject : public Object, public IInput
 {
+	/**
+	\note Must be present in every subclass definition.
+	*/
+	OBJECT_STATICS("GameObject")
+
 public:
 	GameObject(const std::tstring& name = _T(""));
 	virtual ~GameObject();

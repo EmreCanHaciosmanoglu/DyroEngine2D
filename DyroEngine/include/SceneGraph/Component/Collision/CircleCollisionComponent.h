@@ -7,6 +7,11 @@ class RigidBodyComponent;
 
 class CircleCollisionComponent : public CollisionComponent
 {
+	/**
+	\note Must be present in every subclass definition.
+	*/
+	OBJECT_STATICS("CircleCollisionComponent")
+
 public:
 	CircleCollisionComponent(RigidBodyComponent* rigid, float radius, float restitution = 0.5f, float friction = 0.5f, float density = 1.0f, const std::tstring& name = _T(""));
 	virtual ~CircleCollisionComponent();

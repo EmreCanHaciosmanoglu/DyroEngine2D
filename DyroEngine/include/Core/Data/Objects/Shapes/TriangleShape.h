@@ -11,12 +11,16 @@
 #include "Defines\string.h"
 #endif
 
+class Renderer;
+
 class TriangleShape : public PolygonShape
 {
 public:
 	TriangleShape(const std::tstring& name = _T(""));
 	TriangleShape(TriangleShapeDescription* desc, const std::tstring& name = _T(""));
 	virtual ~TriangleShape();
+
+	virtual void render(Renderer* renderer);
 
 	TriangleShapeDescription* getTriangleShapeDescription() const;
 

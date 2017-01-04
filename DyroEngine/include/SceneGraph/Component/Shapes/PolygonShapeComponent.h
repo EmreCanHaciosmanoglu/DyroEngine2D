@@ -11,6 +11,11 @@ class PolygonShapeDescription;
 
 class PolygonShapeComponent : public ShapeComponent
 {
+	/**
+	\note Must be present in every subclass definition.
+	*/
+	OBJECT_STATICS("PolygonShapeComponent")
+
 public:
 	PolygonShapeComponent(PolygonShapeDescription* description, const std::tstring& name = _T(""));
 	virtual ~PolygonShapeComponent();

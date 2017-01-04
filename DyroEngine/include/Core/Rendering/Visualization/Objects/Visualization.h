@@ -20,7 +20,7 @@ public:
 	Visualization(Object* object, const std::tstring& name = _T(""));
 	virtual ~Visualization();
 
-	virtual void getRenderItems(std::vector<RenderItem>& items) = 0;
+	virtual void getRenderItems(std::vector<RenderItem*>& items) = 0;
 
 	void setParent(Visualization* visualization);
 	Visualization* getParent() const;

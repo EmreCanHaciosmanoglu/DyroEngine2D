@@ -1,19 +1,19 @@
 #ifndef _CIRCLESHAPEDESCRIPTION_H
 #define _CIRCLESHAPEDESCRIPTION_H
 
-#include "Core\Data\Objects\Descriptions\Shapes\ShapeDescription.h"
+#include "Core\Data\Objects\Descriptions\Shapes\FillableShapeDescription.h"
 
 #ifndef _VECTOR2D_H
 #include "Helpers\Math/Vector2D.h"
 #endif
 
-class CircleShapeDescription : public ShapeDescription
+class CircleShapeDescription : public FillableShapeDescription
 {
 public:
 	CircleShapeDescription();
 	CircleShapeDescription(const CircleShapeDescription& ref);
-	CircleShapeDescription(float xcenter, float ycenter, float r, float lineWidth = 0.5f);
-	CircleShapeDescription(const Vector2D& center, float r, float lineWidth = 0.5f);
+	CircleShapeDescription(float xcenter, float ycenter, float r, bool fill = true, float lineWidth = 0.5f);
+	CircleShapeDescription(const Vector2D& center, float r, bool fill = true, float lineWidth = 0.5f);
 	virtual ~CircleShapeDescription();
 
 	bool operator==(const CircleShapeDescription& ref) const;

@@ -15,6 +15,11 @@ class TransformComponent;
 
 class RigidBodyComponent : public Component
 {
+	/**
+	\note Must be present in every subclass definition.
+	*/
+	OBJECT_STATICS("RigidBodyComponent")
+
 public:
 	RigidBodyComponent(BodyType bodyType, const std::tstring& name = _T(""));
 	virtual ~RigidBodyComponent();

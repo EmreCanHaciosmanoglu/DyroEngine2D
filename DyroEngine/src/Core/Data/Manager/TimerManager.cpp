@@ -1,7 +1,7 @@
 #include "Core\Data\Manager\TimerManager.h"
 
-#include "Core\Data\Objects\Timer.h"
-#include "Core\Data\Objects\WorldTimer.h"
+#include "Core\Data\Objects\Timers\Timer.h"
+#include "Core\Data\Objects\Timers\WorldTimer.h"
 
 TimerManager::TimerManager()
 	:Manager<Timer>()

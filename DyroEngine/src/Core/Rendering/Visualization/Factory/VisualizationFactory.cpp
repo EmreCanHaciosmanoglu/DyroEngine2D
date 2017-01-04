@@ -49,10 +49,6 @@ Visualization* VisualizationFactory::createVisualization(GameObject* object, boo
 
 	for (Component* component : components)
 	{
-		IRenderable* renderable = dynamic_cast<IRenderable*>(component);
-		if (renderable == nullptr)
-			continue;
-
 		if (component->getTypeId() == CircleShapeComponent::getClassTypeId())
 		{
 			root->addVisualizationChildNode(new CircleShapeVisualization(component));

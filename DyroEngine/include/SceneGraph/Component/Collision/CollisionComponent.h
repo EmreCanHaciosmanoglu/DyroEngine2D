@@ -9,6 +9,11 @@ class RigidBodyComponent;
 
 class CollisionComponent : public Component
 {
+	/**
+	\note Must be present in every subclass definition.
+	*/
+	OBJECT_STATICS("CollisionComponent")
+
 public:
 	CollisionComponent(RigidBodyComponent* rigid, float restitution = 0.5f, float friction = 0.5f, float density = 1.0f, const std::tstring& name = _T(""));
 	virtual ~CollisionComponent();

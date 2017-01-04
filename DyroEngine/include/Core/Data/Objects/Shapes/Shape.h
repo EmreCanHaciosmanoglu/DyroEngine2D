@@ -9,6 +9,7 @@ class ShapeDescription;
 class Shape : public RenderItem
 {
 public:
+	Shape(const std::tstring& name = _T(""));
 	Shape(ShapeDescription* description, const std::tstring& name = _T(""));
 	virtual ~Shape();
 
@@ -16,6 +17,7 @@ public:
 
 	virtual bool isTransparant() const;
 
+	void setDescription(ShapeDescription* description);
 	ShapeDescription* getDescription() const;
 
 protected:

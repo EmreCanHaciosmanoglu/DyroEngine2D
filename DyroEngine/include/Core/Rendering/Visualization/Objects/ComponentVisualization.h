@@ -11,13 +11,13 @@ public:
 	ComponentVisualization(Component* component, const std::tstring& name = _T(""));
 	virtual ~ComponentVisualization();
 
-	virtual void getRenderItems(std::vector<RenderItem>& items);
+	virtual void getRenderItems(std::vector<RenderItem*>& items);
 
 	Component* getComponent() const;
 
 protected:
 
-	virtual void generateRenderItems(std::vector<RenderItem>& items) = 0;
+	virtual void generateRenderItems(std::vector<RenderItem*>& items) = 0;
 };
 
 #endif

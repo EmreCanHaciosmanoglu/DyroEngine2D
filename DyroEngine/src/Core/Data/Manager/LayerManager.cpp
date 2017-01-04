@@ -19,6 +19,8 @@ bool LayerManager::shutdown()
 
 	for (Layer* layer : layers)
 		delete layer;
+
+	return true;
 }
 
 void LayerManager::addLayer(Layer* layer)

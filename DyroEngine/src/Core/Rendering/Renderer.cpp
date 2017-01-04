@@ -1,4 +1,7 @@
 #include "Core/Rendering/Renderer.h"
+#include "Core\Rendering\RenderItem.h"
+
+#include "Core\Data\Objects\Layer.h"
 
 #include "Core/System/Graphics.h"
 #include "Core/System/Manager/SystemManager.h"
@@ -20,6 +23,21 @@ Renderer::Renderer()
 }
 Renderer::~Renderer()
 {
+}
+
+void Renderer::render(std::vector<RenderItem*>& items)
+{
+	this->graphics->beginDraw();
+	this->graphics->clear();
+
+	//Render the render items
+	for (RenderItem* item : items)
+	{
+		setTransformMatrix(item->getTransform());
+		item->render(this);
+	}
+
+	this->graphics->endDraw();
 }
 
 void Renderer::setTransformMatrix(const Matrix2D& transformMatrix)

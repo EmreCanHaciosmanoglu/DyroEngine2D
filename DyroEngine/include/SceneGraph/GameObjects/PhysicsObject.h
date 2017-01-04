@@ -11,6 +11,11 @@ class RigidBodyComponent;
 
 class PhysicsObject : public SceneObject
 {
+	/**
+	\note Must be present in every subclass definition.
+	*/
+	OBJECT_STATICS("PhysicsObject")
+
 public:
 	PhysicsObject(BodyType bodyType, const std::tstring& name = _T(""));
 	virtual ~PhysicsObject();

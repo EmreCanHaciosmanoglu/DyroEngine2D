@@ -42,7 +42,7 @@ public:
 	const std::map<unsigned int, GameObject*>& getGameObjects() const;
 
 	void getVisualizations(std::vector<Visualization*>& visualizations) const;
-	const std::map<unsigned int, Visualization*> getVisualizations() const;
+	const std::map<unsigned int, Visualization*>& getVisualizations() const;
 
 protected:
 

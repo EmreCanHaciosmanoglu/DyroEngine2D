@@ -11,6 +11,11 @@ class CircleShapeDescription;
 
 class CircleShapeComponent : public ShapeComponent
 {
+	/**
+	\note Must be present in every subclass definition.
+	*/
+	OBJECT_STATICS("CircleShapeComponent")
+
 public:
 	CircleShapeComponent(CircleShapeDescription* description, const std::tstring& name = _T(""));
 	virtual ~CircleShapeComponent();

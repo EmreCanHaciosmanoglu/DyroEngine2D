@@ -1,7 +1,7 @@
 #ifndef _IMAGEVISUALIZATION_H
 #define _IMAGEVISUALIZATION_H
 
-#include "Core/Rendering/Visualization/ComponentVisualization.h"
+#include "Core/Rendering/Visualization/Objects/ComponentVisualization.h"
 
 class Texture;
 
@@ -12,7 +12,7 @@ public:
 	virtual ~ImageVisualization();
 
 protected:
-	virtual void generateRenderItems(std::vector<RenderItem>& items);
+	virtual void generateRenderItems(std::vector<RenderItem*>& items);
 
 private:
 	Texture* texture;

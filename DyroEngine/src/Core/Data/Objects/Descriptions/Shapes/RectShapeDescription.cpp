@@ -1,23 +1,23 @@
 #include "Core\Data\Objects\Descriptions\Shapes\RectShapeDescription.h"
 
 RectShapeDescription::RectShapeDescription()
-	:ShapeDescription()
+	:FillableShapeDescription()
 	,rect(Rect2D())
 {}
 RectShapeDescription::RectShapeDescription(const RectShapeDescription& ref)
-	:ShapeDescription(ref)
+	: FillableShapeDescription(ref)
 	,rect(ref.rect)
 {}
-RectShapeDescription::RectShapeDescription(double left, double top, double width, double height, float lineWidth = 0.5f)
-	:ShapeDescription(Color(),lineWidth)
+RectShapeDescription::RectShapeDescription(double left, double top, double width, double height, bool fill, float lineWidth)
+	: FillableShapeDescription(fill,lineWidth)
 	,rect(left,top,left + width, top + height)
 {}
-RectShapeDescription::RectShapeDescription(const Vector2D& lefttop, const Vector2D& rightbottom, float lineWidth = 0.5f)
-	:ShapeDescription(Color(),lineWidth)
+RectShapeDescription::RectShapeDescription(const Vector2D& lefttop, const Vector2D& rightbottom, bool fill, float lineWidth)
+	: FillableShapeDescription(fill,lineWidth)
 	,rect(lefttop, rightbottom)
 {}
-RectShapeDescription::RectShapeDescription(const Rect2D& rect, float lineWidth = 0.5f)
-	:ShapeDescription(Color(),lineWidth)
+RectShapeDescription::RectShapeDescription(const Rect2D& rect, bool fill, float lineWidth)
+	: FillableShapeDescription(fill,lineWidth)
 	,rect(rect)
 {}
 RectShapeDescription::~RectShapeDescription()

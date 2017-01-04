@@ -1,7 +1,7 @@
 #ifndef _RECTSHAPEDESCRIPTION_H
 #define _RECTSHAPEDESCRIPTION_H
 
-#include "Core\Data\Objects\Descriptions\Shapes\ShapeDescription.h"
+#include "Core\Data\Objects\Descriptions\Shapes\FillableShapeDescription.h"
 
 #ifndef _VECTOR2D_H
 #include "Helpers\Math/Vector2D.h"
@@ -10,14 +10,14 @@
 #include "Helpers\Math\Rect2D.h"
 #endif
 
-class RectShapeDescription : public ShapeDescription
+class RectShapeDescription : public FillableShapeDescription
 {
 public:
 	RectShapeDescription();
 	RectShapeDescription(const RectShapeDescription& ref);
-	RectShapeDescription(double left, double top, double width, double height, float lineWidth = 0.5f);
-	RectShapeDescription(const Vector2D& lefttop, const Vector2D& rightbottom, float lineWidth = 0.5f);
-	RectShapeDescription(const Rect2D& rect, float lineWidth = 0.5f);
+	RectShapeDescription(double left, double top, double width, double height, bool fill = true, float lineWidth = 0.5f);
+	RectShapeDescription(const Vector2D& lefttop, const Vector2D& rightbottom, bool fill = true, float lineWidth = 0.5f);
+	RectShapeDescription(const Rect2D& rect, bool fill = true, float lineWidth = 0.5f);
 	virtual ~RectShapeDescription();
 
 	bool operator==(const RectShapeDescription& ref) const;

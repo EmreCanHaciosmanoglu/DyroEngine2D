@@ -1,7 +1,7 @@
-#include "Core\Rendering\Visualization\ImageVisualization.h"
+#include "Core\Rendering\Visualization\Objects\ImageVisualization.h"
 #include "Core\Rendering\Visualization\Manager\VisualizationManager.h"
 
-#include "Core/Data/Texture.h"
+#include "Core/Data/Objects/Texture.h"
 
 #include "SceneGraph\Component\ImageComponent.h"
 
@@ -16,7 +16,7 @@ ImageVisualization::~ImageVisualization()
 	SafeDelete(this->texture);
 }
 
-void ImageVisualization::generateRenderItems(std::vector<RenderItem>& items)
+void ImageVisualization::generateRenderItems(std::vector<RenderItem*>& items)
 {
 	ImageComponent* component = dynamic_cast<ImageComponent*>(getObject());
 	if (component == nullptr)
@@ -32,5 +32,5 @@ void ImageVisualization::generateRenderItems(std::vector<RenderItem>& items)
 		this->texture = new Texture(image);
 	}
 
-	items.push_back(this->texture);
+	///items.push_back(this->texture);
 }

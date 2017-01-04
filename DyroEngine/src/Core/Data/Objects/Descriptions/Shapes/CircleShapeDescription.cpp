@@ -1,22 +1,22 @@
 #include "Core\Data\Objects\Descriptions\Shapes\CircleShapeDescription.h"
 
 CircleShapeDescription::CircleShapeDescription()
-	:ShapeDescription()
+	:FillableShapeDescription()
 	,center(0,0)
 	,radius(1.0f)
 {}
 CircleShapeDescription::CircleShapeDescription(const CircleShapeDescription& ref)
-	:ShapeDescription(ref)
+	: FillableShapeDescription(ref)
 	,center(ref.getCenter())
 	,radius(ref.getRadius())
 {}
-CircleShapeDescription::CircleShapeDescription(float xcenter, float ycenter, float r, float lineWidth = 0.5f)
-	:ShapeDescription(Color(),lineWidth)
+CircleShapeDescription::CircleShapeDescription(float xcenter, float ycenter, float r, bool fill, float lineWidth)
+	: FillableShapeDescription(fill,lineWidth)
 	,center(xcenter,ycenter)
 	,radius(r)
 {}
-CircleShapeDescription::CircleShapeDescription(const Vector2D& center, float r, float lineWidth = 0.5f)
-	:ShapeDescription(Color(), lineWidth)
+CircleShapeDescription::CircleShapeDescription(const Vector2D& center, float r, bool fill, float lineWidth)
+	: FillableShapeDescription(fill, lineWidth)
 	,center(center)
 	,radius(r)
 {}

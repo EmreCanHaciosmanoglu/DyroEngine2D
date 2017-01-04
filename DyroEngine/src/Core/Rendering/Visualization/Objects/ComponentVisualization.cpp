@@ -9,7 +9,7 @@ ComponentVisualization::ComponentVisualization(Component* component, const std::
 ComponentVisualization::~ComponentVisualization()
 {}
 
-void ComponentVisualization::getRenderItems(std::vector<RenderItem>& items)
+void ComponentVisualization::getRenderItems(std::vector<RenderItem*>& items)
 {
 	generateRenderItems(items);
 }

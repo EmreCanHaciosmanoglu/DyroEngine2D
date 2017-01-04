@@ -7,6 +7,11 @@ class SceneObject;
 
 class FollowCamera : public Camera
 {
+	/**
+	\note Must be present in every subclass definition.
+	*/
+	OBJECT_STATICS("FollowCamera")
+
 public:
 	FollowCamera(SceneObject* target, const std::tstring& name = _T(""), float damping = 0.0f);
 	virtual ~FollowCamera();

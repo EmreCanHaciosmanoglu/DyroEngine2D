@@ -357,6 +357,9 @@
     <ClCompile Include="src\Core\Data\Objects\Shapes\TriangleShape.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Core\Data\Objects\Descriptions\Shapes\FillableShapeDescription.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Defines\color.h">
@@ -702,6 +705,9 @@
       <Filter>Header Files\Core\Systems\Timer</Filter>
     </ClInclude>
     <ClInclude Include="include\Core\Data\Objects\Timers\WorldTimer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\Data\Objects\Descriptions\Shapes\FillableShapeDescription.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

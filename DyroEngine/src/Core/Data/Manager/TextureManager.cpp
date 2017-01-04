@@ -21,6 +21,8 @@ bool TextureManager::shutdown()
 
 	for (Texture* texture : textures)
 		delete texture;
+
+	return true;
 }
 
 void TextureManager::removeTexture(Texture* texture)

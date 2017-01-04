@@ -3,13 +3,6 @@
 
 #include "Core/Data/Objects/Shapes/Shape.h"
 
-#ifndef _IFILLABLESHAPE_H
-#include "Interfaces/IFillableShape.h"
-#endif
-#ifndef _IBOUNDINGBOX_H
-#include "Interfaces\IBoundingBox.h"
-#endif
-
 #ifndef _RECTSHAPEDESCRIPTION_H
 #include "Core\Data\Objects\Descriptions\Shapes\RectShapeDescription.h"
 #endif
@@ -23,7 +16,7 @@
 
 class Renderer;
 
-class RectShape : public Shape, public IFillableShape, public IBoundingBox
+class RectShape : public Shape
 {
 public:
 	RectShape(const std::tstring& name = _T(""));
@@ -32,12 +25,7 @@ public:
 
 	virtual void render(Renderer* renderer);
 
-	virtual void setFill(bool fill);
-	virtual bool getFill() const;
-
-	RectShapeDescription* RectShapeDescription() const;
-
-	virtual Rect2D getBoundingBox() const;
+	RectShapeDescription* getRectShapeDescription() const;
 
 private:
 };

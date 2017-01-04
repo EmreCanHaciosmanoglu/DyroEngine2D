@@ -97,6 +97,7 @@
     <ClInclude Include="include\Core\Rendering\Visualization\Objects\ComponentVisualization.h" />
     <ClInclude Include="include\Core\Rendering\Visualization\Objects\ImageVisualization.h" />
     <ClInclude Include="include\Core\Rendering\Visualization\Factory\VisualizationFactory.h" />
+    <ClInclude Include="include\Core\Data\Objects\Descriptions\Shapes\FillableShapeDescription.h" />
     <ClInclude Include="include\Core\Rendering\Visualization\Objects\Shapes\LineShapeVisualization.h" />
     <ClInclude Include="include\Core\Rendering\Visualization\Manager\VisualizationManager.h" />
     <ClInclude Include="include\Core\Rendering\Visualization\Objects\Shapes\PolygonShapeVisualization.h" />
@@ -197,6 +198,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Core\Data\Objects\Descriptions\Shapes\CircleShapeDescription.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Descriptions\Shapes\FillableShapeDescription.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Descriptions\Shapes\LineShapeDescription.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Descriptions\Shapes\PolygonShapeDescription.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Descriptions\Shapes\RectShapeDescription.cpp" />

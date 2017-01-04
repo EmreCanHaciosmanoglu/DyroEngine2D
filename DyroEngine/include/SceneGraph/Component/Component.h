@@ -11,6 +11,11 @@ class GameObject;
 
 class Component : public Object
 {
+	/**
+	\note Must be present in every subclass definition.
+	*/
+	OBJECT_STATICS("Component")
+
 public:
 	Component(const std::tstring& name = _T(""));
 	virtual ~Component();

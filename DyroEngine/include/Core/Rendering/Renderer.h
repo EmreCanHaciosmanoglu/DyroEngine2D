@@ -25,11 +25,15 @@
 class Graphics;
 class Image;
 
+class RenderItem;
+
 class Renderer
 {
 public:
 	Renderer();
 	virtual ~Renderer();
+
+	void render(std::vector<RenderItem*>& items);
 
 	void setTransformMatrix(const Matrix2D& transformMatrix);
 	void setInterpolationMode(D2D1_BITMAP_INTERPOLATION_MODE i);

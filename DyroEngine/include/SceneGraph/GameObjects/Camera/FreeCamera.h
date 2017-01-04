@@ -7,6 +7,11 @@ class Input;
 
 class FreeCamera : public Camera
 {
+	/**
+	\note Must be present in every subclass definition.
+	*/
+	OBJECT_STATICS("FreeCamera")
+
 public:
 	FreeCamera(const std::tstring& name = _T(""), float speed = 50.0f);
 	virtual ~FreeCamera();

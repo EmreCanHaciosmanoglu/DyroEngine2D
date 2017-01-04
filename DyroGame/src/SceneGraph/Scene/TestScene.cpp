@@ -9,19 +9,18 @@
 #include "SceneGraph\GameObjects\Spaceship.h"
 #include "SceneGraph\GameObjects\Astroid.h"
 
-#include "Core/Data/Shapes\RectShape.h"
-#include "Core/Data/Shapes\CircleShape.h"
-#include "Core/Data/Timer.h"
+#include "Core/Data/Objects/Shapes\RectShape.h"
+#include "Core/Data/Objects/Shapes\CircleShape.h"
+#include "Core/Data/Objects/Timers/Timer.h"
 
 #include "SceneGraph\Component\TransformComponent.h"
-#include "SceneGraph\Component\Shapes/ShapeComponent.h"
+#include "SceneGraph\Component\Shapes/RectShapeComponent.h"
 
 #include "SceneGraph\Component\Collision\BoxCollisionComponent.h"
 #include "SceneGraph\Component\Collision\CircleCollisionComponent.h"
 
 #include "Core\System\Manager\SystemManager.h"
 #include "Core\System\Input.h"
-#include "Core\System\MainTimer.h"
 
 #include "Helpers\Patterns/Singleton.h"
 
@@ -64,28 +63,28 @@ bool TestScene::initialize()
 	game_settings->setBackgroundColor(Color(0.16f, 0.15f, 0.18f));
 
 	//ADD SPACESHIP
-	this->spaceship = new Spaceship(_T("Player"));
-	this->spaceship->getTransform()->rotate(PI / 2);
-	this->spaceship->getTransform()->setPosition(window_width / 2, window_height / 2);
-	addGameObject(this->spaceship);
+	//this->spaceship = new Spaceship(_T("Player"));
+	//this->spaceship->getTransform()->rotate(PI / 2);
+	//this->spaceship->getTransform()->setPosition(window_width / 2, window_height / 2);
+	//addGameObject(this->spaceship);
 
 	//ADD BORDER
 	addBorder(Vector2D(0, window_height / 2), BORDER_WIDTH, window_height);
 	addBorder(Vector2D(window_width, window_height / 2), BORDER_WIDTH, window_height);
-	//addBorder(Vector2D(window_width / 2, 0), window_width - BORDER_WIDTH, BORDER_HEIGHT);
+	addBorder(Vector2D(window_width / 2, 0), window_width - BORDER_WIDTH, BORDER_HEIGHT);
 	addBorder(Vector2D(window_width / 2, window_height), window_width - BORDER_WIDTH, BORDER_HEIGHT);
 
 	//ADD CAMERA
-	addGameObject(new FollowCamera(this->spaceship, _T("Main Camera")));
-	//addGameObject(new FreeCamera(_T("Main Camera")));
+	//addGameObject(new FollowCamera(this->spaceship, _T("Main Camera")));
+	addGameObject(new FreeCamera(_T("Main Camera")));
 
-	spawnAstroids(10);
+	//spawnAstroids(10);
 
 	//ADD SPAWNTIMER
-	Timer* astroid_spawn_timer = new Timer(ASTROID_SPAWN_TIMER_NAME);
+	//Timer* astroid_spawn_timer = new Timer(ASTROID_SPAWN_TIMER_NAME);
 
-	MainTimer* main_timer = dynamic_cast<MainTimer*>(Singleton<SystemManager>::getInstance().getSystem(SystemType::TIMER_SYSTEM));
-	main_timer->addTimer(astroid_spawn_timer);
+	//MainTimer* main_timer = dynamic_cast<MainTimer*>(Singleton<SystemManager>::getInstance().getSystem(SystemType::TIMER_SYSTEM));
+	//main_timer->addTimer(astroid_spawn_timer);
 
 	return Scene::initialize();
 }
@@ -95,17 +94,17 @@ bool TestScene::postInitialize()
 }
 void TestScene::update()
 {
-	MainTimer* main_timer = dynamic_cast<MainTimer*>(Singleton<SystemManager>::getInstance().getSystem(SystemType::TIMER_SYSTEM));
-	Timer* astroid_spawn_timer = main_timer->getTimer(ASTROID_SPAWN_TIMER_NAME);
+	//MainTimer* main_timer = dynamic_cast<MainTimer*>(Singleton<SystemManager>::getInstance().getSystem(SystemType::TIMER_SYSTEM));
+	//Timer* astroid_spawn_timer = main_timer->getTimer(ASTROID_SPAWN_TIMER_NAME);
 
-	if (astroid_spawn_timer != nullptr)
-	{
-		if (astroid_spawn_timer->getTotalTime() > ASTROID_SPAWN_TIMER_THRESHOLD)
-		{
-			astroid_spawn_timer->reset();
-			//spawnAstroids(10);
-		}
-	}
+	//if (astroid_spawn_timer != nullptr)
+	//{
+	//	if (astroid_spawn_timer->getTotalTime() > ASTROID_SPAWN_TIMER_THRESHOLD)
+	//	{
+	//		astroid_spawn_timer->reset();
+	//		//spawnAstroids(10);
+	//	}
+	//}
 
 	Scene::update();
 }
@@ -126,7 +125,10 @@ void TestScene::addBorder(const Vector2D& position, float colliderWidth, float c
 
 	obstacle->getTransform()->setPosition(position);
 
-	obstacle->addComponent(new ShapeComponent(new RectShape(0, 0, colliderWidth, colliderHeight)));
+	RectShapeDescription* desc = new RectShapeDescription(0, 0, colliderWidth, colliderHeight);
+	desc->setColor(Color(255.0f, 0.0f, 0.0f,255.0f));
+
+	obstacle->addComponent(new RectShapeComponent(desc));
 	obstacle->addComponent(new BoxCollisionComponent(obstacle->getRigidBody(), colliderWidth, colliderHeight));
 
 	addGameObject(obstacle);

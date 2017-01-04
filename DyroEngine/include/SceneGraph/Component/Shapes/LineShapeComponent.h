@@ -11,6 +11,11 @@ class LineShapeDescription;
 
 class LineShapeComponent : public ShapeComponent
 {
+	/**
+	\note Must be present in every subclass definition.
+	*/
+	OBJECT_STATICS("LineShapeComponent")
+
 public:
 	LineShapeComponent(LineShapeDescription* description, const std::tstring& name = _T(""));
 	virtual ~LineShapeComponent();

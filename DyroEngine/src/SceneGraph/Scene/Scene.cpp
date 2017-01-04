@@ -6,6 +6,8 @@
 #include "Core\System\Input.h"
 #include "Core\System\Manager\SystemManager.h"
 
+#include "Core\Data\Objects\Layer.h"
+
 #include "Core\Rendering\Visualization\Objects\Visualization.h"
 #include "Core\Rendering\Visualization\Manager\VisualizationManager.h"
 
@@ -18,6 +20,7 @@
 #include "Core\Settings\WorldSettings.h"
 #include "Core\Settings\PhyxSettings.h"
 
+#include "Core\Rendering\Renderer.h"
 #include "Diagnostics\DebugRenderer.h"
 
 #include <Box2D\Box2D.h>
@@ -28,6 +31,7 @@ Scene::Scene(const std::tstring& name)
 	:Object(name)
 	, phyx_world(nullptr)
 	, debug_rendering(false)
+	, renderer(nullptr)
 	, debug_renderer(nullptr)
 	, contact_filter(nullptr)
 	, contact_listener(nullptr)
@@ -45,6 +49,8 @@ Scene::~Scene()
 bool Scene::initialize()
 {
 	setupPyhx();
+
+	this->renderer = new Renderer();
 
 	if (!this->game_object_manager->initialize())
 		return false;
@@ -75,6 +81,9 @@ void Scene::update()
 	this->contact_listener->update();
 
 	this->game_object_manager->update();
+
+	//Renderer the scene after all calculations are done
+	triggerRender();
 }
 bool Scene::shutdown()
 {
@@ -84,11 +93,13 @@ bool Scene::shutdown()
 		result = false;
 
 	SafeDelete(this->game_object_manager);
+
 	SafeDelete(this->debug_renderer);
 	SafeDelete(this->contact_filter);
 	SafeDelete(this->contact_listener);
-
 	SafeDelete(this->phyx_world);
+
+	SafeDelete(this->renderer);
 
 	return result;
 }
@@ -170,4 +181,28 @@ void Scene::setupPyhx()
 	this->phyx_world->SetDebugDraw(debug_renderer);
 	this->phyx_world->SetContactFilter(this->contact_filter);
 	this->phyx_world->SetContactListener(this->contact_listener);
+}
+void Scene::triggerRender()
+{
+	//Get all vizualizations
+	std::map<unsigned int, Visualization*> visualizations = this->game_object_manager->getVisualizations();
+
+	//Generate the render items
+	std::vector<RenderItem*> items;
+	for (const std::pair<unsigned int, Visualization*>& pair : visualizations)
+		pair.second->getRenderItems(items);
+
+	////Sort the render items
+	//std::sort(items.begin(), items.end(),
+	//	[](RenderItem* i1, RenderItem* i2) -> bool
+	//{
+	//	return i1->getLayer()->getID() < i2->getLayer()->getID();
+	//});
+
+	this->renderer->render(items);
+
+	//Destroy the render items
+	for (RenderItem* item : items)
+		SafeDelete(item);
+	items.clear();
 }

@@ -29,5 +29,5 @@ const Vector2D& LineShapeComponent::getEndPosition() const
 
 LineShapeDescription* LineShapeComponent::getLineDescription() const
 {
-	return dynamic_cast<LineShapeDescription*>(getLineDescription());
+	return dynamic_cast<LineShapeDescription*>(getDescription());
 }

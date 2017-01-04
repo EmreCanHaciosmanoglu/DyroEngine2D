@@ -14,6 +14,11 @@ class RectShapeDescription;
 
 class RectShapeComponent : public ShapeComponent
 {
+	/**
+	\note Must be present in every subclass definition.
+	*/
+	OBJECT_STATICS("RectShapeComponent")
+
 public:
 	RectShapeComponent(RectShapeDescription* description, const std::tstring& name = _T(""));
 	virtual ~RectShapeComponent();

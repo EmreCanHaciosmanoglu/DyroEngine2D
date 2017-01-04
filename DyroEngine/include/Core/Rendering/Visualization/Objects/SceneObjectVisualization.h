@@ -14,7 +14,7 @@ public:
 	SceneObjectVisualization(SceneObject* object, const std::tstring& name = _T(""));
 	virtual ~SceneObjectVisualization();
 
-	virtual void getRenderItems(std::vector<RenderItem>& items);
+	virtual void getRenderItems(std::vector<RenderItem*>& items);
 
 	SceneObject* getSceneObject() const;
 

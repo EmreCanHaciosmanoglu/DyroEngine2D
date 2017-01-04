@@ -1,7 +1,7 @@
 #ifndef _POLYGONSHAPEDESCRIPTION_H
 #define _POLYGONSHAPEDESCRIPTION_H
 
-#include "Core\Data\Objects\Descriptions\Shapes\ShapeDescription.h"
+#include "Core\Data\Objects\Descriptions\Shapes\FillableShapeDescription.h"
 
 #ifndef _VECTOR2D_H
 #include "Helpers\Math/Vector2D.h"
@@ -11,13 +11,13 @@
 #include <vector>
 #endif
 
-class PolygonShapeDescription : public ShapeDescription
+class PolygonShapeDescription : public FillableShapeDescription
 {
 public:
 	PolygonShapeDescription();
 	PolygonShapeDescription(const PolygonShapeDescription& ref);
-	PolygonShapeDescription(Vector2D* points, unsigned int size, bool close = true, float lineWidth = 0.5f);
-	PolygonShapeDescription(const std::vector<Vector2D>& vecPoints, bool close = true, float lineWidth = 0.5f);
+	PolygonShapeDescription(Vector2D* points, unsigned int size, bool close = true, bool fill = true, float lineWidth = 0.5f);
+	PolygonShapeDescription(const std::vector<Vector2D>& vecPoints, bool close = true, bool fill = true, float lineWidth = 0.5f);
 	virtual ~PolygonShapeDescription();
 
 	bool operator==(const PolygonShapeDescription& ref) const;

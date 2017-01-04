@@ -18,6 +18,11 @@ class Image;
 
 class ImageComponent : public Component, public IBoundingBox
 {
+	/**
+	\note Must be present in every subclass definition.
+	*/
+	OBJECT_STATICS("ImageComponent")
+
 public:
 	ImageComponent(Image* image, const std::tstring& name = _T(""));
 	virtual ~ImageComponent();

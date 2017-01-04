@@ -9,6 +9,11 @@ class TransformComponent;
 
 class CameraComponent : public Component
 {
+	/**
+	\note Must be present in every subclass definition.
+	*/
+	OBJECT_STATICS("CameraComponent")
+
 public:
 	CameraComponent(const std::tstring& name = _T(""));
 	virtual ~CameraComponent();

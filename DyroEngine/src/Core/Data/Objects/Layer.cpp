@@ -1,4 +1,4 @@
-#include "Core\Data\Layer.h"
+#include "Core\Data\Objects\Layer.h"
 
 Layer::Layer(const std::tstring& name)
 	:TaggedObject(name)

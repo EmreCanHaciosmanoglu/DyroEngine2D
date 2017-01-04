@@ -8,6 +8,11 @@
 
 class TransformComponent : public Component
 {
+	/**
+	\note Must be present in every subclass definition.
+	*/
+	OBJECT_STATICS("TransformComponent")
+
 public:
 	TransformComponent(const std::tstring& name = _T(""));
 	virtual ~TransformComponent();
