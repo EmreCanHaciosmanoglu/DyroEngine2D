@@ -1,10 +1,10 @@
 #include "Core/System/Manager/SystemManager.h"
 
-#include "Core/System/System.h"
+#include "Core/System/Objects/System.h"
 #include "Core/System/Factory/SystemFactory.h"
 
-#include "Defines/Types/SystemType.h"
-#include "Defines/deletemacros.h"
+#include "Core/Types/SystemType.h"
+#include "Core/Defines/deletemacros.h"
 
 SystemManager::SystemManager()
 	:factory(nullptr)

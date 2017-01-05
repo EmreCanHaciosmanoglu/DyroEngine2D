@@ -1,16 +1,19 @@
-#include "Core/System/Graphics.h"
-#include "Core/System/MainWindow.h"
+#include "Core/System/Objects/Graphics.h"
+#include "Core/System/Objects/Window.h"
 #include "Core/System/Manager/SystemManager.h"
 
-#include "Diagnostics/Logger.h"
+#include "Core/Diagnostics/Logger.h"
 
-#include "Defines/Types/SystemType.h"
-#include "Defines/deletemacros.h"
-#include "Defines\color.h"
+#include "Core/Types/SystemType.h"
+#include "Core/Types/SettingsType.h"
 
-#include "Helpers/Patterns/Singleton.h"
-#include "Core\Settings\WorldSettings.h"
-#include "Core\Settings\GameSettings.h"
+#include "Core/Defines/deletemacros.h"
+#include "Core/Defines\color.h"
+
+#include "Core/Helpers/Patterns/Singleton.h"
+
+#include "Core\Data\Manager\SettingsManager.h"
+#include "Core\Data\Objects\Settings\GameSettings.h"
 
 Graphics::Graphics()
 	: System(SystemType::GRAPHICS_SYSTEM)
@@ -38,7 +41,7 @@ HRESULT Graphics::onResize(UINT width, UINT height)
 
 bool Graphics::initialize()
 {
-	this->main_window = dynamic_cast<MainWindow*>(Singleton<SystemManager>::getInstance().getSystem(SystemType::WINDOW_SYSTEM));
+	this->main_window = dynamic_cast<Window*>(Singleton<SystemManager>::getInstance().getSystem(SystemType::WINDOW_SYSTEM));
 
 	HRESULT hr = createDeviceIndependentResources();
 	if (FAILED(hr))
@@ -100,7 +103,11 @@ void Graphics::discardDeviceResources()
 
 void Graphics::clear()
 {
-	this->render_target->Clear(Singleton<WorldSettings>::getInstance().getGameSettings()->getBackgroundColor().toColorF());
+	GameSettings* gameSettings = dynamic_cast<GameSettings*>(Singleton<SettingsManager>::getInstance().getSettings(SettingsType::GAME_SETTINGS));
+	if (gameSettings == nullptr)
+		return;
+
+	this->render_target->Clear(gameSettings->getBackgroundColor().toColorF());
 }
 
 void Graphics::beginDraw()

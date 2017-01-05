@@ -1,12 +1,12 @@
 #include "Core/System/Factory/SystemFactory.h"
 
-#include "Defines\Types\SystemType.h"
+#include "Core\Types\SystemType.h"
 
-#include "Core\System\System.h"
-#include "Core\System\MainWindow.h"
-#include "Core\System\Graphics.h"
-#include "Core\System\Logic.h"
-#include "Core\System\Input.h"
+#include "Core\System\Objects\System.h"
+#include "Core\System\Objects\Window.h"
+#include "Core\System\Objects\Graphics.h"
+#include "Core\System\Objects\Logic.h"
+#include "Core\System\Objects\Input.h"
 
 SystemFactory::SystemFactory()
 {
@@ -19,7 +19,7 @@ System* SystemFactory::createSystem(SystemType type)
 {
 	switch (type)
 	{
-	case SystemType::WINDOW_SYSTEM: return new MainWindow();
+	case SystemType::WINDOW_SYSTEM: return new Window();
 	case SystemType::INPUT_SYSTEM: return new Input();
 	case SystemType::LOGIC_SYSTEM: return new Logic();
 	case SystemType::GRAPHICS_SYSTEM: return new Graphics();

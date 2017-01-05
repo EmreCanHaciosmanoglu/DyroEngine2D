@@ -1,7 +1,7 @@
 #ifndef _TEXTUREMANAGER_H
 #define _TEXTUREMANAGER_H
 
-#include "Helpers\Manager.h"
+#include "Core/Helpers/Patterns/Manager.h"
 
 class Texture;
 class Image;

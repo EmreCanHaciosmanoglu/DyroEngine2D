@@ -1,13 +1,13 @@
-#include "Core/System/Logic.h"
-#include "Core/Game/AbstractGame.h"
+#include "Core/System/Objects/Logic.h"
+#include "Core/Data/Objects/Game.h"
 
-#include "SceneGraph/Scene/Manager/SceneManager.h"
+#include "SceneGraph/Manager/SceneManager.h"
 
-#include "Helpers/Patterns/Singleton.h"
+#include "Core/Helpers/Patterns/Singleton.h"
 
-#include "Defines\Types\SystemType.h"
-#include "Defines\assert.h"
-#include "Defines/deletemacros.h"
+#include "Core\Types\SystemType.h"
+#include "Core/Defines\assert.h"
+#include "Core/Defines/deletemacros.h"
 
 Logic::Logic()
 	:System(SystemType::LOGIC_SYSTEM)
@@ -47,7 +47,7 @@ bool Logic::shutdown()
 	return true;
 }
 
-void Logic::setGame(AbstractGame* game)
+void Logic::setGame(Game* game)
 {
 	this->game = game;
 }

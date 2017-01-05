@@ -1,7 +1,7 @@
 #ifndef _LAYERMANAGER_H
 #define _LAYERMANAGER_H
 
-#include "Helpers\Manager.h"
+#include "Core/Helpers/Patterns/Manager.h"
 
 class Layer;
 

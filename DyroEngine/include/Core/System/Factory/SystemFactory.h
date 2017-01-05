@@ -2,7 +2,7 @@
 #define _SYSTEMFACTORY_H
 
 #ifndef _SYSTEMTYPE_H
-#include "Defines/Types/SystemType.h"
+#include "Core/Types/SystemType.h"
 #endif
 
 class System;

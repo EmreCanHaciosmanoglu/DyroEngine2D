@@ -1,12 +1,12 @@
 #include "Core\Data\Factory\ShapeFactory.h"
 
-#include "Core\Data\Objects\Shapes\CircleShape.h"
-#include "Core\Data\Objects\Shapes\LineShape.h"
-#include "Core\Data\Objects\Shapes\PolygonShape.h"
-#include "Core\Data\Objects\Shapes\RectShape.h"
-#include "Core\Data\Objects\Shapes\TriangleShape.h"
+#include "Rendering\Objects\RenderItems\Shapes\CircleShape.h"
+#include "Rendering\Objects\RenderItems\Shapes\LineShape.h"
+#include "Rendering\Objects\RenderItems\Shapes\PolygonShape.h"
+#include "Rendering\Objects\RenderItems\Shapes\RectShape.h"
+#include "Rendering\Objects\RenderItems\Shapes\TriangleShape.h"
 
-#include "Defines\Types\ShapeType.h"
+#include "Core\Types\ShapeType.h"
 
 ShapeFactory::ShapeFactory()
 {}

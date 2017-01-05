@@ -128,22 +128,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="include\Core\Game\Game.h" />
+    <ClInclude Include="include\Core\Data\Objects\MyGame.h" />
     <ClInclude Include="include\Main.h" />
-    <ClInclude Include="include\SceneGraph\GameObjects\Astroid.h" />
-    <ClInclude Include="include\SceneGraph\GameObjects\Obstacle.h" />
-    <ClInclude Include="include\SceneGraph\Scene\MyScene.h" />
-    <ClInclude Include="include\SceneGraph\GameObjects\Spaceship.h" />
-    <ClInclude Include="include\SceneGraph\Scene\TestScene.h" />
+    <ClInclude Include="include\SceneGraph\Objects\Scenes\MyScene.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Core\Game\Game.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\MyGame.cpp" />
     <ClCompile Include="src\Main.cpp" />
-    <ClCompile Include="src\SceneGraph\GameObjects\Astroid.cpp" />
-    <ClCompile Include="src\SceneGraph\GameObjects\Obstacle.cpp" />
-    <ClCompile Include="src\SceneGraph\GameObjects\Spaceship.cpp" />
-    <ClCompile Include="src\SceneGraph\Scene\MyScene.cpp" />
-    <ClCompile Include="src\SceneGraph\Scene\TestScene.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\Scenes\MyScene.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

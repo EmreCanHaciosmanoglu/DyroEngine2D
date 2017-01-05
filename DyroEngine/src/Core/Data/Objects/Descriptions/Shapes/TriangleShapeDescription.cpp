@@ -1,9 +1,9 @@
 #include "Core\Data\Objects\Descriptions\Shapes\TriangleShapeDescription.h"
 
 TriangleShapeDescription::TriangleShapeDescription()
-	:PolygonShapeDescription(std::vector<Vector2D> { Vector2D(-0.5f, 0.0f), 
-														Vector2D(0.5f, -0.5f),
-														Vector2D(0.5f, 0.5f)})
+	:PolygonShapeDescription(std::vector<Vector2D> { Vector2D(-1.0f, 0.0f), 
+														Vector2D(1.0f, -1.0f),
+														Vector2D(1.0f, 1.0f)})
 	,x_scale(1.0f)
 	,y_scale(1.0f)
 {}
@@ -13,9 +13,9 @@ TriangleShapeDescription::TriangleShapeDescription(const TriangleShapeDescriptio
 	,y_scale(ref.y_scale)
 {}
 TriangleShapeDescription::TriangleShapeDescription(float xScale, float yScale, bool fill, float lineWidth)
-	: PolygonShapeDescription(std::vector<Vector2D> { Vector2D(-0.5f * xScale, 0.0f),
-		Vector2D(0.5f * xScale, -0.5f * yScale),
-		Vector2D(0.5f * xScale, 0.5f * yScale)}, true, fill, lineWidth)
+	: PolygonShapeDescription(std::vector<Vector2D> { Vector2D(-1.0f * xScale, 0.0f),
+		Vector2D(1.0f * xScale, -1.0f * yScale),
+		Vector2D(1.0f * xScale, 1.0f * yScale)}, true, fill, lineWidth)
 	, x_scale(xScale)
 	, y_scale(yScale)
 {}

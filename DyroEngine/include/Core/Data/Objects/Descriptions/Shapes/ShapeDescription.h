@@ -2,10 +2,10 @@
 #define _SHAPEDESCRIPTION_H
 
 #ifndef _STRING_H
-#include "Defines\string.h"
+#include "Core\Defines\string.h"
 #endif
 #ifndef _COLOR_H
-#include "Defines\color.h"
+#include "Core\Defines\color.h"
 #endif
 
 class ShapeDescription

@@ -1,17 +1,17 @@
 #ifndef _SYSTEMMANAGER_H
 #define _SYSTEMMANAGER_H
 
-#include "Helpers/Manager.h"
+#include "Core/Helpers/Patterns/Manager.h"
 
 #ifndef _VECTOR_
 #include <vector>
 #endif
 
 #ifndef _SYSTEM_H
-#include "Core\System\System.h"
+#include "Core\System\Objects\System.h"
 #endif
 #ifndef _SYSTEMTYPE_H
-#include "Defines/Types/SystemType.h"
+#include "Core/Types/SystemType.h"
 #endif
 
 class SystemFactory;

@@ -4,7 +4,7 @@
 #include "Core\Data\Objects\Descriptions\Shapes\FillableShapeDescription.h"
 
 #ifndef _VECTOR2D_H
-#include "Helpers\Math/Vector2D.h"
+#include "Math/Objects/Vector2D.h"
 #endif
 
 #ifndef _VECTOR_

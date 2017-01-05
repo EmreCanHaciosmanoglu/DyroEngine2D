@@ -5,9 +5,9 @@
 #include <Windows.h>
 #endif
 
-#include "Helpers\Patterns/Singleton.h"
+#include "Core/Helpers/Patterns/Singleton.h"
 
-#include "Diagnostics\Logger.h"
+#include "Core\Diagnostics\Logger.h"
 
 //Class GameTimer
 Timer::Timer(const std::tstring& name)

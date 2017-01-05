@@ -1,9 +1,9 @@
 #ifndef _TIMER_H
 #define _TIMER_H
 
-#include "Helpers\TaggedObject.h"
+#include "Core/Helpers/TaggedObject.h"
 #ifndef _STRING_H
-#include "Defines/string.h"
+#include "Core/Defines/string.h"
 #endif
 
 #ifndef _CTIME_

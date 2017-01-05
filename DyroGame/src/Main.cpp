@@ -1,12 +1,12 @@
 #include "Main.h"
 
 #include "Core/Engine.h"
-#include "Core/Game/Game.h"
+#include "Core/Data/Objects/MyGame.h"
 
-#include "Helpers/Patterns/Singleton.h"
-#include "Diagnostics/Logger.h"
+#include "Core/Helpers/Patterns/Singleton.h"
+#include "Core/Diagnostics/Logger.h"
 
-#include "Defines/iostream.h"
+#include "Core/Defines/iostream.h"
 
 #if defined (DEBUG) | defined(_DEBUG)
 int _tmain(int argc, char* argv[])
@@ -35,7 +35,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	Singleton<Logger>::createInstance();
 
-	Engine engine(new Game());
+	Engine engine(new MyGame());
 	int result = engine.mainLoop();
 
 	Singleton<Logger>::destroyInstance();

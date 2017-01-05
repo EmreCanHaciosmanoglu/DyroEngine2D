@@ -4,34 +4,28 @@
 #include <Windows.h>
 #endif
 
-//Core
-#include "Core/System/System.h"
-
-#include "Core\System\Logic.h"
-#include "Core\System\MainWindow.h"
-#include "Core\System\Graphics.h"
-#include "Core\System\Input.h"
-
+#include "Core/System/Objects/System.h"
+#include "Core\System\Objects\Logic.h"
+#include "Core\System\Objects\Window.h"
+#include "Core\System\Objects\Graphics.h"
+#include "Core\System\Objects\Input.h"
 #include "Core/System/Manager/SystemManager.h"
-#include "Defines/Types/SystemType.h"
 
-#include "Core/Rendering/Visualization/Manager/VisualizationManager.h"
-#include "Core/Rendering/Visualization/Factory/VisualizationFactory.h"
+#include "Core/Types/SystemType.h"
+#include "Core/Types/SettingsType.h"
 
-//Helpers
-#include "Helpers/Patterns/Singleton.h"
+#include "Rendering/Manager/VisualizationManager.h"
+#include "Rendering/Factory/VisualizationFactory.h"
 
-//Diagnostics
-#include "Diagnostics/Logger.h"
+#include "Core/Helpers/Patterns/Singleton.h"
 
-//Settings
-#include "Core/Settings/WorldSettings.h"
+#include "Core/Diagnostics/Logger.h"
 
-//SceneGraph
-#include "SceneGraph/Scene/Manager/SceneManager.h"
+#include "SceneGraph/Manager/SceneManager.h"
 
-//Game
-#include "Core/Game/AbstractGame.h"
+#include "Core/Data/Objects/Game.h"
+#include "Core/Data/Factory/SettingsFactory.h"
+#include "Core/Data/Manager/SettingsManager.h"
 
 //#include <ctime>
 //#include <iostream>
@@ -42,7 +36,7 @@ namespace
 	const int SHUTDOWN_FAILED = 0x0010;
 }
 
-Engine::Engine(AbstractGame* game)
+Engine::Engine(Game* game)
 	:game(game)
 {
 }
@@ -97,12 +91,18 @@ int Engine::initialize()
 	if (!createManagers())
 		return FALSE;
 
-	if (!Singleton<WorldSettings>::getInstance().loadSetttings())
+	SettingsFactory factory;
+
+	Singleton<SettingsManager>::getInstance().addSettings(factory.createSettings(_T("resources/INI/Engine.ini"), SettingsType::APPLICATION_SETTINGS));
+	Singleton<SettingsManager>::getInstance().addSettings(factory.createSettings(_T("resources/INI/Engine.ini"), SettingsType::GAME_SETTINGS));
+	Singleton<SettingsManager>::getInstance().addSettings(factory.createSettings(_T("resources/INI/Engine.ini"), SettingsType::PHYSICS_SETTINGS));
+
+	if (!Singleton<SettingsManager>::getInstance().initialize())
 		return FALSE;
 	if (!Singleton<SystemManager>::getInstance().initialize())
 		return FALSE;
 
-	MainWindow* window = dynamic_cast<MainWindow*>(Singleton<SystemManager>::getInstance().getSystem(SystemType::WINDOW_SYSTEM));
+	Window* window = dynamic_cast<Window*>(Singleton<SystemManager>::getInstance().getSystem(SystemType::WINDOW_SYSTEM));
 	if (window == nullptr)
 		return FALSE;
 	Input* input = dynamic_cast<Input*>(Singleton<SystemManager>::getInstance().getSystem(SystemType::INPUT_SYSTEM));
@@ -148,7 +148,7 @@ int Engine::shutDown()
 
 bool Engine::createManagers()
 {
-	Singleton<WorldSettings>::createInstance();
+	Singleton<SettingsManager>::createInstance();
 	Singleton<SystemManager>::createInstance();
 	Singleton<SceneManager>::createInstance();
 	Singleton<VisualizationFactory>::createInstance();
@@ -160,7 +160,7 @@ bool Engine::destroyManagers()
 	Singleton<VisualizationFactory>::destroyInstance();
 	Singleton<SceneManager>::destroyInstance();
 	Singleton<SystemManager>::destroyInstance();
-	Singleton<WorldSettings>::destroyInstance();
+	Singleton<SettingsManager>::destroyInstance();
 
 	return true;
 }

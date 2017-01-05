@@ -1,12 +1,12 @@
 #ifndef _ENGINE_H
 #define _ENGINE_H
 
-class AbstractGame;
+class Game;
 
 class Engine
 {
 public:
-	Engine(AbstractGame* game);
+	Engine(Game* game);
 	~Engine();
 
 	int mainLoop();
@@ -20,7 +20,7 @@ private:
 	bool createManagers();
 	bool destroyManagers();
 
-	AbstractGame* game;
+	Game* game;
 };
 
 #endif // _ENGINE_H

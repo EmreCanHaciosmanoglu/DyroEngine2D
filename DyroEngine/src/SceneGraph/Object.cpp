@@ -1,7 +1,7 @@
-#include "SceneGraph/Object.h"
+#include "SceneGraph/Objects/Object.h"
 
-#include "Helpers\Patterns/Singleton.h"
-#include "Diagnostics\Logger.h"
+#include "Core/Helpers/Patterns/Singleton.h"
+#include "Core/Diagnostics/Logger.h"
 
 Object::Object(const std::tstring& name)
 	: TaggedObject(name)

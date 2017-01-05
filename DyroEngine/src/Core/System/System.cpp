@@ -1,6 +1,6 @@
-#include "Core\System\System.h"
+#include "Core\System\Objects\System.h"
 
-#include "Defines/Types/SystemType.h"
+#include "Core/Types/SystemType.h"
 
 System::System(SystemType type)
 	:system_type(type)

@@ -4,10 +4,10 @@
 #include "Core\Data\Objects\Descriptions\Shapes\FillableShapeDescription.h"
 
 #ifndef _VECTOR2D_H
-#include "Helpers\Math/Vector2D.h"
+#include "Math/Objects/Vector2D.h"
 #endif
 #ifndef _RECT2D_H
-#include "Helpers\Math\Rect2D.h"
+#include "Math/Objects/Rect2D.h"
 #endif
 
 class RectShapeDescription : public FillableShapeDescription

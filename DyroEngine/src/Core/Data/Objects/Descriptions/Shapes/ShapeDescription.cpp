@@ -1,6 +1,6 @@
 #include "Core\Data\Objects\Descriptions\Shapes\ShapeDescription.h"
 
-#include "Defines\color.h"
+#include "Core\Defines\color.h"
 
 ShapeDescription::ShapeDescription()
 	:color(0,0,0,1)

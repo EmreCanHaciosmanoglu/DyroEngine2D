@@ -1,0 +1,11 @@
+#ifndef _SETTINGSTYPE_H
+#define _SETTINGSTYPE_H
+
+enum class SettingsType
+{
+	APPLICATION_SETTINGS,
+	GAME_SETTINGS,
+	PHYSICS_SETTINGS
+};
+
+#endif

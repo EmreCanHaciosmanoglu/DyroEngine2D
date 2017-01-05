@@ -1,7 +1,7 @@
 #ifndef _TIMERMANAGER_H
 #define _TIMERMANAGER_H
 
-#include "Helpers\Manager.h"
+#include "Core/Helpers/Patterns/Manager.h"
 
 class Timer;
 class WorldTimer;
