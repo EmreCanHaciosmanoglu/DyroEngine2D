@@ -1,7 +1,7 @@
 #ifndef _BOXCOLLISIONCOMPONENT_H
 #define _BOXCOLLISIONCOMPONENT_H
 
-#include "SceneGraph\Objects\Components\Collision\CollisionComponent.h"
+#include "SceneGraph\Objects\Components\Physics\Collision\CollisionComponent.h"
 
 class RigidBodyComponent;
 

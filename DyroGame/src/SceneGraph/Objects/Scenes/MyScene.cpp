@@ -9,9 +9,9 @@
 #include "SceneGraph\Objects\Components\Shapes\TriangleShapeComponent.h"
 #include "SceneGraph\Objects\Components\Shapes\CircleShapeComponent.h"
 #include "SceneGraph\Objects\Components\TransformComponent.h"
-#include "SceneGraph\Objects\Components\Collision\BoxCollisionComponent.h"
-#include "SceneGraph\Objects\Components\Collision\CircleCollisionComponent.h"
-#include "SceneGraph\Objects\Components\Collision\TriangleCollisionComponent.h"
+#include "SceneGraph\Objects\Components\Physics\Collision\BoxCollisionComponent.h"
+#include "SceneGraph\Objects\Components\Physics\Collision\CircleCollisionComponent.h"
+#include "SceneGraph\Objects\Components\Physics\Collision\TriangleCollisionComponent.h"
 
 #include "Core\System\Objects\Input.h"
 

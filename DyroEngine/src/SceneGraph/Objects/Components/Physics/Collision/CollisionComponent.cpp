@@ -1,5 +1,5 @@
-#include "SceneGraph\Objects\Components\Collision\CollisionComponent.h"
-#include "SceneGraph\Objects\Components\RigidBodyComponent.h"
+#include "SceneGraph\Objects\Components\Physics\Collision\CollisionComponent.h"
+#include "SceneGraph\Objects\Components\Physics\RigidBodyComponent.h"
 
 #include "SceneGraph\Objects\GameObjects\PhysicsObject.h"
 

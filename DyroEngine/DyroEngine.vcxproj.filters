@@ -378,6 +378,12 @@
     <ClCompile Include="src\Core\Data\Objects\Settings\PhysicsSettings.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\SceneGraph\Objects\Components\EmitterComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Data\Objects\Descriptions\EmitterComponentDescription.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Core\Engine.h">
@@ -698,24 +704,6 @@
     <ClInclude Include="include\SceneGraph\Objects\GameObjects\UIObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\SceneGraph\Objects\Components\Collision\BoxCollisionComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Objects\Components\Collision\CircleCollisionComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Objects\Components\Collision\CollisionComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Objects\Components\Collision\PolygonCollisionComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Objects\Components\Collision\TriangleCollisionComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Objects\Components\RigidBodyComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\SceneGraph\Objects\Components\Shapes\CircleShapeComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -747,6 +735,30 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Core\Data\Objects\Settings\PhysicsSettings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SceneGraph\Objects\Components\Physics\Collision\BoxCollisionComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SceneGraph\Objects\Components\Physics\Collision\CircleCollisionComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SceneGraph\Objects\Components\Physics\Collision\CollisionComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SceneGraph\Objects\Components\Physics\Collision\PolygonCollisionComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SceneGraph\Objects\Components\Physics\Collision\TriangleCollisionComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SceneGraph\Objects\Components\EmitterComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SceneGraph\Objects\Components\Physics\RigidBodyComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\Data\Objects\Descriptions\EmitterComponentDescription.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

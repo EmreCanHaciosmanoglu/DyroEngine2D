@@ -1,5 +1,5 @@
-#include "SceneGraph\Objects\Components\Collision\PolygonCollisionComponent.h"
-#include "SceneGraph\Objects\Components\RigidBodyComponent.h"
+#include "SceneGraph\Objects\Components\Physics\Collision\PolygonCollisionComponent.h"
+#include "SceneGraph\Objects\Components\Physics\RigidBodyComponent.h"
 
 #include "Core\Defines\programdefaults.h"
 #include "Core\Defines\assert.h"

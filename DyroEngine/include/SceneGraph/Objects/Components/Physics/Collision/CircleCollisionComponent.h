@@ -1,7 +1,7 @@
 #ifndef _CIRCLECOLLISIONCOMPONENT_H
 #define _CIRCLECOLLISIONCOMPONENT_H
 
-#include "SceneGraph\Objects\Components\Collision\CollisionComponent.h"
+#include "SceneGraph\Objects\Components\Physics\Collision\CollisionComponent.h"
 
 class RigidBodyComponent;
 

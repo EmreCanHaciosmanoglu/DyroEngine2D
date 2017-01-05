@@ -1,7 +1,7 @@
 #ifndef _TRIANGLECOLLISIONCOMPONENT_H
 #define _TRIANGLECOLLISIONCOMPONENT_H
 
-#include "SceneGraph\Objects\Components\Collision\PolygonCollisionComponent.h"
+#include "SceneGraph\Objects\Components\Physics\Collision\PolygonCollisionComponent.h"
 
 class TriangleCollisionComponent : public PolygonCollisionComponent
 {

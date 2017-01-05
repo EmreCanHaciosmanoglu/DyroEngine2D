@@ -1,7 +1,7 @@
 #ifndef _POLYGONCOLLISIONCOMPONENT_H
 #define _POLYGONCOLLISIONCOMPONENT_H
 
-#include "SceneGraph\Objects\Components\Collision\CollisionComponent.h"
+#include "SceneGraph\Objects\Components\Physics\Collision\CollisionComponent.h"
 
 #ifndef _VECTOR2D_H
 #include "Math/Objects/Vector2D.h"
