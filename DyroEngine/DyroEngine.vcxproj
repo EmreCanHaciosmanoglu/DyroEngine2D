@@ -82,7 +82,8 @@
     <ClInclude Include="include\Core\Data\Factory\SettingsFactory.h" />
     <ClInclude Include="include\Core\Data\Manager\SettingsManager.h" />
     <ClInclude Include="include\Core\Data\Manager\TimerManager.h" />
-    <ClInclude Include="include\Core\Data\Objects\Descriptions\EmitterComponentDescription.h" />
+    <ClInclude Include="include\Core\Data\Objects\Descriptions\Particles\EmitterComponentDescription.h" />
+    <ClInclude Include="include\Core\Data\Objects\Descriptions\Particles\ParticleDescription.h" />
     <ClInclude Include="include\Core\Data\Objects\Descriptions\Shapes\CircleShapeDescription.h" />
     <ClInclude Include="include\Core\Data\Objects\Descriptions\Shapes\LineShapeDescription.h" />
     <ClInclude Include="include\Core\Data\Objects\Descriptions\Shapes\PolygonShapeDescription.h" />
@@ -208,7 +209,8 @@
   <ItemGroup>
     <ClCompile Include="src\Core\Data\Factory\SettingsFactory.cpp" />
     <ClCompile Include="src\Core\Data\Manager\SettingsManager.cpp" />
-    <ClCompile Include="src\Core\Data\Objects\Descriptions\EmitterComponentDescription.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Descriptions\Particles\EmitterComponentDescription.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Descriptions\Particles\ParticleDescription.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Descriptions\Shapes\CircleShapeDescription.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Descriptions\Shapes\FillableShapeDescription.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Descriptions\Shapes\LineShapeDescription.cpp" />

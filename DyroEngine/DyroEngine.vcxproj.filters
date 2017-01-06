@@ -381,7 +381,10 @@
     <ClCompile Include="src\SceneGraph\Objects\Components\EmitterComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Core\Data\Objects\Descriptions\EmitterComponentDescription.cpp">
+    <ClCompile Include="src\Core\Data\Objects\Descriptions\Particles\EmitterComponentDescription.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Data\Objects\Descriptions\Particles\ParticleDescription.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -758,7 +761,10 @@
     <ClInclude Include="include\SceneGraph\Objects\Components\Physics\RigidBodyComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Core\Data\Objects\Descriptions\EmitterComponentDescription.h">
+    <ClInclude Include="include\Core\Data\Objects\Descriptions\Particles\EmitterComponentDescription.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\Data\Objects\Descriptions\Particles\ParticleDescription.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,4 +1,4 @@
-#include "Core/Data/Objects/Descriptions/EmitterComponentDescription.h"
+#include "Core/Data/Objects/Descriptions/Particles/EmitterComponentDescription.h"
 
 EmitterComponentDescription::EmitterComponentDescription(unsigned int particleAmount)
 	:particle_amount(particleAmount)
@@ -25,84 +25,112 @@ EmitterComponentDescription::EmitterComponentDescription(unsigned int particleAm
 
 	,min_fade_speed(1.0f)
 	,max_fade_speed(1.0f)
+
+	,dirty(false)
 {}
 EmitterComponentDescription::~EmitterComponentDescription()
 {}
 
+void EmitterComponentDescription::setDirty(bool dirty)
+{
+	this->dirty = dirty;
+}
+bool EmitterComponentDescription::getDirty() const
+{
+	return this->dirty;
+}
+
 void EmitterComponentDescription::setParticleAmount(unsigned int amount)
 {
 	this->particle_amount = amount;
+	setDirty(true);
 }
 
 void EmitterComponentDescription::setGravityMultiplier(float multiplier)
 {
 	this->gravity_multiplier = multiplier;
+	setDirty(true);
 }
 
 void EmitterComponentDescription::setMinLifeTime(float time)
 {
 	this->min_life_time = time;
+	setDirty(true);
 }
 void EmitterComponentDescription::setMaxLifetime(float time)
 {
 	this->max_life_time = time;
+	setDirty(true);
 }
 
 void EmitterComponentDescription::setMinVelocity(const Vector2D& velocity)
 {
 	this->min_velocity = velocity;
+	setDirty(true);
 }
 void EmitterComponentDescription::setMaxVelocity(const Vector2D& velocity)
 {
 	this->max_velocity = velocity;
+	setDirty(true);
 }
 void EmitterComponentDescription::setMinAngularVelocity(float velocity)
 {
 	this->min_angular_velocity = velocity;
+	setDirty(true);
 }
 void EmitterComponentDescription::setMaxAngularVelocity(float velocity)
 {
 	this->max_angular_velocity = velocity;
+	setDirty(true);
 }
 
 void EmitterComponentDescription::setMinScale(const Vector2D& scale)
 {
 	this->min_scale = scale;
+	setDirty(true);
 }
 void EmitterComponentDescription::setMaxScale(const Vector2D& scale)
 {
 	this->max_scale = scale;
+	setDirty(true);
 }
 void EmitterComponentDescription::setMinGrowSpeed(float speed)
 {
 	this->min_grow_speed = speed;
+	setDirty(true);
 }
 void EmitterComponentDescription::setMaxGrowSpeed(float speed)
 {
 	this->max_grow_speed = speed;
+	setDirty(true);
 }
 
 void EmitterComponentDescription::enableFade(bool fade)
 {
 	this->fade = fade;
+	setDirty(true);
 }
 
 void EmitterComponentDescription::setFadeStart(float start)
 {
 	this->fade_start = start;
+	setDirty(true);
 }
 void EmitterComponentDescription::setFadeEnd(float end)
 {
 	this->fade_end = end;
+	setDirty(true);
 }
 
 void EmitterComponentDescription::setMinFadeSpeed(float speed)
 {
 	this->min_fade_speed = speed;
+	setDirty(true);
 }
 void EmitterComponentDescription::setMaxFadeSpeed(float speed)
 {
 	this->max_fade_speed = speed;
+	setDirty(true);
 }
 
 void EmitterComponentDescription::addTexture(Texture* texture)
@@ -110,6 +138,7 @@ void EmitterComponentDescription::addTexture(Texture* texture)
 	std::vector<Texture*>::const_iterator it = std::find(this->textures.begin(), this->textures.end(), texture);
 	if (it != this->textures.end())
 		this->textures.push_back(texture);
+	setDirty(true);
 }
 
 unsigned int EmitterComponentDescription::getParticleAmount() const
@@ -139,7 +168,7 @@ const Vector2D& EmitterComponentDescription::getMaxVelocity() const
 {
 	return this->max_velocity;
 }
-float EmitterComponentDescription::getMinAngularVelocity(const Vector2D& velocity) const
+float EmitterComponentDescription::getMinAngularVelocity() const
 {
 	return this->min_angular_velocity;
 }

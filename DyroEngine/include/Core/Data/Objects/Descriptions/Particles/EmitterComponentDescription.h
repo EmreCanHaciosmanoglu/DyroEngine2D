@@ -16,6 +16,9 @@ public:
 	EmitterComponentDescription(unsigned int particleAmount);
 	~EmitterComponentDescription();
 
+	void setDirty(bool dirty);
+	bool getDirty() const;
+
 	void setParticleAmount(unsigned int amount);
 
 	void setGravityMultiplier(float multiplier);
@@ -52,7 +55,7 @@ public:
 
 	const Vector2D& getMinVelocity() const;
 	const Vector2D& getMaxVelocity() const;
-	float getMinAngularVelocity(const Vector2D& velocity) const;
+	float getMinAngularVelocity() const;
 	float getMaxAngularVelocity() const;
 
 	const Vector2D& getMinScale() const;
@@ -97,6 +100,8 @@ private:
 	float max_fade_speed;
 
 	std::vector<Texture*> textures;
+
+	bool dirty;
 };
 
 #endif

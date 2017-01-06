@@ -80,6 +80,9 @@ public:
 
 	static b2Vec2		toBox2DVec(const Vector2D& ref);
 	static Vector2D     toVector2D(const b2Vec2& ref);
+
+	static Vector2D		randomVector();
+	static Vector2D		randomVector(const Vector2D& min, const Vector2D& max);
 };
 
 #endif

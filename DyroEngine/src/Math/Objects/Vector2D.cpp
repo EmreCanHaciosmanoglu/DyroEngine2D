@@ -103,3 +103,15 @@ Vector2D Vector2D::toVector2D(const b2Vec2& ref)
 {
 	return Vector2D(ref.x, ref.y);
 }
+
+Vector2D Vector2D::randomVector()
+{
+	return Vector2D((float)rand(), (float)rand());
+}
+Vector2D Vector2D::randomVector(const Vector2D& min, const Vector2D& max)
+{
+	float x = (float)fmod(rand(), max.x) + min.x;
+	float y = (float)fmod(rand(), max.y) + min.y;
+
+	return Vector2D(x, y);
+}
