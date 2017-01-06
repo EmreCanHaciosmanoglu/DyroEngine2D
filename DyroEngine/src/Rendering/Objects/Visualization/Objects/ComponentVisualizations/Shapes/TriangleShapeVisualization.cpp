@@ -9,7 +9,11 @@
 TriangleShapeVisualization::TriangleShapeVisualization(Component* object, const std::tstring& name)
 	:PolygonShapeVisualization(object, name)
 {
+	TriangleShapeComponent* component = dynamic_cast<TriangleShapeComponent*>(object);
+	if (component != nullptr)
+		setShape(new TriangleShape(component->getTriangleDescription()));
 
+	assert(getShape() != nullptr);
 }
 TriangleShapeVisualization::~TriangleShapeVisualization()
 {
@@ -18,20 +22,14 @@ TriangleShapeVisualization::~TriangleShapeVisualization()
 
 void TriangleShapeVisualization::generateRenderItems(std::vector<RenderItem*>& items)
 {
-	TriangleShapeComponent* component = dynamic_cast<TriangleShapeComponent*>(getObject());
-	if (component == nullptr)
-		return;
-
 	GameObjectVisualization* parent = dynamic_cast<GameObjectVisualization*>(getParent());
-
-	TriangleShape* shape = new TriangleShape(component->getTriangleDescription());
 	if (parent != nullptr)
 	{
 		SceneObject* parent_object = dynamic_cast<SceneObject*>(parent->getObject());
 
-		shape->setTransform(parent->getTransform());
-		shape->setLayer(parent_object->getLayer());
+		getShape()->setTransform(parent->getTransform());
+		getShape()->setLayer(parent_object->getLayer());
 	}
 
-	items.push_back(shape);
+	items.push_back(getShape());
 }

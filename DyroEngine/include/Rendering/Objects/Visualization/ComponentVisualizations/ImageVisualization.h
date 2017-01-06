@@ -8,7 +8,7 @@ class Texture;
 class ImageVisualization : public ComponentVisualization
 {
 public:
-	ImageVisualization(Component* component, const std::tstring& name = _T(""));
+	ImageVisualization(Component* object, const std::tstring& name = _T(""));
 	virtual ~ImageVisualization();
 
 protected:

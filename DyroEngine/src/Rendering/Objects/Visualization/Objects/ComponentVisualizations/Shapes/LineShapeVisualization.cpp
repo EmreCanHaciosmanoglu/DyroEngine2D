@@ -9,7 +9,11 @@
 LineShapeVisualization::LineShapeVisualization(Component* object, const std::tstring& name)
 	:ShapeVisualization(object, name)
 {
+	LineShapeComponent* component = dynamic_cast<LineShapeComponent*>(object);
+	if (component != nullptr)
+		setShape(new LineShape(component->getLineDescription()));
 
+	assert(getShape() != nullptr);
 }
 LineShapeVisualization::~LineShapeVisualization()
 {
@@ -18,20 +22,14 @@ LineShapeVisualization::~LineShapeVisualization()
 
 void LineShapeVisualization::generateRenderItems(std::vector<RenderItem*>& items)
 {
-	LineShapeComponent* component = dynamic_cast<LineShapeComponent*>(getObject());
-	if (component == nullptr)
-		return;
-
 	GameObjectVisualization* parent = dynamic_cast<GameObjectVisualization*>(getParent());
-
-	LineShape* shape = new LineShape(component->getLineDescription());
 	if (parent != nullptr)
 	{
 		SceneObject* parent_object = dynamic_cast<SceneObject*>(parent->getObject());
 
-		shape->setTransform(parent->getTransform());
-		shape->setLayer(parent_object->getLayer());
+		getShape()->setTransform(parent->getTransform());
+		getShape()->setLayer(parent_object->getLayer());
 	}
 
-	items.push_back(shape);
+	items.push_back(getShape());
 }

@@ -7,10 +7,16 @@
 
 #include "Core/Defines\deletemacros.h"
 
-ImageVisualization::ImageVisualization(Component* component, const std::tstring& name)
-	:ComponentVisualization(component, name)
+ImageVisualization::ImageVisualization(Component* object, const std::tstring& name)
+	:ComponentVisualization(object, name)
 	, texture(nullptr)
-{}
+{
+	ImageComponent* component = dynamic_cast<ImageComponent*>(object);
+	if (component == nullptr)
+		return;
+
+	this->texture = new Texture(component->getImage());
+}
 ImageVisualization::~ImageVisualization()
 {
 	SafeDelete(this->texture);
@@ -18,19 +24,15 @@ ImageVisualization::~ImageVisualization()
 
 void ImageVisualization::generateRenderItems(std::vector<RenderItem*>& items)
 {
-	ImageComponent* component = dynamic_cast<ImageComponent*>(getObject());
+	ImageComponent* component = dynamic_cast<ImageComponent*>(object);
 	if (component == nullptr)
 		return;
 
-	Image* image = component->getImage();
-
-	if (this->texture == nullptr)
-		this->texture = new Texture(image);
-	else if (this->texture->getImage() != image)
+	if (this->texture->getImage() != component->getImage())
 	{
 		SafeDelete(this->texture);
-		this->texture = new Texture(image);
+		this->texture = new Texture(component->getImage());
 	}
 
-	///items.push_back(this->texture);
+	items.push_back(this->texture);
 }

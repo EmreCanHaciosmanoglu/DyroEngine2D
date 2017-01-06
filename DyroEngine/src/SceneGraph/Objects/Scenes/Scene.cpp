@@ -211,10 +211,9 @@ void Scene::triggerRender()
 		return i1->getLayer()->getID() < i2->getLayer()->getID();
 	});
 
+	//Render visualizations
 	this->renderer->render(items);
 
-	//Destroy the render items
-	for (RenderItem* item : items)
-		SafeDelete(item);
+	//Clear the render item list
 	items.clear();
 }

@@ -9,6 +9,11 @@
 RectShapeVisualization::RectShapeVisualization(Component* object, const std::tstring& name)
 	:ShapeVisualization(object, name)
 {
+	RectShapeComponent* component = dynamic_cast<RectShapeComponent*>(object);
+	if (component != nullptr)
+		setShape(new RectShape(component->getRectDescription()));
+
+	assert(getShape() != nullptr);
 }
 RectShapeVisualization::~RectShapeVisualization()
 {
@@ -17,20 +22,14 @@ RectShapeVisualization::~RectShapeVisualization()
 
 void RectShapeVisualization::generateRenderItems(std::vector<RenderItem*>& items)
 {
-	RectShapeComponent* component = dynamic_cast<RectShapeComponent*>(getObject());
-	if (component == nullptr)
-		return;
-
 	GameObjectVisualization* parent = dynamic_cast<GameObjectVisualization*>(getParent());
-
-	RectShape* shape = new RectShape(component->getRectDescription());
 	if (parent != nullptr)
 	{
 		SceneObject* parent_object = dynamic_cast<SceneObject*>(parent->getObject());
 
-		shape->setTransform(parent->getTransform());
-		shape->setLayer(parent_object->getLayer());
+		getShape()->setTransform(parent->getTransform());
+		getShape()->setLayer(parent_object->getLayer());
 	}
 
-	items.push_back(shape);
+	items.push_back(getShape());
 }

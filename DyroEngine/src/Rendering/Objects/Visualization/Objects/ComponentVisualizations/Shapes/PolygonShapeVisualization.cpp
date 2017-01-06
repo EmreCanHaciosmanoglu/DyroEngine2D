@@ -9,7 +9,11 @@
 PolygonShapeVisualization::PolygonShapeVisualization(Component* object, const std::tstring& name)
 	:ShapeVisualization(object, name)
 {
+	PolygonShapeComponent* component = dynamic_cast<PolygonShapeComponent*>(object);
+	if (component != nullptr)
+		setShape(new PolygonShape(component->getPolygonDescription()));
 
+	assert(getShape() != nullptr);
 }
 PolygonShapeVisualization::~PolygonShapeVisualization()
 {
@@ -18,20 +22,14 @@ PolygonShapeVisualization::~PolygonShapeVisualization()
 
 void PolygonShapeVisualization::generateRenderItems(std::vector<RenderItem*>& items)
 {
-	PolygonShapeComponent* component = dynamic_cast<PolygonShapeComponent*>(getObject());
-	if (component == nullptr)
-		return;
-
 	GameObjectVisualization* parent = dynamic_cast<GameObjectVisualization*>(getParent());
-
-	PolygonShape* shape = new PolygonShape(component->getPolygonDescription());
 	if (parent != nullptr)
 	{
 		SceneObject* parent_object = dynamic_cast<SceneObject*>(parent->getObject());
 
-		shape->setTransform(parent->getTransform());
-		shape->setLayer(parent_object->getLayer());
+		getShape()->setTransform(parent->getTransform());
+		getShape()->setLayer(parent_object->getLayer());
 	}
 
-	items.push_back(shape);
+	items.push_back(getShape());
 }
