@@ -53,7 +53,8 @@ void EmitterComponent::update()
 	{
 		particle_descriptions[i].setGravityMultiplier(this->description->getGravityMultiplier());
 
-		particle_descriptions[i].setLifeTime((float)fmod((float)rand(), this->description->getMaxLifetime()) + this->description->getMinLifeTime());
+		//We don't wanna override the life time once we are running the game
+		//particle_descriptions[i].setLifeTime((float)fmod((float)rand(), this->description->getMaxLifetime()) + this->description->getMinLifeTime());
 
 		particle_descriptions[i].setVelocity(Vector2D::randomVector(this->description->getMinVelocity(), this->description->getMaxVelocity()));
 		particle_descriptions[i].setAngularVelocity((float)fmod((float)rand(), this->description->getMaxAngularVelocity()) + this->description->getMinAngularVelocity());
