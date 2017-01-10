@@ -20,11 +20,14 @@ class Renderer;
 class PolygonShape : public Shape
 {
 public:
-	PolygonShape(const std::tstring& name = _T(""));
-	PolygonShape(PolygonShapeDescription* description, const std::tstring& name = _T(""));
+	PolygonShape(const std::tstring& name = _T("PolygonShape"));
+	PolygonShape(PolygonShapeDescription* description, const std::tstring& name = _T("PolygonShape"));
 	virtual ~PolygonShape();
 
 	virtual void render(Renderer* renderer);
+
+	virtual float getWidth() const;
+	virtual float getHeight() const;
 
 	PolygonShapeDescription* getPolygonShapeDescription() const;
 

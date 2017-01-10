@@ -28,19 +28,16 @@ void RectShape::render(Renderer* renderer)
 		: renderer->drawRect(desc->getRect(), desc->getLineWidth());
 }
 
+float RectShape::getWidth() const
+{
+	return (float)getRectShapeDescription()->getRect().getWidth();
+}
+float RectShape::getHeight() const
+{
+	return (float)getRectShapeDescription()->getRect().getHeight();
+}
+
 RectShapeDescription* RectShape::getRectShapeDescription() const
 {
 	return dynamic_cast<RectShapeDescription*>(getDescription());
 }
-
-//Rect2D RectShape::getBoundingBox() const
-//{
-//	Rect2D bounding_rect;
-//
-//	bounding_rect.left = 0;
-//	bounding_rect.top = 0;
-//	bounding_rect.right = this->rect.right - this->rect.left;
-//	bounding_rect.bottom = this->rect.bottom - this->rect.top;
-//
-//	return bounding_rect;
-//}

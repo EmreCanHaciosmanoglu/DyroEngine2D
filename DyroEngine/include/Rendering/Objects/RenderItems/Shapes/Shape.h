@@ -9,15 +9,19 @@ class ShapeDescription;
 class Shape : public RenderItem
 {
 public:
-	Shape(const std::tstring& name = _T(""));
-	Shape(ShapeDescription* description, const std::tstring& name = _T(""));
+	Shape(const std::tstring& name = _T("Shape"));
+	Shape(ShapeDescription* description, const std::tstring& name = _T("Shape"));
 	virtual ~Shape();
 
 	virtual void render(Renderer* renderer) = 0;
 
+	void setDescription(ShapeDescription* description);
+
 	virtual bool isTransparant() const;
 
-	void setDescription(ShapeDescription* description);
+	virtual float getWidth() const = 0;
+	virtual float getHeight() const = 0;
+
 	ShapeDescription* getDescription() const;
 
 protected:

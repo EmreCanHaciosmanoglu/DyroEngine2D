@@ -17,11 +17,14 @@ class Renderer;
 class CircleShape : public Shape
 {
 public:
-	CircleShape(const std::tstring& name = _T(""));
-	CircleShape(CircleShapeDescription* descripion, const std::tstring& name = _T(""));
+	CircleShape(const std::tstring& name = _T("CircleShape"));
+	CircleShape(CircleShapeDescription* descripion, const std::tstring& name = _T("CircleShape"));
 	virtual ~CircleShape();
 
 	virtual void render(Renderer* renderer);
+
+	virtual float getWidth() const;
+	virtual float getHeight() const;
 
 	CircleShapeDescription* getCirlceShapeDescription() const;
 

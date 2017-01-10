@@ -16,11 +16,14 @@ class Renderer;
 class LineShape : public Shape
 {
 public:
-	LineShape(const std::tstring& name = _T(""));
-	LineShape(LineShapeDescription* description, const std::tstring& name = _T(""));
+	LineShape(const std::tstring& name = _T("Lineshape"));
+	LineShape(LineShapeDescription* description, const std::tstring& name = _T("LineShape"));
 	virtual ~LineShape();
 
 	virtual void render(Renderer* renderer);
+
+	virtual float getWidth() const;
+	virtual float getHeight() const;
 
 	LineShapeDescription* getLineShapeDescription() const;
 

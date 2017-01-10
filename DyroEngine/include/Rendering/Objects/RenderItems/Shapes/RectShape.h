@@ -19,11 +19,14 @@ class Renderer;
 class RectShape : public Shape
 {
 public:
-	RectShape(const std::tstring& name = _T(""));
-	RectShape(RectShapeDescription* desc, const std::tstring& name = _T(""));
+	RectShape(const std::tstring& name = _T("RectShape"));
+	RectShape(RectShapeDescription* desc, const std::tstring& name = _T("RectShape"));
 	virtual ~RectShape();
 
 	virtual void render(Renderer* renderer);
+
+	virtual float getWidth() const;
+	virtual float getHeight() const;
 
 	RectShapeDescription* getRectShapeDescription() const;
 

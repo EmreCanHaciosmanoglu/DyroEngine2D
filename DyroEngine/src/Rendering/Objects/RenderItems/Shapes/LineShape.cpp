@@ -24,6 +24,15 @@ void LineShape::render(Renderer* renderer)
 	renderer->drawLine(desc->getStartPosition(), desc->getEndPosition(), desc->getLineWidth());
 }
 
+float LineShape::getWidth() const
+{
+	return getLineShapeDescription()->getEndPosition().x - getLineShapeDescription()->getEndPosition().x;
+}
+float LineShape::getHeight() const
+{
+	return 1;
+}
+
 LineShapeDescription* LineShape::getLineShapeDescription() const
 {
 	return dynamic_cast<LineShapeDescription*>(getDescription());

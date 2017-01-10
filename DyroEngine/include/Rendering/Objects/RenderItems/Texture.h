@@ -8,12 +8,15 @@ class Image;
 class Texture : public RenderItem
 {
 public:
-	Texture(Image* image);
+	Texture(Image* image, const std::tstring name = _T("Texture"));
 	virtual ~Texture();
 
 	virtual void render(Renderer* renderer);
 
 	virtual bool isTransparant() const;
+
+	virtual float getWidth() const;
+	virtual float getHeight() const;
 
 	Image* getImage() const;
 

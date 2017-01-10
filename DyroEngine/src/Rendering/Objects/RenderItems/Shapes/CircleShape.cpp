@@ -28,19 +28,16 @@ void CircleShape::render(Renderer* renderer)
 		: renderer->drawCircle(desc->getCenter(), desc->getRadius(), desc->getLineWidth());
 }
 
+float CircleShape::getWidth() const
+{
+	return getCirlceShapeDescription()->getRadius() * 2;
+}
+float CircleShape::getHeight() const
+{
+	return getCirlceShapeDescription()->getRadius() * 2;
+}
+
 CircleShapeDescription* CircleShape::getCirlceShapeDescription() const
 {
 	return dynamic_cast<CircleShapeDescription*>(getDescription());
 }
-
-//Rect2D CircleShape::getBoundingBox() const
-//{
-//	Rect2D bounding_rect;
-//
-//	bounding_rect.left = 0;
-//	bounding_rect.top = 0;
-//	bounding_rect.right = this->radius * 2;
-//	bounding_rect.bottom = this->radius * 2;
-//
-//	return bounding_rect;
-//}
