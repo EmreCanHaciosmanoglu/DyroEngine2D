@@ -1,5 +1,9 @@
 #include "Math/Objects/Vector2D.h"
 
+#ifndef _RANDOM_H
+#include "Math/Objects/Random.h"
+#endif
+
 Vector2D Vector2D::ZeroVector = Vector2D(0,0);
 
 float Vector2D::Length() const
@@ -94,6 +98,14 @@ bool Vector2D::operator<(const Vector2D& rhs) const
 	if (y > rhs.y) return false;
 	return false;
 }
+bool Vector2D::operator>(const Vector2D& rhs) const
+{
+	if (x > rhs.x) return true;
+	if (x < rhs.x) return false;
+	if (y > rhs.y) return true;
+	if (y < rhs.y) return false;
+	return false;
+}
 
 b2Vec2 Vector2D::toBox2DVec(const Vector2D& ref)
 {
@@ -106,12 +118,12 @@ Vector2D Vector2D::toVector2D(const b2Vec2& ref)
 
 Vector2D Vector2D::randomVector()
 {
-	return Vector2D((float)rand(), (float)rand());
+	return Vector2D(RandomFloat::getValue(), RandomFloat::getValue());
 }
 Vector2D Vector2D::randomVector(const Vector2D& min, const Vector2D& max)
 {
-	float x = (float)fmod(rand(), max.x) + min.x;
-	float y = (float)fmod(rand(), max.y) + min.y;
+	float x = RandomFloat::getValue(min.x, max.x);
+	float y = RandomFloat::getValue(min.y, max.y);
 
 	return Vector2D(x, y);
 }
