@@ -10,7 +10,7 @@
 class TransformComponent;
 class VisualizationManager;
 
-class SceneObject : public GameObject, public IBoundingBox
+class SceneObject : public GameObject
 {
 	/**
 	\note Must be present in every subclass definition.
@@ -26,7 +26,6 @@ public:
 	virtual bool shutdown();
 
 	TransformComponent* getTransform() const;
-	Rect2D getBoundingBox() const;
 
 private:
 	TransformComponent* transform;
