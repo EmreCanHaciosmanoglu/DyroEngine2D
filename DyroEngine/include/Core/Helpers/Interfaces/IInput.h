@@ -6,10 +6,11 @@ class Input;
 class IInput
 {
 public:
+	virtual void setupInput(Input* input) = 0;
+
+protected:
 	IInput() {}
 	virtual ~IInput() {}
-
-	virtual void setupInput(Input* input) = 0;
 };
 
 #endif

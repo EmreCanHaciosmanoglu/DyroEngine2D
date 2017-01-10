@@ -11,9 +11,6 @@
 class IWindow
 {
 public:
-	IWindow();
-	virtual ~IWindow();
-
 	static LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 
 	virtual LRESULT handleEvent(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam) = 0;
@@ -33,6 +30,9 @@ public:
 	HINSTANCE getWindowInstance() const;
 
 protected:
+	IWindow();
+	virtual ~IWindow();
+
 	bool createWindow();
 	bool destroyWindow();
 
