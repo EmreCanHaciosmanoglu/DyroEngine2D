@@ -12,6 +12,7 @@ public:
 	virtual ~ComponentVisualization();
 
 	virtual void getRenderItems(std::vector<RenderItem*>& items);
+	virtual Rect2D getBoundingBox();
 
 	Component* getComponent() const;
 

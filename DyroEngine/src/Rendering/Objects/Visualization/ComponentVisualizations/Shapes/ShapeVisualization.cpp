@@ -6,7 +6,7 @@
 #include "Core/Defines/deletemacros.h"
 
 ShapeVisualization::ShapeVisualization(Component* object, const std::tstring& name)
-	:ComponentVisualization(object, name)
+	:ConcreteComponentVisualization(object, name)
 {
 }
 ShapeVisualization::~ShapeVisualization()

@@ -1,11 +1,13 @@
 #ifndef _IMAGEVISUALIZATION_H
 #define _IMAGEVISUALIZATION_H
 
-#include "Rendering/Objects/Visualization/ComponentVisualizations/ComponentVisualization.h"
+#include "Rendering/Objects/Visualization/ComponentVisualizations/ConcreteComponentVisualization.h"
+
+class ImageComponent;
 
 class Texture;
 
-class ImageVisualization : public ComponentVisualization
+class ImageVisualization : public ConcreteComponentVisualization<ImageComponent>
 {
 public:
 	ImageVisualization(Component* object, const std::tstring& name = _T(""));

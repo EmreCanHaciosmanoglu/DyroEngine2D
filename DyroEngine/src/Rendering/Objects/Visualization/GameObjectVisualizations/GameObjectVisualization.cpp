@@ -30,6 +30,18 @@ void GameObjectVisualization::getRenderItems(std::vector<RenderItem*>& items)
 		visualization->getRenderItems(items);
 	}
 }
+Rect2D GameObjectVisualization::getBoundingBox()
+{
+	std::vector<Visualization*> visualizations;
+	this->visualization_manager->getVisualizations(visualizations);
+	for (Visualization* visualization : visualizations)
+	{
+
+	}
+
+	Rect2D bounds;
+	return bounds;
+}
 
 GameObject* GameObjectVisualization::getGameObject() const
 {

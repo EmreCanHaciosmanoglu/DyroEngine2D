@@ -1,12 +1,14 @@
 #ifndef _SHAPEVISUALIZATION_H
 #define _SHAPEVISUALIZATION_H
 
-#include "Rendering/Objects/Visualization/ComponentVisualizations/ComponentVisualization.h"
+#include "Rendering/Objects/Visualization/ComponentVisualizations/ConcreteComponentVisualization.h"
+
+class ShapeComponent;
 
 class Component;
 class Shape;
 
-class ShapeVisualization : public ComponentVisualization
+class ShapeVisualization : public ConcreteComponentVisualization<ShapeComponent>
 {
 public:
 	ShapeVisualization(Component* object, const std::tstring& name = _T("ShapeVisualization"));

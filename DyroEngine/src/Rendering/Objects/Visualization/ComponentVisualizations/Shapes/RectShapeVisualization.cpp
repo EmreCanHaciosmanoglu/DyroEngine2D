@@ -27,7 +27,7 @@ void RectShapeVisualization::generateRenderItems(std::vector<RenderItem*>& items
 	{
 		SceneObject* parent_object = dynamic_cast<SceneObject*>(parent->getObject());
 
-		getShape()->setTransform(parent->getTransform());
+		getShape()->setTransform(parent->getPosition(), parent->getScale(), parent->getRotation());
 		getShape()->setLayer(parent_object->getLayer());
 	}
 
