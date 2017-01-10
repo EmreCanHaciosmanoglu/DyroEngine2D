@@ -1,7 +1,17 @@
 #include "SceneGraph/Objects/Components/EmitterComponent.h"
+#include "SceneGraph/Objects/Components/TransformComponent.h"
+
+#include "SceneGraph/Objects/GameObjects/GameObject.h"
 
 #include "Core/Data/Objects/Descriptions/Particles/EmitterComponentDescription.h"
 #include "Core/Data/Objects/Descriptions/Particles/ParticleDescription.h"
+#include "Core/Data/Objects/Timers/WorldTimer.h"
+
+#include "Core/Data/Manager/SettingsManager.h"
+
+#include "Core/Diagnostics/Logger.h"
+
+#include "Core/Helpers/Patterns/Singleton.h"
 
 #include "Core/Defines/deletemacros.h"
 
@@ -20,58 +30,57 @@ EmitterComponent::~EmitterComponent()
 bool EmitterComponent::initialize()
 {
 	for (unsigned int i = 0; i < this->description->getParticleAmount(); ++i)
-	{
-		particle_descriptions[i].setGravityMultiplier(this->description->getGravityMultiplier());
-		
-		particle_descriptions[i].setLifeTime((float)fmod((float)rand(), this->description->getMaxLifetime()) + this->description->getMinLifeTime());
-
-		particle_descriptions[i].setVelocity(Vector2D::randomVector(this->description->getMinVelocity(),this->description->getMaxVelocity()));
-		particle_descriptions[i].setAngularVelocity((float)fmod((float)rand(), this->description->getMaxAngularVelocity()) + this->description->getMinAngularVelocity());
-
-		particle_descriptions[i].setScale(Vector2D::randomVector(this->description->getMinScale(),this->description->getMaxScale()));
-		particle_descriptions[i].setGrowSpeed((float)fmod((float)rand(), this->description->getMaxGrowSpeed()) + this->description->getMinGrowSpeed());
-
-		particle_descriptions[i].enableFade(this->description->canFade());
-
-		particle_descriptions[i].setFadeStart(this->description->getFadeStart());
-		particle_descriptions[i].setFadeEnd(this->description->getFadeEnd());
-
-		particle_descriptions[i].setFadeSpeed((float)fmod((float)rand(), this->description->getMaxFadeSpeed()) + this->description->getMinFadeSpeed());
-
-		if((int)this->description->getTextures().size() > 0)
-			particle_descriptions[i].setTexture(this->description->getTextures()[rand() % (int)this->description->getTextures().size()]);
-	}
+		addParticle(particle_descriptions[i]);
 
 	return true;
 }
 void EmitterComponent::update()
 {
+	for (unsigned int i = 0; i < (unsigned int)this->particle_descriptions.size(); ++i)
+	{
+		this->particle_descriptions[i].setLifeTime(this->particle_descriptions[i].getLifeTime() - WorldTimer::getWorldDeltaTime());
+		if (this->particle_descriptions[i].getLifeTime() < 0.0f)
+			this->particle_descriptions[i].destroy();
+
+		this->particle_descriptions[i].setPosition(this->particle_descriptions[i].getPosition() + this->particle_descriptions[i].getVelocity() * WorldTimer::getWorldDeltaTime());
+		this->particle_descriptions[i].setScale(this->particle_descriptions[i].getScale() + this->particle_descriptions[i].getScaleVelocity() * WorldTimer::getWorldDeltaTime());
+		this->particle_descriptions[i].setRotation(this->particle_descriptions[i].getRotation() + this->particle_descriptions[i].getAngularVelocity() * WorldTimer::getWorldDeltaTime());
+
+		Singleton<Logger>::getInstance().log(_T("Particle gravity"), LOGTYPE_TODO);
+		Singleton<Logger>::getInstance().log(_T("Particle fade"), LOGTYPE_TODO);
+	}
+
+	//Remove destroyed particles
+	this->particle_descriptions.erase(std::remove_if(this->particle_descriptions.begin(), this->particle_descriptions.end(),
+		[](const ParticleDescription& desc) -> bool
+	{
+		return desc.isDestroyed();
+	}));
+
+	if (this->description->canLoop())
+	{
+		unsigned int current_particle_amount = (unsigned int)this->particle_descriptions.size();
+		unsigned int desired_particle_amount = this->description->getParticleAmount();
+
+		unsigned int diff = desired_particle_amount - current_particle_amount;
+		if (diff > 0)
+		{
+			this->description->setDirty(true);
+
+			for (unsigned int i = 0; i < diff; ++i)
+			{
+				ParticleDescription description;
+				addParticle(description);
+
+				particle_descriptions.push_back(description);
+			}
+		}
+	}
+
 	if (!this->description->getDirty())
 		return;
 
-	for (unsigned int i = 0; i < this->description->getParticleAmount(); ++i)
-	{
-		particle_descriptions[i].setGravityMultiplier(this->description->getGravityMultiplier());
-
-		//We don't wanna override the life time once we are running the game
-		//particle_descriptions[i].setLifeTime((float)fmod((float)rand(), this->description->getMaxLifetime()) + this->description->getMinLifeTime());
-
-		particle_descriptions[i].setVelocity(Vector2D::randomVector(this->description->getMinVelocity(), this->description->getMaxVelocity()));
-		particle_descriptions[i].setAngularVelocity((float)fmod((float)rand(), this->description->getMaxAngularVelocity()) + this->description->getMinAngularVelocity());
-
-		particle_descriptions[i].setScale(Vector2D::randomVector(this->description->getMinScale(), this->description->getMaxScale()));
-		particle_descriptions[i].setGrowSpeed((float)fmod((float)rand(), this->description->getMaxGrowSpeed()) + this->description->getMinGrowSpeed());
-
-		particle_descriptions[i].enableFade(this->description->canFade());
-
-		particle_descriptions[i].setFadeStart(this->description->getFadeStart());
-		particle_descriptions[i].setFadeEnd(this->description->getFadeEnd());
-
-		particle_descriptions[i].setFadeSpeed((float)fmod((float)rand(), this->description->getMaxFadeSpeed()) + this->description->getMinFadeSpeed());
-
-		if ((int)this->description->getTextures().size() > 0)
-			particle_descriptions[i].setTexture(this->description->getTextures()[rand() % (int)this->description->getTextures().size()]);
-	}
+	Singleton<Logger>::getInstance().log(_T("Apply particle emitter modifications"), LOGTYPE_TODO);
 
 	this->description->setDirty(false);
 }
@@ -87,4 +96,34 @@ bool EmitterComponent::shutdown()
 EmitterComponentDescription* EmitterComponent::getEmitterDescription() const 
 {
 	return this->description;
+}
+const std::vector<ParticleDescription>& EmitterComponent::getParticleDescriptions() const
+{
+	return this->particle_descriptions;
+}
+
+void EmitterComponent::addParticle(ParticleDescription& desc)
+{
+	TransformComponent* transform = getParent()->getComponent<TransformComponent>();
+	if (transform == nullptr)
+		return;
+
+	desc.setPosition(transform->getPosition());
+	desc.setScale(transform->getScale());
+	desc.setRotation(transform->getRotation());
+
+	desc.setGravityMultiplier(this->description->getGravityMultiplier());
+	desc.setLifeTime(this->description->getLifeTime());
+
+	desc.setVelocity(this->description->getVelocity());
+	desc.setScaleVelocity(this->description->getScaleVelocity());
+	desc.setAngularVelocity(this->description->getAngularVelocity());
+
+	desc.enableFade(this->description->canFade());
+	desc.setFadeStart(this->description->getFadeStart());
+	desc.setFadeEnd(this->description->getFadeEnd());
+	desc.setFadeSpeed(this->description->getFadeSpeed());
+
+	if ((int)this->description->getTextures().size() > 0)
+		desc.setTexture(this->description->getTextures()[rand() % (int)this->description->getTextures().size()]);
 }

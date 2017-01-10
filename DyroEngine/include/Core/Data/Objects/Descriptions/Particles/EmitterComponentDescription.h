@@ -4,6 +4,9 @@
 #ifndef _VECTOR2D_H
 #include "Math/Objects/Vector2D.h"
 #endif
+#ifndef _RANGE_H
+#include "Math/Objects/Range.h"
+#endif
 #ifndef _VECTOR_
 #include <vector>
 #endif
@@ -20,84 +23,51 @@ public:
 	bool getDirty() const;
 
 	void setParticleAmount(unsigned int amount);
-
 	void setGravityMultiplier(float multiplier);
-
-	void setMinLifeTime(float time);
-	void setMaxLifetime(float time);
+	void setLifeTime(const RangeFloat& time);
+	void setLoop(bool loop);
 	
-	void setMinVelocity(const Vector2D& velocity);
-	void setMaxVelocity(const Vector2D& velocity);
-	void setMinAngularVelocity(float velocity);
-	void setMaxAngularVelocity(float velocity);
-	
-	void setMinScale(const Vector2D& scale);
-	void setMaxScale(const Vector2D& scale);
-	void setMinGrowSpeed(float speed);
-	void setMaxGrowSpeed(float speed);
+	void setVelocity(const RangeVector2D& velocity);
+	void setScaleVelocity(const RangeVector2D& velocity);
+	void setAngularVelocity(const RangeFloat& velocity);
 
 	void enableFade(bool fade);
-
 	void setFadeStart(float start);
 	void setFadeEnd(float end);
-
-	void setMinFadeSpeed(float speed);
-	void setMaxFadeSpeed(float speed);
+	void setFadeSpeed(const RangeFloat& speed);
 
 	void addTexture(Texture* texture);
 
 	unsigned int getParticleAmount() const;
-
 	float getGravityMultiplier() const;
+	float getLifeTime() const;
+	bool canLoop() const;
 
-	float getMinLifeTime() const;
-	float getMaxLifetime() const;
-
-	const Vector2D& getMinVelocity() const;
-	const Vector2D& getMaxVelocity() const;
-	float getMinAngularVelocity() const;
-	float getMaxAngularVelocity() const;
-
-	const Vector2D& getMinScale() const;
-	const Vector2D& getMaxScale() const;
-	float getMinGrowSpeed() const;
-	float getMaxGrowSpeed() const;
+	const Vector2D& getVelocity() const;
+	const Vector2D& getScaleVelocity() const;
+	float getAngularVelocity() const;
 
 	bool canFade() const;
-
 	float getFadeStart() const;
 	float getFadeEnd() const;
-
-	float getMinFadeSpeed() const;
-	float getMaxFadeSpeed() const;
+	float getFadeSpeed() const;
 
 	const std::vector<Texture*>& getTextures() const;
 
 private:
 	unsigned int particle_amount;
-
 	float gravity_multiplier;
+	RangeFloat life_time;
+	bool loop;
 
-	float min_life_time;
-	float max_life_time;
-
-	Vector2D min_velocity;
-	Vector2D max_velocity;
-	float min_angular_velocity;
-	float max_angular_velocity;
-
-	Vector2D min_scale;
-	Vector2D max_scale;
-	float min_grow_speed;
-	float max_grow_speed;
+	RangeVector2D velocity;
+	RangeVector2D scale_velocity;
+	RangeFloat angular_velocity;
 
 	bool fade;
-
 	float fade_start;
 	float fade_end;
-
-	float min_fade_speed;
-	float max_fade_speed;
+	RangeFloat fade_speed;
 
 	std::vector<Texture*> textures;
 

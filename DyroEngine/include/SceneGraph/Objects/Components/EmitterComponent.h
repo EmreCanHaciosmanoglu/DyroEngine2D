@@ -22,8 +22,11 @@ public:
 	virtual bool shutdown();
 
 	EmitterComponentDescription* getEmitterDescription() const;
+	const std::vector<ParticleDescription>& getParticleDescriptions() const;
 
 private:
+
+	void addParticle(ParticleDescription& description);
 
 	EmitterComponentDescription* description;
 	std::vector<ParticleDescription> particle_descriptions;

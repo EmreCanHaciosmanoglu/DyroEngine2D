@@ -93,11 +93,15 @@
     <ClInclude Include="include\Core\Data\Objects\Layer.h" />
     <ClInclude Include="include\Core\Data\Manager\LayerManager.h" />
     <ClInclude Include="include\Core\Data\Factory\ShapeFactory.h" />
-    <ClInclude Include="include\Core\Data\Manager\TextureManager.h" />
+    <ClInclude Include="include\Rendering\Manager\TextureManager.h" />
+    <ClInclude Include="include\Math\Objects\Random.h" />
+    <ClInclude Include="include\Math\Objects\Range.h" />
+    <ClInclude Include="include\Rendering\Objects\RenderItems\Particle.h" />
     <ClInclude Include="include\Rendering\Objects\RenderItems\Texture.h" />
     <ClInclude Include="include\Core\Data\Objects\Timers\WorldTimer.h" />
     <ClInclude Include="include\Rendering\Objects\RenderItems\RenderItem.h" />
     <ClInclude Include="include\Rendering\Objects\Visualization\ComponentVisualizations\ConcreteComponentVisualization.h" />
+    <ClInclude Include="include\Rendering\Objects\Visualization\ComponentVisualizations\EmitterComponentVisualization.h" />
     <ClInclude Include="include\Rendering\Objects\Visualization\GameObjectVisualizations\ConcreteGameObjectVisualization.h" />
     <ClInclude Include="include\Rendering\Objects\Visualization\ComponentVisualizations\Shapes\CircleShapeVisualization.h" />
     <ClInclude Include="include\Rendering\Objects\Visualization\ComponentVisualizations\ComponentVisualization.h" />
@@ -205,6 +209,7 @@
     <ClInclude Include="include\Rendering\Objects\RenderItems\Shapes\Shape.h" />
     <ClInclude Include="include\SceneGraph\Objects\GameObjects\SceneObject.h" />
     <ClInclude Include="include\SceneGraph\Objects\Components\TransformComponent.h" />
+    <ClInclude Include="include\Core\Helpers\Interfaces\IDestroyable.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Core\Data\Factory\SettingsFactory.cpp" />
@@ -221,10 +226,23 @@
     <ClCompile Include="src\Core\Data\Objects\Layer.cpp" />
     <ClCompile Include="src\Core\Data\Manager\LayerManager.cpp" />
     <ClCompile Include="src\Core\Data\Factory\ShapeFactory.cpp" />
-    <ClCompile Include="src\Core\Data\Manager\TextureManager.cpp" />
+    <ClCompile Include="src\Rendering\Manager\TextureManager.cpp" />
     <ClCompile Include="src\Core\Data\Manager\TimerManager.cpp" />
     <ClCompile Include="src\Core\Diagnostics\Manager\LogManager.cpp" />
     <ClCompile Include="src\Core\Diagnostics\Objects\Log.cpp" />
+    <ClCompile Include="src\Core\Helpers\Interfaces\IDestroyable.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\Math\Objects\Random.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\Math\Objects\Range.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\Rendering\Objects\RenderItems\Particle.cpp" />
     <ClCompile Include="src\Rendering\Objects\RenderItems\Shapes\CircleShape.cpp" />
     <ClCompile Include="src\Rendering\Objects\RenderItems\Shapes\LineShape.cpp" />
     <ClCompile Include="src\Rendering\Objects\RenderItems\Shapes\PolygonShape.cpp" />
@@ -234,20 +252,27 @@
     <ClCompile Include="src\Rendering\Objects\RenderItems\Texture.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Timers\WorldTimer.cpp" />
     <ClCompile Include="src\Rendering\Objects\RenderItems\RenderItem.cpp" />
-    <ClCompile Include="src\Rendering\Objects\Visualization\Objects\ComponentVisualizations\ComponentVisualization.cpp" />
-    <ClCompile Include="src\Rendering\Objects\Visualization\Objects\ComponentVisualizations\ConcreteComponenetVisualization.cpp" />
-    <ClCompile Include="src\Rendering\Objects\Visualization\Objects\GameObjectVisualizations\ConcreteGameObjectVisualization.cpp" />
-    <ClCompile Include="src\Rendering\Objects\Visualization\Objects\GameObjectVisualizations\GameObjectVisualization.cpp" />
-    <ClCompile Include="src\Rendering\Objects\Visualization\Objects\ComponentVisualizations\ImageVisualization.cpp" />
+    <ClCompile Include="src\Rendering\Objects\Visualization\ComponentVisualizations\ComponentVisualization.cpp" />
+    <ClCompile Include="src\Rendering\Objects\Visualization\ComponentVisualizations\ConcreteComponenetVisualization.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\Rendering\Objects\Visualization\ComponentVisualizations\EmitterComponentVisualization.cpp" />
+    <ClCompile Include="src\Rendering\Objects\Visualization\GameObjectVisualizations\ConcreteGameObjectVisualization.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\Rendering\Objects\Visualization\GameObjectVisualizations\GameObjectVisualization.cpp" />
+    <ClCompile Include="src\Rendering\Objects\Visualization\ComponentVisualizations\ImageVisualization.cpp" />
     <ClCompile Include="src\Rendering\Factory\VisualizationFactory.cpp" />
     <ClCompile Include="src\Rendering\Manager\VisualizationManager.cpp" />
-    <ClCompile Include="src\Rendering\Objects\Visualization\Objects\ComponentVisualizations\Shapes\CircleShapeVisualization.cpp" />
-    <ClCompile Include="src\Rendering\Objects\Visualization\Objects\ComponentVisualizations\Shapes\LineShapeVisualization.cpp" />
-    <ClCompile Include="src\Rendering\Objects\Visualization\Objects\ComponentVisualizations\Shapes\PolygonShapeVisualization.cpp" />
-    <ClCompile Include="src\Rendering\Objects\Visualization\Objects\ComponentVisualizations\Shapes\RectShapeVisualization.cpp" />
-    <ClCompile Include="src\Rendering\Objects\Visualization\Objects\ComponentVisualizations\Shapes\ShapeVisualization.cpp" />
-    <ClCompile Include="src\Rendering\Objects\Visualization\Objects\ComponentVisualizations\Shapes\TriangleShapeVisualization.cpp" />
-    <ClCompile Include="src\Rendering\Objects\Visualization\Objects\Visualization.cpp" />
+    <ClCompile Include="src\Rendering\Objects\Visualization\ComponentVisualizations\Shapes\CircleShapeVisualization.cpp" />
+    <ClCompile Include="src\Rendering\Objects\Visualization\ComponentVisualizations\Shapes\LineShapeVisualization.cpp" />
+    <ClCompile Include="src\Rendering\Objects\Visualization\ComponentVisualizations\Shapes\PolygonShapeVisualization.cpp" />
+    <ClCompile Include="src\Rendering\Objects\Visualization\ComponentVisualizations\Shapes\RectShapeVisualization.cpp" />
+    <ClCompile Include="src\Rendering\Objects\Visualization\ComponentVisualizations\Shapes\ShapeVisualization.cpp" />
+    <ClCompile Include="src\Rendering\Objects\Visualization\ComponentVisualizations\Shapes\TriangleShapeVisualization.cpp" />
+    <ClCompile Include="src\Rendering\Objects\Visualization\Visualization.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Resources\Audio.cpp" />
     <ClCompile Include="src\Rendering\DebugRenderer.cpp" />
     <ClCompile Include="src\Physics\Collision\ContactFilter.cpp" />
