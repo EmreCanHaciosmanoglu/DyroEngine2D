@@ -12,16 +12,16 @@ PolygonShapeDescription::PolygonShapeDescription(const PolygonShapeDescription& 
 	,vec_points(ref.vec_points)
 	,close(ref.close)
 {}
-PolygonShapeDescription::PolygonShapeDescription(Vector2D* points, unsigned int size, bool close, bool fill, float lineWidth)
-	: FillableShapeDescription(fill, lineWidth)
+PolygonShapeDescription::PolygonShapeDescription(Vector2D* points, unsigned int size, bool close, bool fill, const Color& color, float lineWidth)
+	: FillableShapeDescription(fill,color, lineWidth)
 	,vec_points(size, Vector2D())
 	,close(close)
 {
 	for (unsigned int i = 0; i < size; ++i)
 		vec_points[i] = points[i];
 }
-PolygonShapeDescription::PolygonShapeDescription(const std::vector<Vector2D>& vecPoints, bool close, bool fill, float lineWidth)
-	:FillableShapeDescription(fill, lineWidth)
+PolygonShapeDescription::PolygonShapeDescription(const std::vector<Vector2D>& vecPoints, bool close, bool fill, const Color& color, float lineWidth)
+	:FillableShapeDescription(fill,color, lineWidth)
 	, vec_points(vecPoints)
 	, close(close)
 {}

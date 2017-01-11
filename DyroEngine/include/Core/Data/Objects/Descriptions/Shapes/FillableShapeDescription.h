@@ -8,7 +8,7 @@ class FillableShapeDescription : public ShapeDescription
 public:
 	FillableShapeDescription();
 	FillableShapeDescription(const FillableShapeDescription& ref);
-	FillableShapeDescription(bool fill, float lineWidth = 0.5f);
+	FillableShapeDescription(bool fill, const Color& color = Color(), float lineWidth = 0.5f);
 	virtual ~FillableShapeDescription();
 
 	bool operator==(const FillableShapeDescription& ref) const;

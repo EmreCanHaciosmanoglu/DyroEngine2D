@@ -5,14 +5,17 @@
 ShapeDescription::ShapeDescription()
 	:color(0,0,0,1)
 	,line_width(0.5f)
+	, geometry(nullptr)
 {}
 ShapeDescription::ShapeDescription(const ShapeDescription& ref)
 	:color(ref.getColor())
 	,line_width(ref.getLineWidth())
+	, geometry(nullptr)
 {}
 ShapeDescription::ShapeDescription(const Color& color, float lineWidth)
 	:color(color)
 	,line_width(lineWidth)
+	, geometry(nullptr)
 {}
 ShapeDescription::~ShapeDescription()
 {}
@@ -50,4 +53,13 @@ const Color& ShapeDescription::getColor() const
 float ShapeDescription::getLineWidth() const
 {
 	return this->line_width;
+}
+
+ID2D1Geometry* ShapeDescription::getGeometry()
+{
+	return geometry;
+}
+void ShapeDescription::setGeometry(ID2D1Geometry* geometry)
+{
+	this->geometry = geometry;
 }

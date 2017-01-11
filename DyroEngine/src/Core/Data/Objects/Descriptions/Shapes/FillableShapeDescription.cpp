@@ -8,8 +8,8 @@ FillableShapeDescription::FillableShapeDescription(const FillableShapeDescriptio
 	:ShapeDescription(ref)
 	,fill(ref.fill)
 {}
-FillableShapeDescription::FillableShapeDescription(bool fill, float lineWidth)
-	:ShapeDescription(Color(),lineWidth)
+FillableShapeDescription::FillableShapeDescription(bool fill, const Color& color, float lineWidth)
+	:ShapeDescription(color,lineWidth)
 	,fill(fill)
 {}
 FillableShapeDescription::~FillableShapeDescription()

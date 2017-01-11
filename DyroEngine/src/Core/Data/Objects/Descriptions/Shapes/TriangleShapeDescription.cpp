@@ -12,10 +12,10 @@ TriangleShapeDescription::TriangleShapeDescription(const TriangleShapeDescriptio
 	,x_scale(ref.x_scale)
 	,y_scale(ref.y_scale)
 {}
-TriangleShapeDescription::TriangleShapeDescription(float xScale, float yScale, bool fill, float lineWidth)
+TriangleShapeDescription::TriangleShapeDescription(float xScale, float yScale, bool fill, const Color& color, float lineWidth)
 	: PolygonShapeDescription(std::vector<Vector2D> { Vector2D(-1.0f * xScale, 0.0f),
 		Vector2D(1.0f * xScale, -1.0f * yScale),
-		Vector2D(1.0f * xScale, 1.0f * yScale)}, true, fill, lineWidth)
+		Vector2D(1.0f * xScale, 1.0f * yScale)}, true, fill, color, lineWidth)
 	, x_scale(xScale)
 	, y_scale(yScale)
 {}

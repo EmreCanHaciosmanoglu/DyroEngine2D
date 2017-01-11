@@ -8,7 +8,7 @@ class TriangleShapeDescription : public PolygonShapeDescription
 public:
 	TriangleShapeDescription();
 	TriangleShapeDescription(const TriangleShapeDescription& ref);
-	TriangleShapeDescription(float xScale, float yScale, bool fill, float lineWidth = 0.5f);
+	TriangleShapeDescription(float xScale, float yScale, bool fill, const Color& color = Color(), float lineWidth = 0.5f);
 	virtual ~TriangleShapeDescription();
 
 	bool operator==(const TriangleShapeDescription& ref) const;

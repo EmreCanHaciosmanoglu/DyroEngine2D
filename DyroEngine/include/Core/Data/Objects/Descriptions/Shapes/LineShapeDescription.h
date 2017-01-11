@@ -12,8 +12,8 @@ class LineShapeDescription : public ShapeDescription
 public:
 	LineShapeDescription();
 	LineShapeDescription(const LineShapeDescription& ref);
-	LineShapeDescription(float x1, float y1, float x2, float y2, float lineWidth = 0.5f);
-	LineShapeDescription(const Vector2D& v1, const Vector2D& v2, float lineWidth = 0.5f);
+	LineShapeDescription(float x1, float y1, float x2, float y2, const Color& color = Color(), float lineWidth = 0.5f);
+	LineShapeDescription(const Vector2D& v1, const Vector2D& v2, const Color& color = Color(), float lineWidth = 0.5f);
 	virtual ~LineShapeDescription();
 
 	bool operator==(const LineShapeDescription& ref) const;

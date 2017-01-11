@@ -10,13 +10,13 @@ CircleShapeDescription::CircleShapeDescription(const CircleShapeDescription& ref
 	,center(ref.getCenter())
 	,radius(ref.getRadius())
 {}
-CircleShapeDescription::CircleShapeDescription(float xcenter, float ycenter, float r, bool fill, float lineWidth)
-	: FillableShapeDescription(fill,lineWidth)
+CircleShapeDescription::CircleShapeDescription(float xcenter, float ycenter, float r, bool fill, const Color& color, float lineWidth)
+	: FillableShapeDescription(fill,color,lineWidth)
 	,center(xcenter,ycenter)
 	,radius(r)
 {}
-CircleShapeDescription::CircleShapeDescription(const Vector2D& center, float r, bool fill, float lineWidth)
-	: FillableShapeDescription(fill, lineWidth)
+CircleShapeDescription::CircleShapeDescription(const Vector2D& center, float r, bool fill, const Color& color, float lineWidth)
+	: FillableShapeDescription(fill,color,lineWidth)
 	,center(center)
 	,radius(r)
 {}

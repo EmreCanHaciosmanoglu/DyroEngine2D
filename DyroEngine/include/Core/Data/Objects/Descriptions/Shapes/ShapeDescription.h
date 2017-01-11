@@ -27,9 +27,16 @@ public:
 	const Color& getColor() const;
 	float getLineWidth() const;
 
+	ID2D1Geometry* getGeometry();
+
+protected:
+	virtual void createGeometry() = 0;
+	void setGeometry(ID2D1Geometry* geometry);
+
 private:
 	Color color;
 	float line_width;
+	ID2D1Geometry* geometry;
 };
 
 #endif

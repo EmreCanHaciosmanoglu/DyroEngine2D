@@ -15,9 +15,9 @@ class RectShapeDescription : public FillableShapeDescription
 public:
 	RectShapeDescription();
 	RectShapeDescription(const RectShapeDescription& ref);
-	RectShapeDescription(double left, double top, double width, double height, bool fill = true, float lineWidth = 0.5f);
-	RectShapeDescription(const Vector2D& lefttop, const Vector2D& rightbottom, bool fill = true, float lineWidth = 0.5f);
-	RectShapeDescription(const Rect2D& rect, bool fill = true, float lineWidth = 0.5f);
+	RectShapeDescription(double left, double top, double width, double height, bool fill = true, const Color& color = Color(), float lineWidth = 0.5f);
+	RectShapeDescription(const Vector2D& lefttop, const Vector2D& rightbottom, bool fill = true, const Color& color = Color(), float lineWidth = 0.5f);
+	RectShapeDescription(const Rect2D& rect, bool fill = true, const Color& color = Color(), float lineWidth = 0.5f);
 	virtual ~RectShapeDescription();
 
 	bool operator==(const RectShapeDescription& ref) const;

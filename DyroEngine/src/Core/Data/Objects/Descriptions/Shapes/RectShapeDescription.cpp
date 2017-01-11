@@ -8,16 +8,16 @@ RectShapeDescription::RectShapeDescription(const RectShapeDescription& ref)
 	: FillableShapeDescription(ref)
 	,rect(ref.rect)
 {}
-RectShapeDescription::RectShapeDescription(double left, double top, double width, double height, bool fill, float lineWidth)
-	: FillableShapeDescription(fill,lineWidth)
+RectShapeDescription::RectShapeDescription(double left, double top, double width, double height, bool fill, const Color& color, float lineWidth)
+	: FillableShapeDescription(fill,color,lineWidth)
 	,rect(left,top,left + width, top + height)
 {}
-RectShapeDescription::RectShapeDescription(const Vector2D& lefttop, const Vector2D& rightbottom, bool fill, float lineWidth)
-	: FillableShapeDescription(fill,lineWidth)
+RectShapeDescription::RectShapeDescription(const Vector2D& lefttop, const Vector2D& rightbottom, bool fill, const Color& color, float lineWidth)
+	: FillableShapeDescription(fill,color,lineWidth)
 	,rect(lefttop, rightbottom)
 {}
-RectShapeDescription::RectShapeDescription(const Rect2D& rect, bool fill, float lineWidth)
-	: FillableShapeDescription(fill,lineWidth)
+RectShapeDescription::RectShapeDescription(const Rect2D& rect, bool fill, const Color& color, float lineWidth)
+	: FillableShapeDescription(fill,color,lineWidth)
 	,rect(rect)
 {}
 RectShapeDescription::~RectShapeDescription()
