@@ -63,9 +63,6 @@
     <ClCompile Include="src\Core\Engine.cpp">
       <Filter>Header Files\Core</Filter>
     </ClCompile>
-    <ClCompile Include="src\SceneGraph\Object.cpp">
-      <Filter>Header Files\SceneGraph\Base</Filter>
-    </ClCompile>
     <ClCompile Include="src\Core\Data\Manager\LayerManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -300,9 +297,6 @@
     <ClCompile Include="src\Core\Diagnostics\Objects\Log.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Core\Diagnostics\Logger.cpp">
-      <Filter>Header Files\Debug</Filter>
-    </ClCompile>
     <ClCompile Include="src\Core\Helpers\Interfaces\IBoundingBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -404,6 +398,21 @@
     </ClCompile>
     <ClCompile Include="src\Rendering\Factory\GeometryFactory.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Diagnostics\Objects\TodoLog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Diagnostics\Objects\WarningLog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Diagnostics\Objects\ErrorLog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Diagnostics\Objects\InfoLog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneGraph\Objects\Object.cpp">
+      <Filter>Header Files\SceneGraph\Base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -535,9 +544,6 @@
     </ClInclude>
     <ClInclude Include="include\Core\Diagnostics\Objects\Log.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Diagnostics\Logger.h">
-      <Filter>Header Files\Debug</Filter>
     </ClInclude>
     <ClInclude Include="include\Rendering\DebugRenderer.h">
       <Filter>Header Files</Filter>
@@ -801,6 +807,24 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Core\Types\GeometryType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\Diagnostics\Objects\InfoLog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\Diagnostics\Objects\WarningLog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\Diagnostics\Objects\ErrorLog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\Diagnostics\Objects\TodoLog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\Defines\consolecolors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\Defines\debug.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

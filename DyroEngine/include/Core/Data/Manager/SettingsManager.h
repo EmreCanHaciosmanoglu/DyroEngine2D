@@ -2,11 +2,12 @@
 #define _SETTINGSMANAGER_H
 
 #include "Core/Helpers/Patterns/Manager.h"
+#include "Core/Helpers/Patterns/Singleton.h"
 
 class Settings;
 enum class SettingsType;
 
-class SettingsManager : public Manager<Settings>
+class SettingsManager : public Manager<Settings>, public Singleton<SettingsManager>
 {
 public:
 	SettingsManager();

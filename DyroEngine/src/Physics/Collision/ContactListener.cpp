@@ -5,9 +5,6 @@
 #include "SceneGraph/Objects/Components/Physics\RigidBodyComponent.h"
 #include "SceneGraph/Objects/Components/Physics\Collision/CollisionComponent.h"
 
-//#include "Core/Helpers/Patterns/Singleton.h"
-//#include "Core/Diagnostics/Logger.h"
-
 ContactListener::ContactListener()
 {}
 ContactListener::~ContactListener()
@@ -96,8 +93,6 @@ void ContactListener::computeBeginContact(CollisionComponent* colliderA, Collisi
 		this->vec_colliders.push_back(ContactData(objectA, objectB, colliderA, colliderB));
 
 		objectA->onCollisionEnter(objectB);
-
-		//Singleton<Logger>::getInstance().log(_T("Collision enter: ") + objectA->getName() + _T(" ") + objectB->getName(), LOGTYPE_INFO);
 	}
 }
 void ContactListener::computeEndContact(CollisionComponent* colliderA, CollisionComponent* colliderB, b2Fixture* fixtureA, b2Fixture* fixtureB, PhysicsObject* objectA, PhysicsObject* objectB)
@@ -119,7 +114,5 @@ void ContactListener::computeEndContact(CollisionComponent* colliderA, Collision
 		this->vec_colliders.erase(std::find(this->vec_colliders.begin(), this->vec_colliders.end(), ContactData(objectA, objectB, colliderA, colliderB)));
 
 		objectA->onCollisionLeave(objectB);
-
-		//Singleton<Logger>::getInstance().log(_T("Collision leave: ") + objectA->getName() + _T(" ") + objectB->getName(), LOGTYPE_INFO);
 	}
 }

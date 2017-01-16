@@ -2,16 +2,17 @@
 #define _SCENEMANAGER_H
 
 #include "Core/Helpers/Patterns/Manager.h"
+#include "Core/Helpers/Patterns/Singleton.h"
 
 #ifndef _STRING_H
 #include "Core/Defines/string.h"
 #endif
 
-#include "Core/Diagnostics/Logger.h"
-
 #include "Core\Data\Manager\LayerManager.h"
 #include "Core\Data\Manager\ResourceManager.h"
 #include "SceneGraph\Manager\CameraManager.h"
+
+#include "Core\Defines\debug.h"
 
 #ifndef _VECTOR_
 #include <vector>
@@ -19,7 +20,7 @@
 
 class Scene;
 
-class SceneManager : public Manager<Scene>
+class SceneManager : public Manager<Scene>, public Singleton<SceneManager>
 {
 public:
 	SceneManager();
@@ -42,7 +43,7 @@ private:
 	{
 		if (Singleton<T>::hasInstance())
 		{
-			Singleton<Logger>::getInstance().log(_T("Check if we can keep data that will be used in a different scene aswell, so not all data need to be unloaded."), LOGTYPE_TODO);
+			LogManager::getInstance().log(new InfoLog(_T("Check if we can keep data that will be used in a different scene aswell, so not all data need to be unloaded."), LOG_INFO));
 			Singleton<T>::getInstance().shutdown();
 		}
 		else Singleton<T>::createInstance();

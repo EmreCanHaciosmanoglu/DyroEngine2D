@@ -2,6 +2,7 @@
 #define _SYSTEMMANAGER_H
 
 #include "Core/Helpers/Patterns/Manager.h"
+#include "Core/Helpers/Patterns/Singleton.h"
 
 #ifndef _VECTOR_
 #include <vector>
@@ -16,7 +17,7 @@
 
 class SystemFactory;
 
-class SystemManager : public Manager<System>
+class SystemManager : public Manager<System>, public Singleton<SystemManager>
 {
 public:
 	SystemManager();

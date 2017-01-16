@@ -14,21 +14,16 @@
 #include "Core/Types/SystemType.h"
 #include "Core/Types/SettingsType.h"
 
+#include "Core\Defines\debug.h"
+
 #include "Rendering/Manager/VisualizationManager.h"
 #include "Rendering/Factory/VisualizationFactory.h"
-
-#include "Core/Helpers/Patterns/Singleton.h"
-
-#include "Core/Diagnostics/Logger.h"
 
 #include "SceneGraph/Manager/SceneManager.h"
 
 #include "Core/Data/Objects/Game.h"
 #include "Core/Data/Factory/SettingsFactory.h"
 #include "Core/Data/Manager/SettingsManager.h"
-
-//#include <ctime>
-//#include <iostream>
 
 namespace
 {
@@ -39,16 +34,18 @@ namespace
 Engine::Engine(Game* game)
 	:game(game)
 {
+	LogManager::createInstance();
 }
 Engine::~Engine()
 {
+	LogManager::destroyInstance();
 }
 
 int Engine::mainLoop()
 {
 	if (!initialize())
 	{
-		Singleton<Logger>::getInstance().log(_T("Initialization of the engine failed."), LOGTYPE_ERROR);
+		LogManager::getInstance().log(new ErrorLog(_T("Initialization of the engine failed."), LOG_INFO));
 		return INITIALIZATION_FAILED;
 	}
 
@@ -79,7 +76,7 @@ int Engine::mainLoop()
 
 	if (!shutDown())
 	{
-		Singleton<Logger>::getInstance().log(_T("Shutdown of the engine failed."), LOGTYPE_ERROR);
+		LogManager::getInstance().log(new ErrorLog(_T("Shutdown of the engine failed."), LOG_INFO));
 		return SHUTDOWN_FAILED;
 	}
 

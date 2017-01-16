@@ -3,9 +3,6 @@
 #include "Core/Engine.h"
 #include "Core/Data/Objects/MyGame.h"
 
-#include "Core/Helpers/Patterns/Singleton.h"
-#include "Core/Diagnostics/Logger.h"
-
 #include "Core/Defines/iostream.h"
 
 #if defined (DEBUG) | defined(_DEBUG)
@@ -33,12 +30,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	//_CrtSetBreakAlloc(0);
 #endif
 
-	Singleton<Logger>::createInstance();
-
 	Engine engine(new MyGame());
 	int result = engine.mainLoop();
-
-	Singleton<Logger>::destroyInstance();
 
 	return result;
 }

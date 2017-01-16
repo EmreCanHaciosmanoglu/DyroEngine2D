@@ -2,15 +2,13 @@
 #define _LOGMANAGER_H
 
 #include "Core/Helpers/Patterns/Manager.h"
+#include "Core/Helpers/Patterns/Singleton.h"
 
-#define LOGTYPE_INFO LogType::INFO_LOG,__LINE__,__FILEW__
-#define LOGTYPE_WARNING LogType::WARNING_LOG,__LINE__,__FILEW__
-#define LOGTYPE_ERROR LogType::ERROR_LOG,__LINE__,__FILEW__
-#define LOGTYPE_TODO LogType::TODO_LOG,__LINE__,__FILEW__
+#define LOG_INFO __LINE__,__FILEW__
 
 class Log;
 
-class LogManager : Manager<Log>
+class LogManager : public Manager<Log>, public Singleton<LogManager>
 {
 public:
 	LogManager();
@@ -19,7 +17,7 @@ public:
 	bool initialize();
 	bool shutdown();
 
-	void log(const Log& log);
+	void log(Log* log);
 	void writeLogToFile();
 };
 

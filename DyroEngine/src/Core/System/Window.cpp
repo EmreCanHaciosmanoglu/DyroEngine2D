@@ -10,9 +10,7 @@
 
 #include "Core/Defines/string.h"
 
-#include "Core/Diagnostics/Logger.h"
-
-#include "Core/Helpers/Patterns/Singleton.h"
+#include "Core/Defines/debug.h"
 
 Window::Window()
 	:System(SystemType::WINDOW_SYSTEM)

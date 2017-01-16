@@ -1,13 +1,11 @@
 #include "Core/Helpers/Interfaces/IWindow.h"
 
-#include "Core/Diagnostics/Logger.h"
-
-#include "Core/Helpers/Patterns/Singleton.h"
-
 #include "Core\Types\SettingsType.h"
 
 #include "Core\Data\Manager\SettingsManager.h"
 #include "Core\Data\Objects\Settings\ApplicationSettings.h"
+
+#include "Core/Defines/debug.h"
 
 IWindow::IWindow()
 	: handle_devicecontext(0)
@@ -67,7 +65,7 @@ bool IWindow::createWindow()
 	if (!RegisterClass(&createWindowClass()))
 	{
 		int value = GetLastError();
-		Singleton<Logger>::getInstance().log(_T("Register \"WNDCLASS\" failed."), LOGTYPE_ERROR);
+		LogManager::getInstance().log(new ErrorLog(_T("Register \"WNDCLASS\" failed."), LOG_INFO));
 		return false;
 	}
 
@@ -88,18 +86,18 @@ bool IWindow::destroyWindow()
 
 	if (this->handle_devicecontext && !ReleaseDC(this->handle_window, this->handle_devicecontext))
 	{
-		Singleton<Logger>::getInstance().log(_T("Release \"DC\" failed."), LOGTYPE_ERROR);
+		LogManager::getInstance().log(new ErrorLog(_T("Release \"DC\" failed."), LOG_INFO));
 		this->handle_devicecontext = NULL;
 	}
 	if (this->handle_window && !DestroyWindow(this->handle_window))
 	{
-		Singleton<Logger>::getInstance().log(_T("Release \"HWND\" failed"), LOGTYPE_ERROR);
+		LogManager::getInstance().log(new ErrorLog(_T("Release \"HWND\" failed"), LOG_INFO));
 		this->handle_window = NULL;
 	}
 
 	if (!UnregisterClass(this->window_classname.c_str(), this->handle_instance))
 	{
-		Singleton<Logger>::getInstance().log(_T("Unregister \"WNDCLASS\" failed"), LOGTYPE_ERROR);
+		LogManager::getInstance().log(new ErrorLog(_T("Unregister \"WNDCLASS\" failed"), LOG_INFO));
 		this->handle_instance = NULL;
 	}
 
@@ -158,7 +156,7 @@ bool IWindow::setupWindow()
 	int error = GetLastError();
 	if (!this->handle_window)
 	{
-		Singleton<Logger>::getInstance().log(_T("Creation of our window failed."), LOGTYPE_ERROR);
+		LogManager::getInstance().log(new ErrorLog(_T("Creation of our window failed."), LOG_INFO));
 		return false;
 	}
 
@@ -169,7 +167,7 @@ bool IWindow::errorHandling()
 	//Check if we have a device context
 	if (!(this->handle_devicecontext = GetDC(this->handle_window)))
 	{
-		Singleton<Logger>::getInstance().log(_T("Can't create a \"GLDC\"."), LOGTYPE_ERROR);
+		LogManager::getInstance().log(new ErrorLog(_T("Can't create a \"GLDC\"."), LOG_INFO));
 		return false;
 	}
 
@@ -179,12 +177,12 @@ bool IWindow::errorHandling()
 	this->pixel_format = ChoosePixelFormat(this->handle_devicecontext, &pfd);
 	if (!this->pixel_format)
 	{
-		Singleton<Logger>::getInstance().log(_T("Can't find a suitable \"PixelFormat\"."), LOGTYPE_ERROR);
+		LogManager::getInstance().log(new ErrorLog(_T("Can't find a suitable \"PixelFormat\"."), LOG_INFO));
 		return false;
 	}
 	if (!SetPixelFormat(this->handle_devicecontext, this->pixel_format, &pfd))
 	{
-		Singleton<Logger>::getInstance().log(_T("Can't set the \"PixelFormat\"."), LOGTYPE_ERROR);
+		LogManager::getInstance().log(new ErrorLog(_T("Can't set the \"PixelFormat\"."), LOG_INFO));
 		return false;
 	}
 

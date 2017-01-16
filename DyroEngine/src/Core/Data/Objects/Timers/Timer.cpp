@@ -5,9 +5,7 @@
 #include <Windows.h>
 #endif
 
-#include "Core/Helpers/Patterns/Singleton.h"
-
-#include "Core\Diagnostics\Logger.h"
+#include "Core/Defines/debug.h"
 
 //Class GameTimer
 Timer::Timer(const std::tstring& name)
@@ -63,10 +61,10 @@ void Timer::reset()
 void Timer::pause()
 {
 	this->paused = true;
-	Singleton<Logger>::getInstance().log(_T("Implement timer pause"), LOGTYPE_TODO);
+	LogManager::getInstance().log(new TodoLog(_T("Implement timer pause"), LOG_INFO));
 }
 void Timer::unpause()
 {
 	this->paused = false;
-	Singleton<Logger>::getInstance().log(_T("Implement timer unpause"), LOGTYPE_TODO);
+	LogManager::getInstance().log(new ErrorLog(_T("Implement timer unpause"), LOG_INFO));
 }

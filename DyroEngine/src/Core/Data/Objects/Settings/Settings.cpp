@@ -4,12 +4,8 @@
 #include <Windows.h>
 #endif
 
-#ifndef _FSTREAM_H
 #include "Core/Defines/fstream.h"
-#endif
-
-#include "Core/Helpers/Patterns/Singleton.h"
-#include "Core\Diagnostics\Logger.h"
+#include "Core\Defines\debug.h"
 
 #include "Core/Types/SettingsType.h"
 
@@ -53,7 +49,7 @@ bool Settings::loadFile(const std::tstring& filePath)
 	else
 	{
 		int value = GetLastError();
-		Singleton<Logger>::getInstance().log(_T("Could not open file: ") + filePath, LOGTYPE_ERROR);
+		LogManager::getInstance().log(new InfoLog(_T("Could not open file: ") + filePath, LOG_INFO));
 
 		return false;
 	}

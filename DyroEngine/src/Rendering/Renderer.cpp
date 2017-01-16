@@ -8,12 +8,10 @@
 
 #include "Core/Data/Objects/Resources/Image.h"
 
-#include "Core/Diagnostics/Logger.h"
+#include "Core/Defines/debug.h"
 
 #include "Core/Defines/assert.h"
 #include "Core/Defines/deletemacros.h"
-
-#include "Core/Helpers/Patterns/Singleton.h"
 
 Renderer::Renderer()
 	:interpolation_mode(D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR)
@@ -163,7 +161,7 @@ void Renderer::fillPolygon(Vector2D* points, int size) const
 	if (FAILED(hr))
 	{
 		SafeRelease(pGeometry);
-		Singleton<Logger>::getInstance().log(_T("Failed to create path geometry"), LOGTYPE_WARNING);
+		LogManager::getInstance().log(new WarningLog(_T("Failed to create path geometry"), LOG_INFO));
 		return;
 	}
 
@@ -174,7 +172,7 @@ void Renderer::fillPolygon(Vector2D* points, int size) const
 	{
 		SafeRelease(pGeometrySink);
 		SafeRelease(pGeometry);
-		Singleton<Logger>::getInstance().log(_T("Failed to create geometry sink"), LOGTYPE_WARNING);
+		LogManager::getInstance().log(new WarningLog(_T("Failed to create geometry sink"), LOG_INFO));
 		return;
 	}
 

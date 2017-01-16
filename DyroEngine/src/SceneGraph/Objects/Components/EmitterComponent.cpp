@@ -9,11 +9,8 @@
 
 #include "Core/Data/Manager/SettingsManager.h"
 
-#include "Core/Diagnostics/Logger.h"
-
-#include "Core/Helpers/Patterns/Singleton.h"
-
 #include "Core/Defines/deletemacros.h"
+#include "Core/Defines/debug.h"
 
 EmitterComponent::EmitterComponent(EmitterComponentDescription* description,const std::tstring& name)
 	:Component(name)
@@ -46,8 +43,8 @@ void EmitterComponent::update()
 		this->particle_descriptions[i].setScale(this->particle_descriptions[i].getScale() + this->particle_descriptions[i].getScaleVelocity() * WorldTimer::getWorldDeltaTime());
 		this->particle_descriptions[i].setRotation(this->particle_descriptions[i].getRotation() + this->particle_descriptions[i].getAngularVelocity() * WorldTimer::getWorldDeltaTime());
 
-		Singleton<Logger>::getInstance().log(_T("Particle gravity"), LOGTYPE_TODO);
-		Singleton<Logger>::getInstance().log(_T("Particle fade"), LOGTYPE_TODO);
+		LogManager::getInstance().log(new TodoLog(_T("Particle gravity"), LOG_INFO));
+		LogManager::getInstance().log(new TodoLog(_T("Particle fade"), LOG_INFO));
 	}
 
 	//Remove destroyed particles
@@ -80,7 +77,7 @@ void EmitterComponent::update()
 	if (!this->description->getDirty())
 		return;
 
-	Singleton<Logger>::getInstance().log(_T("Apply particle emitter modifications"), LOGTYPE_TODO);
+	LogManager::getInstance().log(new TodoLog(_T("Apply particle emitter modifications"), LOG_INFO));
 
 	this->description->setDirty(false);
 }

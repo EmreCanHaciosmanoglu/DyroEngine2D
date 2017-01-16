@@ -2,15 +2,13 @@
 #include "Core/System/Objects/Window.h"
 #include "Core/System/Manager/SystemManager.h"
 
-#include "Core/Diagnostics/Logger.h"
+#include "Core/Defines/debug.h"
 
 #include "Core/Types/SystemType.h"
 #include "Core/Types/SettingsType.h"
 
 #include "Core/Defines/deletemacros.h"
 #include "Core/Defines\color.h"
-
-#include "Core/Helpers/Patterns/Singleton.h"
 
 #include "Core\Data\Manager\SettingsManager.h"
 #include "Core\Data\Objects\Settings\GameSettings.h"

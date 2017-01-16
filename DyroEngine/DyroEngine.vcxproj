@@ -92,6 +92,12 @@
     <ClInclude Include="include\Core\Data\Objects\Descriptions\Shapes\TriangleShapeDescription.h" />
     <ClInclude Include="include\Core\Data\Objects\Layer.h" />
     <ClInclude Include="include\Core\Data\Manager\LayerManager.h" />
+    <ClInclude Include="include\Core\Defines\consolecolors.h" />
+    <ClInclude Include="include\Core\Defines\debug.h" />
+    <ClInclude Include="include\Core\Diagnostics\Objects\ErrorLog.h" />
+    <ClInclude Include="include\Core\Diagnostics\Objects\InfoLog.h" />
+    <ClInclude Include="include\Core\Diagnostics\Objects\TodoLog.h" />
+    <ClInclude Include="include\Core\Diagnostics\Objects\WarningLog.h" />
     <ClInclude Include="include\Rendering\Factory\GeometryFactory.h" />
     <ClInclude Include="include\Rendering\Manager\GeometryManager.h" />
     <ClInclude Include="include\Rendering\Manager\TextureManager.h" />
@@ -179,7 +185,6 @@
     <ClInclude Include="include\Core\Helpers\Patterns\Manager.h" />
     <ClInclude Include="include\Core\Helpers\Interfaces\IInput.h" />
     <ClInclude Include="include\Core\Helpers\Interfaces\IWindow.h" />
-    <ClInclude Include="include\Core\Diagnostics\Logger.h" />
     <ClInclude Include="include\Math\Objects\Matrix2D.h" />
     <ClInclude Include="include\Core\Helpers\ObjectCounter.h" />
     <ClInclude Include="include\Math\Objects\Rect2D.h" />
@@ -226,6 +231,10 @@
     <ClCompile Include="src\Core\Data\Objects\Descriptions\Shapes\TriangleShapeDescription.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Layer.cpp" />
     <ClCompile Include="src\Core\Data\Manager\LayerManager.cpp" />
+    <ClCompile Include="src\Core\Diagnostics\Objects\ErrorLog.cpp" />
+    <ClCompile Include="src\Core\Diagnostics\Objects\InfoLog.cpp" />
+    <ClCompile Include="src\Core\Diagnostics\Objects\TodoLog.cpp" />
+    <ClCompile Include="src\Core\Diagnostics\Objects\WarningLog.cpp" />
     <ClCompile Include="src\Rendering\Factory\GeometryFactory.cpp" />
     <ClCompile Include="src\Rendering\Manager\GeometryManager.cpp" />
     <ClCompile Include="src\Rendering\Manager\TextureManager.cpp" />
@@ -344,7 +353,6 @@
     <ClCompile Include="src\Core\System\Factory\SystemFactory.cpp" />
     <ClCompile Include="src\Core\System\Manager\SystemManager.cpp" />
     <ClCompile Include="src\Core\Helpers\Interfaces\IWindow.cpp" />
-    <ClCompile Include="src\Core\Diagnostics\Logger.cpp" />
     <ClCompile Include="src\Math\Objects\Matrix2D.cpp" />
     <ClCompile Include="src\Math\Objects\Rect2D.cpp" />
     <ClCompile Include="src\Rendering\Renderer.cpp" />
@@ -360,7 +368,7 @@
     </ClCompile>
     <ClCompile Include="src\Core\System\System.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Timers\Timer.cpp" />
-    <ClCompile Include="src\SceneGraph\Object.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\Object.cpp" />
     <ClCompile Include="src\Math\Objects\Vector2D.cpp" />
     <ClCompile Include="src\Core\System\Window.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\Components\TransformComponent.cpp" />
