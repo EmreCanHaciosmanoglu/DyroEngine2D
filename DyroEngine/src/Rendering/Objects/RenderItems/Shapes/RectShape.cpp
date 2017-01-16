@@ -1,19 +1,34 @@
 #include "Rendering/Objects/RenderItems/Shapes/RectShape.h"
+#include "Rendering/Objects/Visualization/Visualization.h"
+
+#include "Rendering/Manager/GeometryManager.h"
 
 #include "Rendering/Renderer.h"
 
-#include "Core/Defines/assert.h"
+#include "Core/System/Objects/Graphics.h"
 
-RectShape::RectShape(const std::tstring& name)
-	:Shape(name)
+#include "Core/Defines/assert.h"
+#include "Core/Defines/d2dutill.h"
+
+#include "SceneGraph\Objects\Scenes\Scene.h"
+
+RectShape::RectShape(Visualization* parent, const std::tstring& name)
+	:Shape(parent, name)
 {}
-RectShape::RectShape(RectShapeDescription* desc, const std::tstring& name)
-	: Shape(desc, name)
+RectShape::RectShape(Visualization* parent, RectShapeDescription* desc, const std::tstring& name)
+	: Shape(parent, desc, name)
 {
 }
 RectShape::~RectShape()
 {}
 
+void RectShape::create()
+{
+	this->geometry = getParentVisualization()->getScene()->getManager<GeometryManager>()->getGeometry(getDescription());
+
+	//Geometry cannot be null
+	assert(this->geometry != nullptr);
+}
 void RectShape::render(Renderer* renderer)
 {
 	//Renderer cannot be null
@@ -24,8 +39,8 @@ void RectShape::render(Renderer* renderer)
 	renderer->setColor(desc->getColor());
 
 	desc->getFill()
-		? renderer->fillRect(desc->getRect())
-		: renderer->drawRect(desc->getRect(), desc->getLineWidth());
+		? renderer->fillGeometry(desc->getGeometry())
+		: renderer->drawGeometry(desc->getGeometry(), desc->getLineWidth());
 }
 
 float RectShape::getWidth() const

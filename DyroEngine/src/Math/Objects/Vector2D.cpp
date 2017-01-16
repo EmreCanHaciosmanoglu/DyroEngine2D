@@ -115,6 +115,15 @@ Vector2D Vector2D::toVector2D(const b2Vec2& ref)
 {
 	return Vector2D(ref.x, ref.y);
 }
+D2D1_POINT_2F Vector2D::toD2DPoint(const Vector2D& ref)
+{
+	D2D1_POINT_2F point;
+
+	point.x = ref.x;
+	point.y = ref.y;
+
+	return point;
+}
 
 Vector2D Vector2D::randomVector()
 {

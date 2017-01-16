@@ -17,7 +17,7 @@ EmitterComponentVisualization::EmitterComponentVisualization(Component* componen
 	if (emitter_component != nullptr)
 	{
 		for (const ParticleDescription& desc : emitter_component->getParticleDescriptions())
-			this->particles.push_back(new Particle(desc));
+			this->particles.push_back(new Particle(this, desc));
 	}
 }
 EmitterComponentVisualization::~EmitterComponentVisualization()
@@ -42,7 +42,7 @@ void EmitterComponentVisualization::generateRenderItems(std::vector<RenderItem*>
 
 		for (const ParticleDescription& desc : emitter_component->getParticleDescriptions())
 		{
-			Particle* particle = new Particle(desc);
+			Particle* particle = new Particle(this, desc);
 			this->particles.push_back(particle);
 
 			particle->setLayer(parent_object->getLayer());

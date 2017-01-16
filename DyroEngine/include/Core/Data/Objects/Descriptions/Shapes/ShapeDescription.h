@@ -8,12 +8,14 @@
 #include "Core\Defines\color.h"
 #endif
 
+enum class GeometryType;
+
 class ShapeDescription
 {
 public:
-	ShapeDescription();
+	ShapeDescription(GeometryType type);
 	ShapeDescription(const ShapeDescription& ref);
-	ShapeDescription(const Color& color, float lineWidth = 0.5f);
+	ShapeDescription(GeometryType type, const Color& color, float lineWidth = 0.5f);
 	virtual ~ShapeDescription();
 
 	bool operator==(const ShapeDescription& ref) const;
@@ -27,13 +29,14 @@ public:
 	const Color& getColor() const;
 	float getLineWidth() const;
 
-	ID2D1Geometry* getGeometry();
+	GeometryType getGeometryType() const;
+	ID2D1Geometry* getGeometry() const;
 
 protected:
-	virtual void createGeometry() = 0;
 	void setGeometry(ID2D1Geometry* geometry);
 
 private:
+	GeometryType geometry_type;
 	Color color;
 	float line_width;
 	ID2D1Geometry* geometry;

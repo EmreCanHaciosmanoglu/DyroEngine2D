@@ -11,9 +11,12 @@ TriangleShapeVisualization::TriangleShapeVisualization(Component* object, const 
 {
 	TriangleShapeComponent* component = dynamic_cast<TriangleShapeComponent*>(object);
 	if (component != nullptr)
-		setShape(new TriangleShape(component->getTriangleDescription()));
+		setShape(new TriangleShape(this, component->getTriangleDescription()));
 
 	assert(getShape() != nullptr);
+
+	//Create the requested shape
+	getShape()->create();
 }
 TriangleShapeVisualization::~TriangleShapeVisualization()
 {

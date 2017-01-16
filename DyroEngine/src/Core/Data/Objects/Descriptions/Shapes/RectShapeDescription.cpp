@@ -1,7 +1,8 @@
 #include "Core\Data\Objects\Descriptions\Shapes\RectShapeDescription.h"
+#include "Core\Types\GeometryType.h"
 
 RectShapeDescription::RectShapeDescription()
-	:FillableShapeDescription()
+	:FillableShapeDescription(GeometryType::RECTANGLE_GEOMETRY)
 	,rect(Rect2D())
 {}
 RectShapeDescription::RectShapeDescription(const RectShapeDescription& ref)
@@ -9,15 +10,15 @@ RectShapeDescription::RectShapeDescription(const RectShapeDescription& ref)
 	,rect(ref.rect)
 {}
 RectShapeDescription::RectShapeDescription(double left, double top, double width, double height, bool fill, const Color& color, float lineWidth)
-	: FillableShapeDescription(fill,color,lineWidth)
+	: FillableShapeDescription(GeometryType::RECTANGLE_GEOMETRY,fill,color,lineWidth)
 	,rect(left,top,left + width, top + height)
 {}
 RectShapeDescription::RectShapeDescription(const Vector2D& lefttop, const Vector2D& rightbottom, bool fill, const Color& color, float lineWidth)
-	: FillableShapeDescription(fill,color,lineWidth)
+	: FillableShapeDescription(GeometryType::RECTANGLE_GEOMETRY,fill,color,lineWidth)
 	,rect(lefttop, rightbottom)
 {}
 RectShapeDescription::RectShapeDescription(const Rect2D& rect, bool fill, const Color& color, float lineWidth)
-	: FillableShapeDescription(fill,color,lineWidth)
+	: FillableShapeDescription(GeometryType::RECTANGLE_GEOMETRY,fill,color,lineWidth)
 	,rect(rect)
 {}
 RectShapeDescription::~RectShapeDescription()

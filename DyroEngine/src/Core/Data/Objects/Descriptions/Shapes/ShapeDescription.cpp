@@ -2,18 +2,21 @@
 
 #include "Core\Defines\color.h"
 
-ShapeDescription::ShapeDescription()
-	:color(0,0,0,1)
+ShapeDescription::ShapeDescription(GeometryType type)
+	:geometry_type(type)
+	,color(0,0,0,1)
 	,line_width(0.5f)
 	, geometry(nullptr)
 {}
 ShapeDescription::ShapeDescription(const ShapeDescription& ref)
-	:color(ref.getColor())
+	: geometry_type(ref.getGeometryType())
+	,color(ref.getColor())
 	,line_width(ref.getLineWidth())
 	, geometry(nullptr)
 {}
-ShapeDescription::ShapeDescription(const Color& color, float lineWidth)
-	:color(color)
+ShapeDescription::ShapeDescription(GeometryType type, const Color& color, float lineWidth)
+	: geometry_type(type)
+	,color(color)
 	,line_width(lineWidth)
 	, geometry(nullptr)
 {}
@@ -55,10 +58,15 @@ float ShapeDescription::getLineWidth() const
 	return this->line_width;
 }
 
-ID2D1Geometry* ShapeDescription::getGeometry()
+GeometryType ShapeDescription::getGeometryType() const
+{
+	return geometry_type;
+}
+ID2D1Geometry* ShapeDescription::getGeometry() const
 {
 	return geometry;
 }
+
 void ShapeDescription::setGeometry(ID2D1Geometry* geometry)
 {
 	this->geometry = geometry;

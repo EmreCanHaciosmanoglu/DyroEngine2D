@@ -9,6 +9,7 @@
 #include "Core/Helpers/Patterns/Singleton.h"
 
 #include "SceneGraph\Objects\Components\ImageComponent.h"
+#include "SceneGraph\Objects\Scenes\Scene.h"
 
 #include "Core/Defines\deletemacros.h"
 
@@ -20,7 +21,13 @@ ImageVisualization::ImageVisualization(Component* object, const std::tstring& na
 	if (component == nullptr)
 		return;
 
-	this->texture = Singleton<TextureManager>::getInstance().getTexture(component->getImage());
+	this->texture = getScene()->getManager<TextureManager>()->getTexture(component->getImage());
+
+	if (this->texture == nullptr)
+	{
+		this->texture = new Texture(this, component->getImage());
+		getScene()->getManager<TextureManager>()->addTexture(this->texture);
+	}
 }
 ImageVisualization::~ImageVisualization()
 {

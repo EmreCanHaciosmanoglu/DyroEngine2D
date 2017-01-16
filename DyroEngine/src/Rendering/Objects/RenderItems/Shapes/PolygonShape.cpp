@@ -1,19 +1,35 @@
 #include "Rendering/Objects/RenderItems/Shapes/PolygonShape.h"
+#include "Rendering/Objects/Visualization/Visualization.h"
+
+#include "Rendering/Manager/GeometryManager.h"
 
 #include "Rendering/Renderer.h"
 
-#include "Core/Defines/assert.h"
+#include "Core/System/Objects/Graphics.h"
 
-PolygonShape::PolygonShape(const std::tstring& name)
-	:Shape(name)
+#include "Core/Defines/assert.h"
+#include "Core/Defines/d2dutill.h"
+#include "Core/Defines/deletemacros.h"
+
+#include "SceneGraph\Objects\Scenes\Scene.h"
+
+PolygonShape::PolygonShape(Visualization* parent, const std::tstring& name)
+	:Shape(parent, name)
 {}
-PolygonShape::PolygonShape(PolygonShapeDescription* description, const std::tstring& name)
-	: Shape(description, name)
+PolygonShape::PolygonShape(Visualization* parent, PolygonShapeDescription* description, const std::tstring& name)
+	: Shape(parent, description, name)
 {
 }
 PolygonShape::~PolygonShape()
 {}
 
+void PolygonShape::create()
+{
+	this->geometry = getParentVisualization()->getScene()->getManager<GeometryManager>()->getGeometry(getDescription());
+
+	//Geometry cannot be null
+	assert(this->geometry != nullptr);
+}
 void PolygonShape::render(Renderer* renderer)
 {
 	//Renderer cannot be null
@@ -24,8 +40,8 @@ void PolygonShape::render(Renderer* renderer)
 	renderer->setColor(desc->getColor());
 
 	desc->getFill()
-		? renderer->fillPolygon(desc->getPoints())
-		: renderer->drawPolygon(desc->getPoints(), desc->getClose(), desc->getLineWidth());
+		? renderer->fillGeometry(desc->getGeometry())
+		: renderer->drawGeometry(desc->getGeometry(), desc->getLineWidth());
 }
 
 float PolygonShape::getWidth() const

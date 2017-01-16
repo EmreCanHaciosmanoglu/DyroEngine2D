@@ -1,15 +1,15 @@
 #include "Core\Data\Objects\Descriptions\Shapes\FillableShapeDescription.h"
 
-FillableShapeDescription::FillableShapeDescription()
-	:ShapeDescription()
+FillableShapeDescription::FillableShapeDescription(GeometryType type)
+	:ShapeDescription(type)
 	,fill(true)
 {}
 FillableShapeDescription::FillableShapeDescription(const FillableShapeDescription& ref)
 	:ShapeDescription(ref)
 	,fill(ref.fill)
 {}
-FillableShapeDescription::FillableShapeDescription(bool fill, const Color& color, float lineWidth)
-	:ShapeDescription(color,lineWidth)
+FillableShapeDescription::FillableShapeDescription(GeometryType type, bool fill, const Color& color, float lineWidth)
+	:ShapeDescription(type, color,lineWidth)
 	,fill(fill)
 {}
 FillableShapeDescription::~FillableShapeDescription()

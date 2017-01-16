@@ -148,6 +148,7 @@ bool GameObjectManager::addObject(unsigned int id, GameObject* object)
 	Visualization* visualization = this->visualization_factory->createVisualization(object, object->hasChilderen());
 	if (visualization != nullptr)
 	{
+		visualization->setScene(object->getScene());
 		this->visualization_manager->addVisualization(visualization);
 	}
 	return true;

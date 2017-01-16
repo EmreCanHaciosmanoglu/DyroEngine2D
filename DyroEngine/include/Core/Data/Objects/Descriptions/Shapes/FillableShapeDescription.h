@@ -3,12 +3,14 @@
 
 #include "Core\Data\Objects\Descriptions\Shapes\ShapeDescription.h"
 
+enum class GeometryType;
+
 class FillableShapeDescription : public ShapeDescription
 {
 public:
-	FillableShapeDescription();
+	FillableShapeDescription(GeometryType type);
 	FillableShapeDescription(const FillableShapeDescription& ref);
-	FillableShapeDescription(bool fill, const Color& color = Color(), float lineWidth = 0.5f);
+	FillableShapeDescription(GeometryType type, bool fill, const Color& color = Color(), float lineWidth = 0.5f);
 	virtual ~FillableShapeDescription();
 
 	bool operator==(const FillableShapeDescription& ref) const;

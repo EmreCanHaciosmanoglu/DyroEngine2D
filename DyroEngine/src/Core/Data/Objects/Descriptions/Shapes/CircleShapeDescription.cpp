@@ -1,7 +1,8 @@
 #include "Core\Data\Objects\Descriptions\Shapes\CircleShapeDescription.h"
+#include "Core\Types\GeometryType.h"
 
 CircleShapeDescription::CircleShapeDescription()
-	:FillableShapeDescription()
+	:FillableShapeDescription(GeometryType::CIRCLE_GEOMETRY)
 	,center(0,0)
 	,radius(1.0f)
 {}
@@ -11,12 +12,12 @@ CircleShapeDescription::CircleShapeDescription(const CircleShapeDescription& ref
 	,radius(ref.getRadius())
 {}
 CircleShapeDescription::CircleShapeDescription(float xcenter, float ycenter, float r, bool fill, const Color& color, float lineWidth)
-	: FillableShapeDescription(fill,color,lineWidth)
+	: FillableShapeDescription(GeometryType::CIRCLE_GEOMETRY,fill,color,lineWidth)
 	,center(xcenter,ycenter)
 	,radius(r)
 {}
 CircleShapeDescription::CircleShapeDescription(const Vector2D& center, float r, bool fill, const Color& color, float lineWidth)
-	: FillableShapeDescription(fill,color,lineWidth)
+	: FillableShapeDescription(GeometryType::CIRCLE_GEOMETRY,fill,color,lineWidth)
 	,center(center)
 	,radius(r)
 {}

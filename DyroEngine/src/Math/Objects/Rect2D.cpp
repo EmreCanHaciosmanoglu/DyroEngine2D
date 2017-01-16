@@ -185,3 +185,15 @@ bool Rect2D::operator!= (const Rect2D& other) const
 {
 	return this->left != other.left || this->right != other.right || this->top != other.top || this->bottom != other.bottom;
 }
+
+D2D_RECT_F Rect2D::toD2DRect(const Rect2D& other)
+{
+	D2D_RECT_F d2d_rect;
+
+	d2d_rect.left = (float)other.left;
+	d2d_rect.top = (float)other.top;
+	d2d_rect.right = (float)other.right;
+	d2d_rect.bottom = (float)other.bottom;
+
+	return d2d_rect;
+}

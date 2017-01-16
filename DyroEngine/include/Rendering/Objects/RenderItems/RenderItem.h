@@ -10,13 +10,14 @@
 #include "Math/Objects/Matrix2D.h"
 #endif
 
+class Visualization;
 class Renderer;
 class Layer;
 
 class RenderItem : public TaggedObject<RenderItem>
 {
 public:
-	RenderItem(const std::tstring& name = _T("RenderItem"));
+	RenderItem(Visualization* parent, const std::tstring& name = _T("RenderItem"));
 	virtual ~RenderItem();
 
 	virtual void render(Renderer* renderer) = 0;
@@ -29,6 +30,8 @@ public:
 	virtual float getWidth() const = 0;
 	virtual float getHeight() const = 0;
 
+	Visualization* getParentVisualization() const;
+
 	Layer* getLayer() const;
 
 	const Vector2D& getPosition() const;
@@ -38,6 +41,8 @@ public:
 	const Matrix2D& getTransform() const;
 
 private:
+
+	Visualization* parent_visualization;
 
 	Layer* layer;
 	Matrix2D transform;

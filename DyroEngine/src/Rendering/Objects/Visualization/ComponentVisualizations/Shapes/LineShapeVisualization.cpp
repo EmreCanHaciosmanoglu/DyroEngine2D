@@ -11,9 +11,12 @@ LineShapeVisualization::LineShapeVisualization(Component* object, const std::tst
 {
 	LineShapeComponent* component = dynamic_cast<LineShapeComponent*>(object);
 	if (component != nullptr)
-		setShape(new LineShape(component->getLineDescription()));
+		setShape(new LineShape(this, component->getLineDescription()));
 
 	assert(getShape() != nullptr);
+
+	//Create the requested shape
+	getShape()->create();
 }
 LineShapeVisualization::~LineShapeVisualization()
 {

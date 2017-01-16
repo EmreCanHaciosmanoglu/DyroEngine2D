@@ -15,7 +15,6 @@ public:
 	virtual ~GameObjectVisualization();
 
 	virtual void getRenderItems(std::vector<RenderItem*>& items);
-	virtual Rect2D getBoundingBox();
 
 	GameObject* getGameObject() const;
 

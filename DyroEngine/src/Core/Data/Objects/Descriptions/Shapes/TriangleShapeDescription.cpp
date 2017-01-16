@@ -1,7 +1,8 @@
 #include "Core\Data\Objects\Descriptions\Shapes\TriangleShapeDescription.h"
+#include "Core\Types\GeometryType.h"
 
 TriangleShapeDescription::TriangleShapeDescription()
-	:PolygonShapeDescription(std::vector<Vector2D> { Vector2D(-1.0f, 0.0f), 
+	:PolygonShapeDescription(GeometryType::TRIANGLE_GEOMETRY, std::vector<Vector2D> { Vector2D(-1.0f, 0.0f), 
 														Vector2D(1.0f, -1.0f),
 														Vector2D(1.0f, 1.0f)})
 	,x_scale(1.0f)
@@ -13,7 +14,7 @@ TriangleShapeDescription::TriangleShapeDescription(const TriangleShapeDescriptio
 	,y_scale(ref.y_scale)
 {}
 TriangleShapeDescription::TriangleShapeDescription(float xScale, float yScale, bool fill, const Color& color, float lineWidth)
-	: PolygonShapeDescription(std::vector<Vector2D> { Vector2D(-1.0f * xScale, 0.0f),
+	: PolygonShapeDescription(GeometryType::TRIANGLE_GEOMETRY, std::vector<Vector2D> { Vector2D(-1.0f * xScale, 0.0f),
 		Vector2D(1.0f * xScale, -1.0f * yScale),
 		Vector2D(1.0f * xScale, 1.0f * yScale)}, true, fill, color, lineWidth)
 	, x_scale(xScale)

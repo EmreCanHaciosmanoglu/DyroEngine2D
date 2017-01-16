@@ -3,8 +3,8 @@
 
 #include "Rendering\Renderer.h"
 
-Texture::Texture(Image* image, const std::tstring name)
-	:RenderItem(name)
+Texture::Texture(Visualization* parent, Image* image, const std::tstring name)
+	:RenderItem(parent, name)
 	, image(image)
 {}
 Texture::~Texture()

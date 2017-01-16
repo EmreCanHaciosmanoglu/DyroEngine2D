@@ -10,7 +10,7 @@
 class Particle : public RenderItem
 {
 public:
-	Particle(const ParticleDescription& desc, const std::tstring name = _T("Particle"));
+	Particle(Visualization* parent, const ParticleDescription& desc, const std::tstring name = _T("Particle"));
 	virtual ~Particle();
 
 	virtual void render(Renderer* renderer);

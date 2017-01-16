@@ -13,9 +13,12 @@ CircleShapeVisualization::CircleShapeVisualization(Component* object, const std:
 {
 	CircleShapeComponent* component = dynamic_cast<CircleShapeComponent*>(object);
 	if (component != nullptr)
-		setShape(new CircleShape(component->getCircleDescription()));
+		setShape(new CircleShape(this, component->getCircleDescription()));
 
 	assert(getShape() != nullptr);
+
+	//Create the requested shape
+	getShape()->create();
 }
 CircleShapeVisualization::~CircleShapeVisualization()
 {

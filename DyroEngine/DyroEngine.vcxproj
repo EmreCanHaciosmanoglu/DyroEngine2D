@@ -90,6 +90,7 @@
     <ClInclude Include="include\Core\Data\Objects\Descriptions\Shapes\RectShapeDescription.h" />
     <ClInclude Include="include\Core\Data\Objects\Descriptions\Shapes\ShapeDescription.h" />
     <ClInclude Include="include\Core\Data\Objects\Descriptions\Shapes\TriangleShapeDescription.h" />
+    <ClInclude Include="include\Core\Data\Objects\Geometry.h" />
     <ClInclude Include="include\Core\Data\Objects\Layer.h" />
     <ClInclude Include="include\Core\Data\Manager\LayerManager.h" />
     <ClInclude Include="include\Core\Defines\consolecolors.h" />
@@ -229,6 +230,7 @@
     <ClCompile Include="src\Core\Data\Objects\Descriptions\Shapes\RectShapeDescription.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Descriptions\Shapes\ShapeDescription.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Descriptions\Shapes\TriangleShapeDescription.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Geometry.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Layer.cpp" />
     <ClCompile Include="src\Core\Data\Manager\LayerManager.cpp" />
     <ClCompile Include="src\Core\Diagnostics\Objects\ErrorLog.cpp" />

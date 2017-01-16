@@ -16,10 +16,11 @@ class Renderer;
 class TriangleShape : public PolygonShape
 {
 public:
-	TriangleShape(const std::tstring& name = _T("TriangleShape"));
-	TriangleShape(TriangleShapeDescription* desc, const std::tstring& name = _T("TriangleShape"));
+	TriangleShape(Visualization* parent, const std::tstring& name = _T("TriangleShape"));
+	TriangleShape(Visualization* parent, TriangleShapeDescription* desc, const std::tstring& name = _T("TriangleShape"));
 	virtual ~TriangleShape();
 
+	virtual void create();
 	virtual void render(Renderer* renderer);
 
 	TriangleShapeDescription* getTriangleShapeDescription() const;

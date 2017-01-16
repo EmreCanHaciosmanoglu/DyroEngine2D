@@ -1,8 +1,12 @@
 #ifndef _RECT2D_H
 #define _RECT2D_H
 
+#ifndef _2DUTILL_H
+#include "Core/Defines/d2dutill.h"
+#endif
+
 #ifndef _VECTOR2D_H
-#include "Vector2D.h"
+#include "Math/Objects/Vector2D.h"
 #endif
 
 //------------------------------------------------------------------------------
@@ -49,6 +53,8 @@ public:
 
 	bool operator== (const Rect2D& other) const;
 	bool operator!= (const Rect2D& other) const;
+
+	static D2D_RECT_F toD2DRect(const Rect2D& other);
 };
 
 #endif

@@ -56,6 +56,11 @@ void Renderer::setColor(float r, float g, float b, float a)
 	setColor(Color(r, g, b, a));
 }
 
+void Renderer::drawGeometry(ID2D1Geometry* geometry, float lineWidth) const
+{
+	this->graphics->getRenderTarget()->DrawGeometry(geometry, this->graphics->getColorBrush(), lineWidth);
+}
+
 void Renderer::drawLine(const Vector2D& v1, const Vector2D& v2, float lineWidth) const
 {
 	D2D1_POINT_2F p1, p2;
@@ -115,6 +120,11 @@ void Renderer::drawPolygon(Vector2D* points, int size, bool close, float lineWid
 
 	if (close)
 		drawLine(points[0], points[size - 1], lineWidth);
+}
+
+void Renderer::fillGeometry(ID2D1Geometry* geometry) const
+{
+	this->graphics->getRenderTarget()->FillGeometry(geometry, this->graphics->getColorBrush());
 }
 
 void Renderer::fillRect(float left, float top, float width, float height) const

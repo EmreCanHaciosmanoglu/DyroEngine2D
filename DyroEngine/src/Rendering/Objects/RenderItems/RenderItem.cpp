@@ -1,15 +1,18 @@
 #include "Rendering/Objects/RenderItems/RenderItem.h"
+#include "Rendering/Objects/Visualization/Visualization.h"
 
 #include "Core\Data\Objects\Layer.h"
 
-RenderItem::RenderItem(const std::tstring& name)
+RenderItem::RenderItem(Visualization* parent, const std::tstring& name)
 	:TaggedObject<RenderItem>(name)
+	, parent_visualization(parent)
+
 	, layer(nullptr)
 	, transform(Matrix2D::createIdentityMatrix())
 
-	,position(0.0f, 0.0f)
-	,scale(0.0f, 0.0f)
-	,rotation(0.0f)
+	, position(0.0f, 0.0f)
+	, scale(0.0f, 0.0f)
+	, rotation(0.0f)
 {
 }
 RenderItem::~RenderItem()
@@ -36,6 +39,11 @@ void RenderItem::setTransform(const Vector2D& position, const Vector2D& scale, f
 	Matrix2D mat_rotate = Matrix2D::createRotationMatrix(rotation);
 
 	this->transform = mat_scale * mat_rotate * mat_translate;
+}
+
+Visualization* RenderItem::getParentVisualization() const
+{
+	return this->parent_visualization;
 }
 
 const Vector2D& RenderItem::getPosition() const

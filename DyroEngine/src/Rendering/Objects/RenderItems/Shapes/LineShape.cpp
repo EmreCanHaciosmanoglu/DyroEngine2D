@@ -1,18 +1,35 @@
 #include "Rendering/Objects/RenderItems/Shapes/LineShape.h"
+#include "Rendering/Objects/Visualization/Visualization.h"
+
+#include "Rendering/Manager/GeometryManager.h"
 
 #include "Rendering/Renderer.h"
 
-#include "Core/Defines/assert.h"
+#include "Core/System/Objects/Graphics.h"
 
-LineShape::LineShape(const std::tstring& name)
-	:Shape(name)
+#include "Core/Defines/assert.h"
+#include "Core/Defines/d2dutill.h"
+#include "Core/Defines/deletemacros.h"
+
+#include "SceneGraph\Objects\Scenes\Scene.h"
+
+LineShape::LineShape(Visualization* parent, const std::tstring& name)
+	:Shape(parent, name)
 {}
-LineShape::LineShape(LineShapeDescription* description, const std::tstring& name)
-	:Shape(description, name)
+LineShape::LineShape(Visualization* parent, LineShapeDescription* description, const std::tstring& name)
+	:Shape(parent, description, name)
 {}
 LineShape::~LineShape()
 {}
 
+void LineShape::create()
+{
+	this->geometry = getParentVisualization()->getScene()->getManager<GeometryManager>()->getGeometry(getDescription());
+
+	//Geometry cannot be null
+	assert(this->geometry != nullptr);
+
+}
 void LineShape::render(Renderer* renderer)
 {
 	//Renderer cannot be null
@@ -21,7 +38,7 @@ void LineShape::render(Renderer* renderer)
 	LineShapeDescription* desc = getLineShapeDescription();
 
 	renderer->setColor(desc->getColor());
-	renderer->drawLine(desc->getStartPosition(), desc->getEndPosition(), desc->getLineWidth());
+	renderer->drawGeometry(desc->getGeometry(), desc->getLineWidth());
 }
 
 float LineShape::getWidth() const
@@ -30,7 +47,7 @@ float LineShape::getWidth() const
 }
 float LineShape::getHeight() const
 {
-	return 1;
+	return getLineShapeDescription()->getEndPosition().y - getLineShapeDescription()->getEndPosition().y;
 }
 
 LineShapeDescription* LineShape::getLineShapeDescription() const

@@ -3,10 +3,10 @@
 
 #include "Core/Helpers/Patterns/Manager.h"
 
-class ID2D1Geometry;
-enum class GeometryType;
+class Geometry;
+class ShapeDescription;
 
-class GeometryManager : public Manager<ID2D1Geometry>
+class GeometryManager : public Manager<Geometry>
 {
 public:
 	GeometryManager();
@@ -15,10 +15,10 @@ public:
 	virtual bool initialize();
 	virtual bool shutdown();
 
-	void removeGeometry(ID2D1Geometry* geometry);
+	void removeGeometry(Geometry* geometry);
 	void removeGeometry(unsigned int id);
 
-	ID2D1Geometry* getGeometry(GeometryType type);
+	Geometry* getGeometry(ShapeDescription* description);
 };
 
 #endif

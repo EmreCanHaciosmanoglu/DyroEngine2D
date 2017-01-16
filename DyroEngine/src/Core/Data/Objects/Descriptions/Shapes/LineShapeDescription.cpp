@@ -1,7 +1,8 @@
 #include "Core\Data\Objects\Descriptions\Shapes\LineShapeDescription.h"
+#include "Core\Types\GeometryType.h"
 
 LineShapeDescription::LineShapeDescription()
-	:ShapeDescription()
+	:ShapeDescription(GeometryType::LINE_GEOMETRY)
 	,v1(0,0)
 	,v2(0,0)
 {}
@@ -11,12 +12,12 @@ LineShapeDescription::LineShapeDescription(const LineShapeDescription& ref)
 	,v2(ref.v2)
 {}
 LineShapeDescription::LineShapeDescription(float x1, float y1, float x2, float y2, const Color& color, float lineWidth)
-	:ShapeDescription(color,lineWidth)
+	:ShapeDescription(GeometryType::LINE_GEOMETRY,color,lineWidth)
 	,v1(x1,y1)
 	,v2(x2,y2)
 {}
 LineShapeDescription::LineShapeDescription(const Vector2D& v1, const Vector2D& v2, const Color& color, float lineWidth)
-	:ShapeDescription(color,lineWidth)
+	:ShapeDescription(GeometryType::LINE_GEOMETRY,color,lineWidth)
 	,v1(v1)
 	,v2(v2)
 {}

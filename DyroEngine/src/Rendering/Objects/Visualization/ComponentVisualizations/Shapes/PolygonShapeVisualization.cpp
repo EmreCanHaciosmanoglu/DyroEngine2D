@@ -11,9 +11,12 @@ PolygonShapeVisualization::PolygonShapeVisualization(Component* object, const st
 {
 	PolygonShapeComponent* component = dynamic_cast<PolygonShapeComponent*>(object);
 	if (component != nullptr)
-		setShape(new PolygonShape(component->getPolygonDescription()));
+		setShape(new PolygonShape(this, component->getPolygonDescription()));
 
 	assert(getShape() != nullptr);
+
+	//Create the requested shape
+	getShape()->create();
 }
 PolygonShapeVisualization::~PolygonShapeVisualization()
 {

@@ -1,7 +1,8 @@
 #ifndef _GEOMETRYFACTORY_H
 #define _GEOMETRYFACTORY_H
 
-class ID2D1Geometry;
+class Geometry;
+class ShapeDescription;
 enum class GeometryType;
 
 class GeometryFactory
@@ -10,7 +11,13 @@ public:
 	GeometryFactory();
 	~GeometryFactory();
 
-	ID2D1Geometry* createGeometry(GeometryType type);
+	Geometry* createGeometry(ShapeDescription* description);
+
+private:
+	Geometry* createRectangleGeometry(ShapeDescription* description);
+	Geometry* createCircleGeometry(ShapeDescription* description);
+	Geometry* createLineGeometry(ShapeDescription* description);
+	Geometry* createPolygonGeometry(ShapeDescription* description);
 };
 
 #endif

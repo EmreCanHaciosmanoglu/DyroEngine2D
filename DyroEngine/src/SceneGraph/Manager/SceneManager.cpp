@@ -26,6 +26,8 @@ bool SceneManager::initialize()
 	setupManager<LayerManager>();
 	setupManager<CameraManager>();
 	setupManager<ResourceManager>();
+	setupManager<GeometryManager>();
+	setupManager<TextureManager>();
 
 	if (!this->active_scene->getInitialized())
 	{
@@ -36,6 +38,8 @@ bool SceneManager::initialize()
 		this->active_scene->addManager(&Singleton<LayerManager>::getInstance());
 		this->active_scene->addManager(&Singleton<CameraManager>::getInstance());
 		this->active_scene->addManager(&Singleton<ResourceManager>::getInstance());
+		this->active_scene->addManager(&Singleton<GeometryManager>::getInstance());
+		this->active_scene->addManager(&Singleton<TextureManager>::getInstance());
 
 		if (!this->active_scene->initialize())
 			return false;
@@ -77,6 +81,8 @@ bool SceneManager::shutdown()
 		SafeDelete(scene);
 	}
 
+	destroyManager<TextureManager>();
+	destroyManager<GeometryManager>();
 	destroyManager<ResourceManager>();
 	destroyManager<CameraManager>();
 	destroyManager<LayerManager>();

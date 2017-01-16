@@ -14,10 +14,10 @@
 class PolygonShapeDescription : public FillableShapeDescription
 {
 public:
-	PolygonShapeDescription();
+	PolygonShapeDescription(GeometryType type);
 	PolygonShapeDescription(const PolygonShapeDescription& ref);
-	PolygonShapeDescription(Vector2D* points, unsigned int size, bool close = true, bool fill = true, const Color& color = Color(), float lineWidth = 0.5f);
-	PolygonShapeDescription(const std::vector<Vector2D>& vecPoints, bool close = true, bool fill = true, const Color& color = Color(), float lineWidth = 0.5f);
+	PolygonShapeDescription(GeometryType type, Vector2D* points, unsigned int size, bool close = true, bool fill = true, const Color& color = Color(), float lineWidth = 0.5f);
+	PolygonShapeDescription(GeometryType type, const std::vector<Vector2D>& vecPoints, bool close = true, bool fill = true, const Color& color = Color(), float lineWidth = 0.5f);
 	virtual ~PolygonShapeDescription();
 
 	bool operator==(const PolygonShapeDescription& ref) const;

@@ -4,6 +4,7 @@
 Visualization::Visualization(Object* object, const std::tstring& name)
 	:TaggedObject(name)
 	, parent_visualization(nullptr)
+	, scene(nullptr)
 	, object(object)
 {
 }
@@ -18,6 +19,15 @@ void Visualization::setParent(Visualization* visualization)
 Visualization* Visualization::Visualization::getParent() const
 {
 	return this->parent_visualization;
+}
+
+void Visualization::setScene(Scene* scene)
+{
+	this->scene = scene;
+}
+Scene* Visualization::getScene() const
+{
+	return this->scene;
 }
 
 Object* Visualization::getObject() const

@@ -9,6 +9,9 @@
 #ifndef BOX2D_H
 #include <Box2D\Box2D.h>
 #endif
+#ifndef _2DUTILL_H
+#include "Core\Defines\d2dutill.h"
+#endif
 
 #pragma region Disable Waring 4172
 // Warning 4172
@@ -79,8 +82,9 @@ public:
 	bool        operator<(const Vector2D& rhs) const;		// comparison for sort
 	bool        operator>(const Vector2D& rhs) const;		// comparison for sort
 
-	static b2Vec2		toBox2DVec(const Vector2D& ref);
-	static Vector2D     toVector2D(const b2Vec2& ref);
+	static b2Vec2			toBox2DVec(const Vector2D& ref);
+	static Vector2D			toVector2D(const b2Vec2& ref);
+	static D2D1_POINT_2F	toD2DPoint(const Vector2D& ref);
 
 	static Vector2D		randomVector();
 	static Vector2D		randomVector(const Vector2D& min, const Vector2D& max);

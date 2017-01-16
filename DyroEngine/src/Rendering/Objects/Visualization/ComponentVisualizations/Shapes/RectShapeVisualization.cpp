@@ -11,9 +11,12 @@ RectShapeVisualization::RectShapeVisualization(Component* object, const std::tst
 {
 	RectShapeComponent* component = dynamic_cast<RectShapeComponent*>(object);
 	if (component != nullptr)
-		setShape(new RectShape(component->getRectDescription()));
+		setShape(new RectShape(this, component->getRectDescription()));
 
 	assert(getShape() != nullptr);
+
+	//Create the requested shape
+	getShape()->create();
 }
 RectShapeVisualization::~RectShapeVisualization()
 {

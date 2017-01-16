@@ -414,6 +414,9 @@
     <ClCompile Include="src\SceneGraph\Objects\Object.cpp">
       <Filter>Header Files\SceneGraph\Base</Filter>
     </ClCompile>
+    <ClCompile Include="src\Core\Data\Objects\Geometry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Core\Engine.h">
@@ -800,9 +803,6 @@
     <ClInclude Include="include\Rendering\Manager\TextureManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Rendering\Factory\GeometryFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Rendering\Manager\GeometryManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -825,6 +825,10 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Core\Defines\debug.h">
+    <ClInclude Include="include\Rendering\Factory\GeometryFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\Data\Objects\Geometry.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

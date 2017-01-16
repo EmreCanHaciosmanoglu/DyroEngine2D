@@ -2,8 +2,8 @@
 #include "Rendering/Objects/RenderItems/Texture.h"
 #include "Rendering/Renderer.h"
 
-Particle::Particle(const ParticleDescription& desc, const std::tstring name)
-	:RenderItem(name)
+Particle::Particle(Visualization* parent, const ParticleDescription& desc, const std::tstring name)
+	:RenderItem(parent, name)
 	,description(description)
 {}
 Particle::~Particle()
