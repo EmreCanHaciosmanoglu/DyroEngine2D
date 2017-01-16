@@ -11,6 +11,9 @@ public:
 	LineShapeVisualization(Component* object, const std::tstring& name = _T("LineVisualization"));
 	virtual ~LineShapeVisualization();
 
+	virtual bool initialize();
+	virtual bool shutdown();
+
 protected:
 
 	virtual void generateRenderItems(std::vector<RenderItem*>& items);

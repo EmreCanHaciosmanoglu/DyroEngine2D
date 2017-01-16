@@ -3,6 +3,8 @@
 #include "Core/Engine.h"
 #include "Core/Data/Objects/MyGame.h"
 
+#include <tchar.h>
+
 #if defined (DEBUG) | defined(_DEBUG)
 int _tmain(int argc, char* argv[])
 {

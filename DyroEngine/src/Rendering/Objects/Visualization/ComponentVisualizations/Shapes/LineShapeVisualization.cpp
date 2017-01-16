@@ -9,7 +9,16 @@
 LineShapeVisualization::LineShapeVisualization(Component* object, const std::tstring& name)
 	:ShapeVisualization(object, name)
 {
-	LineShapeComponent* component = dynamic_cast<LineShapeComponent*>(object);
+
+}
+LineShapeVisualization::~LineShapeVisualization()
+{
+
+}
+
+bool LineShapeVisualization::initialize()
+{
+	LineShapeComponent* component = dynamic_cast<LineShapeComponent*>(getObject());
 	if (component != nullptr)
 		setShape(new LineShape(this, component->getLineDescription()));
 
@@ -17,10 +26,12 @@ LineShapeVisualization::LineShapeVisualization(Component* object, const std::tst
 
 	//Create the requested shape
 	getShape()->create();
-}
-LineShapeVisualization::~LineShapeVisualization()
-{
 
+	return true;
+}
+bool LineShapeVisualization::shutdown()
+{
+	return true;
 }
 
 void LineShapeVisualization::generateRenderItems(std::vector<RenderItem*>& items)

@@ -3,39 +3,37 @@
 #include "Core\Defines\color.h"
 
 ShapeDescription::ShapeDescription(GeometryType type)
-	:geometry_type(type)
-	,color(0,0,0,1)
-	,line_width(0.5f)
-	, geometry(nullptr)
+	: geometry_type(type)
+	, color(0,0,0,1)
+	, line_width(0.5f)
 {}
 ShapeDescription::ShapeDescription(const ShapeDescription& ref)
 	: geometry_type(ref.getGeometryType())
-	,color(ref.getColor())
-	,line_width(ref.getLineWidth())
-	, geometry(nullptr)
+	, color(ref.getColor())
+	, line_width(ref.getLineWidth())
 {}
 ShapeDescription::ShapeDescription(GeometryType type, const Color& color, float lineWidth)
 	: geometry_type(type)
-	,color(color)
-	,line_width(lineWidth)
-	, geometry(nullptr)
+	, color(color)
+	, line_width(lineWidth)
 {}
 ShapeDescription::~ShapeDescription()
 {}
 
 bool ShapeDescription::operator==(const ShapeDescription& ref) const
 {
-	return this->getColor() == ref.getColor() && this->line_width == ref.line_width;
+	return this->getColor() == ref.getColor() && this->line_width == ref.line_width && this->geometry_type == ref.geometry_type;
 }
 bool ShapeDescription::operator!=(const ShapeDescription& ref) const
 {
-	return this->getColor() != ref.getColor() || this->line_width != ref.line_width;
+	return this->getColor() != ref.getColor() || this->line_width != ref.line_width || this->geometry_type != ref.geometry_type;
 }
 
 ShapeDescription& ShapeDescription::operator=(const ShapeDescription& ref)
 {
 	setColor(ref.getColor());
 	setLineWidth(ref.getLineWidth());
+	setGeometryType(ref.getGeometryType());
 
 	return *this;
 }
@@ -62,12 +60,8 @@ GeometryType ShapeDescription::getGeometryType() const
 {
 	return geometry_type;
 }
-ID2D1Geometry* ShapeDescription::getGeometry() const
-{
-	return geometry;
-}
 
-void ShapeDescription::setGeometry(ID2D1Geometry* geometry)
+void ShapeDescription::setGeometryType(GeometryType type)
 {
-	this->geometry = geometry;
+	this->geometry_type = type;
 }

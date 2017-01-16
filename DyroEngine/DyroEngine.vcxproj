@@ -99,8 +99,8 @@
     <ClInclude Include="include\Core\Diagnostics\Objects\InfoLog.h" />
     <ClInclude Include="include\Core\Diagnostics\Objects\TodoLog.h" />
     <ClInclude Include="include\Core\Diagnostics\Objects\WarningLog.h" />
-    <ClInclude Include="include\Rendering\Factory\GeometryFactory.h" />
-    <ClInclude Include="include\Rendering\Manager\GeometryManager.h" />
+    <ClInclude Include="include\Core\Data\Factory\GeometryFactory.h" />
+    <ClInclude Include="include\Core\Data\Manager\GeometryManager.h" />
     <ClInclude Include="include\Rendering\Manager\TextureManager.h" />
     <ClInclude Include="include\Math\Objects\Random.h" />
     <ClInclude Include="include\Math\Objects\Range.h" />
@@ -237,8 +237,8 @@
     <ClCompile Include="src\Core\Diagnostics\Objects\InfoLog.cpp" />
     <ClCompile Include="src\Core\Diagnostics\Objects\TodoLog.cpp" />
     <ClCompile Include="src\Core\Diagnostics\Objects\WarningLog.cpp" />
-    <ClCompile Include="src\Rendering\Factory\GeometryFactory.cpp" />
-    <ClCompile Include="src\Rendering\Manager\GeometryManager.cpp" />
+    <ClCompile Include="src\Core\Data\Factory\GeometryFactory.cpp" />
+    <ClCompile Include="src\Core\Data\Manager\GeometryManager.cpp" />
     <ClCompile Include="src\Rendering\Manager\TextureManager.cpp" />
     <ClCompile Include="src\Core\Data\Manager\TimerManager.cpp" />
     <ClCompile Include="src\Core\Diagnostics\Manager\LogManager.cpp" />

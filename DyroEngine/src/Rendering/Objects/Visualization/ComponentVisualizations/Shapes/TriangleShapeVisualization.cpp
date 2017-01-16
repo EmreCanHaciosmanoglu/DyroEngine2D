@@ -9,7 +9,16 @@
 TriangleShapeVisualization::TriangleShapeVisualization(Component* object, const std::tstring& name)
 	:PolygonShapeVisualization(object, name)
 {
-	TriangleShapeComponent* component = dynamic_cast<TriangleShapeComponent*>(object);
+
+}
+TriangleShapeVisualization::~TriangleShapeVisualization()
+{
+
+}
+
+bool TriangleShapeVisualization::initialize()
+{
+	TriangleShapeComponent* component = dynamic_cast<TriangleShapeComponent*>(getObject());
 	if (component != nullptr)
 		setShape(new TriangleShape(this, component->getTriangleDescription()));
 
@@ -17,10 +26,12 @@ TriangleShapeVisualization::TriangleShapeVisualization(Component* object, const 
 
 	//Create the requested shape
 	getShape()->create();
-}
-TriangleShapeVisualization::~TriangleShapeVisualization()
-{
 
+	return true;
+}
+bool TriangleShapeVisualization::shutdown()
+{
+	return true;
 }
 
 void TriangleShapeVisualization::generateRenderItems(std::vector<RenderItem*>& items)

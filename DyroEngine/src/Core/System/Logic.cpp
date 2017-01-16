@@ -3,8 +3,6 @@
 
 #include "SceneGraph/Manager/SceneManager.h"
 
-#include "Core/Helpers/Patterns/Singleton.h"
-
 #include "Core\Types\SystemType.h"
 #include "Core/Defines\assert.h"
 #include "Core/Defines/deletemacros.h"
@@ -12,9 +10,13 @@
 Logic::Logic()
 	:System(SystemType::LOGIC_SYSTEM)
 	, game(nullptr)
-{}
+{
+	SceneManager::createInstance();
+}
 Logic::~Logic()
-{}
+{
+	SceneManager::destroyInstance();
+}
 
 bool Logic::initialize()
 {
@@ -24,7 +26,7 @@ bool Logic::initialize()
 	if (!game->initialize())
 		return false;
 
-	if (!Singleton<SceneManager>::getInstance().initialize())
+	if (!SceneManager::getInstance().initialize())
 		return false;
 
 	return true;
@@ -34,11 +36,11 @@ void Logic::update()
 	if (!getIsActive())
 		return;
 
-	Singleton<SceneManager>::getInstance().update();
+	SceneManager::getInstance().update();
 }
 bool Logic::shutdown()
 {
-	if (!Singleton<SceneManager>::getInstance().shutdown())
+	if (!SceneManager::getInstance().shutdown())
 		return false;
 
 	if (!game->shutdown())

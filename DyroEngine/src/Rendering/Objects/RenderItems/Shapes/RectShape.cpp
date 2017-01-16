@@ -1,7 +1,7 @@
 #include "Rendering/Objects/RenderItems/Shapes/RectShape.h"
 #include "Rendering/Objects/Visualization/Visualization.h"
 
-#include "Rendering/Manager/GeometryManager.h"
+#include "Core\Data/Manager/GeometryManager.h"
 
 #include "Rendering/Renderer.h"
 
@@ -39,8 +39,8 @@ void RectShape::render(Renderer* renderer)
 	renderer->setColor(desc->getColor());
 
 	desc->getFill()
-		? renderer->fillGeometry(desc->getGeometry())
-		: renderer->drawGeometry(desc->getGeometry(), desc->getLineWidth());
+		? renderer->fillGeometry(this->geometry)
+		: renderer->drawGeometry(this->geometry, desc->getLineWidth());
 }
 
 float RectShape::getWidth() const

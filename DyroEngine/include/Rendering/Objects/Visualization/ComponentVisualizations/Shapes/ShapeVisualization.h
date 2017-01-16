@@ -14,6 +14,9 @@ public:
 	ShapeVisualization(Component* object, const std::tstring& name = _T("ShapeVisualization"));
 	virtual ~ShapeVisualization();
 
+	virtual bool initialize() = 0;
+	virtual bool shutdown() = 0;
+
 protected:
 
 	virtual void generateRenderItems(std::vector<RenderItem*>& items) = 0;

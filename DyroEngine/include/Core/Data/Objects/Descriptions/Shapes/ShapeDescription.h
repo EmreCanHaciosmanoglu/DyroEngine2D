@@ -30,16 +30,14 @@ public:
 	float getLineWidth() const;
 
 	GeometryType getGeometryType() const;
-	ID2D1Geometry* getGeometry() const;
 
 protected:
-	void setGeometry(ID2D1Geometry* geometry);
+	void setGeometryType(GeometryType type);
 
 private:
 	GeometryType geometry_type;
 	Color color;
 	float line_width;
-	ID2D1Geometry* geometry;
 };
 
 #endif

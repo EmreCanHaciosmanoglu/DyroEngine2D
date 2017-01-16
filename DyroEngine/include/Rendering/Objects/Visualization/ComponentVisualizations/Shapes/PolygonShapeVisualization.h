@@ -11,6 +11,9 @@ public:
 	PolygonShapeVisualization(Component* object, const std::tstring& name = _T("PolygonVisualization"));
 	virtual ~PolygonShapeVisualization();
 
+	virtual bool initialize();
+	virtual bool shutdown();
+
 protected:
 
 	virtual void generateRenderItems(std::vector<RenderItem*>& items);

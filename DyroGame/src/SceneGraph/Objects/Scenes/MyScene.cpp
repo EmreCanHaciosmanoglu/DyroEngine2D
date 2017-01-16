@@ -55,11 +55,11 @@ MyScene::~MyScene()
 
 bool MyScene::initialize()
 {
-	ApplicationSettings* app_settings = dynamic_cast<ApplicationSettings*>(Singleton<SettingsManager>::getInstance().getSettings(SettingsType::APPLICATION_SETTINGS));
+	ApplicationSettings* app_settings = dynamic_cast<ApplicationSettings*>(SettingsManager::getInstance().getSettings(SettingsType::APPLICATION_SETTINGS));
 	if (app_settings == nullptr)
 		return false;
 
-	GameSettings* game_settings = dynamic_cast<GameSettings*>(Singleton<SettingsManager>::getInstance().getSettings(SettingsType::GAME_SETTINGS));
+	GameSettings* game_settings = dynamic_cast<GameSettings*>(SettingsManager::getInstance().getSettings(SettingsType::GAME_SETTINGS));
 	if (game_settings == nullptr)
 		return false;
 

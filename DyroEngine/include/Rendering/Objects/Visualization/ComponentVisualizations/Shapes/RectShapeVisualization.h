@@ -11,6 +11,9 @@ public:
 	RectShapeVisualization(Component* object, const std::tstring& name = _T("RectVisualization"));
 	virtual ~RectShapeVisualization();
 
+	virtual bool initialize();
+	virtual bool shutdown();
+
 protected:
 
 	virtual void generateRenderItems(std::vector<RenderItem*>& items);

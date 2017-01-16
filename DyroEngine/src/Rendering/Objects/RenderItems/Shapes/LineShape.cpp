@@ -1,7 +1,7 @@
 #include "Rendering/Objects/RenderItems/Shapes/LineShape.h"
 #include "Rendering/Objects/Visualization/Visualization.h"
 
-#include "Rendering/Manager/GeometryManager.h"
+#include "Core\Data/Manager/GeometryManager.h"
 
 #include "Rendering/Renderer.h"
 
@@ -38,7 +38,7 @@ void LineShape::render(Renderer* renderer)
 	LineShapeDescription* desc = getLineShapeDescription();
 
 	renderer->setColor(desc->getColor());
-	renderer->drawGeometry(desc->getGeometry(), desc->getLineWidth());
+	renderer->drawGeometry(this->geometry, desc->getLineWidth());
 }
 
 float LineShape::getWidth() const

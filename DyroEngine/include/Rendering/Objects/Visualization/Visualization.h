@@ -21,6 +21,9 @@ public:
 	Visualization(Object* object, const std::tstring& name = _T(""));
 	virtual ~Visualization();
 
+	virtual bool initialize() = 0;
+	virtual bool shutdown() = 0;
+
 	virtual void getRenderItems(std::vector<RenderItem*>& items) = 0;
 
 	void setScene(Scene* scene);

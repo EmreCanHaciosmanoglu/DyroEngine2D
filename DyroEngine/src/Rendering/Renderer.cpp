@@ -2,6 +2,7 @@
 #include "Rendering/Objects/RenderItems/RenderItem.h"
 
 #include "Core\Data\Objects\Layer.h"
+#include "Core\Data\Objects\Geometry.h"
 
 #include "Core/System/Objects/Graphics.h"
 #include "Core/System/Manager/SystemManager.h"
@@ -16,7 +17,7 @@
 Renderer::Renderer()
 	:interpolation_mode(D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR)
 {
-	this->graphics = dynamic_cast<Graphics*>(Singleton<SystemManager>::getInstance().getSystem(SystemType::GRAPHICS_SYSTEM));
+	this->graphics = dynamic_cast<Graphics*>(SystemManager::getInstance().getSystem(SystemType::GRAPHICS_SYSTEM));
 	assert(this->graphics != nullptr);
 }
 Renderer::~Renderer()
@@ -56,9 +57,9 @@ void Renderer::setColor(float r, float g, float b, float a)
 	setColor(Color(r, g, b, a));
 }
 
-void Renderer::drawGeometry(ID2D1Geometry* geometry, float lineWidth) const
+void Renderer::drawGeometry(Geometry* geometry, float lineWidth) const
 {
-	this->graphics->getRenderTarget()->DrawGeometry(geometry, this->graphics->getColorBrush(), lineWidth);
+	this->graphics->getRenderTarget()->DrawGeometry(geometry->getGeometry(), this->graphics->getColorBrush(), lineWidth);
 }
 
 void Renderer::drawLine(const Vector2D& v1, const Vector2D& v2, float lineWidth) const
@@ -122,9 +123,9 @@ void Renderer::drawPolygon(Vector2D* points, int size, bool close, float lineWid
 		drawLine(points[0], points[size - 1], lineWidth);
 }
 
-void Renderer::fillGeometry(ID2D1Geometry* geometry) const
+void Renderer::fillGeometry(Geometry* geometry) const
 {
-	this->graphics->getRenderTarget()->FillGeometry(geometry, this->graphics->getColorBrush());
+	this->graphics->getRenderTarget()->FillGeometry(geometry->getGeometry(), this->graphics->getColorBrush());
 }
 
 void Renderer::fillRect(float left, float top, float width, float height) const

@@ -39,7 +39,7 @@ HRESULT Graphics::onResize(UINT width, UINT height)
 
 bool Graphics::initialize()
 {
-	this->main_window = dynamic_cast<Window*>(Singleton<SystemManager>::getInstance().getSystem(SystemType::WINDOW_SYSTEM));
+	this->main_window = dynamic_cast<Window*>(SystemManager::getInstance().getSystem(SystemType::WINDOW_SYSTEM));
 
 	HRESULT hr = createDeviceIndependentResources();
 	if (FAILED(hr))
@@ -101,7 +101,7 @@ void Graphics::discardDeviceResources()
 
 void Graphics::clear()
 {
-	GameSettings* gameSettings = dynamic_cast<GameSettings*>(Singleton<SettingsManager>::getInstance().getSettings(SettingsType::GAME_SETTINGS));
+	GameSettings* gameSettings = dynamic_cast<GameSettings*>(SettingsManager::getInstance().getSettings(SettingsType::GAME_SETTINGS));
 	if (gameSettings == nullptr)
 		return;
 

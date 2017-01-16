@@ -4,26 +4,22 @@
 #include <Windows.h>
 #endif
 
+#include "Core/System/Manager/SystemManager.h"
 #include "Core/System/Objects/System.h"
 #include "Core\System\Objects\Logic.h"
 #include "Core\System\Objects\Window.h"
 #include "Core\System\Objects\Graphics.h"
 #include "Core\System\Objects\Input.h"
-#include "Core/System/Manager/SystemManager.h"
 
 #include "Core/Types/SystemType.h"
 #include "Core/Types/SettingsType.h"
 
-#include "Core\Defines\debug.h"
-
-#include "Rendering/Manager/VisualizationManager.h"
-#include "Rendering/Factory/VisualizationFactory.h"
-
-#include "SceneGraph/Manager/SceneManager.h"
-
-#include "Core/Data/Objects/Game.h"
 #include "Core/Data/Factory/SettingsFactory.h"
 #include "Core/Data/Manager/SettingsManager.h"
+
+#include "Core/Data/Objects/Game.h"
+
+#include "Core\Defines\debug.h"
 
 namespace
 {
@@ -90,25 +86,25 @@ int Engine::initialize()
 
 	SettingsFactory factory;
 
-	Singleton<SettingsManager>::getInstance().addSettings(factory.createSettings(_T("resources/INI/Engine.ini"), SettingsType::APPLICATION_SETTINGS));
-	Singleton<SettingsManager>::getInstance().addSettings(factory.createSettings(_T("resources/INI/Engine.ini"), SettingsType::GAME_SETTINGS));
-	Singleton<SettingsManager>::getInstance().addSettings(factory.createSettings(_T("resources/INI/Engine.ini"), SettingsType::PHYSICS_SETTINGS));
+	SettingsManager::getInstance().addSettings(factory.createSettings(_T("resources/INI/Engine.ini"), SettingsType::APPLICATION_SETTINGS));
+	SettingsManager::getInstance().addSettings(factory.createSettings(_T("resources/INI/Engine.ini"), SettingsType::GAME_SETTINGS));
+	SettingsManager::getInstance().addSettings(factory.createSettings(_T("resources/INI/Engine.ini"), SettingsType::PHYSICS_SETTINGS));
 
-	if (!Singleton<SettingsManager>::getInstance().initialize())
+	if (!SettingsManager::getInstance().initialize())
 		return FALSE;
-	if (!Singleton<SystemManager>::getInstance().initialize())
+	if (!SystemManager::getInstance().initialize())
 		return FALSE;
 
-	Window* window = dynamic_cast<Window*>(Singleton<SystemManager>::getInstance().getSystem(SystemType::WINDOW_SYSTEM));
+	Window* window = dynamic_cast<Window*>(SystemManager::getInstance().getSystem(SystemType::WINDOW_SYSTEM));
 	if (window == nullptr)
 		return FALSE;
-	Input* input = dynamic_cast<Input*>(Singleton<SystemManager>::getInstance().getSystem(SystemType::INPUT_SYSTEM));
+	Input* input = dynamic_cast<Input*>(SystemManager::getInstance().getSystem(SystemType::INPUT_SYSTEM));
 	if (input == nullptr)
 		return FALSE;
-	Graphics* graphics = dynamic_cast<Graphics*>(Singleton<SystemManager>::getInstance().getSystem(SystemType::GRAPHICS_SYSTEM));
+	Graphics* graphics = dynamic_cast<Graphics*>(SystemManager::getInstance().getSystem(SystemType::GRAPHICS_SYSTEM));
 	if (graphics == nullptr)
 		return FALSE;
-	Logic* logic = dynamic_cast<Logic*>(Singleton<SystemManager>::getInstance().getSystem(SystemType::LOGIC_SYSTEM));
+	Logic* logic = dynamic_cast<Logic*>(SystemManager::getInstance().getSystem(SystemType::LOGIC_SYSTEM));
 	if (logic == nullptr)
 		return FALSE;
 
@@ -128,13 +124,13 @@ int Engine::initialize()
 void Engine::update()
 {
 	std::vector<System*> systems;
-	Singleton<SystemManager>::getInstance().getSystems(systems);
+	SystemManager::getInstance().getSystems(systems);
 	for (System* system : systems)
 		system->update();
 }
 int Engine::shutDown()
 {
-	if (!Singleton<SystemManager>::getInstance().shutdown())
+	if (!SystemManager::getInstance().shutdown())
 		return FALSE;
 
 	if (!destroyManagers())
@@ -145,19 +141,15 @@ int Engine::shutDown()
 
 bool Engine::createManagers()
 {
-	Singleton<SettingsManager>::createInstance();
-	Singleton<SystemManager>::createInstance();
-	Singleton<SceneManager>::createInstance();
-	Singleton<VisualizationFactory>::createInstance();
+	SettingsManager::createInstance();
+	SystemManager::createInstance();
 
 	return true;
 }
 bool Engine::destroyManagers()
 {
-	Singleton<VisualizationFactory>::destroyInstance();
-	Singleton<SceneManager>::destroyInstance();
-	Singleton<SystemManager>::destroyInstance();
-	Singleton<SettingsManager>::destroyInstance();
+	SystemManager::destroyInstance();
+	SettingsManager::destroyInstance();
 
 	return true;
 }

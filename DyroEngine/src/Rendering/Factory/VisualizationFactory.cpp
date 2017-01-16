@@ -47,25 +47,27 @@ Visualization* VisualizationFactory::createVisualization(GameObject* object, boo
 
 	for (Component* component : components)
 	{
+		Visualization* new_visualization = nullptr;
+
 		if (component->getTypeId() == CircleShapeComponent::getClassTypeId())
 		{
-			root->addVisualizationChildNode(new CircleShapeVisualization(component));
+			new_visualization = new CircleShapeVisualization(component);
 		}
 		else if (component->getTypeId() == RectShapeComponent::getClassTypeId())
 		{
-			root->addVisualizationChildNode(new RectShapeVisualization(component));
+			new_visualization = new RectShapeVisualization(component);
 		}
 		else if (component->getTypeId() == TriangleShapeComponent::getClassTypeId())
 		{
-			root->addVisualizationChildNode(new TriangleShapeVisualization(component));
+			new_visualization = new TriangleShapeVisualization(component);
 		}
 		else if (component->getTypeId() == LineShapeComponent::getClassTypeId())
 		{
-			root->addVisualizationChildNode(new LineShapeVisualization(component));
+			new_visualization = new LineShapeVisualization(component);
 		}
 		else if (component->getTypeId() == PolygonShapeComponent::getClassTypeId())
 		{
-			root->addVisualizationChildNode(new PolygonShapeVisualization(component));
+			new_visualization = new PolygonShapeVisualization(component);
 		}
 		//else if (component->getTypeId() == ImageComponent::getClassTypeId())
 		//{
@@ -75,6 +77,11 @@ Visualization* VisualizationFactory::createVisualization(GameObject* object, boo
 		//{
 		//	root->addVisualizationChildNode(new TextVisualization(component));
 		//}
+
+		if (new_visualization == nullptr)
+			continue;
+
+		root->addVisualizationChildNode(new_visualization);		
 	}
 
 	if (generateChildVisualizations)

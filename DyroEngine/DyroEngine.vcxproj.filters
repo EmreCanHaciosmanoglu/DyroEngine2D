@@ -1,835 +1,264 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Header Files\Core">
-      <UniqueIdentifier>{79805992-63fc-411a-b50f-d4d937398760}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Core\Main">
-      <UniqueIdentifier>{0dcfee41-88ff-46fe-9443-cbc8fbb36db5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Defines">
-      <UniqueIdentifier>{5f122730-291f-4610-a280-93e0ca943083}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Core\Systems">
-      <UniqueIdentifier>{639f91dd-82f1-4488-a7f3-1b5687e20446}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\SceneGraph">
-      <UniqueIdentifier>{88427e0c-5487-4c90-9c27-58046cb544f2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\SceneGraph\Base">
-      <UniqueIdentifier>{1d52c887-31ab-4a63-9e49-44cc07b7395c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Defines\Context">
-      <UniqueIdentifier>{cf922d28-c17c-4b3d-9bc1-cd49f7b7ee6d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Math">
-      <UniqueIdentifier>{34eab2a1-bf20-4113-a282-703239940d41}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Core\Systems\Graphics">
-      <UniqueIdentifier>{32cc5fdf-b1ac-46f9-b381-acc77325c443}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Core\Systems\Graphics\Rendering">
-      <UniqueIdentifier>{b8f46d51-d7f0-4782-af77-8af715daea6f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Core\Systems\Timer">
-      <UniqueIdentifier>{7f37b6e5-213a-40c9-8976-a405266b9bcb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Helpers">
-      <UniqueIdentifier>{b65cb8c8-1bba-48d9-8c4f-10cf0c0b17f4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Debug">
-      <UniqueIdentifier>{ffc5e18a-ffb5-4c92-9fe0-f472632f0910}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\SceneGraph\Scene">
-      <UniqueIdentifier>{857cd2f0-625f-42ed-b7d1-c908fc9de153}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Helpers\Factory">
-      <UniqueIdentifier>{353137fb-60bb-45fc-92a3-185cda4daf5c}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="src\Core\Data\Factory\SettingsFactory.cpp" />
+    <ClCompile Include="src\Core\Data\Manager\SettingsManager.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Descriptions\Particles\EmitterComponentDescription.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Descriptions\Particles\ParticleDescription.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Descriptions\Shapes\CircleShapeDescription.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Descriptions\Shapes\FillableShapeDescription.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Descriptions\Shapes\LineShapeDescription.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Descriptions\Shapes\PolygonShapeDescription.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Descriptions\Shapes\RectShapeDescription.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Descriptions\Shapes\ShapeDescription.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Descriptions\Shapes\TriangleShapeDescription.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Geometry.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Layer.cpp" />
+    <ClCompile Include="src\Core\Data\Manager\LayerManager.cpp" />
+    <ClCompile Include="src\Core\Diagnostics\Objects\ErrorLog.cpp" />
+    <ClCompile Include="src\Core\Diagnostics\Objects\InfoLog.cpp" />
+    <ClCompile Include="src\Core\Diagnostics\Objects\TodoLog.cpp" />
+    <ClCompile Include="src\Core\Diagnostics\Objects\WarningLog.cpp" />
+    <ClCompile Include="src\Rendering\Manager\TextureManager.cpp" />
+    <ClCompile Include="src\Core\Data\Manager\TimerManager.cpp" />
+    <ClCompile Include="src\Core\Diagnostics\Manager\LogManager.cpp" />
+    <ClCompile Include="src\Core\Diagnostics\Objects\Log.cpp" />
+    <ClCompile Include="src\Core\Helpers\Interfaces\IDestroyable.cpp" />
+    <ClCompile Include="src\Math\Objects\Random.cpp" />
+    <ClCompile Include="src\Math\Objects\Range.cpp" />
+    <ClCompile Include="src\Rendering\Objects\RenderItems\Particle.cpp" />
+    <ClCompile Include="src\Rendering\Objects\RenderItems\Shapes\CircleShape.cpp" />
+    <ClCompile Include="src\Rendering\Objects\RenderItems\Shapes\LineShape.cpp" />
+    <ClCompile Include="src\Rendering\Objects\RenderItems\Shapes\PolygonShape.cpp" />
+    <ClCompile Include="src\Rendering\Objects\RenderItems\Shapes\RectShape.cpp" />
+    <ClCompile Include="src\Rendering\Objects\RenderItems\Shapes\Shape.cpp" />
+    <ClCompile Include="src\Rendering\Objects\RenderItems\Shapes\TriangleShape.cpp" />
+    <ClCompile Include="src\Rendering\Objects\RenderItems\Texture.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Timers\WorldTimer.cpp" />
+    <ClCompile Include="src\Rendering\Objects\RenderItems\RenderItem.cpp" />
+    <ClCompile Include="src\Rendering\Objects\Visualization\ComponentVisualizations\ComponentVisualization.cpp" />
+    <ClCompile Include="src\Rendering\Objects\Visualization\ComponentVisualizations\ConcreteComponenetVisualization.cpp" />
+    <ClCompile Include="src\Rendering\Objects\Visualization\ComponentVisualizations\EmitterComponentVisualization.cpp" />
+    <ClCompile Include="src\Rendering\Objects\Visualization\GameObjectVisualizations\ConcreteGameObjectVisualization.cpp" />
+    <ClCompile Include="src\Rendering\Objects\Visualization\GameObjectVisualizations\GameObjectVisualization.cpp" />
+    <ClCompile Include="src\Rendering\Objects\Visualization\ComponentVisualizations\ImageVisualization.cpp" />
+    <ClCompile Include="src\Rendering\Factory\VisualizationFactory.cpp" />
+    <ClCompile Include="src\Rendering\Manager\VisualizationManager.cpp" />
+    <ClCompile Include="src\Rendering\Objects\Visualization\ComponentVisualizations\Shapes\CircleShapeVisualization.cpp" />
+    <ClCompile Include="src\Rendering\Objects\Visualization\ComponentVisualizations\Shapes\LineShapeVisualization.cpp" />
+    <ClCompile Include="src\Rendering\Objects\Visualization\ComponentVisualizations\Shapes\PolygonShapeVisualization.cpp" />
+    <ClCompile Include="src\Rendering\Objects\Visualization\ComponentVisualizations\Shapes\RectShapeVisualization.cpp" />
+    <ClCompile Include="src\Rendering\Objects\Visualization\ComponentVisualizations\Shapes\ShapeVisualization.cpp" />
+    <ClCompile Include="src\Rendering\Objects\Visualization\ComponentVisualizations\Shapes\TriangleShapeVisualization.cpp" />
+    <ClCompile Include="src\Rendering\Objects\Visualization\Visualization.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Resources\Audio.cpp" />
+    <ClCompile Include="src\Rendering\DebugRenderer.cpp" />
+    <ClCompile Include="src\Physics\Collision\ContactFilter.cpp" />
+    <ClCompile Include="src\Physics\Collision\ContactListener.cpp" />
+    <ClCompile Include="src\Core\Helpers\Patterns\Manager.cpp" />
+    <ClCompile Include="src\Core\Helpers\ObjectCounter.cpp" />
+    <ClCompile Include="src\Core\Helpers\Patterns\Observer.cpp" />
+    <ClCompile Include="src\Core\Helpers\TaggedObject.cpp" />
+    <ClCompile Include="src\Core\Helpers\Interfaces\IBoundingBox.cpp" />
+    <ClCompile Include="src\SceneGraph\Factory\ComponentFactory.cpp" />
+    <ClCompile Include="src\SceneGraph\Factory\GameObjectFactory.cpp" />
+    <ClCompile Include="src\SceneGraph\Factory\SceneFactory.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\Components\EmitterComponent.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\Components\Physics\Collision\BoxCollisionComponent.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\Components\Physics\Collision\CircleCollisionComponent.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\Components\Physics\Collision\CollisionComponent.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\Components\Physics\Collision\PolygonCollisionComponent.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\Components\Physics\Collision\TriangleCollisionComponent.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\Components\ImageComponent.cpp" />
+    <ClCompile Include="src\SceneGraph\Manager\ComponentManager.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\Components\Physics\RigidBodyComponent.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\Components\Shapes\CircleShapeComponent.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\Components\Shapes\LineShapeComponent.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\Components\Shapes\PolygonShapeComponent.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\Components\Shapes\RectShapeComponent.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\Components\Shapes\TriangleShapeComponent.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\GameObjects\Camera\Camera.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\Components\CameraComponent.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Resources\Image.cpp" />
+    <ClCompile Include="src\Core\Data\Manager\ResourceManager.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Resources\Resource.cpp" />
+    <ClCompile Include="src\Core\System\Input.cpp" />
+    <ClCompile Include="src\Core\Helpers\Interfaces\IInput.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\GameObjects\Camera\FollowCamera.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\GameObjects\Camera\FreeCamera.cpp" />
+    <ClCompile Include="src\SceneGraph\Manager\CameraManager.cpp" />
+    <ClCompile Include="src\SceneGraph\Manager\GameObjectManager.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\GameObjects\PhysicsObject.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\GameObjects\SceneObject.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\GameObjects\UIObject.cpp" />
+    <ClCompile Include="src\Core\Engine.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Game.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Settings\ApplicationSettings.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Settings\GameSettings.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Settings\PhysicsSettings.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Settings\Settings.cpp" />
+    <ClCompile Include="src\Core\System\Logic.cpp" />
+    <ClCompile Include="src\Core\System\Graphics.cpp" />
+    <ClCompile Include="src\Core\System\Factory\SystemFactory.cpp" />
+    <ClCompile Include="src\Core\System\Manager\SystemManager.cpp" />
+    <ClCompile Include="src\Core\Helpers\Interfaces\IWindow.cpp" />
+    <ClCompile Include="src\Math\Objects\Matrix2D.cpp" />
+    <ClCompile Include="src\Math\Objects\Rect2D.cpp" />
+    <ClCompile Include="src\Rendering\Renderer.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\Components\Component.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\Components\Shapes\ShapeComponent.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\GameObjects\GameObject.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\Scenes\LoadingScene.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\Scenes\Scene.cpp" />
+    <ClCompile Include="src\SceneGraph\Manager\SceneManager.cpp" />
+    <ClCompile Include="src\Core\Helpers\Patterns\Singleton.cpp" />
+    <ClCompile Include="src\Core\System\System.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Timers\Timer.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\Object.cpp" />
+    <ClCompile Include="src\Math\Objects\Vector2D.cpp" />
+    <ClCompile Include="src\Core\System\Window.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\Components\TransformComponent.cpp" />
+    <ClCompile Include="src\Core\Data\Factory\GeometryFactory.cpp" />
+    <ClCompile Include="src\Core\Data\Manager\GeometryManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Core\Engine.cpp">
-      <Filter>Header Files\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Data\Manager\LayerManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Data\Manager\TimerManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Data\Objects\Layer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Data\Objects\Timers\Timer.cpp">
-      <Filter>Header Files\Core\Systems\Timer</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Data\Objects\Timers\WorldTimer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Data\Objects\Descriptions\Shapes\CircleShapeDescription.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Data\Objects\Descriptions\Shapes\LineShapeDescription.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Data\Objects\Descriptions\Shapes\PolygonShapeDescription.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Data\Objects\Descriptions\Shapes\RectShapeDescription.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Data\Objects\Descriptions\Shapes\ShapeDescription.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Data\Objects\Descriptions\Shapes\TriangleShapeDescription.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Data\Objects\Descriptions\Shapes\FillableShapeDescription.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Rendering\Renderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\System\Factory\SystemFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\System\Manager\SystemManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\System\Graphics.cpp">
-      <Filter>Header Files\Core\Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\System\Input.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\System\Logic.cpp">
-      <Filter>Header Files\Core\Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\System\System.cpp">
-      <Filter>Header Files\Core\Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Data\Objects\Resources\Audio.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Data\Objects\Resources\Image.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Data\Objects\Resources\Resource.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Data\Objects\Settings\ApplicationSettings.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Data\Objects\Settings\GameSettings.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Data\Objects\Settings\Settings.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Data\Objects\Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Data\Manager\ResourceManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Rendering\DebugRenderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Physics\Collision\ContactFilter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Physics\Collision\ContactListener.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Math\Objects\Matrix2D.cpp">
-      <Filter>Header Files\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Math\Objects\Rect2D.cpp">
-      <Filter>Header Files\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Math\Objects\Vector2D.cpp">
-      <Filter>Header Files\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Rendering\Objects\RenderItems\Shapes\CircleShape.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Rendering\Objects\RenderItems\Shapes\LineShape.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Rendering\Objects\RenderItems\Shapes\PolygonShape.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Rendering\Objects\RenderItems\Shapes\RectShape.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Rendering\Objects\RenderItems\Shapes\Shape.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Rendering\Objects\RenderItems\Shapes\TriangleShape.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Rendering\Objects\RenderItems\Texture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Rendering\Objects\RenderItems\RenderItem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Rendering\Factory\VisualizationFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Rendering\Manager\VisualizationManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneGraph\Objects\GameObjects\Camera\Camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneGraph\Objects\GameObjects\Camera\FollowCamera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneGraph\Objects\GameObjects\Camera\FreeCamera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneGraph\Objects\GameObjects\GameObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneGraph\Objects\GameObjects\PhysicsObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneGraph\Objects\GameObjects\SceneObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneGraph\Objects\GameObjects\UIObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneGraph\Objects\Components\Shapes\CircleShapeComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneGraph\Objects\Components\Shapes\LineShapeComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneGraph\Objects\Components\Shapes\PolygonShapeComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneGraph\Objects\Components\Shapes\RectShapeComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneGraph\Objects\Components\Shapes\ShapeComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneGraph\Objects\Components\Shapes\TriangleShapeComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneGraph\Objects\Components\CameraComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneGraph\Objects\Components\Component.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneGraph\Objects\Components\ImageComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneGraph\Objects\Components\TransformComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneGraph\Objects\Scenes\Scene.cpp">
-      <Filter>Header Files\SceneGraph\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneGraph\Manager\ComponentManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneGraph\Manager\GameObjectManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneGraph\Manager\SceneManager.cpp">
-      <Filter>Header Files\SceneGraph\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneGraph\Manager\CameraManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneGraph\Factory\SceneFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneGraph\Factory\GameObjectFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneGraph\Factory\ComponentFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneGraph\Objects\Components\Physics\Collision\BoxCollisionComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneGraph\Objects\Components\Physics\Collision\CircleCollisionComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneGraph\Objects\Components\Physics\Collision\CollisionComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneGraph\Objects\Components\Physics\Collision\PolygonCollisionComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneGraph\Objects\Components\Physics\Collision\TriangleCollisionComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneGraph\Objects\Components\Physics\RigidBodyComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneGraph\Objects\Scenes\LoadingScene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\System\Window.cpp">
-      <Filter>Header Files\Core\Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Diagnostics\Manager\LogManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Diagnostics\Objects\Log.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Helpers\Interfaces\IBoundingBox.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Helpers\Interfaces\IInput.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Helpers\Interfaces\IWindow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Helpers\Patterns\Manager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Helpers\Patterns\Observer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Helpers\Patterns\Singleton.cpp">
-      <Filter>Header Files\Helpers</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Helpers\ObjectCounter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Helpers\TaggedObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Data\Manager\SettingsManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Data\Factory\SettingsFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Data\Objects\Settings\PhysicsSettings.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneGraph\Objects\Components\EmitterComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Data\Objects\Descriptions\Particles\EmitterComponentDescription.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Data\Objects\Descriptions\Particles\ParticleDescription.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Math\Objects\Random.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Math\Objects\Range.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Rendering\Objects\Visualization\GameObjectVisualizations\ConcreteGameObjectVisualization.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Rendering\Objects\Visualization\GameObjectVisualizations\GameObjectVisualization.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Rendering\Objects\Visualization\ComponentVisualizations\Shapes\CircleShapeVisualization.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Rendering\Objects\Visualization\ComponentVisualizations\Shapes\LineShapeVisualization.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Rendering\Objects\Visualization\ComponentVisualizations\Shapes\PolygonShapeVisualization.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Rendering\Objects\Visualization\ComponentVisualizations\Shapes\RectShapeVisualization.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Rendering\Objects\Visualization\ComponentVisualizations\Shapes\ShapeVisualization.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Rendering\Objects\Visualization\ComponentVisualizations\Shapes\TriangleShapeVisualization.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Rendering\Objects\Visualization\ComponentVisualizations\ComponentVisualization.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Rendering\Objects\Visualization\ComponentVisualizations\ConcreteComponenetVisualization.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Rendering\Objects\Visualization\ComponentVisualizations\ImageVisualization.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Rendering\Objects\Visualization\Visualization.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Rendering\Objects\Visualization\ComponentVisualizations\EmitterComponentVisualization.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Rendering\Objects\RenderItems\Particle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Helpers\Interfaces\IDestroyable.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Rendering\Manager\TextureManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Rendering\Manager\GeometryManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Rendering\Factory\GeometryFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Diagnostics\Objects\TodoLog.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Diagnostics\Objects\WarningLog.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Diagnostics\Objects\ErrorLog.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Diagnostics\Objects\InfoLog.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneGraph\Objects\Object.cpp">
-      <Filter>Header Files\SceneGraph\Base</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Data\Objects\Geometry.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="include\Core\Engine.h">
-      <Filter>Header Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\System\Manager\SystemManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Data\Manager\LayerManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\System\Factory\SystemFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Data\Objects\Layer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Data\Objects\Descriptions\Shapes\ShapeDescription.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Data\Objects\Descriptions\Shapes\LineShapeDescription.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Data\Objects\Descriptions\Shapes\CircleShapeDescription.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Data\Objects\Descriptions\Shapes\RectShapeDescription.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Data\Objects\Descriptions\Shapes\TriangleShapeDescription.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Data\Objects\Descriptions\Shapes\PolygonShapeDescription.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Data\Manager\TimerManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Data\Objects\Timers\Timer.h">
-      <Filter>Header Files\Core\Systems\Timer</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Data\Objects\Timers\WorldTimer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Data\Objects\Descriptions\Shapes\FillableShapeDescription.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Data\Factory\SettingsFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Data\Manager\SettingsManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Data\Manager\ResourceManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Data\Objects\Resources\Audio.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Data\Objects\Resources\Image.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Data\Objects\Resources\Resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Data\Objects\Settings\ApplicationSettings.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Data\Objects\Settings\GameSettings.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Data\Objects\Settings\Settings.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Data\Objects\Game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Defines\assert.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Defines\collisionlayers.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Defines\color.h">
-      <Filter>Header Files\Defines</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Defines\d2dutill.h">
-      <Filter>Header Files\Defines</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Defines\deletemacros.h">
-      <Filter>Header Files\Defines</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Defines\fstream.h">
-      <Filter>Header Files\Defines</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Defines\iostream.h">
-      <Filter>Header Files\Defines</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Defines\programdefaults.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Defines\string.h">
-      <Filter>Header Files\Defines</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Defines\stringstream.h">
-      <Filter>Header Files\Defines</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Types\BodyType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Types\InputStateType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Types\LogType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Types\ResourceType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Types\SettingsType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Types\SystemType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Diagnostics\Manager\LogManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Diagnostics\Objects\Log.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Rendering\DebugRenderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Rendering\Renderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Helpers\Patterns\Manager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Helpers\Patterns\Observer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Helpers\Patterns\Singleton.h">
-      <Filter>Header Files\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Helpers\ObjectCounter.h">
-      <Filter>Header Files\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Helpers\TaggedObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Physics\Collision\ContactFilter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Physics\Collision\ContactListener.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Math\Objects\Matrix2D.h">
-      <Filter>Header Files\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Math\Objects\Rect2D.h">
-      <Filter>Header Files\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Math\Objects\Vector2D.h">
-      <Filter>Header Files\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\System\Objects\Graphics.h">
-      <Filter>Header Files\Core\Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\System\Objects\Input.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\System\Objects\Logic.h">
-      <Filter>Header Files\Core\Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\System\Objects\System.h">
-      <Filter>Header Files\Core\Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Helpers\Interfaces\IBoundingBox.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Helpers\Interfaces\IInput.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Helpers\Interfaces\IWindow.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\System\Objects\Window.h">
-      <Filter>Header Files\Core\Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Rendering\Factory\VisualizationFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Rendering\Manager\VisualizationManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Rendering\Objects\Visualization\Visualization.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Rendering\Objects\Visualization\ComponentVisualizations\Shapes\CircleShapeVisualization.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Rendering\Objects\Visualization\ComponentVisualizations\Shapes\LineShapeVisualization.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Rendering\Objects\Visualization\ComponentVisualizations\Shapes\PolygonShapeVisualization.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Rendering\Objects\Visualization\ComponentVisualizations\Shapes\RectShapeVisualization.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Rendering\Objects\Visualization\ComponentVisualizations\Shapes\ShapeVisualization.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Rendering\Objects\Visualization\ComponentVisualizations\Shapes\TriangleShapeVisualization.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Rendering\Objects\Visualization\ComponentVisualizations\ComponentVisualization.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Rendering\Objects\Visualization\ComponentVisualizations\ConcreteComponentVisualization.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Rendering\Objects\Visualization\ComponentVisualizations\ImageVisualization.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Rendering\Objects\Visualization\GameObjectVisualizations\ConcreteGameObjectVisualization.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Rendering\Objects\Visualization\GameObjectVisualizations\GameObjectVisualization.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Rendering\Objects\RenderItems\Shapes\CircleShape.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Rendering\Objects\RenderItems\Shapes\LineShape.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Rendering\Objects\RenderItems\Shapes\PolygonShape.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Rendering\Objects\RenderItems\Shapes\RectShape.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Rendering\Objects\RenderItems\Shapes\Shape.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Rendering\Objects\RenderItems\Shapes\TriangleShape.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Rendering\Objects\RenderItems\RenderItem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Rendering\Objects\RenderItems\Texture.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Manager\ComponentManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Manager\GameObjectManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Manager\SceneManager.h">
-      <Filter>Header Files\SceneGraph\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Factory\SceneFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Manager\CameraManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Factory\ComponentFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Factory\GameObjectFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Objects\Object.h">
-      <Filter>Header Files\SceneGraph\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Objects\Scenes\Scene.h">
-      <Filter>Header Files\SceneGraph\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Objects\Scenes\LoadingScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Objects\GameObjects\Camera\Camera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Objects\GameObjects\Camera\FollowCamera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Objects\GameObjects\Camera\FreeCamera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Objects\GameObjects\GameObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Objects\GameObjects\PhysicsObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Objects\GameObjects\SceneObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Objects\GameObjects\UIObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Objects\Components\Shapes\CircleShapeComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Objects\Components\Shapes\LineShapeComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Objects\Components\Shapes\PolygonShapeComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Objects\Components\Shapes\RectShapeComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Objects\Components\Shapes\ShapeComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Objects\Components\Shapes\TriangleShapeComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Objects\Components\CameraComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Objects\Components\Component.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Objects\Components\ImageComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Objects\Components\TransformComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Data\Objects\Settings\PhysicsSettings.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Objects\Components\Physics\Collision\BoxCollisionComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Objects\Components\Physics\Collision\CircleCollisionComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Objects\Components\Physics\Collision\CollisionComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Objects\Components\Physics\Collision\PolygonCollisionComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Objects\Components\Physics\Collision\TriangleCollisionComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Objects\Components\EmitterComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SceneGraph\Objects\Components\Physics\RigidBodyComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Data\Objects\Descriptions\Particles\EmitterComponentDescription.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Data\Objects\Descriptions\Particles\ParticleDescription.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Math\Objects\Range.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Math\Objects\Random.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Helpers\Interfaces\IDestroyable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Rendering\Objects\Visualization\ComponentVisualizations\EmitterComponentVisualization.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Rendering\Objects\RenderItems\Particle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Rendering\Manager\TextureManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Rendering\Manager\GeometryManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Types\GeometryType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Diagnostics\Objects\InfoLog.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Diagnostics\Objects\WarningLog.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Diagnostics\Objects\ErrorLog.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Diagnostics\Objects\TodoLog.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Defines\consolecolors.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Defines\debug.h">
-    <ClInclude Include="include\Rendering\Factory\GeometryFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Core\Data\Objects\Geometry.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <ClInclude Include="include\Core\Data\Factory\SettingsFactory.h" />
+    <ClInclude Include="include\Core\Data\Manager\SettingsManager.h" />
+    <ClInclude Include="include\Core\Data\Manager\TimerManager.h" />
+    <ClInclude Include="include\Core\Data\Objects\Descriptions\Particles\EmitterComponentDescription.h" />
+    <ClInclude Include="include\Core\Data\Objects\Descriptions\Particles\ParticleDescription.h" />
+    <ClInclude Include="include\Core\Data\Objects\Descriptions\Shapes\CircleShapeDescription.h" />
+    <ClInclude Include="include\Core\Data\Objects\Descriptions\Shapes\LineShapeDescription.h" />
+    <ClInclude Include="include\Core\Data\Objects\Descriptions\Shapes\PolygonShapeDescription.h" />
+    <ClInclude Include="include\Core\Data\Objects\Descriptions\Shapes\RectShapeDescription.h" />
+    <ClInclude Include="include\Core\Data\Objects\Descriptions\Shapes\ShapeDescription.h" />
+    <ClInclude Include="include\Core\Data\Objects\Descriptions\Shapes\TriangleShapeDescription.h" />
+    <ClInclude Include="include\Core\Data\Objects\Geometry.h" />
+    <ClInclude Include="include\Core\Data\Objects\Layer.h" />
+    <ClInclude Include="include\Core\Data\Manager\LayerManager.h" />
+    <ClInclude Include="include\Core\Defines\consolecolors.h" />
+    <ClInclude Include="include\Core\Defines\debug.h" />
+    <ClInclude Include="include\Core\Diagnostics\Objects\ErrorLog.h" />
+    <ClInclude Include="include\Core\Diagnostics\Objects\InfoLog.h" />
+    <ClInclude Include="include\Core\Diagnostics\Objects\TodoLog.h" />
+    <ClInclude Include="include\Core\Diagnostics\Objects\WarningLog.h" />
+    <ClInclude Include="include\Rendering\Manager\TextureManager.h" />
+    <ClInclude Include="include\Math\Objects\Random.h" />
+    <ClInclude Include="include\Math\Objects\Range.h" />
+    <ClInclude Include="include\Rendering\Objects\RenderItems\Particle.h" />
+    <ClInclude Include="include\Rendering\Objects\RenderItems\Texture.h" />
+    <ClInclude Include="include\Core\Data\Objects\Timers\WorldTimer.h" />
+    <ClInclude Include="include\Rendering\Objects\RenderItems\RenderItem.h" />
+    <ClInclude Include="include\Rendering\Objects\Visualization\ComponentVisualizations\ConcreteComponentVisualization.h" />
+    <ClInclude Include="include\Rendering\Objects\Visualization\ComponentVisualizations\EmitterComponentVisualization.h" />
+    <ClInclude Include="include\Rendering\Objects\Visualization\GameObjectVisualizations\ConcreteGameObjectVisualization.h" />
+    <ClInclude Include="include\Rendering\Objects\Visualization\ComponentVisualizations\Shapes\CircleShapeVisualization.h" />
+    <ClInclude Include="include\Rendering\Objects\Visualization\ComponentVisualizations\ComponentVisualization.h" />
+    <ClInclude Include="include\Rendering\Objects\Visualization\ComponentVisualizations\ImageVisualization.h" />
+    <ClInclude Include="include\Rendering\Factory\VisualizationFactory.h" />
+    <ClInclude Include="include\Core\Data\Objects\Descriptions\Shapes\FillableShapeDescription.h" />
+    <ClInclude Include="include\Rendering\Objects\Visualization\ComponentVisualizations\Shapes\LineShapeVisualization.h" />
+    <ClInclude Include="include\Rendering\Manager\VisualizationManager.h" />
+    <ClInclude Include="include\Rendering\Objects\Visualization\ComponentVisualizations\Shapes\PolygonShapeVisualization.h" />
+    <ClInclude Include="include\Rendering\Objects\Visualization\ComponentVisualizations\Shapes\RectShapeVisualization.h" />
+    <ClInclude Include="include\Rendering\Objects\Visualization\GameObjectVisualizations\GameObjectVisualization.h" />
+    <ClInclude Include="include\Rendering\Objects\Visualization\ComponentVisualizations\Shapes\ShapeVisualization.h" />
+    <ClInclude Include="include\Rendering\Objects\Visualization\ComponentVisualizations\Shapes\TriangleShapeVisualization.h" />
+    <ClInclude Include="include\Rendering\Objects\Visualization\Visualization.h" />
+    <ClInclude Include="include\Core\Data\Objects\Resources\Audio.h" />
+    <ClInclude Include="include\Core\Defines\collisionlayers.h" />
+    <ClInclude Include="include\Core\Types\BodyType.h" />
+    <ClInclude Include="include\Core\Types\SettingsType.h" />
+    <ClInclude Include="include\Core\Types\GeometryType.h" />
+    <ClInclude Include="include\Rendering\DebugRenderer.h" />
+    <ClInclude Include="include\Core\Diagnostics\Manager\LogManager.h" />
+    <ClInclude Include="include\Core\Diagnostics\Objects\Log.h" />
+    <ClInclude Include="include\Physics\Collision\ContactFilter.h" />
+    <ClInclude Include="include\Physics\Collision\ContactListener.h" />
+    <ClInclude Include="include\Core\Helpers\Patterns\Observer.h" />
+    <ClInclude Include="include\Core\Helpers\Interfaces\IBoundingBox.h" />
+    <ClInclude Include="include\Core\Helpers\TaggedObject.h" />
+    <ClInclude Include="include\SceneGraph\Objects\Components\EmitterComponent.h" />
+    <ClInclude Include="include\SceneGraph\Objects\Components\Physics\Collision\BoxCollisionComponent.h" />
+    <ClInclude Include="include\SceneGraph\Objects\Components\Physics\Collision\CircleCollisionComponent.h" />
+    <ClInclude Include="include\SceneGraph\Objects\Components\Physics\Collision\CollisionComponent.h" />
+    <ClInclude Include="include\SceneGraph\Objects\Components\Physics\Collision\PolygonCollisionComponent.h" />
+    <ClInclude Include="include\SceneGraph\Objects\Components\Physics\Collision\TriangleCollisionComponent.h" />
+    <ClInclude Include="include\SceneGraph\Objects\Components\ImageComponent.h" />
+    <ClInclude Include="include\SceneGraph\Factory\ComponentFactory.h" />
+    <ClInclude Include="include\SceneGraph\Factory\GameObjectFactory.h" />
+    <ClInclude Include="include\SceneGraph\Factory\SceneFactory.h" />
+    <ClInclude Include="include\SceneGraph\Manager\ComponentManager.h" />
+    <ClInclude Include="include\SceneGraph\Objects\Components\Physics\RigidBodyComponent.h" />
+    <ClInclude Include="include\SceneGraph\Objects\Components\Shapes\CircleShapeComponent.h" />
+    <ClInclude Include="include\SceneGraph\Objects\Components\Shapes\LineShapeComponent.h" />
+    <ClInclude Include="include\SceneGraph\Objects\Components\Shapes\PolygonShapeComponent.h" />
+    <ClInclude Include="include\SceneGraph\Objects\Components\Shapes\RectShapeComponent.h" />
+    <ClInclude Include="include\SceneGraph\Objects\Components\Shapes\ShapeComponent.h" />
+    <ClInclude Include="include\SceneGraph\Objects\Components\Shapes\TriangleShapeComponent.h" />
+    <ClInclude Include="include\SceneGraph\Objects\GameObjects\Camera\Camera.h" />
+    <ClInclude Include="include\SceneGraph\Objects\Components\CameraComponent.h" />
+    <ClInclude Include="include\Core\Data\Objects\Resources\Image.h" />
+    <ClInclude Include="include\Core\Data\Manager\ResourceManager.h" />
+    <ClInclude Include="include\Core\Data\Objects\Resources\Resource.h" />
+    <ClInclude Include="include\Core\System\Objects\Input.h" />
+    <ClInclude Include="include\Core\Types\InputStateType.h" />
+    <ClInclude Include="include\Core\Data\Objects\Game.h" />
+    <ClInclude Include="include\Rendering\Renderer.h" />
+    <ClInclude Include="include\Core\Data\Objects\Settings\ApplicationSettings.h" />
+    <ClInclude Include="include\Core\Data\Objects\Settings\GameSettings.h" />
+    <ClInclude Include="include\Core\Data\Objects\Settings\PhysicsSettings.h" />
+    <ClInclude Include="include\Core\Data\Objects\Settings\Settings.h" />
+    <ClInclude Include="include\Core\System\Factory\SystemFactory.h" />
+    <ClInclude Include="include\Core\System\Manager\SystemManager.h" />
+    <ClInclude Include="include\Core\Defines\assert.h" />
+    <ClInclude Include="include\Core\Defines\color.h" />
+    <ClInclude Include="include\Core\Defines\d2dutill.h" />
+    <ClInclude Include="include\Core\Defines\deletemacros.h" />
+    <ClInclude Include="include\Core\Engine.h" />
+    <ClInclude Include="include\Core\Defines\fstream.h" />
+    <ClInclude Include="include\Core\System\Objects\Logic.h" />
+    <ClInclude Include="include\Core\System\Objects\Graphics.h" />
+    <ClInclude Include="include\Core\Defines\iostream.h" />
+    <ClInclude Include="include\Core\Defines\programdefaults.h" />
+    <ClInclude Include="include\Core\Types\LogType.h" />
+    <ClInclude Include="include\Core\Types\ResourceType.h" />
+    <ClInclude Include="include\Core\Types\SystemType.h" />
+    <ClInclude Include="include\Core\Helpers\Patterns\Manager.h" />
+    <ClInclude Include="include\Core\Helpers\Interfaces\IInput.h" />
+    <ClInclude Include="include\Core\Helpers\Interfaces\IWindow.h" />
+    <ClInclude Include="include\Math\Objects\Matrix2D.h" />
+    <ClInclude Include="include\Core\Helpers\ObjectCounter.h" />
+    <ClInclude Include="include\Math\Objects\Rect2D.h" />
+    <ClInclude Include="include\SceneGraph\Objects\Components\Component.h" />
+    <ClInclude Include="include\SceneGraph\Objects\GameObjects\Camera\FollowCamera.h" />
+    <ClInclude Include="include\SceneGraph\Objects\GameObjects\Camera\FreeCamera.h" />
+    <ClInclude Include="include\SceneGraph\Manager\CameraManager.h" />
+    <ClInclude Include="include\SceneGraph\Objects\GameObjects\GameObject.h" />
+    <ClInclude Include="include\SceneGraph\Manager\GameObjectManager.h" />
+    <ClInclude Include="include\SceneGraph\Objects\GameObjects\PhysicsObject.h" />
+    <ClInclude Include="include\SceneGraph\Objects\GameObjects\UIObject.h" />
+    <ClInclude Include="include\Rendering\Objects\RenderItems\Shapes\CircleShape.h" />
+    <ClInclude Include="include\Rendering\Objects\RenderItems\Shapes\LineShape.h" />
+    <ClInclude Include="include\Rendering\Objects\RenderItems\Shapes\PolygonShape.h" />
+    <ClInclude Include="include\Rendering\Objects\RenderItems\Shapes\RectShape.h" />
+    <ClInclude Include="include\Rendering\Objects\RenderItems\Shapes\TriangleShape.h" />
+    <ClInclude Include="include\SceneGraph\Objects\Scenes\LoadingScene.h" />
+    <ClInclude Include="include\SceneGraph\Objects\Scenes\Scene.h" />
+    <ClInclude Include="include\SceneGraph\Manager\SceneManager.h" />
+    <ClInclude Include="include\Core\Helpers\Patterns\Singleton.h" />
+    <ClInclude Include="include\Core\Defines\string.h" />
+    <ClInclude Include="include\Core\Defines\stringstream.h" />
+    <ClInclude Include="include\Core\System\Objects\System.h" />
+    <ClInclude Include="include\Core\Data\Objects\Timers\Timer.h" />
+    <ClInclude Include="include\SceneGraph\Objects\Object.h" />
+    <ClInclude Include="include\Math\Objects\Vector2D.h" />
+    <ClInclude Include="include\Core\System\Objects\Window.h" />
+    <ClInclude Include="include\Rendering\Objects\RenderItems\Shapes\Shape.h" />
+    <ClInclude Include="include\SceneGraph\Objects\GameObjects\SceneObject.h" />
+    <ClInclude Include="include\SceneGraph\Objects\Components\TransformComponent.h" />
+    <ClInclude Include="include\Core\Helpers\Interfaces\IDestroyable.h" />
+    <ClInclude Include="include\Core\Data\Factory\GeometryFactory.h" />
+    <ClInclude Include="include\Core\Data\Manager\GeometryManager.h" />
   </ItemGroup>
 </Project>

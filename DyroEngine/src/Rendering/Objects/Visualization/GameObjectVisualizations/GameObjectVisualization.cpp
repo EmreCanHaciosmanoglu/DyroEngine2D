@@ -13,12 +13,26 @@ GameObjectVisualization::GameObjectVisualization(GameObject* object, const std::
 	, visualization_manager(nullptr)
 {
 	this->visualization_manager = new VisualizationManager();
-	this->visualization_manager->initialize();
+
+	//Set the active scene of the game object
+	setScene(object->getScene());
 }
 GameObjectVisualization::~GameObjectVisualization()
 {
-	this->visualization_manager->shutdown();
 	SafeDelete(this->visualization_manager);
+}
+
+bool GameObjectVisualization::initialize()
+{
+	bool result = this->visualization_manager->initialize();
+
+	return result;
+}
+bool GameObjectVisualization::shutdown()
+{
+	bool result = this->visualization_manager->shutdown();
+
+	return result;
 }
 
 void GameObjectVisualization::getRenderItems(std::vector<RenderItem*>& items)
@@ -68,6 +82,7 @@ const Matrix2D& GameObjectVisualization::getTransform() const
 void GameObjectVisualization::addVisualizationChildNode(Visualization* visualization)
 {
 	visualization->setParent(this);
+	visualization->setScene(getScene());
 	this->visualization_manager->addVisualization(visualization);
 }
 void GameObjectVisualization::removeVisualizationChildNode(Visualization* visualization)

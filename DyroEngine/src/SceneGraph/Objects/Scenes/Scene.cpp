@@ -11,8 +11,6 @@
 
 #include "Core\Defines\deletemacros.h"
 
-#include "Core/Helpers/Patterns/Singleton.h"
-
 #include "Physics\Collision\ContactListener.h"
 #include "Physics\Collision\ContactFilter.h"
 
@@ -63,7 +61,7 @@ bool Scene::initialize()
 }
 bool Scene::postInitialize()
 {
-	Input* input = dynamic_cast<Input*>(Singleton<SystemManager>::getInstance().getSystem(SystemType::INPUT_SYSTEM));
+	Input* input = dynamic_cast<Input*>(SystemManager::getInstance().getSystem(SystemType::INPUT_SYSTEM));
 	this->setupInput(input);
 
 	this->game_object_manager->setupInput(input);
@@ -75,7 +73,7 @@ bool Scene::postInitialize()
 void Scene::update()
 {
 	//Retrieve the physics settings
-	PhysicsSettings* physicsSettings = dynamic_cast<PhysicsSettings*>(Singleton<SettingsManager>::getInstance().getSettings(SettingsType::PHYSICS_SETTINGS));
+	PhysicsSettings* physicsSettings = dynamic_cast<PhysicsSettings*>(SettingsManager::getInstance().getSettings(SettingsType::PHYSICS_SETTINGS));
 	if (physicsSettings == nullptr)
 		return;
 
@@ -179,7 +177,7 @@ void Scene::setupPyhx()
 	this->contact_filter = new ContactFilter();
 	this->contact_listener = new ContactListener();
 
-	PhysicsSettings* physicsSettings = dynamic_cast<PhysicsSettings*>(Singleton<SettingsManager>::getInstance().getSettings(SettingsType::PHYSICS_SETTINGS));
+	PhysicsSettings* physicsSettings = dynamic_cast<PhysicsSettings*>(SettingsManager::getInstance().getSettings(SettingsType::PHYSICS_SETTINGS));
 	if (physicsSettings == nullptr)
 		return;
 

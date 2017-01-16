@@ -3,7 +3,6 @@
 #include "SceneGraph\Objects\Components\TransformComponent.h"
 #include "SceneGraph\Objects\Components\CameraComponent.h"
 
-#include "Core/Helpers/Patterns/Singleton.h"
 #include "SceneGraph/Manager/CameraManager.h"
 
 Camera::Camera(const std::tstring& name, bool setActive)
@@ -13,7 +12,7 @@ Camera::Camera(const std::tstring& name, bool setActive)
 {
 	OBJECT_INIT(_T("Camera"));
 
-	Singleton<CameraManager>::getInstance().addCamera(this, setActive);
+	CameraManager::getInstance().addCamera(this, setActive);
 
 	addComponent(this->transform);
 	addComponent(this->camera);

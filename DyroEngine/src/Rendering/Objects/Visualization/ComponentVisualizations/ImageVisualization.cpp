@@ -6,8 +6,6 @@
 
 #include "SceneGraph\Objects\GameObjects\SceneObject.h"
 
-#include "Core/Helpers/Patterns/Singleton.h"
-
 #include "SceneGraph\Objects\Components\ImageComponent.h"
 #include "SceneGraph\Objects\Scenes\Scene.h"
 
@@ -17,9 +15,17 @@ ImageVisualization::ImageVisualization(Component* object, const std::tstring& na
 	:ConcreteComponentVisualization(object, name)
 	, texture(nullptr)
 {
-	ImageComponent* component = dynamic_cast<ImageComponent*>(object);
+
+}
+ImageVisualization::~ImageVisualization()
+{
+}
+
+bool ImageVisualization::initialize()
+{
+	ImageComponent* component = dynamic_cast<ImageComponent*>(getObject());
 	if (component == nullptr)
-		return;
+		return false;
 
 	this->texture = getScene()->getManager<TextureManager>()->getTexture(component->getImage());
 
@@ -28,9 +34,12 @@ ImageVisualization::ImageVisualization(Component* object, const std::tstring& na
 		this->texture = new Texture(this, component->getImage());
 		getScene()->getManager<TextureManager>()->addTexture(this->texture);
 	}
+
+	return true;
 }
-ImageVisualization::~ImageVisualization()
+bool ImageVisualization::shutdown()
 {
+	return true;
 }
 
 void ImageVisualization::generateRenderItems(std::vector<RenderItem*>& items)
@@ -38,7 +47,7 @@ void ImageVisualization::generateRenderItems(std::vector<RenderItem*>& items)
 	ImageComponent* component = getConcreteComponent();
 
 	if (this->texture->getImage() != component->getImage())
-		this->texture = Singleton<TextureManager>::getInstance().getTexture(component->getImage());
+		this->texture = TextureManager::getInstance().getTexture(component->getImage());
 
 	GameObjectVisualization* parent = dynamic_cast<GameObjectVisualization*>(getParent());
 	if (parent != nullptr)

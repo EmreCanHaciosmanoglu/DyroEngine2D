@@ -1,8 +1,5 @@
 #include "Rendering\DebugRenderer.h"
 
-#include "Core/Helpers/Patterns/Singleton.h"
-#include "Core/Helpers/Patterns/Singleton.h"
-
 #include "Math/Objects/Matrix2D.h"
 
 #include "Core\Data/Objects/Settings\ApplicationSettings.h"
@@ -28,7 +25,7 @@ DebugRenderer::~DebugRenderer()
 void DebugRenderer::DrawPoint(const b2Vec2& p, float32 size, const b2Color& color)
 {
 	Renderer renderer = Singleton<Renderer>::getInstance();
-	Matrix2D mat_view = Singleton<CameraManager>::getInstance().getActiveCamera()->getCamera()->getViewMatrix();
+	Matrix2D mat_view = CameraManager::getInstance().getActiveCamera()->getCamera()->getViewMatrix();
 
 	renderer.setTransformMatrix(this->mat_scale * mat_view);
 	renderer.setColor(Color(color.r, color.g, color.b, color.a));
@@ -38,7 +35,7 @@ void DebugRenderer::DrawPoint(const b2Vec2& p, float32 size, const b2Color& colo
 void DebugRenderer::DrawPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color)
 {
 	Renderer renderer = Singleton<Renderer>::getInstance();
-	Matrix2D mat_view = Singleton<CameraManager>::getInstance().getActiveCamera()->getCamera()->getViewMatrix();
+	Matrix2D mat_view = CameraManager::getInstance().getActiveCamera()->getCamera()->getViewMatrix();
 
 	std::vector<Vector2D> vertexsArr;
 	for (int i = 0; i < vertexCount; i++)
@@ -51,7 +48,7 @@ void DebugRenderer::DrawPolygon(const b2Vec2* vertices, int32 vertexCount, const
 void DebugRenderer::DrawSolidPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color)
 {
 	Renderer renderer = Singleton<Renderer>::getInstance();
-	Matrix2D mat_view = Singleton<CameraManager>::getInstance().getActiveCamera()->getCamera()->getViewMatrix();
+	Matrix2D mat_view = CameraManager::getInstance().getActiveCamera()->getCamera()->getViewMatrix();
 
 	std::vector<Vector2D> vertexsArr;
 	for (int i = 0; i < vertexCount; i++)
@@ -65,7 +62,7 @@ void DebugRenderer::DrawSolidPolygon(const b2Vec2* vertices, int32 vertexCount, 
 void DebugRenderer::DrawCircle(const b2Vec2& center, float32 radius, const b2Color& color)
 {
 	Renderer renderer = Singleton<Renderer>::getInstance();
-	Matrix2D mat_view = Singleton<CameraManager>::getInstance().getActiveCamera()->getCamera()->getViewMatrix();
+	Matrix2D mat_view = CameraManager::getInstance().getActiveCamera()->getCamera()->getViewMatrix();
 
 	renderer.setTransformMatrix(this->mat_scale * mat_view);
 	renderer.setColor(Color(color.r, color.g, color.b, color.a));
@@ -74,7 +71,7 @@ void DebugRenderer::DrawCircle(const b2Vec2& center, float32 radius, const b2Col
 void DebugRenderer::DrawSolidCircle(const b2Vec2& center, float32 radius, const b2Vec2& axis, const b2Color& color)
 {
 	Renderer renderer = Singleton<Renderer>::getInstance();
-	Matrix2D mat_view = Singleton<CameraManager>::getInstance().getActiveCamera()->getCamera()->getViewMatrix();
+	Matrix2D mat_view = CameraManager::getInstance().getActiveCamera()->getCamera()->getViewMatrix();
 
 	renderer.setTransformMatrix(this->mat_scale * mat_view);
 	renderer.setColor(Color(color.r, color.g, color.b, color.a));
@@ -84,7 +81,7 @@ void DebugRenderer::DrawSolidCircle(const b2Vec2& center, float32 radius, const 
 void DebugRenderer::DrawSegment(const b2Vec2& p1, const b2Vec2& p2, const b2Color& color)
 {
 	Renderer renderer = Singleton<Renderer>::getInstance();
-	Matrix2D mat_view = Singleton<CameraManager>::getInstance().getActiveCamera()->getCamera()->getViewMatrix();
+	Matrix2D mat_view = CameraManager::getInstance().getActiveCamera()->getCamera()->getViewMatrix();
 
 	renderer.setTransformMatrix(this->mat_scale * mat_view);
 	renderer.setColor(Color(color.r, color.g, color.b, color.a));
@@ -94,7 +91,7 @@ void DebugRenderer::DrawSegment(const b2Vec2& p1, const b2Vec2& p2, const b2Colo
 void DebugRenderer::DrawTransform(const b2Transform& xf)
 {
 	Renderer renderer = Singleton<Renderer>::getInstance();
-	Matrix2D mat_view = Singleton<CameraManager>::getInstance().getActiveCamera()->getCamera()->getViewMatrix();
+	Matrix2D mat_view = CameraManager::getInstance().getActiveCamera()->getCamera()->getViewMatrix();
 
 	renderer.setTransformMatrix(this->mat_scale * mat_view);
 	renderer.setColor(this->color);

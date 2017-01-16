@@ -1,7 +1,7 @@
 #include "Rendering\Objects\RenderItems\Shapes\TriangleShape.h"
 #include "Rendering/Objects/Visualization/Visualization.h"
 
-#include "Rendering/Manager/GeometryManager.h"
+#include "Core\Data/Manager/GeometryManager.h"
 
 #include "SceneGraph\Objects\Scenes\Scene.h"
 

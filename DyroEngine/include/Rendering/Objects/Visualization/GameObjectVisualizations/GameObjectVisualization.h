@@ -14,6 +14,9 @@ public:
 	GameObjectVisualization(GameObject* object, const std::tstring& name = _T(""));
 	virtual ~GameObjectVisualization();
 
+	virtual bool initialize();
+	virtual bool shutdown();
+
 	virtual void getRenderItems(std::vector<RenderItem*>& items);
 
 	GameObject* getGameObject() const;

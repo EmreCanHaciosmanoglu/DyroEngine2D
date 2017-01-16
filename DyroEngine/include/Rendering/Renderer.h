@@ -26,6 +26,7 @@ class Graphics;
 class Image;
 
 class RenderItem;
+class Geometry;
 
 class Renderer
 {
@@ -41,7 +42,7 @@ public:
 	void setColor(const Color& c);
 	void setColor(float r, float g, float b, float a = 1.0f);
 
-	void drawGeometry(ID2D1Geometry* geometry, float lineWidth = 0.5f) const;
+	void drawGeometry(Geometry* geometry, float lineWidth = 0.5f) const;
 
 	void drawLine(const Vector2D& v1, const Vector2D& v2, float lineWidth = 0.5f) const;
 	void drawLine(float x1, float y1, float x2, float y2, float lineWidth = 0.5f) const;
@@ -56,7 +57,7 @@ public:
 	void drawPolygon(const std::vector<Vector2D>& vecPoints, bool close = true, float lineWidth = 0.5f) const;
 	void drawPolygon(Vector2D* points, int size, bool close = true, float lineWidth = 0.5f) const;
 
-	void fillGeometry(ID2D1Geometry* geometry) const;
+	void fillGeometry(Geometry* geometry) const;
 
 	void fillRect(float left, float top, float width, float height) const;
 	void fillRect(const Vector2D& lefttop, const Vector2D& rightbottom) const;

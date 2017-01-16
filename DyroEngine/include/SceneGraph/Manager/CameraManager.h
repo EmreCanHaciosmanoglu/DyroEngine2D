@@ -2,6 +2,7 @@
 #define _CAMERAMANAGER_H
 
 #include "Core/Helpers/Patterns/Manager.h"
+#include "Core/Helpers/Patterns/Singleton.h"
 
 #ifndef _STRING_H
 #include "Core\Defines\string.h"
@@ -9,7 +10,7 @@
 
 class Camera;
 
-class CameraManager : public Manager<Camera>
+class CameraManager : public Manager<Camera> , public Singleton<CameraManager>
 {
 public:
 	CameraManager();

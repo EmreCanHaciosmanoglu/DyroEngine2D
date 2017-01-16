@@ -11,7 +11,15 @@
 CircleShapeVisualization::CircleShapeVisualization(Component* object, const std::tstring& name)
 	:ShapeVisualization(object, name)
 {
-	CircleShapeComponent* component = dynamic_cast<CircleShapeComponent*>(object);
+
+}
+CircleShapeVisualization::~CircleShapeVisualization()
+{
+}
+
+bool CircleShapeVisualization::initialize()
+{
+	CircleShapeComponent* component = dynamic_cast<CircleShapeComponent*>(getObject());
 	if (component != nullptr)
 		setShape(new CircleShape(this, component->getCircleDescription()));
 
@@ -19,9 +27,12 @@ CircleShapeVisualization::CircleShapeVisualization(Component* object, const std:
 
 	//Create the requested shape
 	getShape()->create();
+
+	return true;
 }
-CircleShapeVisualization::~CircleShapeVisualization()
+bool CircleShapeVisualization::shutdown()
 {
+	return true;
 }
 
 void CircleShapeVisualization::generateRenderItems(std::vector<RenderItem*>& items)

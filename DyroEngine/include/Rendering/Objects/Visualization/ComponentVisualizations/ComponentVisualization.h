@@ -11,6 +11,9 @@ public:
 	ComponentVisualization(Component* component, const std::tstring& name = _T(""));
 	virtual ~ComponentVisualization();
 
+	virtual bool initialize() = 0;
+	virtual bool shutdown() = 0;
+
 	virtual void getRenderItems(std::vector<RenderItem*>& items);
 
 	Component* getComponent() const;

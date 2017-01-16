@@ -12,6 +12,9 @@ public:
 	EmitterComponentVisualization(Component* component, const std::tstring& name = _T(""));
 	virtual ~EmitterComponentVisualization();
 
+	virtual bool initialize();
+	virtual bool shutdown();
+
 protected:
 	virtual void generateRenderItems(std::vector<RenderItem*>& items);
 

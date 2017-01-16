@@ -36,10 +36,10 @@ bool SceneManager::initialize()
 		Singleton<LayerManager>::getInstance().addLayer(new Layer(1000, _T("Background")));
 
 		this->active_scene->addManager(&Singleton<LayerManager>::getInstance());
-		this->active_scene->addManager(&Singleton<CameraManager>::getInstance());
+		this->active_scene->addManager(&CameraManager::getInstance());
 		this->active_scene->addManager(&Singleton<ResourceManager>::getInstance());
 		this->active_scene->addManager(&Singleton<GeometryManager>::getInstance());
-		this->active_scene->addManager(&Singleton<TextureManager>::getInstance());
+		this->active_scene->addManager(&TextureManager::getInstance());
 
 		if (!this->active_scene->initialize())
 			return false;

@@ -10,6 +10,14 @@ VisualizationManager::~VisualizationManager()
 
 bool VisualizationManager::initialize()
 {
+	std::vector<Visualization*> visualizations;
+	getObjects(visualizations);
+	for (Visualization* visualization : visualizations)
+	{
+		if (!visualization->initialize())
+			return false;
+	}
+
 	return true;
 }
 bool VisualizationManager::shutdown()
@@ -18,7 +26,12 @@ bool VisualizationManager::shutdown()
 	getObjects(visualizations);
 
 	for (Visualization* visualization : visualizations)
+	{
+		if (!visualization->shutdown())
+			return false;
+
 		SafeDelete(visualization);
+	}
 
 	return true;
 }

@@ -9,7 +9,16 @@
 RectShapeVisualization::RectShapeVisualization(Component* object, const std::tstring& name)
 	:ShapeVisualization(object, name)
 {
-	RectShapeComponent* component = dynamic_cast<RectShapeComponent*>(object);
+
+}
+RectShapeVisualization::~RectShapeVisualization()
+{
+
+}
+
+bool RectShapeVisualization::initialize()
+{
+	RectShapeComponent* component = dynamic_cast<RectShapeComponent*>(getObject());
 	if (component != nullptr)
 		setShape(new RectShape(this, component->getRectDescription()));
 
@@ -17,10 +26,12 @@ RectShapeVisualization::RectShapeVisualization(Component* object, const std::tst
 
 	//Create the requested shape
 	getShape()->create();
-}
-RectShapeVisualization::~RectShapeVisualization()
-{
 
+	return true;
+}
+bool RectShapeVisualization::shutdown()
+{
+	return true;
 }
 
 void RectShapeVisualization::generateRenderItems(std::vector<RenderItem*>& items)

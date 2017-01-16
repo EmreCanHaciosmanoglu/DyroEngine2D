@@ -13,6 +13,9 @@ public:
 	ImageVisualization(Component* object, const std::tstring& name = _T(""));
 	virtual ~ImageVisualization();
 
+	virtual bool initialize();
+	virtual bool shutdown();
+
 protected:
 	virtual void generateRenderItems(std::vector<RenderItem*>& items);
 

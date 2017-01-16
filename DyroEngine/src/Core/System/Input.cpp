@@ -2,8 +2,6 @@
 #include "Core\System\Objects\Window.h"
 #include "Core\System\Manager\SystemManager.h"
 
-#include "Core/Helpers/Patterns/Singleton.h"
-
 Input::Input()
 	:System(SystemType::INPUT_SYSTEM)
 	, current_keyboard_state(nullptr)
@@ -23,7 +21,7 @@ bool Input::initialize()
 	GetKeyboardState(keyboard_state_0);
 	GetKeyboardState(keyboard_state_1);
 
-	main_window = dynamic_cast<Window*>(Singleton<SystemManager>::getInstance().getSystem(SystemType::WINDOW_SYSTEM));
+	main_window = dynamic_cast<Window*>(SystemManager::getInstance().getSystem(SystemType::WINDOW_SYSTEM));
 
 	return true;
 }

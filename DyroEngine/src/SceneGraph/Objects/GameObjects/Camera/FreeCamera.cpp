@@ -3,8 +3,6 @@
 #include "SceneGraph\Objects\Components\TransformComponent.h"
 #include "SceneGraph\Objects\Components\CameraComponent.h"
 
-#include "Core/Helpers/Patterns/Singleton.h"
-
 #include "Core\System\Manager\SystemManager.h"
 #include "Core\System\Objects\Input.h"
 

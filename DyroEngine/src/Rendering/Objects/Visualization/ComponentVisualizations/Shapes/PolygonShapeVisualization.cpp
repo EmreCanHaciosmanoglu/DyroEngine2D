@@ -9,7 +9,16 @@
 PolygonShapeVisualization::PolygonShapeVisualization(Component* object, const std::tstring& name)
 	:ShapeVisualization(object, name)
 {
-	PolygonShapeComponent* component = dynamic_cast<PolygonShapeComponent*>(object);
+
+}
+PolygonShapeVisualization::~PolygonShapeVisualization()
+{
+
+}
+
+bool PolygonShapeVisualization::initialize()
+{
+	PolygonShapeComponent* component = dynamic_cast<PolygonShapeComponent*>(getObject());
 	if (component != nullptr)
 		setShape(new PolygonShape(this, component->getPolygonDescription()));
 
@@ -17,10 +26,12 @@ PolygonShapeVisualization::PolygonShapeVisualization(Component* object, const st
 
 	//Create the requested shape
 	getShape()->create();
-}
-PolygonShapeVisualization::~PolygonShapeVisualization()
-{
 
+	return true;
+}
+bool PolygonShapeVisualization::shutdown()
+{
+	return true;
 }
 
 void PolygonShapeVisualization::generateRenderItems(std::vector<RenderItem*>& items)

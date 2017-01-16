@@ -13,17 +13,30 @@
 EmitterComponentVisualization::EmitterComponentVisualization(Component* component, const std::tstring& name)
 	:ConcreteComponentVisualization(component, name)
 {
-	EmitterComponent* emitter_component = dynamic_cast<EmitterComponent*>(component);
+
+}
+EmitterComponentVisualization::~EmitterComponentVisualization()
+{
+
+}
+
+bool EmitterComponentVisualization::initialize()
+{
+	EmitterComponent* emitter_component = dynamic_cast<EmitterComponent*>(getObject());
 	if (emitter_component != nullptr)
 	{
 		for (const ParticleDescription& desc : emitter_component->getParticleDescriptions())
 			this->particles.push_back(new Particle(this, desc));
 	}
+
+	return true;
 }
-EmitterComponentVisualization::~EmitterComponentVisualization()
+bool EmitterComponentVisualization::shutdown()
 {
 	for (Particle* particle : this->particles)
 		SafeDelete(particle);
+
+	return true;
 }
 
 void EmitterComponentVisualization::generateRenderItems(std::vector<RenderItem*>& items)

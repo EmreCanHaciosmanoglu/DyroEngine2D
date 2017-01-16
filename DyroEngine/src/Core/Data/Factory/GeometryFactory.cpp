@@ -1,4 +1,4 @@
-#include "Rendering/Factory/GeometryFactory.h"
+#include "Core/Data/Factory/GeometryFactory.h"
 
 #include "Math\Objects\Rect2D.h"
 
@@ -12,8 +12,6 @@
 
 #include "Core/System/Manager/SystemManager.h"
 #include "Core/System/Objects/Graphics.h"
-
-#include "Core/Helpers/Patterns/Singleton.h"
 
 #include "Core/Types/GeometryType.h"
 #include "Core/Types/SystemType.h"
@@ -52,7 +50,7 @@ Geometry* GeometryFactory::createGeometry(ShapeDescription* description)
 Geometry* GeometryFactory::createRectangleGeometry(ShapeDescription* description)
 {
 	RectShapeDescription* rect_description = dynamic_cast<RectShapeDescription*>(description);
-	Graphics* graphics = dynamic_cast<Graphics*>(Singleton<SystemManager>::getInstance().getSystem(SystemType::GRAPHICS_SYSTEM));
+	Graphics* graphics = dynamic_cast<Graphics*>(SystemManager::getInstance().getSystem(SystemType::GRAPHICS_SYSTEM));
 	HRESULT hr = S_OK;
 
 	//Create the rectangular geometry
@@ -67,7 +65,7 @@ Geometry* GeometryFactory::createRectangleGeometry(ShapeDescription* description
 Geometry* GeometryFactory::createCircleGeometry(ShapeDescription* description)
 {
 	CircleShapeDescription* circle_description = dynamic_cast<CircleShapeDescription*>(description);
-	Graphics* graphics = dynamic_cast<Graphics*>(Singleton<SystemManager>::getInstance().getSystem(SystemType::GRAPHICS_SYSTEM));
+	Graphics* graphics = dynamic_cast<Graphics*>(SystemManager::getInstance().getSystem(SystemType::GRAPHICS_SYSTEM));
 	HRESULT hr = S_OK;
 
 	D2D1_ELLIPSE ellipse;
@@ -90,7 +88,7 @@ Geometry* GeometryFactory::createCircleGeometry(ShapeDescription* description)
 Geometry* GeometryFactory::createLineGeometry(ShapeDescription* description)
 {
 	LineShapeDescription* line_description = dynamic_cast<LineShapeDescription*>(description);
-	Graphics* graphics = dynamic_cast<Graphics*>(Singleton<SystemManager>::getInstance().getSystem(SystemType::GRAPHICS_SYSTEM));
+	Graphics* graphics = dynamic_cast<Graphics*>(SystemManager::getInstance().getSystem(SystemType::GRAPHICS_SYSTEM));
 	HRESULT hr = S_OK;
 
 	//Create line geometry
@@ -132,7 +130,7 @@ Geometry* GeometryFactory::createLineGeometry(ShapeDescription* description)
 Geometry* GeometryFactory::createPolygonGeometry(ShapeDescription* description)
 {
 	PolygonShapeDescription* polygon_description = dynamic_cast<PolygonShapeDescription*>(description);
-	Graphics* graphics = dynamic_cast<Graphics*>(Singleton<SystemManager>::getInstance().getSystem(SystemType::GRAPHICS_SYSTEM));
+	Graphics* graphics = dynamic_cast<Graphics*>(SystemManager::getInstance().getSystem(SystemType::GRAPHICS_SYSTEM));
 	HRESULT hr = S_OK;
 
 	//Create polygon geometry
