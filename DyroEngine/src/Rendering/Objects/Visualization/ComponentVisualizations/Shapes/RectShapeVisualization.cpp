@@ -41,7 +41,10 @@ void RectShapeVisualization::generateRenderItems(std::vector<RenderItem*>& items
 	{
 		SceneObject* parent_object = dynamic_cast<SceneObject*>(parent->getObject());
 
-		getShape()->setTransform(parent->getPosition(), parent->getScale(), parent->getRotation());
+		//Since a rectangle will get renderer from his top corner we will need to center the rectangle in order to achieve correct visuals.
+		Vector2D center = Vector2D(getShape()->getWidth() / 2, getShape()->getHeight() / 2);
+
+		getShape()->setTransform(parent->getPosition() - center, parent->getScale(), parent->getRotation());
 		getShape()->setLayer(parent_object->getLayer());
 	}
 
