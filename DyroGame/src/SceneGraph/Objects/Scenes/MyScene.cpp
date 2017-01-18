@@ -27,6 +27,9 @@
 #include "Core\Data\Objects\Descriptions\Shapes\RectShapeDescription.h"
 #include "Core\Data\Objects\Descriptions\Shapes\TriangleShapeDescription.h"
 
+// DyroGame
+#include "SceneGraph\Objects\GameObjects\CrazyEmitter.h"
+
 namespace
 {
 	const int RECT_AMOUNT = 3;
