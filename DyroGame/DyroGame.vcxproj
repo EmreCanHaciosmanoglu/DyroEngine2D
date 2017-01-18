@@ -131,11 +131,13 @@
   <ItemGroup>
     <ClInclude Include="include\Core\Data\Objects\MyGame.h" />
     <ClInclude Include="include\Main.h" />
+    <ClInclude Include="include\SceneGraph\Objects\GameObjects\CrazyEmitter.h" />
     <ClInclude Include="include\SceneGraph\Objects\Scenes\MyScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Core\Data\Objects\MyGame.cpp" />
     <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\GameObjects\CrazyEmitter.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\Scenes\MyScene.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
