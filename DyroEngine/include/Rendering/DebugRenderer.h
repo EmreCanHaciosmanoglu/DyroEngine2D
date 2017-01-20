@@ -1,6 +1,8 @@
 #ifndef _DEBUGRENDERER_H
 #define _DEBUGRENDERER_H
 
+#include "Rendering/Renderer.h"
+
 #ifndef BOX2D_H
 #include <Box2D\Box2D.h>
 #endif
@@ -14,7 +16,7 @@
 
 class Scene;
 
-class DebugRenderer : public b2Draw
+class DebugRenderer : public Renderer, public b2Draw
 {
 public:
 	DebugRenderer();

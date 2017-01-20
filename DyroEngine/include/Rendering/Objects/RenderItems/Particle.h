@@ -1,11 +1,13 @@
 #ifndef _PARTICLE_H
 #define _PARTICLE_H
 
-#include "Rendering/Objects/RenderItems/RenderItem.h"
+#include "Rendering/Objects/RenderItems/Texture.h"
 
 #ifndef _PARTICLEDESCRIPTION_H
 #include "Core/Data/Objects/Descriptions/Particles/ParticleDescription.h"
 #endif
+
+class Texture;
 
 class Particle : public RenderItem
 {
@@ -24,6 +26,7 @@ public:
 
 private:
 	ParticleDescription description;
+	Texture* texture;
 };
 
 #endif

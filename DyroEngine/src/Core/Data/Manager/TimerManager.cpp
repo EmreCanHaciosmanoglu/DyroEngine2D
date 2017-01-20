@@ -43,6 +43,7 @@ void TimerManager::addTimer(Timer* timer)
 void TimerManager::setWorldTimer(WorldTimer* timer)
 {
 	this->world_timer = timer;
+	addObject(this->world_timer->getID(), this->world_timer);
 }
 WorldTimer* TimerManager::getWorldTimer()
 {

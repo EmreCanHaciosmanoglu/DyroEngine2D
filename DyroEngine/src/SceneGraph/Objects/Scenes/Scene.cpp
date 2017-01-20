@@ -16,6 +16,7 @@
 
 #include "Core\Data\Manager\SettingsManager.h"
 #include "Core\Data\Manager\LayerManager.h"
+#include "Core\Data\Manager\TimerManager.h"
 
 #include "Core\Data\Objects\Settings\PhysicsSettings.h"
 #include "Core\Data\Objects\Layer.h"
@@ -57,6 +58,9 @@ bool Scene::initialize()
 	if (!this->game_object_manager->initialize())
 		return false;
 
+	//Retrieve the timer manager so we don't need to retrieve it every update
+	this->timer_manager = getManager<TimerManager>();
+
 	return true;
 }
 bool Scene::postInitialize()
@@ -72,6 +76,9 @@ bool Scene::postInitialize()
 }
 void Scene::update()
 {
+	//Update timers
+	this->timer_manager->update();
+
 	//Retrieve the physics settings
 	PhysicsSettings* physicsSettings = dynamic_cast<PhysicsSettings*>(SettingsManager::getInstance().getSettings(SettingsType::PHYSICS_SETTINGS));
 	if (physicsSettings == nullptr)
@@ -90,7 +97,9 @@ void Scene::update()
 	this->game_object_manager->update();
 
 	//Renderer the scene after all calculations are done
-	triggerRender();
+	if (this->debug_rendering)
+		this->triggerDebugRender();
+	else triggerRender();
 }
 bool Scene::shutdown()
 {
@@ -192,6 +201,7 @@ void Scene::setupPyhx()
 	this->phyx_world->SetContactFilter(this->contact_filter);
 	this->phyx_world->SetContactListener(this->contact_listener);
 }
+
 void Scene::triggerRender()
 {
 	//Get all visualizations
@@ -214,4 +224,8 @@ void Scene::triggerRender()
 
 	//Clear the render item list
 	items.clear();
+}
+void Scene::triggerDebugRender()
+{
+	this->phyx_world->DrawDebugData();
 }

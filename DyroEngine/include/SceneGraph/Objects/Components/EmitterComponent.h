@@ -26,10 +26,11 @@ public:
 
 private:
 
-	void addParticle(ParticleDescription& description);
+	void addParticle();
 
 	EmitterComponentDescription* description;
 	std::vector<ParticleDescription> particle_descriptions;
+	float current_emission_rate;
 };
 
 #endif

@@ -35,6 +35,7 @@ bool EmitterComponentVisualization::shutdown()
 {
 	for (Particle* particle : this->particles)
 		SafeDelete(particle);
+	this->particles.clear();
 
 	return true;
 }
@@ -48,30 +49,38 @@ void EmitterComponentVisualization::generateRenderItems(std::vector<RenderItem*>
 	SceneObject* parent_object = dynamic_cast<SceneObject*>(parent->getObject());
 
 	EmitterComponent* emitter_component = getConcreteComponent();
-	if (emitter_component->getEmitterDescription()->getDirty())
-	{
+	//if (emitter_component->getEmitterDescription()->getDirty())
+	//{
 		for (Particle* particle : this->particles)
 			SafeDelete(particle);
+		this->particles.clear();
 
 		for (const ParticleDescription& desc : emitter_component->getParticleDescriptions())
 		{
 			Particle* particle = new Particle(this, desc);
 			this->particles.push_back(particle);
 
+			//Since an image will get renderer from his top corner we will need to center the image in order to achieve correct visuals.
+			Vector2D center = Vector2D(particle->getWidth() / 2, particle->getHeight() / 2);
+
 			particle->setLayer(parent_object->getLayer());
-			particle->setTransform(particle->getPosition(), particle->getScale(), particle->getRotation());
+			particle->setTransform(particle->getParticleDescription().getPosition() - center, particle->getParticleDescription().getScale(), particle->getParticleDescription().getRotation());
 
 			items.push_back(particle);
 		}
-	}
-	else
-	{
-		for (Particle* particle : this->particles)
-		{
-			particle->setLayer(parent_object->getLayer());
-			particle->setTransform(particle->getPosition(), particle->getScale(), particle->getRotation());
+	//}
+	//else
+	//{
+	//	for (Particle* particle : this->particles)
+	//	{
+	//
+	//		//Since an image will get renderer from his top corner we will need to center the image in order to achieve correct visuals.
+	//		Vector2D center = Vector2D(particle->getWidth() / 2, particle->getHeight() / 2);
 
-			items.push_back(particle);
-		}
-	}
+	//		particle->setLayer(parent_object->getLayer());
+	//		particle->setTransform(particle->getParticleDescription().getPosition(), particle->getParticleDescription().getScale(), particle->getParticleDescription().getRotation());
+
+	//		items.push_back(particle);
+	//	}
+	//}
 }

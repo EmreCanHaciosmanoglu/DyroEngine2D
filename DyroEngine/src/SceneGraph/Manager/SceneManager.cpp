@@ -28,6 +28,7 @@ bool SceneManager::initialize()
 	setupManager<ResourceManager>();
 	setupManager<GeometryManager>();
 	setupManager<TextureManager>();
+	setupManager<TimerManager>();
 
 	if (!this->active_scene->getInitialized())
 	{
@@ -40,6 +41,7 @@ bool SceneManager::initialize()
 		this->active_scene->addManager(&Singleton<ResourceManager>::getInstance());
 		this->active_scene->addManager(&Singleton<GeometryManager>::getInstance());
 		this->active_scene->addManager(&TextureManager::getInstance());
+		this->active_scene->addManager(&TimerManager::getInstance());
 
 		if (!this->active_scene->initialize())
 			return false;
@@ -81,6 +83,7 @@ bool SceneManager::shutdown()
 		SafeDelete(scene);
 	}
 
+	destroyManager<TimerManager>();
 	destroyManager<TextureManager>();
 	destroyManager<GeometryManager>();
 	destroyManager<ResourceManager>();

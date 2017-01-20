@@ -25,13 +25,16 @@ public:
 	}
 	static T getValue(T min, T max)
 	{
-		//Minimum value needs to be smaller than maximum value
-		assert(min < max);
+		if (min == max)
+			return min;
 
 		return static_cast<T>(fmod(rand(), max) + min);
 	}
 	static T getValue(const Range<T>& range)
 	{
+		if (range.min_value == range.max_value)
+			return range.min_value;
+
 		return static_cast<T>(fmod(rand(), range.max_value) + range.min_value);
 	}
 };

@@ -20,6 +20,7 @@ class GameObject;
 
 class AbstractManager;
 class GameObjectManager;
+class TimerManager;
 class VisualizationManager;
 
 class Renderer;
@@ -69,7 +70,9 @@ public:
 
 private:
 	void setupPyhx();
+
 	void triggerRender();
+	void triggerDebugRender();
 
 	b2World* phyx_world;
 
@@ -82,6 +85,7 @@ private:
 	bool debug_rendering;
 
 	GameObjectManager* game_object_manager;
+	TimerManager* timer_manager;
 
 	std::vector<AbstractManager*> vec_managers;
 };

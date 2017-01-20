@@ -54,7 +54,10 @@ void ImageVisualization::generateRenderItems(std::vector<RenderItem*>& items)
 	{
 		SceneObject* parent_object = dynamic_cast<SceneObject*>(parent->getObject());
 
-		this->texture->setTransform(parent->getPosition(), parent->getScale(), parent->getRotation());
+		//Since an image will get renderer from his top corner we will need to center the image in order to achieve correct visuals.
+		Vector2D center = Vector2D(this->texture->getWidth() / 2, this->texture->getHeight() / 2);
+
+		this->texture->setTransform(parent->getPosition() - center, parent->getScale(), parent->getRotation());
 		this->texture->setLayer(parent_object->getLayer());
 	}
 

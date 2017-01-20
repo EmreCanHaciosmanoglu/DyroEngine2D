@@ -1,12 +1,13 @@
 #ifndef _TIMERMANAGER_H
 #define _TIMERMANAGER_H
 
+#include "Core/Helpers/Patterns/Singleton.h"
 #include "Core/Helpers/Patterns/Manager.h"
 
 class Timer;
 class WorldTimer;
 
-class TimerManager : public Manager<Timer>
+class TimerManager : public Manager<Timer>, public Singleton<TimerManager>
 {
 public:
 	TimerManager();

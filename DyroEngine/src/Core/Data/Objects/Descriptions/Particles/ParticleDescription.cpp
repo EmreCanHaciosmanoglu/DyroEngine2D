@@ -1,8 +1,14 @@
 #include "Core/Data/Objects/Descriptions/Particles/ParticleDescription.h"
 
+namespace
+{
+	const float INVALID_START_LIFE_TIME = -1.0f;
+}
+
 ParticleDescription::ParticleDescription()
 	: gravity_multiplier(0.0f)
 	, life_time(10.0f)
+	, start_life_time(INVALID_START_LIFE_TIME)
 
 	, velocity(Vector2D(10.0f, 10.0f))
 	, scale_velocity(Vector2D(0.0f, 0.0f))
@@ -32,6 +38,8 @@ void ParticleDescription::setGravityMultiplier(float multiplier)
 void ParticleDescription::setLifeTime(float time)
 {
 	this->life_time = time;
+	if (this->start_life_time == INVALID_START_LIFE_TIME)
+		this->start_life_time = life_time;
 }
 
 void ParticleDescription::setVelocity(const Vector2D& velocity)
@@ -77,9 +85,9 @@ void ParticleDescription::setFadeSpeed(float speed)
 	this->fade_speed = speed;
 }
 
-void ParticleDescription::setTexture(Texture* texture)
+void ParticleDescription::setImage(Image* image)
 {
-	this->texture = texture;
+	this->image = image;
 }
 
 bool ParticleDescription::isDestroyed() const
@@ -90,6 +98,10 @@ bool ParticleDescription::isDestroyed() const
 float ParticleDescription::getGravityMultiplier() const
 {
 	return this->gravity_multiplier;
+}
+float ParticleDescription::getLifeTimePercentage() const
+{
+	return this->life_time / this->start_life_time;
 }
 float ParticleDescription::getLifeTime() const
 {
@@ -139,7 +151,7 @@ float ParticleDescription::getFadeSpeed() const
 	return this->fade_speed;
 }
 
-Texture* ParticleDescription::getTexture() const
+Image* ParticleDescription::getImage() const
 {
-	return this->texture;
+	return this->image;
 }

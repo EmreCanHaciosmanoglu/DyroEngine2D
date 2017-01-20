@@ -5,6 +5,7 @@
 #include "Rendering/Objects/Visualization/ComponentVisualizations/Shapes/PolygonShapeVisualization.h"
 #include "Rendering/Objects/Visualization/ComponentVisualizations/Shapes/RectShapeVisualization.h"
 #include "Rendering/Objects/Visualization/ComponentVisualizations/Shapes/TriangleShapeVisualization.h"
+#include "Rendering/Objects/Visualization/ComponentVisualizations/EmitterComponentVisualization.h"
 //#include "RenderingVisualization/ComponentVisualizations/ImageVisualization.h"
 //#include "RenderingVisualization/ComponentVisualizations/TextVisualization.h"
 
@@ -15,6 +16,7 @@
 #include "SceneGraph\Objects/Components/Shapes/PolygonShapeComponent.h"
 #include "SceneGraph\Objects/Components/Shapes/RectShapeComponent.h"
 #include "SceneGraph\Objects/Components/Shapes/TriangleShapeComponent.h"
+#include "SceneGraph\Objects/Components/EmitterComponent.h"
 //#include "SceneGraph\Objects\Components\ImageComponent.h"
 //#include "SceneGraph\Objects\Components\TextComponent.h"
 
@@ -68,6 +70,10 @@ Visualization* VisualizationFactory::createVisualization(GameObject* object, boo
 		else if (component->getTypeId() == PolygonShapeComponent::getClassTypeId())
 		{
 			new_visualization = new PolygonShapeVisualization(component);
+		}
+		else if (component->getTypeId() == EmitterComponent::getClassTypeId())
+		{
+			new_visualization = new EmitterComponentVisualization(component);
 		}
 		//else if (component->getTypeId() == ImageComponent::getClassTypeId())
 		//{

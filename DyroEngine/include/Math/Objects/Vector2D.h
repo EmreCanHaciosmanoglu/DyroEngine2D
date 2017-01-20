@@ -80,7 +80,9 @@ public:
 	bool        operator==(const Vector2D& rhs) const;		// exact compare, no epsilon
 	bool        operator!=(const Vector2D& rhs) const;		// exact compare, no epsilon
 	bool        operator<(const Vector2D& rhs) const;		// comparison for sort
+	bool        operator<=(const Vector2D& rhs) const;		// comparison for sort
 	bool        operator>(const Vector2D& rhs) const;		// comparison for sort
+	bool        operator>=(const Vector2D& rhs) const;		// comparison for sort
 
 	static b2Vec2			toBox2DVec(const Vector2D& ref);
 	static Vector2D			toVector2D(const b2Vec2& ref);

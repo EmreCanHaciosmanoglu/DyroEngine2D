@@ -4,12 +4,14 @@
 #include "SceneGraph\Objects\GameObjects\SceneObject.h"
 
 class EmitterComponent;
+class EmitterComponentDescription;
+
 class Input;
 
 class CrazyEmitter : public SceneObject
 {
 public:
-	CrazyEmitter();
+	CrazyEmitter(EmitterComponentDescription* desc);
 	virtual ~CrazyEmitter();
 
 	virtual bool initialize();

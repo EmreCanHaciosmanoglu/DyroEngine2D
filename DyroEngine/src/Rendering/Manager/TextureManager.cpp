@@ -54,5 +54,8 @@ Texture* TextureManager::getTexture(Image* image)
 		return image->getResourceName() == texture->getImage()->getResourceName();
 	});
 
-	return (*it);
+	if(it != textures.end())
+		return (*it);
+
+	return nullptr;
 }

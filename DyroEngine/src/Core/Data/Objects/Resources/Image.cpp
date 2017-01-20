@@ -226,25 +226,3 @@ void Image::setTransparencyColor(const Color& transparentColor)
 		iWICBitmapPtr->Release();
 	}
 }
-
-Rect2D Image::getBoundingBox() const
-{
-	Rect2D bounding_rect;
-
-	if (this->clip != Rect2D::empty)
-	{
-		bounding_rect.left = 0;
-		bounding_rect.top = 0;
-		bounding_rect.right = this->clip.right - this->clip.left;
-		bounding_rect.bottom = this->clip.bottom - this->clip.top;
-	}
-	else
-	{
-		bounding_rect.left = 0;
-		bounding_rect.top = 0;
-		bounding_rect.right = getWidth();
-		bounding_rect.bottom = getHeight();
-	}
-
-	return bounding_rect;
-}

@@ -6,18 +6,25 @@
 
 EmitterComponentDescription::EmitterComponentDescription(unsigned int particleAmount)
 	:particle_amount(particleAmount)
+	,emission_burst(5)
+	,emission_rate(1.0f)
 	,gravity_multiplier(0.0f)
 	,life_time(10.0f, 10.0f)
 	,loop(true)
+	,spawn_at_start(true)
 
-	,velocity(Vector2D(10.0f, 10.0f), Vector2D(10.0f,10.0f))
+	,velocity(Vector2D(-50.0f, -50.0f), Vector2D(50.0f,50.0f))
 	,scale_velocity(Vector2D(0.0f, 0.0f), Vector2D(0.0f, 0.0f))
-	,angular_velocity(10.0f, 10.0f)
+	,angular_velocity(0.0f, 0.0f)
 
 	,fade(false)
 	,fade_start(0.0f)
 	,fade_end(1.0f)
 	,fade_speed(1.0f, 1.0f)
+
+	,spawn_position_offset(Vector2D(-10.0f, -10.0f), Vector2D(10.0f, 10.0f))
+	,spawn_scale_offset(Vector2D(0.0f, 0.0f), Vector2D(0.0f, 0.0f))
+	,spawn_rotation_offset(0,0)
 
 	,dirty(false)
 {}
@@ -38,6 +45,16 @@ void EmitterComponentDescription::setParticleAmount(unsigned int amount)
 	this->particle_amount = amount;
 	setDirty(true);
 }
+void EmitterComponentDescription::setEmissionBurst(unsigned int burst)
+{
+	this->emission_burst = burst;
+	setDirty(true);
+}
+void EmitterComponentDescription::setEmissionRate(float rate)
+{
+	this->emission_rate = rate;
+	setDirty(true);
+}
 void EmitterComponentDescription::setGravityMultiplier(float multiplier)
 {
 	this->gravity_multiplier = multiplier;
@@ -51,6 +68,12 @@ void EmitterComponentDescription::setLifeTime(const RangeFloat& time)
 void EmitterComponentDescription::setLoop(bool loop)
 {
 	this->loop = loop;
+	setDirty(true);
+}
+void EmitterComponentDescription::setSpawnAtStart(bool spawn)
+{
+	this->spawn_at_start = spawn;
+	setDirty(true);
 }
 
 void EmitterComponentDescription::setVelocity(const RangeVector2D& velocity)
@@ -90,17 +113,41 @@ void EmitterComponentDescription::setFadeSpeed(const RangeFloat& speed)
 	setDirty(true);
 }
 
-void EmitterComponentDescription::addTexture(Texture* texture)
+void EmitterComponentDescription::setSpawnPositionOffset(const RangeVector2D& offset)
 {
-	std::vector<Texture*>::const_iterator it = std::find(this->textures.begin(), this->textures.end(), texture);
-	if (it != this->textures.end())
-		this->textures.push_back(texture);
+	this->spawn_position_offset = offset;
+	setDirty(true);
+}
+void EmitterComponentDescription::setSpawnScaleOffset(const RangeVector2D& offset)
+{
+	this->spawn_scale_offset = offset;
+	setDirty(true);
+}
+void EmitterComponentDescription::setSpawnRotationOffset(const RangeFloat& offset)
+{
+	this->spawn_rotation_offset = offset;
+	setDirty(true);
+}
+
+void EmitterComponentDescription::addImage(Image* image)
+{
+	std::vector<Image*>::const_iterator it = std::find(this->images.begin(), this->images.end(), image);
+	if (it == this->images.end())
+		this->images.push_back(image);
 	setDirty(true);
 }
 
 unsigned int EmitterComponentDescription::getParticleAmount() const
 {
 	return this->particle_amount;
+}
+unsigned int EmitterComponentDescription::getEmissionBurst() const
+{
+	return this->emission_burst;
+}
+float EmitterComponentDescription::getEmissionRate() const
+{
+	return this->emission_rate;
 }
 float EmitterComponentDescription::getGravityMultiplier() const
 {
@@ -114,12 +161,16 @@ bool EmitterComponentDescription::canLoop() const
 {
 	return this->loop;
 }
+bool EmitterComponentDescription::canSpawnAtStart() const
+{
+	return this->spawn_at_start;
+}
 
-const Vector2D& EmitterComponentDescription::getVelocity() const
+const Vector2D EmitterComponentDescription::getVelocity() const
 {
 	return Vector2D::randomVector(this->velocity.min_value,this->velocity.max_value);
 }
-const Vector2D& EmitterComponentDescription::getScaleVelocity() const
+const Vector2D EmitterComponentDescription::getScaleVelocity() const
 {
 	return Vector2D::randomVector(this->scale_velocity.min_value,this->scale_velocity.max_value);
 }
@@ -145,7 +196,20 @@ float EmitterComponentDescription::getFadeSpeed() const
 	return RandomFloat::getValue(this->fade_speed);
 }
 
-const std::vector<Texture*>& EmitterComponentDescription::getTextures() const
+const Vector2D EmitterComponentDescription::getSpawnPositionOffset()
 {
-	return this->textures;
+	return Vector2D::randomVector(this->spawn_position_offset.min_value, this->spawn_position_offset.max_value);
+}
+const Vector2D EmitterComponentDescription::getSpawnScaleOffset()
+{
+	return Vector2D::randomVector(this->spawn_scale_offset.min_value, this->spawn_scale_offset.max_value);
+}
+float EmitterComponentDescription::getSpawnRotationOffset()
+{
+	return RandomFloat::getValue(this->spawn_rotation_offset);
+}
+
+const std::vector<Image*>& EmitterComponentDescription::getImages() const
+{
+	return this->images;
 }

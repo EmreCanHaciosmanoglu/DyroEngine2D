@@ -11,6 +11,7 @@
 #include "Core\Data\Manager\LayerManager.h"
 #include "Core\Data\Manager\ResourceManager.h"
 #include "Core\Data\Manager\GeometryManager.h"
+#include "Core\Data\Manager\TimerManager.h"
 #include "Rendering\Manager\TextureManager.h"
 #include "SceneGraph\Manager\CameraManager.h"
 

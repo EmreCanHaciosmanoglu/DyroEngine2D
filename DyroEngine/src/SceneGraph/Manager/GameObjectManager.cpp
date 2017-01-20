@@ -25,8 +25,6 @@ GameObjectManager::~GameObjectManager()
 
 bool GameObjectManager::initialize()
 {
-	this->visualization_manager->initialize();
-
 	for (const std::pair<unsigned int, GameObject*>& pair : getObjects())
 	{
 		if (pair.second->getInitialized())
@@ -35,6 +33,8 @@ bool GameObjectManager::initialize()
 		if (!pair.second->initialize())
 			return false;
 	}
+
+	this->visualization_manager->initialize();
 
 	return true;
 }

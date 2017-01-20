@@ -14,25 +14,40 @@
 
 EmitterComponent::EmitterComponent(EmitterComponentDescription* description,const std::tstring& name)
 	:Component(name)
-	,description(description)
+	, description(description)
+	, current_emission_rate(description->getEmissionRate())
 {
 	OBJECT_INIT(_T("EmitterComponent"));
-
-	//Init the particle description vector
-	particle_descriptions.resize(this->description->getParticleAmount(), ParticleDescription());
 }
 EmitterComponent::~EmitterComponent()
 {}
 
 bool EmitterComponent::initialize()
 {
-	for (unsigned int i = 0; i < this->description->getParticleAmount(); ++i)
-		addParticle(particle_descriptions[i]);
+	if (this->description->canSpawnAtStart())
+	{
+		for (unsigned int i = 0; i < this->description->getEmissionBurst(); ++i)
+			addParticle();
+
+		this->current_emission_rate = description->getEmissionRate();
+	}
 
 	return true;
 }
 void EmitterComponent::update()
 {
+	this->current_emission_rate -= WorldTimer::getWorldDeltaTime();
+	if (this->current_emission_rate < 0.0f)
+	{
+		if (this->particle_descriptions.size() < (this->description->getParticleAmount() - this->description->getEmissionRate()))
+		{
+			for (unsigned int i = 0; i < this->description->getEmissionBurst(); ++i)
+				addParticle();
+
+			this->current_emission_rate = description->getEmissionRate();
+		}
+	}
+
 	for (unsigned int i = 0; i < (unsigned int)this->particle_descriptions.size(); ++i)
 	{
 		this->particle_descriptions[i].setLifeTime(this->particle_descriptions[i].getLifeTime() - WorldTimer::getWorldDeltaTime());
@@ -43,8 +58,16 @@ void EmitterComponent::update()
 		this->particle_descriptions[i].setScale(this->particle_descriptions[i].getScale() + this->particle_descriptions[i].getScaleVelocity() * WorldTimer::getWorldDeltaTime());
 		this->particle_descriptions[i].setRotation(this->particle_descriptions[i].getRotation() + this->particle_descriptions[i].getAngularVelocity() * WorldTimer::getWorldDeltaTime());
 
-		LogManager::getInstance().log(new TodoLog(_T("Particle gravity"), LOG_INFO));
-		LogManager::getInstance().log(new TodoLog(_T("Particle fade"), LOG_INFO));
+		if (this->particle_descriptions[i].canFade())
+		{
+			if (this->particle_descriptions[i].getLifeTimePercentage() < this->particle_descriptions[i].getFadeStart())
+			{
+								
+			}
+		}
+
+		//LogManager::getInstance().log(new TodoLog(_T("Particle gravity"), LOG_INFO));
+		//LogManager::getInstance().log(new TodoLog(_T("Particle fade"), LOG_INFO));
 	}
 
 	//Remove destroyed particles
@@ -52,32 +75,12 @@ void EmitterComponent::update()
 		[](const ParticleDescription& desc) -> bool
 	{
 		return desc.isDestroyed();
-	}));
-
-	if (this->description->canLoop())
-	{
-		unsigned int current_particle_amount = (unsigned int)this->particle_descriptions.size();
-		unsigned int desired_particle_amount = this->description->getParticleAmount();
-
-		unsigned int diff = desired_particle_amount - current_particle_amount;
-		if (diff > 0)
-		{
-			this->description->setDirty(true);
-
-			for (unsigned int i = 0; i < diff; ++i)
-			{
-				ParticleDescription description;
-				addParticle(description);
-
-				particle_descriptions.push_back(description);
-			}
-		}
-	}
+	}),this->particle_descriptions.end());
 
 	if (!this->description->getDirty())
 		return;
 
-	LogManager::getInstance().log(new TodoLog(_T("Apply particle emitter modifications"), LOG_INFO));
+	//LogManager::getInstance().log(new TodoLog(_T("Apply particle emitter modifications"), LOG_INFO));
 
 	this->description->setDirty(false);
 }
@@ -99,15 +102,17 @@ const std::vector<ParticleDescription>& EmitterComponent::getParticleDescription
 	return this->particle_descriptions;
 }
 
-void EmitterComponent::addParticle(ParticleDescription& desc)
+void EmitterComponent::addParticle()
 {
+	ParticleDescription desc;
+
 	TransformComponent* transform = getParent()->getComponent<TransformComponent>();
 	if (transform == nullptr)
 		return;
 
-	desc.setPosition(transform->getPosition());
-	desc.setScale(transform->getScale());
-	desc.setRotation(transform->getRotation());
+	desc.setPosition(transform->getPosition() + this->description->getSpawnPositionOffset());
+	desc.setScale(transform->getScale() + this->description->getSpawnScaleOffset());
+	desc.setRotation(transform->getRotation() + this->description->getSpawnRotationOffset());
 
 	desc.setGravityMultiplier(this->description->getGravityMultiplier());
 	desc.setLifeTime(this->description->getLifeTime());
@@ -121,6 +126,8 @@ void EmitterComponent::addParticle(ParticleDescription& desc)
 	desc.setFadeEnd(this->description->getFadeEnd());
 	desc.setFadeSpeed(this->description->getFadeSpeed());
 
-	if ((int)this->description->getTextures().size() > 0)
-		desc.setTexture(this->description->getTextures()[rand() % (int)this->description->getTextures().size()]);
+	if ((int)this->description->getImages().size() > 0)
+		desc.setImage(this->description->getImages()[rand() % (int)this->description->getImages().size()]);
+
+	this->particle_descriptions.push_back(desc);
 }

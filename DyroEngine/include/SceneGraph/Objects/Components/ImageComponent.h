@@ -2,9 +2,6 @@
 #define _IMAGECOMPONENT_H
 
 #include "SceneGraph/Objects/Components/Component.h"
-#ifndef _IBOUNDINGBOX_H
-#include "Core\Helpers\Interfaces\IBoundingBox.h"
-#endif
 
 #ifndef _COLOR_H
 #include "Core/Defines/color.h"
@@ -16,7 +13,7 @@
 
 class Image;
 
-class ImageComponent : public Component, public IBoundingBox
+class ImageComponent : public Component
 {
 	/**
 	\note Must be present in every subclass definition.
@@ -41,8 +38,6 @@ public:
 
 	void setClip(const Rect2D& c);
 	const Rect2D& getClip() const;
-
-	virtual Rect2D getBoundingBox() const;
 
 private:
 	Image* image;

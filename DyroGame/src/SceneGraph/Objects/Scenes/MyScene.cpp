@@ -20,6 +20,11 @@
 #include "Core/Types/SettingsType.h"
 
 #include "Core\Data\Manager\SettingsManager.h"
+#include "Core\Data\Manager\ResourceManager.h"
+
+#include "Core\Data\Objects\Resources\Image.h"
+
+#include "Core/Data//Objects/Descriptions/Particles/EmitterComponentDescription.h"
 
 #include "Core\Data\Objects\Settings\ApplicationSettings.h"
 #include "Core\Data\Objects\Settings\GameSettings.h"
@@ -45,6 +50,8 @@ namespace
 
 	const int GROUND_RECT_WIDTH = 1280;
 	const int GROUND_RECT_HEIGHT = 100;
+
+	unsigned int PARTICLE_AMOUNT = 100;
 }
 
 MyScene::MyScene()
@@ -73,7 +80,7 @@ bool MyScene::initialize()
 
 	addGameObject(new FreeCamera(_T("Main Camera"), 200.0f));
 
-	float step_rect = window_width / (RECT_AMOUNT + 1);
+	/*float step_rect = window_width / (RECT_AMOUNT + 1);
 	for (int i = 0; i < RECT_AMOUNT; ++i)
 	{
 		PhysicsObject* phyx_object = new PhysicsObject(BodyType::DYNAMIC);
@@ -108,7 +115,7 @@ bool MyScene::initialize()
 		phyx_object->addComponent(new TriangleCollisionComponent(phyx_object->getRigidBody(), (float)TRIANGLE_SCALE, (float)TRIANGLE_SCALE));
 
 		addGameObject(phyx_object);
-	}
+	}*/
 
 	PhysicsObject* ground_object = new PhysicsObject(BodyType::STATIC);
 	ground_object->setName(_T("GROUND_OBJECT"));
@@ -118,6 +125,22 @@ bool MyScene::initialize()
 	ground_object->addComponent(new BoxCollisionComponent(ground_object->getRigidBody(), (float)GROUND_RECT_WIDTH, (float)GROUND_RECT_HEIGHT, 0.0f, 0.5f, 1.0f));
 
 	addGameObject(ground_object);
+
+	// DyroGame 
+	ResourceManager* resource_manager = getManager<ResourceManager>();
+
+	EmitterComponentDescription* description = new EmitterComponentDescription(PARTICLE_AMOUNT);
+
+	description->addImage(resource_manager->getResource<Image>(_T("resources/IMAGES/Particles/star.png")));
+	description->addImage(resource_manager->getResource<Image>(_T("resources/IMAGES/Particles/circle.png")));
+	description->addImage(resource_manager->getResource<Image>(_T("resources/IMAGES/Particles/diamond.png")));
+
+	CrazyEmitter* emitter = new CrazyEmitter(description);
+
+	emitter->getTransform()->setPosition(window_width / 2, window_height / 2);
+	emitter->getTransform()->setScale(Vector2D(1, 1));
+
+	addGameObject(emitter);
 
 	return Scene::initialize();
 }

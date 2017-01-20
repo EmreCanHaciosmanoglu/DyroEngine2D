@@ -9,13 +9,12 @@
 #include "Math/Objects/Vector2D.h"
 #endif
 
-class Texture;
+class Image;
 
 class ParticleDescription : public IDestroyable
 {
 public:
 	ParticleDescription();
-	ParticleDescription(const ParticleDescription& description) = default;
 	~ParticleDescription();
 
 	void destroy();
@@ -36,11 +35,12 @@ public:
 	void setFadeEnd(float end);
 	void setFadeSpeed(float speed);
 
-	void setTexture(Texture* texture);
+	void setImage(Image* image);
 
 	bool isDestroyed() const;
 
 	float getGravityMultiplier() const;
+	float getLifeTimePercentage() const;
 	float getLifeTime() const;
 
 	const Vector2D& getVelocity() const;
@@ -56,10 +56,11 @@ public:
 	float getFadeEnd() const;
 	float getFadeSpeed() const;
 
-	Texture* getTexture() const;
+	Image* getImage() const;
 
 private:
 	float gravity_multiplier;
+	float start_life_time;
 	float life_time;
 
 	Vector2D velocity;
@@ -75,7 +76,7 @@ private:
 	float fade_end;
 	float fade_speed;
 
-	Texture* texture;
+	Image* image;
 };
 
 #endif

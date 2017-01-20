@@ -34,14 +34,16 @@ public:
 template<typename T>
 T* ResourceManager::getResource(const std::tstring& path)
 {
-	std::map<unsigned int, Resource*>::const_iterator it = std::find_if(this->map_objects.begin(), this->map_objects.end(),
+	std::map<unsigned int, Resource*> map_objects = getObjects();
+
+	std::map<unsigned int, Resource*>::const_iterator it = std::find_if(map_objects.begin(), map_objects.end(),
 		[path](std::pair<unsigned int, Resource*> pair)
 	{
 		return path == pair.second->getResourcePath();
-	})
+	});
 
-		if (it != this->map_objects.end())
-			return dynamic_cast<T*>((*it).second);
+	if (it != map_objects.end())
+		return dynamic_cast<T*>((*it).second);
 
 	T * new_r = new T(path);
 	new_r->initialize();

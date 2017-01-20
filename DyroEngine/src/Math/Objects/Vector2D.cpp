@@ -98,12 +98,28 @@ bool Vector2D::operator<(const Vector2D& rhs) const
 	if (y > rhs.y) return false;
 	return false;
 }
+bool Vector2D::operator<=(const Vector2D& rhs) const
+{
+	if (x <= rhs.x) return true;
+	if (x >= rhs.x) return false;
+	if (y <= rhs.y) return true;
+	if (y >= rhs.y) return false;
+	return false;
+}
 bool Vector2D::operator>(const Vector2D& rhs) const
 {
 	if (x > rhs.x) return true;
 	if (x < rhs.x) return false;
 	if (y > rhs.y) return true;
 	if (y < rhs.y) return false;
+	return false;
+}
+bool Vector2D::operator>=(const Vector2D& rhs) const
+{
+	if (x >= rhs.x) return true;
+	if (x <= rhs.x) return false;
+	if (y >= rhs.y) return true;
+	if (y <= rhs.y) return false;
 	return false;
 }
 

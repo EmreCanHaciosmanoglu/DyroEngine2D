@@ -26,7 +26,7 @@ public:
 		, max_value(maxValue)
 	{
 		//Minimum value needs to be smaller than maximum value
-		assert(min_value < max_value);
+		assert(min_value <= max_value);
 	}
 
 	bool operator== (const Range<T> & other) const

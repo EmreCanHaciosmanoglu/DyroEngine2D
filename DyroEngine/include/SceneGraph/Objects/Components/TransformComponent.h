@@ -25,9 +25,9 @@ public:
 	void mirrorY();
 	void resetMirror(bool x = true, bool y = true);
 
-	void center(float xCenter, float yCenter);
-	void center(const Vector2D& centerPosition);
-	void resetCenter();
+	//void center(float xCenter, float yCenter);
+	//void center(const Vector2D& centerPosition);
+	//void resetCenter();
 
 	void translate(const Vector2D& translation);
 	void scale(const Vector2D& scale);
@@ -40,7 +40,7 @@ public:
 	void setRotation(float angle);
 
 	const Vector2D& getPosition() const;
-	const Vector2D& getCenterPosition() const;
+	//const Vector2D& getCenterPosition() const;
 	const Vector2D& getScale() const;
 	const Vector2D& getMirrorX() const;
 	const Vector2D& getMirrorY() const;
@@ -59,7 +59,7 @@ private:
 
 	void calculateWorldMatrix();
 
-	Vector2D center_position;
+	//Vector2D center_position;
 	Vector2D position;
 	Vector2D scaling;
 	Vector2D mirror_x;

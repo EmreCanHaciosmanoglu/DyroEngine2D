@@ -16,7 +16,7 @@ TransformComponent::TransformComponent(const std::tstring& name)
 	, world_matrix()
 	, mirror_x(Vector2D(1, 1))
 	, mirror_y(Vector2D(1, 1))
-	, center_position(0, 0)
+	//, center_position(0, 0)
 {
 	OBJECT_INIT(_T("TransformComponent"));
 
@@ -65,21 +65,21 @@ void TransformComponent::resetMirror(bool x, bool y)
 		this->mirror_y = Vector2D(1, 1);
 }
 
-void TransformComponent::center(float xCenter, float yCenter)
-{
-	setIsDirty();
-	center(Vector2D(xCenter, yCenter));
-}
-void TransformComponent::center(const Vector2D& centerPosition)
-{
-	setIsDirty();
-	this->center_position = centerPosition;
-}
-void TransformComponent::resetCenter()
-{
-	setIsDirty();
-	center(Vector2D(0, 0));
-}
+//void TransformComponent::center(float xCenter, float yCenter)
+//{
+//	setIsDirty();
+//	center(Vector2D(xCenter, yCenter));
+//}
+//void TransformComponent::center(const Vector2D& centerPosition)
+//{
+//	setIsDirty();
+//	this->center_position = centerPosition;
+//}
+//void TransformComponent::resetCenter()
+//{
+//	setIsDirty();
+//	center(Vector2D(0, 0));
+//}
 
 void TransformComponent::translate(const Vector2D& translation)
 {
@@ -158,10 +158,10 @@ const Vector2D& TransformComponent::getPosition() const
 {
 	return this->position;
 }
-const Vector2D& TransformComponent::getCenterPosition() const
-{
-	return this->center_position;
-}
+//const Vector2D& TransformComponent::getCenterPosition() const
+//{
+//	return this->center_position;
+//}
 const Vector2D& TransformComponent::getScale() const
 {
 	return this->scaling;
@@ -200,7 +200,7 @@ bool TransformComponent::getIsDirty() const
 
 void TransformComponent::calculateWorldMatrix()
 {
-	Matrix2D mat_center = Matrix2D::createTranslationMatrix(this->center_position);
+	//Matrix2D mat_center = Matrix2D::createTranslationMatrix(this->center_position);
 	Matrix2D mat_translation = Matrix2D::createTranslationMatrix(this->position);
 	Matrix2D mat_scale = Matrix2D::createScalingMatrix(this->scaling);
 	Matrix2D mat_rotation = Matrix2D::createRotationMatrix(this->rotation);
@@ -208,5 +208,5 @@ void TransformComponent::calculateWorldMatrix()
 	Matrix2D mat_mirror_x = Matrix2D::createScalingMatrix(this->mirror_x);
 	Matrix2D mat_mirror_y = Matrix2D::createScalingMatrix(this->mirror_y);
 
-	this->world_matrix = mat_center*mat_mirror_x*mat_mirror_y*mat_scale*mat_rotation*mat_translation;
+	this->world_matrix = /*mat_center**/mat_mirror_x*mat_mirror_y*mat_scale*mat_rotation*mat_translation;
 }

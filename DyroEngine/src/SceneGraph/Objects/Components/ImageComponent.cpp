@@ -59,8 +59,3 @@ const Rect2D& ImageComponent::getClip() const
 {
 	return this->image->getClip();
 }
-
-Rect2D ImageComponent::getBoundingBox() const
-{
-	return this->image->getBoundingBox();
-}
