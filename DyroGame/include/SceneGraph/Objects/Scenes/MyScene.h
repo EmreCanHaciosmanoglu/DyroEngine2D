@@ -22,6 +22,9 @@ public:
 	virtual void setupInput(Input* input);
 
 private:
+	void noDebugRendering();
+	void debugOnlyRendering();
+	void overlayDebugRendering();
 };
 
 #endif

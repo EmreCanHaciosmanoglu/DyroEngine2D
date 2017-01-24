@@ -23,6 +23,7 @@ public:
 	
 	void setLayer(Layer* layer);
 	void setTransform(const Vector2D& position, const Vector2D& scale, float rotation);
+	void setTransform(const Matrix2D& transform);
 
 	virtual bool isTransparant() const = 0;
 

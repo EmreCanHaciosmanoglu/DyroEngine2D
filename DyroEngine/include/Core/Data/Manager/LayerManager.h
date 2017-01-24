@@ -2,10 +2,11 @@
 #define _LAYERMANAGER_H
 
 #include "Core/Helpers/Patterns/Manager.h"
+#include "Core/Helpers/Patterns/Singleton.h"
 
 class Layer;
 
-class LayerManager : public Manager<Layer>
+class LayerManager : public Manager<Layer>, public Singleton<LayerManager>
 {
 public:
 	LayerManager();

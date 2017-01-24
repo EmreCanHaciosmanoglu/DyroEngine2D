@@ -30,6 +30,8 @@ class ContactListener;
 class ContactFilter;
 class b2World;
 
+enum class DebugRenderingType;
+
 class Scene : public Object, public IInput
 {
 	/**
@@ -51,8 +53,7 @@ public:
 	virtual void activate();
 	virtual void deactive();
 
-	void enableDebugRendering();
-	void disableDebugRendering();
+	void setDebugRenderingType(DebugRenderingType type);
 
 	b2World* getPhyxWorld();
 
@@ -72,7 +73,6 @@ private:
 	void setupPyhx();
 
 	void triggerRender();
-	void triggerDebugRender();
 
 	b2World* phyx_world;
 
@@ -82,7 +82,7 @@ private:
 	ContactListener* contact_listener;
 	ContactFilter* contact_filter;
 
-	bool debug_rendering;
+	DebugRenderingType debug_rendering_type;
 
 	GameObjectManager* game_object_manager;
 	TimerManager* timer_manager;

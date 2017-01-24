@@ -22,6 +22,7 @@
 #include "Core\Data\Objects\Layer.h"
 
 #include "Core/Types/SettingsType.h"
+#include "Core/Types/DebugRenderingType.h"
 
 #include "Rendering\Renderer.h"
 #include "Rendering\DebugRenderer.h"
@@ -33,7 +34,7 @@
 Scene::Scene(const std::tstring& name)
 	:Object(name)
 	, phyx_world(nullptr)
-	, debug_rendering(false)
+	, debug_rendering_type(DebugRenderingType::NO_DEBUG)
 	, renderer(new Renderer())
 	, debug_renderer(nullptr)
 	, contact_filter(nullptr)
@@ -95,9 +96,7 @@ void Scene::update()
 	this->game_object_manager->update();
 
 	//Renderer the scene after all calculations are done
-	if (this->debug_rendering)
-		this->triggerDebugRender();
-	else triggerRender();
+	triggerRender();
 }
 bool Scene::shutdown()
 {
@@ -131,13 +130,9 @@ void Scene::deactive()
 	Object::deactive();
 }
 
-void Scene::enableDebugRendering()
+void Scene::setDebugRenderingType(DebugRenderingType type)
 {
-	this->debug_rendering = true;
-}
-void Scene::disableDebugRendering()
-{
-	this->debug_rendering = false;
+	this->debug_rendering_type = type;
 }
 
 b2World* Scene::getPhyxWorld()
@@ -202,21 +197,22 @@ void Scene::setupPyhx()
 
 void Scene::triggerRender()
 {
-	//Get all visualizations
-	std::map<unsigned int, Visualization*> visualizations = this->game_object_manager->getVisualizations();
-
-	//Generate the render items
 	std::vector<RenderItem*> items;
-	for (const std::pair<unsigned int, Visualization*>& pair : visualizations)
-		pair.second->getRenderItems(items);
+
+	if (debug_rendering_type == DebugRenderingType::ONLY_DEBUG || debug_rendering_type == DebugRenderingType::OVERLAY_DEBUG)
+		this->phyx_world->DrawDebugData();
+
+	if (debug_rendering_type != DebugRenderingType::ONLY_DEBUG)
+	{
+		//Get all visualizations
+		std::map<unsigned int, Visualization*> visualizations = this->game_object_manager->getVisualizations();
+		for (const std::pair<unsigned int, Visualization*>& pair : visualizations)
+			pair.second->getRenderItems(items);
+	}
 
 	//Render visualizations
 	this->renderer->render(items);
 
 	//Clear the render item list
 	items.clear();
-}
-void Scene::triggerDebugRender()
-{
-	this->phyx_world->DrawDebugData();
 }

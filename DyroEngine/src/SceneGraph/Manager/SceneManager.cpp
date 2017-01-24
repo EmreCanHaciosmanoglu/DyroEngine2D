@@ -7,6 +7,7 @@
 
 #include "Core/Defines/assert.h"
 #include "Core/Defines/deletemacros.h"
+#include "Core/Defines/renderlayers.h"
 
 #include "Core/Helpers/Patterns/Singleton.h"
 #include "Core/Helpers/Patterns/Manager.h"
@@ -32,14 +33,15 @@ bool SceneManager::initialize()
 
 	if (!this->active_scene->getInitialized())
 	{
-		Singleton<LayerManager>::getInstance().addLayer(new Layer(1, _T("Default")));
-		Singleton<LayerManager>::getInstance().addLayer(new Layer(0, _T("UI")));
-		Singleton<LayerManager>::getInstance().addLayer(new Layer(1000, _T("Background")));
+		LayerManager::getInstance().addLayer(new Layer(layers::DEFAULT_LAYER, _T("Default")));
+		LayerManager::getInstance().addLayer(new Layer(layers::UI_LAYER, _T("UI")));
+		LayerManager::getInstance().addLayer(new Layer(layers::DEBUG_LAYER, _T("Debug")));
+		LayerManager::getInstance().addLayer(new Layer(layers::BACKGROUND_LAYER, _T("Background")));
 
-		this->active_scene->addManager(&Singleton<LayerManager>::getInstance());
+		this->active_scene->addManager(&LayerManager::getInstance());
 		this->active_scene->addManager(&CameraManager::getInstance());
-		this->active_scene->addManager(&Singleton<ResourceManager>::getInstance());
-		this->active_scene->addManager(&Singleton<GeometryManager>::getInstance());
+		this->active_scene->addManager(&ResourceManager::getInstance());
+		this->active_scene->addManager(&GeometryManager::getInstance());
 		this->active_scene->addManager(&TextureManager::getInstance());
 		this->active_scene->addManager(&TimerManager::getInstance());
 

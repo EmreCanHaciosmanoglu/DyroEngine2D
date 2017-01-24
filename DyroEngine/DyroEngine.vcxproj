@@ -95,12 +95,14 @@
     <ClInclude Include="include\Core\Data\Manager\LayerManager.h" />
     <ClInclude Include="include\Core\Defines\consolecolors.h" />
     <ClInclude Include="include\Core\Defines\debug.h" />
+    <ClInclude Include="include\Core\Defines\renderlayers.h" />
     <ClInclude Include="include\Core\Diagnostics\Objects\ErrorLog.h" />
     <ClInclude Include="include\Core\Diagnostics\Objects\InfoLog.h" />
     <ClInclude Include="include\Core\Diagnostics\Objects\TodoLog.h" />
     <ClInclude Include="include\Core\Diagnostics\Objects\WarningLog.h" />
     <ClInclude Include="include\Core\Data\Factory\GeometryFactory.h" />
     <ClInclude Include="include\Core\Data\Manager\GeometryManager.h" />
+    <ClInclude Include="include\Core\Types\DebugRenderingType.h" />
     <ClInclude Include="include\Rendering\Manager\TextureManager.h" />
     <ClInclude Include="include\Math\Objects\Random.h" />
     <ClInclude Include="include\Math\Objects\Range.h" />

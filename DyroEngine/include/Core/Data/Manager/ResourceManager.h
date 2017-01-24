@@ -2,6 +2,7 @@
 #define _RESOURCEMANAGER_H
 
 #include "Core/Helpers/Patterns/Manager.h"
+#include "Core/Helpers/Patterns/Singleton.h"
 
 #ifndef _STRING_H
 #include "Core\Defines\string.h"
@@ -18,7 +19,7 @@
 #include <algorithm>
 #endif
 
-class ResourceManager : public Manager<Resource>
+class ResourceManager : public Manager<Resource> , public Singleton<ResourceManager>
 {
 public:
 	ResourceManager();

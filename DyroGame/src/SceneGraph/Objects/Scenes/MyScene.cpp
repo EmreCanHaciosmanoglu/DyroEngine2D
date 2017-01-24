@@ -18,6 +18,7 @@
 #include "Core\Helpers/Patterns\Singleton.h"
 
 #include "Core/Types/SettingsType.h"
+#include "Core/Types/DebugRenderingType.h"
 
 #include "Core\Data\Manager\SettingsManager.h"
 #include "Core\Data\Manager\ResourceManager.h"
@@ -80,7 +81,7 @@ bool MyScene::initialize()
 
 	addGameObject(new FreeCamera(_T("Main Camera"), 200.0f));
 
-	/*float step_rect = window_width / (RECT_AMOUNT + 1);
+	float step_rect = window_width / (RECT_AMOUNT + 1);
 	for (int i = 0; i < RECT_AMOUNT; ++i)
 	{
 		PhysicsObject* phyx_object = new PhysicsObject(BodyType::DYNAMIC);
@@ -115,7 +116,7 @@ bool MyScene::initialize()
 		phyx_object->addComponent(new TriangleCollisionComponent(phyx_object->getRigidBody(), (float)TRIANGLE_SCALE, (float)TRIANGLE_SCALE));
 
 		addGameObject(phyx_object);
-	}*/
+	}
 
 	PhysicsObject* ground_object = new PhysicsObject(BodyType::STATIC);
 	ground_object->setName(_T("GROUND_OBJECT"));
@@ -155,6 +156,20 @@ bool MyScene::shutdown()
 
 void MyScene::setupInput(Input* input)
 {
-	input->bindInput(InputBinding(VK_F1, std::bind(&Scene::enableDebugRendering, this), InputStateType::PRESSED));
-	input->bindInput(InputBinding(VK_F2, std::bind(&Scene::disableDebugRendering, this), InputStateType::PRESSED));
+	input->bindInput(InputBinding(VK_F1, std::bind(&MyScene::noDebugRendering, this), InputStateType::PRESSED));
+	input->bindInput(InputBinding(VK_F2, std::bind(&MyScene::debugOnlyRendering, this), InputStateType::PRESSED));
+	input->bindInput(InputBinding(VK_F3, std::bind(&MyScene::overlayDebugRendering, this), InputStateType::PRESSED));
+}
+
+void MyScene::noDebugRendering()
+{
+	setDebugRenderingType(DebugRenderingType::NO_DEBUG);
+}
+void MyScene::debugOnlyRendering()
+{
+	setDebugRenderingType(DebugRenderingType::ONLY_DEBUG);
+}
+void MyScene::overlayDebugRendering()
+{
+	setDebugRenderingType(DebugRenderingType::OVERLAY_DEBUG);
 }

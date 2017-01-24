@@ -260,5 +260,7 @@
     <ClInclude Include="include\Core\Helpers\Interfaces\IDestroyable.h" />
     <ClInclude Include="include\Core\Data\Factory\GeometryFactory.h" />
     <ClInclude Include="include\Core\Data\Manager\GeometryManager.h" />
+    <ClInclude Include="include\Core\Defines\renderlayers.h" />
+    <ClInclude Include="include\Core\Types\DebugRenderingType.h" />
   </ItemGroup>
 </Project>

@@ -39,6 +39,12 @@ void RenderItem::setTransform(const Vector2D& position, const Vector2D& scale, f
 
 	this->transform = mat_scale * mat_rotate * mat_translate;
 }
+void RenderItem::setTransform(const Matrix2D& transform)
+{
+	//TODO: Extract position, rotation and scale
+
+	this->transform = transform;
+}
 
 const Vector2D& RenderItem::getPosition() const
 {
