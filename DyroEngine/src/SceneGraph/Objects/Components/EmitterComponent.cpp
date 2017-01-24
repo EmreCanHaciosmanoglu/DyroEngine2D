@@ -60,9 +60,10 @@ void EmitterComponent::update()
 
 		if (this->particle_descriptions[i].canFade())
 		{
-			if (this->particle_descriptions[i].getLifeTimePercentage() < this->particle_descriptions[i].getFadeStart())
+			float normalized_lifetime = this->particle_descriptions[i].getLifeTime() / this->particle_descriptions[i].getInitialLifeTime();
+			if (normalized_lifetime < this->particle_descriptions[i].getFadeStart())
 			{
-								
+
 			}
 		}
 
@@ -124,7 +125,7 @@ void EmitterComponent::addParticle()
 	desc.enableFade(this->description->canFade());
 	desc.setFadeStart(this->description->getFadeStart());
 	desc.setFadeEnd(this->description->getFadeEnd());
-	desc.setFadeSpeed(this->description->getFadeSpeed());
+	desc.setFadeAmount(0);
 
 	if ((int)this->description->getImages().size() > 0)
 		desc.setImage(this->description->getImages()[rand() % (int)this->description->getImages().size()]);

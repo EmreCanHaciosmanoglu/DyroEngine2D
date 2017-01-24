@@ -3,8 +3,8 @@
 
 #include "Rendering\Renderer.h"
 
-Texture::Texture(Visualization* parent, Image* image, const std::tstring name)
-	:RenderItem(parent, name)
+Texture::Texture(Image* image, const std::tstring name)
+	:RenderItem(name)
 	, image(image)
 {}
 Texture::~Texture()
@@ -12,6 +12,7 @@ Texture::~Texture()
 
 void Texture::render(Renderer* renderer)
 {
+	renderer->drawBitmap(getImage());
 }
 
 bool Texture::isTransparant() const

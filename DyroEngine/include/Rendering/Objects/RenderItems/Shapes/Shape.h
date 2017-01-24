@@ -11,8 +11,8 @@ class Geometry;
 class Shape : public RenderItem
 {
 public:
-	Shape(Visualization* parent, const std::tstring& name = _T("Shape"));
-	Shape(Visualization* parent, ShapeDescription* description, const std::tstring& name = _T("Shape"));
+	Shape(const std::tstring& name = _T("Shape"));
+	Shape(ShapeDescription* description, const std::tstring& name = _T("Shape"));
 	virtual ~Shape();
 
 	virtual void create() = 0;

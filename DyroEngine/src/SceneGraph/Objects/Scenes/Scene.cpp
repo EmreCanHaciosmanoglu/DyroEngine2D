@@ -34,7 +34,7 @@ Scene::Scene(const std::tstring& name)
 	:Object(name)
 	, phyx_world(nullptr)
 	, debug_rendering(false)
-	, renderer(nullptr)
+	, renderer(new Renderer())
 	, debug_renderer(nullptr)
 	, contact_filter(nullptr)
 	, contact_listener(nullptr)
@@ -52,8 +52,6 @@ Scene::~Scene()
 bool Scene::initialize()
 {
 	setupPyhx();
-
-	this->renderer = new Renderer();
 
 	if (!this->game_object_manager->initialize())
 		return false;
@@ -182,7 +180,7 @@ void Scene::addManager(AbstractManager* manager)
 
 void Scene::setupPyhx()
 {
-	this->debug_renderer = new DebugRenderer();
+	this->debug_renderer = new DebugRenderer(this->renderer);
 	this->contact_filter = new ContactFilter();
 	this->contact_listener = new ContactListener();
 
@@ -211,13 +209,6 @@ void Scene::triggerRender()
 	std::vector<RenderItem*> items;
 	for (const std::pair<unsigned int, Visualization*>& pair : visualizations)
 		pair.second->getRenderItems(items);
-
-	//Sort the render items
-	std::sort(items.begin(), items.end(),
-		[](RenderItem* i1, RenderItem* i2) -> bool
-	{
-		return i1->getLayer()->getID() < i2->getLayer()->getID();
-	});
 
 	//Render visualizations
 	this->renderer->render(items);

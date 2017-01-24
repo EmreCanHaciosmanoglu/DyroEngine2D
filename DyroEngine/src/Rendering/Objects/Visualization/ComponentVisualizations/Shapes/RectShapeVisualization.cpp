@@ -20,7 +20,7 @@ bool RectShapeVisualization::initialize()
 {
 	RectShapeComponent* component = dynamic_cast<RectShapeComponent*>(getObject());
 	if (component != nullptr)
-		setShape(new RectShape(this, component->getRectDescription()));
+		setShape(new RectShape(component->getRectDescription()));
 
 	assert(getShape() != nullptr);
 

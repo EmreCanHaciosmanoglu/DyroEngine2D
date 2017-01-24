@@ -21,7 +21,7 @@ ParticleDescription::ParticleDescription()
 	, fade(false)
 	, fade_start(0.0f)
 	, fade_end(1.0f)
-	, fade_speed(1.0f)
+	, fade_amount(1.0f)
 {}
 ParticleDescription::~ParticleDescription()
 {}
@@ -75,14 +75,20 @@ void ParticleDescription::enableFade(bool fade)
 void ParticleDescription::setFadeStart(float start)
 {
 	this->fade_start = start;
+	this->fade_start = b2Clamp<float>(this->fade_start, 0, this->life_time);
+	if (this->fade_start > this->fade_end)
+		this->fade_start = this->fade_end;
 }
 void ParticleDescription::setFadeEnd(float end)
 {
 	this->fade_end = end;
+	this->fade_end = b2Clamp<float>(this->fade_start, 0, this->life_time);
+	if (this->fade_end < this->fade_start)
+		this->fade_end = this->fade_start;
 }
-void ParticleDescription::setFadeSpeed(float speed)
+void ParticleDescription::setFadeAmount(float speed)
 {
-	this->fade_speed = speed;
+	this->fade_amount = speed;
 }
 
 void ParticleDescription::setImage(Image* image)
@@ -99,9 +105,9 @@ float ParticleDescription::getGravityMultiplier() const
 {
 	return this->gravity_multiplier;
 }
-float ParticleDescription::getLifeTimePercentage() const
+float ParticleDescription::getInitialLifeTime() const
 {
-	return this->life_time / this->start_life_time;
+	return this->start_life_time;
 }
 float ParticleDescription::getLifeTime() const
 {
@@ -146,9 +152,9 @@ float ParticleDescription::getFadeEnd() const
 {
 	return this->fade_end;
 }
-float ParticleDescription::getFadeSpeed() const
+float ParticleDescription::getFadeAmount() const
 {
-	return this->fade_speed;
+	return this->fade_amount;
 }
 
 Image* ParticleDescription::getImage() const

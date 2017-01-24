@@ -13,11 +13,11 @@
 
 #include "SceneGraph\Objects\Scenes\Scene.h"
 
-PolygonShape::PolygonShape(Visualization* parent, const std::tstring& name)
-	:Shape(parent, name)
+PolygonShape::PolygonShape(const std::tstring& name)
+	:Shape(name)
 {}
-PolygonShape::PolygonShape(Visualization* parent, PolygonShapeDescription* description, const std::tstring& name)
-	: Shape(parent, description, name)
+PolygonShape::PolygonShape(PolygonShapeDescription* description, const std::tstring& name)
+	: Shape(description, name)
 {
 }
 PolygonShape::~PolygonShape()
@@ -25,7 +25,7 @@ PolygonShape::~PolygonShape()
 
 void PolygonShape::create()
 {
-	this->geometry = getParentVisualization()->getScene()->getManager<GeometryManager>()->getGeometry(getDescription());
+	this->geometry = GeometryManager::getInstance().getGeometry(getDescription());
 
 	//Geometry cannot be null
 	assert(this->geometry != nullptr);

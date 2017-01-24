@@ -5,21 +5,12 @@
 #include "Rendering/Manager/TextureManager.h"
 #include "Rendering/Objects/RenderItems/Texture.h"
 
-#include "Rendering/Objects/Visualization/Visualization.h"
-
-#include "SceneGraph/Objects/Scenes/Scene.h"
-
-Particle::Particle(Visualization* parent, const ParticleDescription& desc, const std::tstring name)
-	:RenderItem(parent, name)
+Particle::Particle(const ParticleDescription& desc, const std::tstring name)
+	:RenderItem(name)
 	,description(desc)
 	,texture(nullptr)
 {
-	this->texture = parent->getScene()->getManager<TextureManager>()->getTexture(desc.getImage());
-	if (this->texture == nullptr)
-	{
-		this->texture = new Texture(parent, desc.getImage());
-		parent->getScene()->getManager<TextureManager>()->addTexture(this->texture);
-	}
+	this->texture = TextureManager::getInstance().getTexture(desc.getImage());
 }
 Particle::~Particle()
 {}

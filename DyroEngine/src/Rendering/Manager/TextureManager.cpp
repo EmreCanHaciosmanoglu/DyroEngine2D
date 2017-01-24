@@ -25,11 +25,6 @@ bool TextureManager::shutdown()
 	return true;
 }
 
-void TextureManager::addTexture(Texture* texture)
-{
-	addObject(texture->getID(), texture);
-}
-
 void TextureManager::removeTexture(Texture* texture)
 {
 	removeObject(texture);
@@ -56,6 +51,12 @@ Texture* TextureManager::getTexture(Image* image)
 
 	if(it != textures.end())
 		return (*it);
+	else
+	{
+		Texture* texture = new Texture(image);
+		addObject(texture->getID(), texture);
+		return texture;
+	}
 
 	return nullptr;
 }

@@ -79,6 +79,7 @@ public:
 private:
 	D2D1_BITMAP_INTERPOLATION_MODE interpolation_mode;
 	Graphics* graphics;
+	std::vector<RenderItem*> cached_render_items;
 };
 
 #endif // _RENDERER_H

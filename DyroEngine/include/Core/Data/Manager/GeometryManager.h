@@ -2,12 +2,13 @@
 #define _GEOMETRYMANAGER_H
 
 #include "Core/Helpers/Patterns/Manager.h"
+#include "Core/Helpers/Patterns/Singleton.h"
 
 class Geometry;
 class GeometryFactory;
 class ShapeDescription;
 
-class GeometryManager : public Manager<Geometry>
+class GeometryManager : public Manager<Geometry>, public Singleton<GeometryManager>
 {
 public:
 	GeometryManager();
@@ -15,8 +16,6 @@ public:
 
 	virtual bool initialize();
 	virtual bool shutdown();
-
-	void addGeometry(Geometry* geometry);
 
 	void removeGeometry(Geometry* geometry);
 	void removeGeometry(unsigned int id);

@@ -17,8 +17,8 @@ class Renderer;
 class CircleShape : public Shape
 {
 public:
-	CircleShape(Visualization* parent, const std::tstring& name = _T("CircleShape"));
-	CircleShape(Visualization* parent, CircleShapeDescription* descripion, const std::tstring& name = _T("CircleShape"));
+	CircleShape(const std::tstring& name = _T("CircleShape"));
+	CircleShape(CircleShapeDescription* descripion, const std::tstring& name = _T("CircleShape"));
 	virtual ~CircleShape();
 
 	virtual void create();

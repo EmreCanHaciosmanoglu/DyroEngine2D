@@ -19,8 +19,8 @@ class Renderer;
 class RectShape : public Shape
 {
 public:
-	RectShape(Visualization* parent, const std::tstring& name = _T("RectShape"));
-	RectShape(Visualization* parent, RectShapeDescription* desc, const std::tstring& name = _T("RectShape"));
+	RectShape(const std::tstring& name = _T("RectShape"));
+	RectShape(RectShapeDescription* desc, const std::tstring& name = _T("RectShape"));
 	virtual ~RectShape();
 
 	virtual void create();

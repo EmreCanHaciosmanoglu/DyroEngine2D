@@ -21,7 +21,7 @@ bool CircleShapeVisualization::initialize()
 {
 	CircleShapeComponent* component = dynamic_cast<CircleShapeComponent*>(getObject());
 	if (component != nullptr)
-		setShape(new CircleShape(this, component->getCircleDescription()));
+		setShape(new CircleShape(component->getCircleDescription()));
 
 	assert(getShape() != nullptr);
 

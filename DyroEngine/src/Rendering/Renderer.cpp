@@ -26,6 +26,13 @@ Renderer::~Renderer()
 
 void Renderer::render(std::vector<RenderItem*>& items)
 {
+	//Sort the render items
+	std::sort(items.begin(), items.end(),
+		[](RenderItem* i1, RenderItem* i2) -> bool
+	{
+		return i1->getLayer()->getID() < i2->getLayer()->getID();
+	});
+
 	this->graphics->beginDraw();
 	this->graphics->clear();
 

@@ -3,9 +3,8 @@
 
 #include "Core\Data\Objects\Layer.h"
 
-RenderItem::RenderItem(Visualization* parent, const std::tstring& name)
+RenderItem::RenderItem(const std::tstring& name)
 	:TaggedObject<RenderItem>(name)
-	, parent_visualization(parent)
 
 	, layer(nullptr)
 	, transform(Matrix2D::createIdentityMatrix())
@@ -39,11 +38,6 @@ void RenderItem::setTransform(const Vector2D& position, const Vector2D& scale, f
 	Matrix2D mat_rotate = Matrix2D::createRotationMatrix(rotation);
 
 	this->transform = mat_scale * mat_rotate * mat_translate;
-}
-
-Visualization* RenderItem::getParentVisualization() const
-{
-	return this->parent_visualization;
 }
 
 const Vector2D& RenderItem::getPosition() const

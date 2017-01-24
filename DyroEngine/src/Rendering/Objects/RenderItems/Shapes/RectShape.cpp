@@ -12,11 +12,11 @@
 
 #include "SceneGraph\Objects\Scenes\Scene.h"
 
-RectShape::RectShape(Visualization* parent, const std::tstring& name)
-	:Shape(parent, name)
+RectShape::RectShape(const std::tstring& name)
+	:Shape(name)
 {}
-RectShape::RectShape(Visualization* parent, RectShapeDescription* desc, const std::tstring& name)
-	: Shape(parent, desc, name)
+RectShape::RectShape(RectShapeDescription* desc, const std::tstring& name)
+	: Shape(desc, name)
 {
 }
 RectShape::~RectShape()
@@ -24,7 +24,7 @@ RectShape::~RectShape()
 
 void RectShape::create()
 {
-	this->geometry = getParentVisualization()->getScene()->getManager<GeometryManager>()->getGeometry(getDescription());
+	this->geometry = GeometryManager::getInstance().getGeometry(getDescription());
 
 	//Geometry cannot be null
 	assert(this->geometry != nullptr);

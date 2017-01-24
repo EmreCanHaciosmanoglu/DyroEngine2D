@@ -14,12 +14,12 @@
 #include "Math/Objects/Matrix2D.h"
 #endif
 
-class Scene;
+class Renderer;
 
-class DebugRenderer : public Renderer, public b2Draw
+class DebugRenderer : public b2Draw
 {
 public:
-	DebugRenderer();
+	DebugRenderer(Renderer* r);
 	virtual ~DebugRenderer();
 
 	DebugRenderer(const DebugRenderer&) = delete;
@@ -41,6 +41,7 @@ private:
 
 	Color color;
 	Matrix2D mat_scale;
+	Renderer* renderer;
 };
 
 #endif

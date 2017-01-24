@@ -33,11 +33,6 @@ bool GeometryManager::shutdown()
 	return true;
 }
 
-void GeometryManager::addGeometry(Geometry* geometry)
-{
-	addObject(geometry->getID(), geometry);
-}
-
 void GeometryManager::removeGeometry(Geometry* geometry)
 {
 	removeObject(geometry);

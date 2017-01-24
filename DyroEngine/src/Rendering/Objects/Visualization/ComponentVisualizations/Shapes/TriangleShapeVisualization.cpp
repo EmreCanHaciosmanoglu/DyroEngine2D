@@ -20,7 +20,7 @@ bool TriangleShapeVisualization::initialize()
 {
 	TriangleShapeComponent* component = dynamic_cast<TriangleShapeComponent*>(getObject());
 	if (component != nullptr)
-		setShape(new TriangleShape(this, component->getTriangleDescription()));
+		setShape(new TriangleShape(component->getTriangleDescription()));
 
 	assert(getShape() != nullptr);
 

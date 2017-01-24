@@ -20,7 +20,7 @@ bool PolygonShapeVisualization::initialize()
 {
 	PolygonShapeComponent* component = dynamic_cast<PolygonShapeComponent*>(getObject());
 	if (component != nullptr)
-		setShape(new PolygonShape(this, component->getPolygonDescription()));
+		setShape(new PolygonShape(component->getPolygonDescription()));
 
 	assert(getShape() != nullptr);
 

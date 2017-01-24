@@ -16,8 +16,6 @@ public:
 	virtual bool initialize();
 	virtual bool shutdown();
 
-	void addTexture(Texture* texture);
-
 	void removeTexture(Texture* texture);
 	void removeTexture(unsigned int id);
 

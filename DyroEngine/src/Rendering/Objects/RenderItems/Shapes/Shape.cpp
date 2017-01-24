@@ -13,13 +13,13 @@
 #include "Core/Defines/d2dutill.h"
 #endif
 
-Shape::Shape(Visualization* parent, const std::tstring& name)
-	:RenderItem(parent, name)
+Shape::Shape(const std::tstring& name)
+	:RenderItem(name)
 	, description(nullptr)
 	, geometry(nullptr)
 {}
-Shape::Shape(Visualization* parent, ShapeDescription* description, const std::tstring& name)
-	:RenderItem(parent, name)
+Shape::Shape(ShapeDescription* description, const std::tstring& name)
+	:RenderItem(name)
 	, description(description)
 	, geometry(nullptr)
 {}

@@ -16,8 +16,8 @@ class Renderer;
 class LineShape : public Shape
 {
 public:
-	LineShape(Visualization* parent, const std::tstring& name = _T("Lineshape"));
-	LineShape(Visualization* parent, LineShapeDescription* description, const std::tstring& name = _T("LineShape"));
+	LineShape(const std::tstring& name = _T("Lineshape"));
+	LineShape(LineShapeDescription* description, const std::tstring& name = _T("LineShape"));
 	virtual ~LineShape();
 
 	virtual void create();

@@ -8,7 +8,7 @@ class Image;
 class Texture : public RenderItem
 {
 public:
-	Texture(Visualization* parent, Image* image, const std::tstring name = _T("Texture"));
+	Texture(Image* image, const std::tstring name = _T("Texture"));
 	virtual ~Texture();
 
 	virtual void render(Renderer* renderer);

@@ -33,14 +33,14 @@ public:
 	void enableFade(bool fade);
 	void setFadeStart(float start);
 	void setFadeEnd(float end);
-	void setFadeSpeed(float speed);
+	void setFadeAmount(float amount);
 
 	void setImage(Image* image);
 
 	bool isDestroyed() const;
 
 	float getGravityMultiplier() const;
-	float getLifeTimePercentage() const;
+	float getInitialLifeTime() const;
 	float getLifeTime() const;
 
 	const Vector2D& getVelocity() const;
@@ -54,7 +54,7 @@ public:
 	bool canFade() const;
 	float getFadeStart() const;
 	float getFadeEnd() const;
-	float getFadeSpeed() const;
+	float getFadeAmount() const;
 
 	Image* getImage() const;
 
@@ -74,7 +74,7 @@ private:
 	bool fade;
 	float fade_start;
 	float fade_end;
-	float fade_speed;
+	float fade_amount;
 
 	Image* image;
 };

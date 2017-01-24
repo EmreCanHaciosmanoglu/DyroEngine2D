@@ -3,20 +3,18 @@
 
 #include "Core\Data/Manager/GeometryManager.h"
 
-#include "SceneGraph\Objects\Scenes\Scene.h"
-
-TriangleShape::TriangleShape(Visualization* parent, const std::tstring& name)
-	:PolygonShape(parent, name)
+TriangleShape::TriangleShape(const std::tstring& name)
+	:PolygonShape(name)
 {}
-TriangleShape::TriangleShape(Visualization* parent, TriangleShapeDescription* desc, const std::tstring& name)
-	:PolygonShape(parent, desc, name)
+TriangleShape::TriangleShape(TriangleShapeDescription* desc, const std::tstring& name)
+	:PolygonShape(desc, name)
 {}
 TriangleShape::~TriangleShape()
 {}
 
 void TriangleShape::create()
 {
-	this->geometry = getParentVisualization()->getScene()->getManager<GeometryManager>()->getGeometry(getDescription());
+	this->geometry = GeometryManager::getInstance().getGeometry(getDescription());
 
 	//Geometry cannot be null
 	assert(this->geometry != nullptr);

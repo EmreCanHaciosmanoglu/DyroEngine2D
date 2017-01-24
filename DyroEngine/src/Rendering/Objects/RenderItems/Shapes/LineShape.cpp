@@ -11,20 +11,18 @@
 #include "Core/Defines/d2dutill.h"
 #include "Core/Defines/deletemacros.h"
 
-#include "SceneGraph\Objects\Scenes\Scene.h"
-
-LineShape::LineShape(Visualization* parent, const std::tstring& name)
-	:Shape(parent, name)
+LineShape::LineShape(const std::tstring& name)
+	:Shape(name)
 {}
-LineShape::LineShape(Visualization* parent, LineShapeDescription* description, const std::tstring& name)
-	:Shape(parent, description, name)
+LineShape::LineShape(LineShapeDescription* description, const std::tstring& name)
+	:Shape(description, name)
 {}
 LineShape::~LineShape()
 {}
 
 void LineShape::create()
 {
-	this->geometry = getParentVisualization()->getScene()->getManager<GeometryManager>()->getGeometry(getDescription());
+	this->geometry = GeometryManager::getInstance().getGeometry(getDescription());
 
 	//Geometry cannot be null
 	assert(this->geometry != nullptr);

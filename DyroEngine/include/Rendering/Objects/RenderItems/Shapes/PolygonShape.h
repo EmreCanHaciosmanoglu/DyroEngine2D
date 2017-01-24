@@ -20,8 +20,8 @@ class Renderer;
 class PolygonShape : public Shape
 {
 public:
-	PolygonShape(Visualization* parent, const std::tstring& name = _T("PolygonShape"));
-	PolygonShape(Visualization* parent, PolygonShapeDescription* description, const std::tstring& name = _T("PolygonShape"));
+	PolygonShape(const std::tstring& name = _T("PolygonShape"));
+	PolygonShape(PolygonShapeDescription* description, const std::tstring& name = _T("PolygonShape"));
 	virtual ~PolygonShape();
 
 	virtual void create();

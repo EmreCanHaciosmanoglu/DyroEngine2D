@@ -26,7 +26,7 @@ bool EmitterComponentVisualization::initialize()
 	if (emitter_component != nullptr)
 	{
 		for (const ParticleDescription& desc : emitter_component->getParticleDescriptions())
-			this->particles.push_back(new Particle(this, desc));
+			this->particles.push_back(new Particle(desc));
 	}
 
 	return true;
@@ -57,7 +57,7 @@ void EmitterComponentVisualization::generateRenderItems(std::vector<RenderItem*>
 
 		for (const ParticleDescription& desc : emitter_component->getParticleDescriptions())
 		{
-			Particle* particle = new Particle(this, desc);
+			Particle* particle = new Particle(desc);
 			this->particles.push_back(particle);
 
 			//Since an image will get renderer from his top corner we will need to center the image in order to achieve correct visuals.

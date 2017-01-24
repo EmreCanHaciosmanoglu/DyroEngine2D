@@ -20,7 +20,7 @@ bool LineShapeVisualization::initialize()
 {
 	LineShapeComponent* component = dynamic_cast<LineShapeComponent*>(getObject());
 	if (component != nullptr)
-		setShape(new LineShape(this, component->getLineDescription()));
+		setShape(new LineShape(component->getLineDescription()));
 
 	assert(getShape() != nullptr);
 

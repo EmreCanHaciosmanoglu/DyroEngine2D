@@ -29,12 +29,6 @@ bool ImageVisualization::initialize()
 
 	this->texture = getScene()->getManager<TextureManager>()->getTexture(component->getImage());
 
-	if (this->texture == nullptr)
-	{
-		this->texture = new Texture(this, component->getImage());
-		getScene()->getManager<TextureManager>()->addTexture(this->texture);
-	}
-
 	return true;
 }
 bool ImageVisualization::shutdown()

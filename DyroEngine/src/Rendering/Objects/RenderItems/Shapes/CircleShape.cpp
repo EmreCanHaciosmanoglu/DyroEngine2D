@@ -12,11 +12,11 @@
 
 #include "SceneGraph\Objects\Scenes\Scene.h"
 
-CircleShape::CircleShape(Visualization* parent, const std::tstring& name)
-	:Shape(parent, name)
+CircleShape::CircleShape(const std::tstring& name)
+	:Shape(name)
 {}
-CircleShape::CircleShape(Visualization* parent, CircleShapeDescription* descripion, const std::tstring& name)
-	: Shape(parent, descripion, name)
+CircleShape::CircleShape(CircleShapeDescription* descripion, const std::tstring& name)
+	: Shape(descripion, name)
 {
 }
 CircleShape::~CircleShape()
@@ -24,7 +24,7 @@ CircleShape::~CircleShape()
 
 void CircleShape::create()
 {
-	this->geometry = getParentVisualization()->getScene()->getManager<GeometryManager>()->getGeometry(getDescription());
+	this->geometry = GeometryManager::getInstance().getGeometry(getDescription());
 
 	//Geometry cannot be null
 	assert(this->geometry != nullptr);
