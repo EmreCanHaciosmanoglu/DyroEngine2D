@@ -36,12 +36,24 @@ public:
 template <typename T>
 Transition<T>* TransitionManager::getTransition(int id)
 {
-
+	return dynamic_cast<Transition<T>*>(getObject(id));
 }
 template <typename T>
 Transition<T>* TransitionManager::getTransition(const std::tstring& name)
 {
+	std::vector<AbstractTrasition*> transitions;
+	getObjects(transitions);
 
+	std::vector<AbstractTrasition*>::const_iterator it = std::find_if(transitions.begin(), transitions.end(),
+		[name](AbstractTrasition* t) -> bool
+	{
+		return name == t->getName();
+	});
+
+	if (it == transitions.end())
+		return nullptr;
+
+	return dynamic_cast<Transition<T>*>(*it);
 }
 
 #endif

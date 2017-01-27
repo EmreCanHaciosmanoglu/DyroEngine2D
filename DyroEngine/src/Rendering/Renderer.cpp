@@ -91,40 +91,40 @@ void Renderer::cacheShape(RenderItem* item)
 	this->cached_render_items.push_back(item);
 }
 
-bool Renderer::drawBitmap(const Image* imagePtr) const
+bool Renderer::drawBitmap(const Image* imagePtr, float opacity) const
 {
 	assert(imagePtr != nullptr);
 
 	Rect2D srcRect2(0, 0, imagePtr->getWidth(), imagePtr->getHeight());
-	return drawBitmap(imagePtr, Vector2D(0, 0), srcRect2);
+	return drawBitmap(imagePtr, Vector2D(0, 0), srcRect2, opacity);
 }
-bool Renderer::drawBitmap(const Image* imagePtr, float x, float y) const
+bool Renderer::drawBitmap(const Image* imagePtr, float x, float y, float opacity) const
 {
 	assert(imagePtr != nullptr);
 
 	Rect2D srcRect(0, 0, imagePtr->getWidth(), imagePtr->getHeight());
-	return drawBitmap(imagePtr, Vector2D(x, y), srcRect);
+	return drawBitmap(imagePtr, Vector2D(x, y), srcRect, opacity);
 }
-bool Renderer::drawBitmap(const Image* imagePtr, const Vector2D& position) const
+bool Renderer::drawBitmap(const Image* imagePtr, const Vector2D& position, float opacity) const
 {
 	assert(imagePtr != nullptr);
 
 	Rect2D srcRect(0, 0, imagePtr->getWidth(), imagePtr->getHeight());
-	return drawBitmap(imagePtr, position, srcRect);
+	return drawBitmap(imagePtr, position, srcRect, opacity);
 }
-bool Renderer::drawBitmap(const Image* imagePtr, const Rect2D& srcRect) const
+bool Renderer::drawBitmap(const Image* imagePtr, const Rect2D& srcRect, float opacity) const
 {
 	assert(imagePtr != nullptr);
 
-	return drawBitmap(imagePtr, Vector2D(0, 0), srcRect);
+	return drawBitmap(imagePtr, Vector2D(0, 0), srcRect, opacity);
 }
-bool Renderer::drawBitmap(const Image* imagePtr, float x, float y, const Rect2D& srcRect) const
+bool Renderer::drawBitmap(const Image* imagePtr, float x, float y, const Rect2D& srcRect, float opacity) const
 {
 	assert(imagePtr != nullptr);
 
-	return drawBitmap(imagePtr, Vector2D(x, y), srcRect);
+	return drawBitmap(imagePtr, Vector2D(x, y), srcRect, opacity);
 }
-bool Renderer::drawBitmap(const Image* imagePtr, const Vector2D& position, const Rect2D& srcRect) const
+bool Renderer::drawBitmap(const Image* imagePtr, const Vector2D& position, const Rect2D& srcRect, float opacity) const
 {
 	assert(imagePtr != nullptr);
 
@@ -140,7 +140,7 @@ bool Renderer::drawBitmap(const Image* imagePtr, const Vector2D& position, const
 	dstRect_f.top = (FLOAT)position.y;
 	dstRect_f.bottom = dstRect_f.top + (FLOAT)(srcRect.bottom - srcRect.top);
 
-	this->graphics->getRenderTarget()->DrawBitmap(imagePtr->getBitmap(), dstRect_f, (FLOAT)imagePtr->getOpacity(), this->interpolation_mode, srcRect_f);
+	this->graphics->getRenderTarget()->DrawBitmap(imagePtr->getBitmap(), dstRect_f, (FLOAT)opacity, this->interpolation_mode, srcRect_f);
 
 	return true;
 }

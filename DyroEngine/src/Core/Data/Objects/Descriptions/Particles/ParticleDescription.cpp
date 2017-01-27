@@ -22,6 +22,8 @@ ParticleDescription::ParticleDescription()
 	, fade_start(0.0f)
 	, fade_end(1.0f)
 	, fade_amount(1.0f)
+
+	, id(ObjectCounter<ParticleDescription>::getAmount())
 {}
 ParticleDescription::~ParticleDescription()
 {}
@@ -82,7 +84,7 @@ void ParticleDescription::setFadeStart(float start)
 void ParticleDescription::setFadeEnd(float end)
 {
 	this->fade_end = end;
-	this->fade_end = b2Clamp<float>(this->fade_start, 0, this->life_time);
+	this->fade_end = b2Clamp<float>(this->fade_end, 0, this->life_time);
 	if (this->fade_end < this->fade_start)
 		this->fade_end = this->fade_start;
 }
@@ -94,6 +96,11 @@ void ParticleDescription::setFadeAmount(float speed)
 void ParticleDescription::setImage(Image* image)
 {
 	this->image = image;
+}
+
+unsigned int ParticleDescription::getID()
+{
+	return this->id;
 }
 
 bool ParticleDescription::isDestroyed() const

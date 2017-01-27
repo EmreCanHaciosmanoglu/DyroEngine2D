@@ -3,12 +3,15 @@
 
 #include "SceneGraph/Objects/GameObjects/GameObject.h"
 
+#include "SceneGraph/Objects/Scenes/Scene.h"
+
 #include "Core/Data/Objects/Descriptions/Particles/EmitterComponentDescription.h"
 #include "Core/Data/Objects/Descriptions/Particles/ParticleDescription.h"
 #include "Core/Data/Objects/Timers/WorldTimer.h"
 #include "Core/Data/Objects/Transition.h"
 
 #include "Core/Data/Manager/SettingsManager.h"
+#include "Core/Data/Manager/TransitionManager.h"
 
 #include "Core/Defines/deletemacros.h"
 #include "Core/Defines/debug.h"
@@ -64,17 +67,17 @@ void EmitterComponent::update()
 			float normalized_lifetime = this->particle_descriptions[i].getLifeTime() / this->particle_descriptions[i].getInitialLifeTime();
 			if (normalized_lifetime < this->particle_descriptions[i].getFadeStart())
 			{
-				float fade_distance = this->particle_descriptions[i].getFadeEnd() - this->particle_descriptions[i].getFadeStart();
-				float normalized_fade_distance = fade_distance / this->particle_descriptions[i].getInitialLifeTime();
+				Transition<float>* transition = getParent()->getScene()->getManager<TransitionManager>()->getTransition<float>(_T("particle_fade_transition") + TOSTRING(this->particle_descriptions[i].getID()));
+				if (transition == nullptr || transition->isFinished())
+					continue;
 
-				float fade_speed = (1 / normalized_fade_distance) * WorldTimer::getWorldDeltaTime();
-
-
+				if (!transition->isRunning())
+					transition->start();
+				else this->particle_descriptions[i].setFadeAmount(1.0f - transition->getValue());
 			}
 		}
 
 		//LogManager::getInstance().log(new TodoLog(_T("Particle gravity"), LOG_INFO));
-		//LogManager::getInstance().log(new TodoLog(_T("Particle fade"), LOG_INFO));
 	}
 
 	//Remove destroyed particles
@@ -131,10 +134,26 @@ void EmitterComponent::addParticle()
 	desc.enableFade(this->description->canFade());
 	desc.setFadeStart(this->description->getFadeStart());
 	desc.setFadeEnd(this->description->getFadeEnd());
-	desc.setFadeAmount(0);
+	desc.setFadeAmount(1);
 
 	if ((int)this->description->getImages().size() > 0)
 		desc.setImage(this->description->getImages()[rand() % (int)this->description->getImages().size()]);
+
+	//Setup particle fade
+	if (desc.canFade())
+	{
+		float fade_distance = desc.getFadeEnd() - desc.getFadeStart();
+		if (fade_distance <= 0.0f)
+			return;
+
+		float fade_speed = (1.0f / fade_distance) * WorldTimer::getWorldDeltaTime();
+
+		Transition<float>* fading_transition = new Transition<float>(0.0f, 1.0f, _T("particle_fade_transition") + TOSTRING(desc.getID()));
+		fading_transition->setSpeed(fade_speed);
+		fading_transition->destroyOnFinish(false);
+
+		getParent()->getScene()->getManager<TransitionManager>()->addTransition(fading_transition);
+	}
 
 	this->particle_descriptions.push_back(desc);
 }

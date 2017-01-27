@@ -17,6 +17,7 @@
 #include "Core\Data\Manager\SettingsManager.h"
 #include "Core\Data\Manager\LayerManager.h"
 #include "Core\Data\Manager\TimerManager.h"
+#include "Core\Data\Manager\TransitionManager.h"
 
 #include "Core\Data\Objects\Settings\PhysicsSettings.h"
 #include "Core\Data\Objects\Layer.h"
@@ -40,6 +41,8 @@ Scene::Scene(const std::tstring& name)
 	, contact_filter(nullptr)
 	, contact_listener(nullptr)
 	, game_object_manager(nullptr)
+	, timer_manager(nullptr)
+	, transition_manager(nullptr)
 {
 	OBJECT_INIT(_T("Scene"));
 
@@ -57,8 +60,9 @@ bool Scene::initialize()
 	if (!this->game_object_manager->initialize())
 		return false;
 
-	//Retrieve the timer manager so we don't need to retrieve it every update
+	//Retrieve the managers so we don't need to retrieve it every update
 	this->timer_manager = getManager<TimerManager>();
+	this->transition_manager = getManager<TransitionManager>();
 
 	return true;
 }
@@ -75,8 +79,9 @@ bool Scene::postInitialize()
 }
 void Scene::update()
 {
-	//Update timers
+	//Update managers
 	this->timer_manager->update();
+	this->transition_manager->update();
 
 	//Retrieve the physics settings
 	PhysicsSettings* physicsSettings = dynamic_cast<PhysicsSettings*>(SettingsManager::getInstance().getSettings(SettingsType::PHYSICS_SETTINGS));

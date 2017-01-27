@@ -47,12 +47,12 @@ public:
 
 	void cacheShape(RenderItem* item);
 
-	bool drawBitmap(const Image* bmpPtr) const;
-	bool drawBitmap(const Image* bmpPtr, float x, float y) const;
-	bool drawBitmap(const Image* bmpPtr, const Vector2D& position) const;
-	bool drawBitmap(const Image* bmpPtr, const Rect2D& srcRect) const;
-	bool drawBitmap(const Image* bmpPtr, float x, float y, const Rect2D& srcRect) const;
-	bool drawBitmap(const Image* bmpPtr, const Vector2D& position, const Rect2D& srcRect) const;
+	bool drawBitmap(const Image* bmpPtr, float opacity = 1.0f) const;
+	bool drawBitmap(const Image* bmpPtr, float x, float y, float opacity = 1.0f) const;
+	bool drawBitmap(const Image* bmpPtr, const Vector2D& position, float opacity = 1.0f) const;
+	bool drawBitmap(const Image* bmpPtr, const Rect2D& srcRect, float opacity = 1.0f) const;
+	bool drawBitmap(const Image* bmpPtr, float x, float y, const Rect2D& srcRect, float opacity = 1.0f) const;
+	bool drawBitmap(const Image* bmpPtr, const Vector2D& position, const Rect2D& srcRect, float opacity = 1.0f) const;
 
 private:
 	D2D1_BITMAP_INTERPOLATION_MODE interpolation_mode;

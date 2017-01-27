@@ -1,6 +1,7 @@
 #ifndef _PARTICLEDESCRIPTION_H
 #define _PARTICLEDESCRIPTION_H
 
+#include "Core/Helpers/ObjectCounter.h"
 #ifndef _IDESTROYABLE_H
 #include "Core/Helpers/Interfaces/IDestroyable.h"
 #endif
@@ -11,7 +12,7 @@
 
 class Image;
 
-class ParticleDescription : public IDestroyable
+class ParticleDescription : public IDestroyable, public ObjectCounter<ParticleDescription>
 {
 public:
 	ParticleDescription();
@@ -37,6 +38,8 @@ public:
 
 	void setImage(Image* image);
 
+	unsigned int getID();
+
 	bool isDestroyed() const;
 
 	float getGravityMultiplier() const;
@@ -59,6 +62,8 @@ public:
 	Image* getImage() const;
 
 private:
+	unsigned int id;
+
 	float gravity_multiplier;
 	float start_life_time;
 	float life_time;

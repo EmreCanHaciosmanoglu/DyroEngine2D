@@ -17,8 +17,8 @@ Particle::~Particle()
 
 void Particle::render(Renderer* renderer)
 {
-	if(!description.isDestroyed())
-		renderer->drawBitmap(this->texture->getImage(), Vector2D(0,0));
+	if (!description.isDestroyed())
+		renderer->drawBitmap(this->texture->getImage(), Vector2D(0, 0), this->description.getFadeAmount());
 }
 
 bool Particle::isTransparant() const

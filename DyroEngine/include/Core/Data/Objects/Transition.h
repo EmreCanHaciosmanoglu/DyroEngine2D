@@ -1,9 +1,6 @@
 #ifndef _TRANSITION_H
 #define _TRANSITION_H
 
-#ifndef _WORLDTIMER_H
-#include "Core/Data/Objects/Timers/WorldTimer.h"
-#endif
 #ifndef _TAGGEDOBJECT_H
 #include "Core/Helpers/TaggedObject.h"
 #endif
@@ -14,13 +11,28 @@ public:
 	AbstractTrasition(const std::tstring& name)
 		:TaggedObject(name)
 
+		, running(false)
 		, finished(false)
 		, destroy_on_finish(true)
 	{}
 	virtual ~AbstractTrasition(){}
 
+
+	void start()
+	{
+		this->running = true;
+	}
+	void stop()
+	{
+		this->running = false;
+	}
+
 	virtual void update() = 0;
 
+	bool isRunning() const
+	{
+		return this->running;
+	}
 	bool isFinished() const
 	{
 		return this->finished;
@@ -41,6 +53,7 @@ protected:
 	}
 
 private:
+	bool running;
 	bool finished;
 	bool destroy_on_finish;
 };
@@ -55,7 +68,9 @@ public:
 		,from(from)
 		,to(to)
 		,speed()
-	{}
+	{
+		current = from;
+	}
 	~Transition()
 	{}
 
@@ -66,9 +81,12 @@ public:
 	}
 	void update()
 	{
-		if(to - from > 0)
-			from += speed * WorldTimer::getWorldDeltaTime();
-		else setFinished(true)
+		if (!isRunning())
+			return;
+
+		if(to - current > (T)0)
+			current += speed;
+		else setFinished(true);
 	}
 
 	void setSpeed(T speed)
@@ -80,9 +98,16 @@ public:
 		return this->speed;
 	}
 
+	T getValue() const
+	{
+		return current;
+	}
+
 private:
 	T from;
 	T to;
+
+	T current;
 
 	T speed;
 };
