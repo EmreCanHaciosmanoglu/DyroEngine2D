@@ -1,5 +1,4 @@
 #include "Rendering\Manager\TextureManager.h"
-#include "Rendering\Objects\RenderItems\Texture.h"
 
 #include "Core\Data\Objects\Resources\Image.h"
 

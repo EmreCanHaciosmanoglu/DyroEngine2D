@@ -4,7 +4,7 @@
 #include "Core/Helpers/Patterns/Manager.h"
 #include "Core/Helpers/Patterns/Singleton.h"
 
-class Layer;
+#include "Core\Data\Objects\Layer.h"
 
 class LayerManager : public Manager<Layer>, public Singleton<LayerManager>
 {

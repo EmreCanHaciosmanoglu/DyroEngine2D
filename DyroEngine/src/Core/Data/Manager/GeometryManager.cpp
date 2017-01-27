@@ -2,7 +2,6 @@
 #include "Core/Data/Factory/GeometryFactory.h"
 
 #include "Core/Data/Objects/Descriptions/Shapes/ShapeDescription.h"
-#include "Core/Data/Objects//Geometry.h"
 
 #include "Core/Types/GeometryType.h"
 

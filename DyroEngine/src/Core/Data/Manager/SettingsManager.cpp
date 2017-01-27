@@ -1,5 +1,6 @@
 #include "Core/Data/Manager/SettingsManager.h"
-#include "Core/Data//Objects/Settings/Settings.h"
+
+#include "Core/Types/SettingsType.h"
 
 SettingsManager::SettingsManager()
 {}

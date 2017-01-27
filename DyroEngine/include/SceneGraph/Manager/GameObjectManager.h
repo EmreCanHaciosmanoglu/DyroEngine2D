@@ -10,13 +10,12 @@
 #include <map>
 #endif
 
-class GameObject;
-
 class Visualization;
 class VisualizationManager;
 class VisualizationFactory;
 
 class Input;
+class GameObject;
 
 class GameObjectManager : public Manager<GameObject>
 {

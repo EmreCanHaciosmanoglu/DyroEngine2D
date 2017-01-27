@@ -1,5 +1,4 @@
 #include "Core\Data\Manager\LayerManager.h"
-#include "Core\Data\Objects\Layer.h"
 
 #include <algorithm>
 

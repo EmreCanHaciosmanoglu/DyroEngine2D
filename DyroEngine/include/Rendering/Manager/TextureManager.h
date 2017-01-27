@@ -4,7 +4,8 @@
 #include "Core/Helpers/Patterns/Manager.h"
 #include "Core/Helpers/Patterns/Singleton.h"
 
-class Texture;
+#include "Rendering\Objects\RenderItems\Texture.h"
+
 class Image;
 
 class TextureManager : public Manager<Texture>, public Singleton<TextureManager>

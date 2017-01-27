@@ -12,6 +12,7 @@
 #include "Core\Data\Manager\ResourceManager.h"
 #include "Core\Data\Manager\GeometryManager.h"
 #include "Core\Data\Manager\TimerManager.h"
+#include "Core\Data\Manager\TransitionManager.h"
 #include "Rendering\Manager\TextureManager.h"
 #include "SceneGraph\Manager\CameraManager.h"
 
@@ -21,7 +22,7 @@
 #include <vector>
 #endif
 
-class Scene;
+#include "SceneGraph/Objects/Scenes/Scene.h"
 
 class SceneManager : public Manager<Scene>, public Singleton<SceneManager>
 {

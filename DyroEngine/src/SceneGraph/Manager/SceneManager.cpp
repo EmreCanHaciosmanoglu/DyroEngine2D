@@ -1,5 +1,4 @@
 #include "SceneGraph/Manager/SceneManager.h"
-#include "SceneGraph/Objects/Scenes/Scene.h"
 
 #ifndef _ALGORITHM_
 #include <algorithm>
@@ -30,6 +29,7 @@ bool SceneManager::initialize()
 	setupManager<GeometryManager>();
 	setupManager<TextureManager>();
 	setupManager<TimerManager>();
+	setupManager<TransitionManager>();
 
 	if (!this->active_scene->getInitialized())
 	{
@@ -44,6 +44,7 @@ bool SceneManager::initialize()
 		this->active_scene->addManager(&GeometryManager::getInstance());
 		this->active_scene->addManager(&TextureManager::getInstance());
 		this->active_scene->addManager(&TimerManager::getInstance());
+		this->active_scene->addManager(&TransitionManager::getInstance());
 
 		if (!this->active_scene->initialize())
 			return false;
@@ -85,6 +86,7 @@ bool SceneManager::shutdown()
 		SafeDelete(scene);
 	}
 
+	destroyManager<TransitionManager>();
 	destroyManager<TimerManager>();
 	destroyManager<TextureManager>();
 	destroyManager<GeometryManager>();

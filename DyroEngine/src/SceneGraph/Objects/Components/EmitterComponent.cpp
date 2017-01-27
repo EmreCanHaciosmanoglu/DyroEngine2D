@@ -6,6 +6,7 @@
 #include "Core/Data/Objects/Descriptions/Particles/EmitterComponentDescription.h"
 #include "Core/Data/Objects/Descriptions/Particles/ParticleDescription.h"
 #include "Core/Data/Objects/Timers/WorldTimer.h"
+#include "Core/Data/Objects/Transition.h"
 
 #include "Core/Data/Manager/SettingsManager.h"
 
@@ -63,6 +64,11 @@ void EmitterComponent::update()
 			float normalized_lifetime = this->particle_descriptions[i].getLifeTime() / this->particle_descriptions[i].getInitialLifeTime();
 			if (normalized_lifetime < this->particle_descriptions[i].getFadeStart())
 			{
+				float fade_distance = this->particle_descriptions[i].getFadeEnd() - this->particle_descriptions[i].getFadeStart();
+				float normalized_fade_distance = fade_distance / this->particle_descriptions[i].getInitialLifeTime();
+
+				float fade_speed = (1 / normalized_fade_distance) * WorldTimer::getWorldDeltaTime();
+
 
 			}
 		}

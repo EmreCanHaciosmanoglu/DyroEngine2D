@@ -106,6 +106,7 @@ bool Manager<T>::removeObject(T* object)
 	if (it == this->map_objects.end())
 		return false;
 
+	delete it->second;
 	this->map_objects.erase(it);
 	return true;
 }
@@ -116,6 +117,7 @@ bool Manager<T>::removeObject(unsigned int id)
 	if (it == this->map_objects.end())
 		return false;
 
+	delete it->second;
 	this->map_objects.erase(it);
 	return true;
 }

@@ -4,7 +4,8 @@
 #include "Core/Helpers/Patterns/Singleton.h"
 #include "Core/Helpers/Patterns/Manager.h"
 
-class Timer;
+#include "Core\Data\Objects\Timers\Timer.h"
+
 class WorldTimer;
 
 class TimerManager : public Manager<Timer>, public Singleton<TimerManager>

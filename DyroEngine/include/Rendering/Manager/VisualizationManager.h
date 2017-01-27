@@ -3,8 +3,9 @@
 
 #include "Core/Helpers/Patterns/Manager.h"
 
+#include "Rendering/Objects/Visualization/Visualization.h"
+
 class Object;
-class Visualization;
 
 class VisualizationManager : public Manager<Visualization>
 {

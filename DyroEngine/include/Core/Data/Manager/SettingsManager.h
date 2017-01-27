@@ -4,7 +4,8 @@
 #include "Core/Helpers/Patterns/Manager.h"
 #include "Core/Helpers/Patterns/Singleton.h"
 
-class Settings;
+#include "Core/Data//Objects/Settings/Settings.h"
+
 enum class SettingsType;
 
 class SettingsManager : public Manager<Settings>, public Singleton<SettingsManager>

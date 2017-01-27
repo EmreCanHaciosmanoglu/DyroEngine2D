@@ -2,8 +2,7 @@
 #define _COMPONENTMANAGER_H
 
 #include "Core/Helpers/Patterns/Manager.h"
-
-class Component;
+#include "SceneGraph\Objects\Components\Component.h"
 
 class ComponentManager : public Manager<Component>
 {

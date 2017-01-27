@@ -4,7 +4,8 @@
 #include "Core/Helpers/Patterns/Manager.h"
 #include "Core/Helpers/Patterns/Singleton.h"
 
-class Geometry;
+#include "Core/Data/Objects//Geometry.h"
+
 class GeometryFactory;
 class ShapeDescription;
 

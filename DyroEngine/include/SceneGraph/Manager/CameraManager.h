@@ -8,7 +8,7 @@
 #include "Core\Defines\string.h"
 #endif
 
-class Camera;
+#include "SceneGraph\Objects\GameObjects\Camera\Camera.h"
 
 class CameraManager : public Manager<Camera> , public Singleton<CameraManager>
 {

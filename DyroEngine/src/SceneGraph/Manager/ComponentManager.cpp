@@ -1,5 +1,4 @@
 #include "SceneGraph\Manager\ComponentManager.h"
-#include "SceneGraph\Objects\Components\Component.h"
 
 #include "Core\Defines\deletemacros.h"
 #include "Core\Defines\assert.h"

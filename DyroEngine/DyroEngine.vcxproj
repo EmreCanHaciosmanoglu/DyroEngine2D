@@ -82,6 +82,7 @@
     <ClInclude Include="include\Core\Data\Factory\SettingsFactory.h" />
     <ClInclude Include="include\Core\Data\Manager\SettingsManager.h" />
     <ClInclude Include="include\Core\Data\Manager\TimerManager.h" />
+    <ClInclude Include="include\Core\Data\Manager\TransitionManager.h" />
     <ClInclude Include="include\Core\Data\Objects\Descriptions\Particles\EmitterComponentDescription.h" />
     <ClInclude Include="include\Core\Data\Objects\Descriptions\Particles\ParticleDescription.h" />
     <ClInclude Include="include\Core\Data\Objects\Descriptions\Shapes\CircleShapeDescription.h" />
@@ -93,6 +94,7 @@
     <ClInclude Include="include\Core\Data\Objects\Geometry.h" />
     <ClInclude Include="include\Core\Data\Objects\Layer.h" />
     <ClInclude Include="include\Core\Data\Manager\LayerManager.h" />
+    <ClInclude Include="include\Core\Data\Objects\Transition.h" />
     <ClInclude Include="include\Core\Defines\consolecolors.h" />
     <ClInclude Include="include\Core\Defines\debug.h" />
     <ClInclude Include="include\Core\Defines\renderlayers.h" />
@@ -223,6 +225,7 @@
   <ItemGroup>
     <ClCompile Include="src\Core\Data\Factory\SettingsFactory.cpp" />
     <ClCompile Include="src\Core\Data\Manager\SettingsManager.cpp" />
+    <ClCompile Include="src\Core\Data\Manager\TransitionManager.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Descriptions\Particles\EmitterComponentDescription.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Descriptions\Particles\ParticleDescription.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Descriptions\Shapes\CircleShapeDescription.cpp" />
@@ -235,6 +238,10 @@
     <ClCompile Include="src\Core\Data\Objects\Geometry.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Layer.cpp" />
     <ClCompile Include="src\Core\Data\Manager\LayerManager.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Transition.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="src\Core\Diagnostics\Objects\ErrorLog.cpp" />
     <ClCompile Include="src\Core\Diagnostics\Objects\InfoLog.cpp" />
     <ClCompile Include="src\Core\Diagnostics\Objects\TodoLog.cpp" />

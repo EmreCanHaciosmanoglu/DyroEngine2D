@@ -1,5 +1,4 @@
 #include "Rendering\Manager\VisualizationManager.h"
-#include "Rendering/Objects/Visualization/Visualization.h"
 
 #include "Core/Defines\deletemacros.h"
 

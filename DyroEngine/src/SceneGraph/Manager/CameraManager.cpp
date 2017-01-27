@@ -1,5 +1,4 @@
 #include "SceneGraph\Manager\CameraManager.h"
-#include "SceneGraph\Objects\GameObjects\Camera\Camera.h"
 
 #include "Core/Defines/assert.h"
 
