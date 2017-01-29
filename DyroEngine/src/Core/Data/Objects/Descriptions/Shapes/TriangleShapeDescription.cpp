@@ -52,11 +52,23 @@ TriangleShapeDescription& TriangleShapeDescription::operator=(const TriangleShap
 
 void TriangleShapeDescription::setXScale(float scale)
 {
+	std::vector<Vector2D> points = getPoints();
+	for (Vector2D& point : points)
+		point.x *= scale;
+
 	this->x_scale = scale;
+
+	setPoints(points);
 }
 void TriangleShapeDescription::setYScale(float scale)
 {
+	std::vector<Vector2D> points = getPoints();
+	for (Vector2D& point : points)
+		point.y *= scale;
+
 	this->y_scale = scale;
+
+	setPoints(points);
 }
 
 float TriangleShapeDescription::getXScale() const

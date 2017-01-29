@@ -32,6 +32,10 @@ bool GameObjectManager::initialize()
 
 		if (!pair.second->initialize())
 			return false;
+
+		Visualization* visualization = this->visualization_factory->createVisualization(pair.second, pair.second->hasChilderen());
+		if (visualization != nullptr)
+			this->visualization_manager->addVisualization(visualization);
 	}
 
 	this->visualization_manager->initialize();
@@ -145,9 +149,6 @@ bool GameObjectManager::addObject(unsigned int id, GameObject* object)
 	if (!Manager<GameObject>::addObject(id, object))
 		return false;
 
-	Visualization* visualization = this->visualization_factory->createVisualization(object, object->hasChilderen());
-	if (visualization != nullptr)
-		this->visualization_manager->addVisualization(visualization);
 	return true;
 }
 
