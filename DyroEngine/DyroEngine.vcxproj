@@ -152,6 +152,7 @@
     <ClInclude Include="include\SceneGraph\Factory\SceneFactory.h" />
     <ClInclude Include="include\SceneGraph\Manager\ComponentManager.h" />
     <ClInclude Include="include\SceneGraph\Objects\Components\Physics\RigidBodyComponent.h" />
+    <ClInclude Include="include\SceneGraph\Objects\Components\ControllerComponent.h" />
     <ClInclude Include="include\SceneGraph\Objects\Components\Shapes\CircleShapeComponent.h" />
     <ClInclude Include="include\SceneGraph\Objects\Components\Shapes\LineShapeComponent.h" />
     <ClInclude Include="include\SceneGraph\Objects\Components\Shapes\PolygonShapeComponent.h" />
@@ -329,6 +330,7 @@
     <ClCompile Include="src\SceneGraph\Objects\Components\ImageComponent.cpp" />
     <ClCompile Include="src\SceneGraph\Manager\ComponentManager.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\Components\Physics\RigidBodyComponent.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\Components\ControllerComponent.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\Components\Shapes\CircleShapeComponent.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\Components\Shapes\LineShapeComponent.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\Components\Shapes\PolygonShapeComponent.cpp" />

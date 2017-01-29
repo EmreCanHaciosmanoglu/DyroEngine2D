@@ -121,6 +121,7 @@
     <ClCompile Include="src\Core\Data\Factory\GeometryFactory.cpp" />
     <ClCompile Include="src\Core\Data\Manager\GeometryManager.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Transition.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\Components\ControllerComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Core\Data\Factory\SettingsFactory.h" />
@@ -264,5 +265,6 @@
     <ClInclude Include="include\Core\Defines\renderlayers.h" />
     <ClInclude Include="include\Core\Types\DebugRenderingType.h" />
     <ClInclude Include="include\Core\Data\Objects\Transition.h" />
+    <ClInclude Include="include\SceneGraph\Objects\Components\ControllerComponent.h" />
   </ItemGroup>
 </Project>
