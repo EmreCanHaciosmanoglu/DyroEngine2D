@@ -1,21 +1,20 @@
 #ifndef _TRANSITION_H
 #define _TRANSITION_H
 
-#ifndef _TAGGEDOBJECT_H
-#include "Core/Helpers/TaggedObject.h"
-#endif
-
-class AbstractTrasition : public TaggedObject<AbstractTrasition>
+class AbstractTrasition
 {
 public:
-	AbstractTrasition(const std::tstring& name)
-		:TaggedObject(name)
-
-		, running(false)
+	AbstractTrasition()
+		: running(false)
 		, finished(false)
-		, destroy_on_finish(true)
 	{}
-	virtual ~AbstractTrasition(){}
+	virtual ~AbstractTrasition()
+	{}
+
+	AbstractTrasition(const AbstractTrasition& t)
+		:running(t.isRunning())
+		,finished(t.isFinished())
+	{}
 
 
 	void start()
@@ -38,14 +37,6 @@ public:
 		return this->finished;
 	}
 
-	void destroyOnFinish(bool destroy)
-	{
-		this->destroy_on_finish = destroy;
-	}
-	bool canDestroy() const
-	{
-		return this->destroy_on_finish;
-	}
 protected:
 	void setFinished(bool f)
 	{
@@ -55,15 +46,14 @@ protected:
 private:
 	bool running;
 	bool finished;
-	bool destroy_on_finish;
 };
 
 template <typename T>
 class Transition : public AbstractTrasition
 {
 public:
-	Transition(T from, T to, const std::tstring& name)
-		:AbstractTrasition(name)
+	Transition(T from, T to)
+		:AbstractTrasition()
 
 		,from(from)
 		,to(to)
@@ -73,6 +63,23 @@ public:
 	}
 	~Transition()
 	{}
+
+	Transition(const Transition<T>& t)
+		:AbstractTrasition(t)
+		,from(t.from)
+		,to(t.to)
+		,current(t.current)
+		,speed(t.speed)
+	{}
+
+	void setSource(T from)
+	{
+		this->from = from;
+	}
+	void setDestination(T to)
+	{
+		this->to = to;
+	}
 
 	void reset()
 	{
@@ -84,7 +91,7 @@ public:
 		if (!isRunning())
 			return;
 
-		if(to - current > (T)0)
+		if(to - current >= (T)0)
 			current += speed;
 		else setFinished(true);
 	}

@@ -1,6 +1,6 @@
 #include "Core\Data\Objects\Timers\WorldTimer.h"
 
-float WorldTimer::world_delta_time = 0.016f;
+float WorldTimer::world_delta_time = Timer::FRAME_SPEED;
 float WorldTimer::world_total_time = 0.0f;
 
 WorldTimer::WorldTimer()

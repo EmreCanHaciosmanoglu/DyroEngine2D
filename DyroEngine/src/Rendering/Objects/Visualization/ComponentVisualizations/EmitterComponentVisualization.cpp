@@ -25,7 +25,7 @@ bool EmitterComponentVisualization::initialize()
 	EmitterComponent* emitter_component = dynamic_cast<EmitterComponent*>(getObject());
 	if (emitter_component != nullptr)
 	{
-		for (const ParticleDescription& desc : emitter_component->getParticleDescriptions())
+		for (ParticleDescription* desc : emitter_component->getParticleDescriptions())
 			this->particles.push_back(new Particle(desc));
 	}
 
@@ -55,7 +55,7 @@ void EmitterComponentVisualization::generateRenderItems(std::vector<RenderItem*>
 			SafeDelete(particle);
 		this->particles.clear();
 
-		for (const ParticleDescription& desc : emitter_component->getParticleDescriptions())
+		for (ParticleDescription* desc : emitter_component->getParticleDescriptions())
 		{
 			Particle* particle = new Particle(desc);
 			this->particles.push_back(particle);
@@ -64,7 +64,7 @@ void EmitterComponentVisualization::generateRenderItems(std::vector<RenderItem*>
 			Vector2D center = Vector2D(particle->getWidth() / 2, particle->getHeight() / 2);
 
 			particle->setLayer(parent_object->getLayer());
-			particle->setTransform(particle->getParticleDescription().getPosition() - center, particle->getParticleDescription().getScale(), particle->getParticleDescription().getRotation());
+			particle->setTransform(particle->getParticleDescription()->getPosition() - center, particle->getParticleDescription()->getScale(), particle->getParticleDescription()->getRotation());
 
 			items.push_back(particle);
 		}

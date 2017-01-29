@@ -7,10 +7,12 @@
 
 #include "Core/Defines/debug.h"
 
+const float Timer::FRAME_SPEED = 1.0f / 60.0f; // 60 FPS
+
 //Class GameTimer
 Timer::Timer(const std::tstring& name)
 	:TaggedObject(name)
-	, delta_time(-1.0)
+	, delta_time(FRAME_SPEED)
 	, current_time(0)
 	, previous_time(0)
 {

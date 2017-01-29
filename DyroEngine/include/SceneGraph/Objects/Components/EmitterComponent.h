@@ -22,14 +22,14 @@ public:
 	virtual bool shutdown();
 
 	EmitterComponentDescription* getEmitterDescription() const;
-	const std::vector<ParticleDescription>& getParticleDescriptions() const;
+	const std::vector<ParticleDescription*>& getParticleDescriptions() const;
 
 private:
 
 	void addParticle();
 
 	EmitterComponentDescription* description;
-	std::vector<ParticleDescription> particle_descriptions;
+	std::vector<ParticleDescription*> particle_descriptions;
 	float current_emission_rate;
 };
 

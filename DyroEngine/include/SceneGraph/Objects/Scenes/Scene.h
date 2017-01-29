@@ -86,9 +86,7 @@ private:
 	DebugRenderingType debug_rendering_type;
 
 	GameObjectManager* game_object_manager;
-
 	TimerManager* timer_manager;
-	TransitionManager* transition_manager;
 
 	std::vector<AbstractManager*> vec_managers;
 };

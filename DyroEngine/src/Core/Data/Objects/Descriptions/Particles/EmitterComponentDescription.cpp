@@ -18,8 +18,8 @@ EmitterComponentDescription::EmitterComponentDescription(unsigned int particleAm
 	,angular_velocity(0.0f, 0.0f)
 
 	,fade(true)
-	,fade_start(0.3f)
-	,fade_end(0.7f)
+	,fade_start(0.1f)
+	,fade_end(0.95f)
 	,fade_speed(1.0f, 1.0f)
 
 	,spawn_position_offset(Vector2D(-10.0f, -10.0f), Vector2D(10.0f, 10.0f))

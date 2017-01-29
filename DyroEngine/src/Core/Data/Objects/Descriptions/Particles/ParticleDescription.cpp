@@ -1,4 +1,5 @@
 #include "Core/Data/Objects/Descriptions/Particles/ParticleDescription.h"
+#include "Core/Data/Objects/Timers/WorldTimer.h"
 
 namespace
 {
@@ -21,10 +22,30 @@ ParticleDescription::ParticleDescription()
 	, fade(false)
 	, fade_start(0.0f)
 	, fade_end(1.0f)
-	, fade_amount(1.0f)
-
-	, id(ObjectCounter<ParticleDescription>::getAmount())
+	, fade_transition(fade_start, fade_end)
 {}
+ParticleDescription::ParticleDescription(const ParticleDescription& description)
+	:gravity_multiplier(description.getGravityMultiplier())
+	, life_time(description.getLifeTime())
+	, start_life_time(description.getInitialLifeTime())
+
+	, velocity(description.getVelocity())
+	, scale_velocity(description.getScaleVelocity())
+	, angular_velocity(description.getAngularVelocity())
+
+	, position(description.getPosition())
+	, scale(description.getScale())
+	, rotation(description.getRotation())
+
+	, fade(description.canFade())
+	, fade_start(description.getFadeStart())
+	, fade_end(description.getFadeEnd())
+
+	, fade_transition(description.fade_transition)
+	, image(description.image)
+{
+
+}
 ParticleDescription::~ParticleDescription()
 {}
 
@@ -80,6 +101,8 @@ void ParticleDescription::setFadeStart(float start)
 	this->fade_start = b2Clamp<float>(this->fade_start, 0, this->life_time);
 	if (this->fade_start > this->fade_end)
 		this->fade_start = this->fade_end;
+
+	this->fade_transition.setSource(this->fade_start);
 }
 void ParticleDescription::setFadeEnd(float end)
 {
@@ -87,20 +110,13 @@ void ParticleDescription::setFadeEnd(float end)
 	this->fade_end = b2Clamp<float>(this->fade_end, 0, this->life_time);
 	if (this->fade_end < this->fade_start)
 		this->fade_end = this->fade_start;
-}
-void ParticleDescription::setFadeAmount(float speed)
-{
-	this->fade_amount = speed;
+
+	this->fade_transition.setDestination(this->fade_end);
 }
 
 void ParticleDescription::setImage(Image* image)
 {
 	this->image = image;
-}
-
-unsigned int ParticleDescription::getID()
-{
-	return this->id;
 }
 
 bool ParticleDescription::isDestroyed() const
@@ -159,9 +175,29 @@ float ParticleDescription::getFadeEnd() const
 {
 	return this->fade_end;
 }
-float ParticleDescription::getFadeAmount() const
+float ParticleDescription::getFadeAmount()
 {
-	return this->fade_amount;
+	//If we don't need to start fading yet just return the default opacity
+	float normalized_lifetime = getLifeTime() / getInitialLifeTime();
+	if (this->fade_start > 1.0f - normalized_lifetime)
+		return 1.0f;
+
+	//If fading is finished we just return 0
+	if (this->fade_transition.isFinished())
+		return 0.0f;
+
+	if (!this->fade_transition.isRunning())
+	{
+		float fade_distance = this->fade_end - this->fade_start;
+		if (fade_distance <= 0.0f)
+			return 0.0f;
+
+		this->fade_transition.setSpeed((1.0f / fade_distance) * WorldTimer::getWorldDeltaTime());
+		this->fade_transition.start();
+	}
+	else this->fade_transition.update();
+
+	return 1.0f - this->fade_transition.getValue();
 }
 
 Image* ParticleDescription::getImage() const

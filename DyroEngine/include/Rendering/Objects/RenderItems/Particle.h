@@ -12,7 +12,7 @@ class Texture;
 class Particle : public RenderItem
 {
 public:
-	Particle(const ParticleDescription& desc, const std::tstring name = _T("Particle"));
+	Particle(ParticleDescription* desc, const std::tstring name = _T("Particle"));
 	virtual ~Particle();
 
 	virtual void render(Renderer* renderer);
@@ -22,10 +22,10 @@ public:
 	virtual float getWidth() const;
 	virtual float getHeight() const;
 
-	const ParticleDescription& getParticleDescription() const;
+	ParticleDescription* getParticleDescription() const;
 
 private:
-	ParticleDescription description;
+	ParticleDescription* description;
 	Texture* texture;
 };
 

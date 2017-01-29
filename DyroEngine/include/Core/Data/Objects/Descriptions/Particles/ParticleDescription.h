@@ -1,9 +1,11 @@
 #ifndef _PARTICLEDESCRIPTION_H
 #define _PARTICLEDESCRIPTION_H
 
-#include "Core/Helpers/ObjectCounter.h"
 #ifndef _IDESTROYABLE_H
 #include "Core/Helpers/Interfaces/IDestroyable.h"
+#endif
+#ifndef _TRANSITION_H
+#include "Core\Data\Objects\Transition.h"
 #endif
 
 #ifndef _VECTOR2D_H
@@ -12,10 +14,11 @@
 
 class Image;
 
-class ParticleDescription : public IDestroyable, public ObjectCounter<ParticleDescription>
+class ParticleDescription : public IDestroyable
 {
 public:
 	ParticleDescription();
+	ParticleDescription(const ParticleDescription& description);
 	~ParticleDescription();
 
 	void destroy();
@@ -34,11 +37,8 @@ public:
 	void enableFade(bool fade);
 	void setFadeStart(float start);
 	void setFadeEnd(float end);
-	void setFadeAmount(float amount);
 
 	void setImage(Image* image);
-
-	unsigned int getID();
 
 	bool isDestroyed() const;
 
@@ -57,13 +57,11 @@ public:
 	bool canFade() const;
 	float getFadeStart() const;
 	float getFadeEnd() const;
-	float getFadeAmount() const;
+	float getFadeAmount();
 
 	Image* getImage() const;
 
 private:
-	unsigned int id;
-
 	float gravity_multiplier;
 	float start_life_time;
 	float life_time;
@@ -79,7 +77,7 @@ private:
 	bool fade;
 	float fade_start;
 	float fade_end;
-	float fade_amount;
+	Transition<float> fade_transition;
 
 	Image* image;
 };

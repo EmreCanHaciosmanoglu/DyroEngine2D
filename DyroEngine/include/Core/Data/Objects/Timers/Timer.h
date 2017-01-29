@@ -26,6 +26,9 @@ public:
 	void unpause();
 
 	void reset();
+protected:
+	static const float FRAME_SPEED;
+
 private:
 	double delta_time;
 
