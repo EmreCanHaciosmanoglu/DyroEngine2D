@@ -18,6 +18,7 @@ public:
 	virtual bool shutdown();
 
 	virtual void getRenderItems(std::vector<RenderItem*>& items);
+	virtual Rect2D getBoundingBox() const;
 
 	GameObject* getGameObject() const;
 

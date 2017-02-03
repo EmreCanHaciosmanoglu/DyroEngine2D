@@ -141,7 +141,7 @@
     <ClInclude Include="include\Core\Helpers\Interfaces\IBoundingBox.h" />
     <ClInclude Include="include\Core\Helpers\TaggedObject.h" />
     <ClInclude Include="include\SceneGraph\Objects\Components\EmitterComponent.h" />
-    <ClInclude Include="include\SceneGraph\Objects\Components\Physics\Collision\BoxCollisionComponent.h" />
+    <ClInclude Include="include\SceneGraph\Objects\Components\Physics\Collision\RectCollisionComponent.h" />
     <ClInclude Include="include\SceneGraph\Objects\Components\Physics\Collision\CircleCollisionComponent.h" />
     <ClInclude Include="include\SceneGraph\Objects\Components\Physics\Collision\CollisionComponent.h" />
     <ClInclude Include="include\SceneGraph\Objects\Components\Physics\Collision\PolygonCollisionComponent.h" />
@@ -322,7 +322,7 @@
     <ClCompile Include="src\SceneGraph\Factory\GameObjectFactory.cpp" />
     <ClCompile Include="src\SceneGraph\Factory\SceneFactory.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\Components\EmitterComponent.cpp" />
-    <ClCompile Include="src\SceneGraph\Objects\Components\Physics\Collision\BoxCollisionComponent.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\Components\Physics\Collision\RectCollisionComponent.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\Components\Physics\Collision\CircleCollisionComponent.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\Components\Physics\Collision\CollisionComponent.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\Components\Physics\Collision\PolygonCollisionComponent.cpp" />

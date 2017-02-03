@@ -19,6 +19,10 @@ bool Texture::isTransparant() const
 {
 	return image->getOpacity() < 1.0f;
 }
+Rect2D Texture::getBounds() const
+{
+	return getImage()->getBounds(getTransform());
+}
 
 float Texture::getWidth() const
 {

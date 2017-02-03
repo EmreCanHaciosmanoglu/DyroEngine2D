@@ -14,6 +14,7 @@ public:
 	virtual void render(Renderer* renderer);
 
 	virtual bool isTransparant() const;
+	virtual Rect2D getBounds() const;
 
 	virtual float getWidth() const;
 	virtual float getHeight() const;

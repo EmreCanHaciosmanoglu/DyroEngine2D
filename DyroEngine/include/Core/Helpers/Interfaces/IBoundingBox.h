@@ -8,7 +8,7 @@
 class IBoundingBox
 {
 public:
-	virtual Rect2D getBoundingBox() = 0;
+	virtual Rect2D getBoundingBox() const = 0;
 
 protected:
 	IBoundingBox() {}

@@ -25,6 +25,10 @@ bool Particle::isTransparant() const
 {
 	return this->texture->isTransparant();
 }
+Rect2D Particle::getBounds() const
+{
+	return this->texture->getBounds();
+}
 
 float Particle::getWidth() const
 {

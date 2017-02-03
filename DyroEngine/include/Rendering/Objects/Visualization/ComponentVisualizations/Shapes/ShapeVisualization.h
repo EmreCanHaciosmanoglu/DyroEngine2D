@@ -17,6 +17,7 @@ public:
 	virtual bool initialize() = 0;
 	virtual bool shutdown() = 0;
 
+	virtual Rect2D getBoundingBox() const;
 protected:
 
 	virtual void generateRenderItems(std::vector<RenderItem*>& items) = 0;

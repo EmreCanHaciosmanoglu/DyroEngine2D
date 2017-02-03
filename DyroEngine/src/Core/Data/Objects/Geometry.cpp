@@ -17,3 +17,10 @@ ID2D1Geometry* Geometry::getGeometry() const
 {
 	return this->geometry;
 }
+Rect2D Geometry::getBounds(const Matrix2D& transform) const
+{
+	D2D1_RECT_F bounds;
+	this->geometry->GetBounds(transform.toMatrix3x2F(), &bounds);
+
+	return Rect2D(bounds.left, bounds.top, bounds.right, bounds.bottom);
+}

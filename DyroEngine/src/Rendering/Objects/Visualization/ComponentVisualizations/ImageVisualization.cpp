@@ -36,6 +36,11 @@ bool ImageVisualization::shutdown()
 	return true;
 }
 
+Rect2D ImageVisualization::getBoundingBox() const
+{
+	return this->texture->getBounds();
+}
+
 void ImageVisualization::generateRenderItems(std::vector<RenderItem*>& items)
 {
 	ImageComponent* component = getConcreteComponent();

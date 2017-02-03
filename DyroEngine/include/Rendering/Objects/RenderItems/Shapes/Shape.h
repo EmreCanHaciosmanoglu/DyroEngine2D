@@ -21,6 +21,7 @@ public:
 	void setDescription(ShapeDescription* description);
 
 	virtual bool isTransparant() const;
+	virtual Rect2D getBounds() const;
 
 	virtual float getWidth() const = 0;
 	virtual float getHeight() const = 0;

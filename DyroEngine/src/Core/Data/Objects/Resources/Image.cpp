@@ -153,6 +153,18 @@ ID2D1Bitmap* Image::getBitmap() const
 {
 	return this->bitmap;
 }
+Rect2D Image::getBounds(const Matrix2D& transform) const
+{
+	Rect2D bounds = Rect2D(0.0f, 0.0f, getWidth(), getHeight());
+	
+	Vector2D left_top((float)bounds.left, (float)bounds.top);
+	Vector2D right_bottom((float)bounds.right, (float)bounds.bottom);
+
+	left_top = transform.transformVector(left_top);
+	right_bottom = transform.transformVector(right_bottom);
+
+	return Rect2D(left_top, right_bottom);
+}
 
 int Image::getWidth() const
 {

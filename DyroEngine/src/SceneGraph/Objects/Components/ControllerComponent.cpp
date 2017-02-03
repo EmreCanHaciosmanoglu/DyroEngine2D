@@ -3,7 +3,9 @@
 ControllerComponent::ControllerComponent(const std::tstring& name)
 	:Component(name)
 	, speed(50.0f)
-{}
+{
+	OBJECT_INIT(_T("ControllerComponent"));
+}
 ControllerComponent::~ControllerComponent()
 {}
 

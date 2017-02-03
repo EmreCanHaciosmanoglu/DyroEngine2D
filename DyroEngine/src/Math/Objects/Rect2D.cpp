@@ -186,6 +186,22 @@ bool Rect2D::operator!= (const Rect2D& other) const
 	return this->left != other.left || this->right != other.right || this->top != other.top || this->bottom != other.bottom;
 }
 
+bool Rect2D::contains(const Vector2D& point)
+{
+	return point.x > this->left && point.x < this->right && point.y > this->top && point.y < this->bottom;
+}
+bool Rect2D::contains(const Rect2D& rect)
+{
+	return contains(Vector2D((float)rect.left, (float)rect.top)) && contains(Vector2D((float)rect.right, (float)rect.bottom));
+}
+bool Rect2D::overlaps(const Rect2D& rect)
+{
+	return contains(Vector2D((float)rect.left, (float)rect.top))
+		|| contains(Vector2D((float)rect.right, (float)rect.bottom))
+		|| contains(Vector2D((float)rect.left, (float)rect.bottom))
+		|| contains(Vector2D((float)rect.right, (float)rect.top));
+}
+
 D2D_RECT_F Rect2D::toD2DRect(const Rect2D& other)
 {
 	D2D_RECT_F d2d_rect;
