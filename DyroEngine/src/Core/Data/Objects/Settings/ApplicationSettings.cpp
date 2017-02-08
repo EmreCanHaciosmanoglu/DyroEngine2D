@@ -78,7 +78,7 @@ void ApplicationSettings::parseSettingsFile(const std::tstring& valueName, const
 	else if (valueName == _T("WINDOWHEIGHT"))
 		setWindowHeight(_tstoi(valueData.c_str()));
 	else if (valueName == _T("BITSPERPIXEL"))
-		setBitsPerPixel(_tstoi(valueData.c_str()));
+		setBitsPerPixel((unsigned char)_tstoi(valueData.c_str()));
 	else if (valueName == _T("FULLSCREEN"))
 		setFullscreen(_tstoi(valueData.c_str()));
 	else if (valueName == _T("WINDOWTITLE"))

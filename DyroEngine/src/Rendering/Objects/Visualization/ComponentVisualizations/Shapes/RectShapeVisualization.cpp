@@ -1,10 +1,12 @@
 #include "Rendering/Objects/Visualization/ComponentVisualizations/Shapes/RectShapeVisualization.h"
 #include "Rendering/Objects/Visualization/GameObjectVisualizations/GameObjectVisualization.h"
+#include "Rendering/Objects/RenderItems/Shapes/RectShape.h"
 
 #include "SceneGraph\Objects\GameObjects\SceneObject.h"
 #include "SceneGraph\Objects\Components\Shapes\RectShapeComponent.h"
+#include "SceneGraph\Objects\Scenes\Scene.h"
 
-#include "Rendering/Objects/RenderItems/Shapes/RectShape.h"
+#include "Core\Data\Manager\GeometryManager.h"
 
 RectShapeVisualization::RectShapeVisualization(Component* object, const std::tstring& name)
 	:ShapeVisualization(object, name)
@@ -19,13 +21,15 @@ RectShapeVisualization::~RectShapeVisualization()
 bool RectShapeVisualization::initialize()
 {
 	RectShapeComponent* component = dynamic_cast<RectShapeComponent*>(getObject());
-	if (component != nullptr)
-		setShape(new RectShape(component->getRectDescription()));
+	if (component == nullptr)
+		return false;
+
+	RectShapeDescription* description = component->getRectDescription();
+	Geometry* geometry = getScene()->getManager<GeometryManager>()->getGeometry(description);
+
+	setShape(new RectShape(description, geometry));
 
 	assert(getShape() != nullptr);
-
-	//Create the requested shape
-	getShape()->create();
 
 	return true;
 }

@@ -62,9 +62,9 @@ bool IWindow::createWindow()
 	this->window_classname = getWindowClassName();
 	this->window_title = getWindowTitle();
 
-	if (!RegisterClass(&createWindowClass()))
+	WNDCLASS wndclass = createWindowClass();
+	if (!RegisterClass(&wndclass))
 	{
-		int value = GetLastError();
 		LogManager::getInstance().log(new ErrorLog(_T("Register \"WNDCLASS\" failed."), LOG_INFO));
 		return false;
 	}
@@ -82,8 +82,6 @@ bool IWindow::createWindow()
 }
 bool IWindow::destroyWindow()
 {
-	LPCTSTR window_classname = getWindowClassName().c_str();
-
 	if (this->handle_devicecontext && !ReleaseDC(this->handle_window, this->handle_devicecontext))
 	{
 		LogManager::getInstance().log(new ErrorLog(_T("Release \"DC\" failed."), LOG_INFO));
@@ -153,7 +151,6 @@ bool IWindow::setupWindow()
 		this->handle_instance,
 		this);
 
-	int error = GetLastError();
 	if (!this->handle_window)
 	{
 		LogManager::getInstance().log(new ErrorLog(_T("Creation of our window failed."), LOG_INFO));
@@ -165,7 +162,8 @@ bool IWindow::setupWindow()
 bool IWindow::errorHandling()
 {
 	//Check if we have a device context
-	if (!(this->handle_devicecontext = GetDC(this->handle_window)))
+	this->handle_devicecontext = GetDC(this->handle_window);
+	if (!this->handle_devicecontext)
 	{
 		LogManager::getInstance().log(new ErrorLog(_T("Can't create a \"GLDC\"."), LOG_INFO));
 		return false;
@@ -191,8 +189,6 @@ bool IWindow::errorHandling()
 
 WNDCLASS IWindow::createWindowClass()
 {
-	LPCTSTR window_classname = getWindowClassName().c_str();
-
 	WNDCLASS wc;
 	memset(&wc, NULL, sizeof(WNDCLASS));
 

@@ -1,11 +1,12 @@
 #include "Rendering/Objects/Visualization/ComponentVisualizations/Shapes/CircleShapeVisualization.h"
 #include "Rendering/Objects/Visualization/GameObjectVisualizations/GameObjectVisualization.h"
+#include "Rendering/Objects/RenderItems/Shapes/CircleShape.h"
 
 #include "SceneGraph\Objects\GameObjects\SceneObject.h"
 #include "SceneGraph\Objects\Components\Shapes\CircleShapeComponent.h"
+#include "SceneGraph\Objects\Scenes\Scene.h"
 
-#include "Rendering/Objects/RenderItems/Shapes/CircleShape.h"
-
+#include "Core\Data\Manager\GeometryManager.h"
 #include "Core/Defines/assert.h"
 
 CircleShapeVisualization::CircleShapeVisualization(Component* object, const std::tstring& name)
@@ -20,13 +21,15 @@ CircleShapeVisualization::~CircleShapeVisualization()
 bool CircleShapeVisualization::initialize()
 {
 	CircleShapeComponent* component = dynamic_cast<CircleShapeComponent*>(getObject());
-	if (component != nullptr)
-		setShape(new CircleShape(component->getCircleDescription()));
+	if (component == nullptr)
+		return false;
 
+	CircleShapeDescription* description = component->getCircleDescription();
+	Geometry* geometry = getScene()->getManager<GeometryManager>()->getGeometry(description);
+
+	setShape(new CircleShape(description, geometry));
+	
 	assert(getShape() != nullptr);
-
-	//Create the requested shape
-	getShape()->create();
 
 	return true;
 }

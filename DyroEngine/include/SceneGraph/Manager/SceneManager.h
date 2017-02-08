@@ -42,22 +42,12 @@ public:
 
 private:
 	template<typename T>
-	void setupManager()
+	T* createManager()
 	{
-		if (Singleton<T>::hasInstance())
-		{
-			LogManager::getInstance().log(new InfoLog(_T("Check if we can keep data that will be used in a different scene aswell, so not all data need to be unloaded."), LOG_INFO));
-			Singleton<T>::getInstance().shutdown();
-		}
-		else Singleton<T>::createInstance();
+		T* manager = new T();
+		manager->initialize();
 
-		Singleton<T>::getInstance().initialize();
-	}
-	template<typename T>
-	void destroyManager()
-	{
-		Singleton<T>::getInstance().shutdown();
-		Singleton<T>::destroyInstance();
+		return manager;
 	}
 
 	Scene* active_scene;

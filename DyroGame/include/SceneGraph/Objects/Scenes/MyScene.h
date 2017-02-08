@@ -11,6 +11,8 @@ class Input;
 
 class MyScene : public Scene
 {
+	OBJECT_STATICS("MyScene");
+
 public:
 	MyScene();
 	virtual ~MyScene();

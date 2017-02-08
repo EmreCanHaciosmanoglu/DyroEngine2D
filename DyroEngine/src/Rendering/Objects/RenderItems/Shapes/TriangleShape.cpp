@@ -7,18 +7,11 @@ TriangleShape::TriangleShape(const std::tstring& name)
 	:PolygonShape(name)
 {}
 TriangleShape::TriangleShape(TriangleShapeDescription* desc, const std::tstring& name)
-	:PolygonShape(desc, name)
+	: PolygonShape(desc, nullptr, name)
 {}
 TriangleShape::~TriangleShape()
 {}
 
-void TriangleShape::create()
-{
-	this->geometry = GeometryManager::getInstance().getGeometry(getDescription());
-
-	//Geometry cannot be null
-	assert(this->geometry != nullptr);
-}
 void TriangleShape::render(Renderer* renderer)
 {
 	PolygonShape::render(renderer);

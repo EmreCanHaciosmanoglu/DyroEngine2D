@@ -18,10 +18,9 @@ class CircleShape : public Shape
 {
 public:
 	CircleShape(const std::tstring& name = _T("CircleShape"));
-	CircleShape(CircleShapeDescription* descripion, const std::tstring& name = _T("CircleShape"));
+	CircleShape(CircleShapeDescription* descripion, Geometry* geometry, const std::tstring& name = _T("CircleShape"));
 	virtual ~CircleShape();
 
-	virtual void create();
 	virtual void render(Renderer* renderer);
 
 	virtual float getWidth() const;

@@ -23,26 +23,26 @@ SceneManager::~SceneManager()
 
 bool SceneManager::initialize()
 {
-	setupManager<LayerManager>();
-	setupManager<CameraManager>();
-	setupManager<ResourceManager>();
-	setupManager<GeometryManager>();
-	setupManager<TextureManager>();
-	setupManager<TimerManager>();
+	LayerManager* layer_manager = createManager<LayerManager>();
+	CameraManager* camera_manager = createManager<CameraManager>();
+	ResourceManager* resource_manager = createManager<ResourceManager>();
+	GeometryManager* geometry_manager = createManager<GeometryManager>();
+	TextureManager* texture_manager = createManager<TextureManager>();
+	TimerManager* timer_manager = createManager<TimerManager>();
 
 	if (!this->active_scene->getInitialized())
 	{
-		LayerManager::getInstance().addLayer(new Layer(layers::DEFAULT_LAYER, _T("Default")));
-		LayerManager::getInstance().addLayer(new Layer(layers::UI_LAYER, _T("UI")));
-		LayerManager::getInstance().addLayer(new Layer(layers::DEBUG_LAYER, _T("Debug")));
-		LayerManager::getInstance().addLayer(new Layer(layers::BACKGROUND_LAYER, _T("Background")));
+		layer_manager->addLayer(new Layer(layers::DEFAULT_LAYER, _T("Default")));
+		layer_manager->addLayer(new Layer(layers::UI_LAYER, _T("UI")));
+		layer_manager->addLayer(new Layer(layers::DEBUG_LAYER, _T("Debug")));
+		layer_manager->addLayer(new Layer(layers::BACKGROUND_LAYER, _T("Background")));
 
-		this->active_scene->addManager(&LayerManager::getInstance());
-		this->active_scene->addManager(&CameraManager::getInstance());
-		this->active_scene->addManager(&ResourceManager::getInstance());
-		this->active_scene->addManager(&GeometryManager::getInstance());
-		this->active_scene->addManager(&TextureManager::getInstance());
-		this->active_scene->addManager(&TimerManager::getInstance());
+		this->active_scene->addManager(layer_manager);
+		this->active_scene->addManager(camera_manager);
+		this->active_scene->addManager(resource_manager);
+		this->active_scene->addManager(geometry_manager);
+		this->active_scene->addManager(texture_manager);
+		this->active_scene->addManager(timer_manager);
 
 		if (!this->active_scene->initialize())
 			return false;
@@ -84,13 +84,6 @@ bool SceneManager::shutdown()
 		SafeDelete(scene);
 	}
 
-	destroyManager<TimerManager>();
-	destroyManager<TextureManager>();
-	destroyManager<GeometryManager>();
-	destroyManager<ResourceManager>();
-	destroyManager<CameraManager>();
-	destroyManager<LayerManager>();
-
 	return true;
 }
 
@@ -108,7 +101,7 @@ void SceneManager::setActiveScene(unsigned int id)
 	if (this->active_scene)
 	{
 		this->active_scene->deactive();
-		this->active_scene->destroy();
+		this->active_scene->shutdown();
 	}
 
 	this->active_scene = scene;

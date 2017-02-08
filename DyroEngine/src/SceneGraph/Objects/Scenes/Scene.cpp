@@ -2,6 +2,7 @@
 
 #include "SceneGraph\Objects\GameObjects\GameObject.h"
 #include "SceneGraph\Manager\GameObjectManager.h"
+#include "SceneGraph\Factory\GameObjectFactory.h"
 
 #include "Core\System\Objects\Input.h"
 #include "Core\System\Manager\SystemManager.h"
@@ -36,7 +37,7 @@ Scene::Scene(const std::tstring& name)
 	:Object(name)
 	, phyx_world(nullptr)
 	, debug_rendering_type(DebugRenderingType::NO_DEBUG)
-	, renderer(new Renderer())
+	, renderer(new Renderer(this))
 	, debug_renderer(nullptr)
 	, contact_filter(nullptr)
 	, contact_listener(nullptr)
@@ -45,11 +46,19 @@ Scene::Scene(const std::tstring& name)
 {
 	OBJECT_INIT(_T("Scene"));
 
+	//Create the game object factory
+	if(!GameObjectFactory::hasInstance())
+		GameObjectFactory::createInstance();
+
+	GameObjectFactory::getInstance().setScene(this);
+
 	this->game_object_manager = new GameObjectManager();
 	addManager(this->game_object_manager);
 }
 Scene::~Scene()
 {
+	//Destroy teh game object factory
+	GameObjectFactory::destroyInstance();
 }
 
 bool Scene::initialize()
@@ -115,6 +124,12 @@ bool Scene::shutdown()
 	SafeDelete(this->phyx_world);
 
 	SafeDelete(this->renderer);
+
+	for (AbstractManager* manager : this->vec_managers)
+	{
+		manager->shutdown();
+		SafeDelete(manager);
+	}
 
 	return result;
 }

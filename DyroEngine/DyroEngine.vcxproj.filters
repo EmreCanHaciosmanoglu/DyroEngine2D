@@ -60,9 +60,7 @@
     <ClCompile Include="src\Core\Helpers\Patterns\Observer.cpp" />
     <ClCompile Include="src\Core\Helpers\TaggedObject.cpp" />
     <ClCompile Include="src\Core\Helpers\Interfaces\IBoundingBox.cpp" />
-    <ClCompile Include="src\SceneGraph\Factory\ComponentFactory.cpp" />
     <ClCompile Include="src\SceneGraph\Factory\GameObjectFactory.cpp" />
-    <ClCompile Include="src\SceneGraph\Factory\SceneFactory.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\Components\EmitterComponent.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\Components\Physics\Collision\CircleCollisionComponent.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\Components\Physics\Collision\CollisionComponent.cpp" />
@@ -122,6 +120,7 @@
     <ClCompile Include="src\Core\Data\Objects\Transition.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\Components\ControllerComponent.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\Components\Physics\Collision\RectCollisionComponent.cpp" />
+    <ClCompile Include="src\SceneGraph\Factory\AbstractSceneFactory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Core\Data\Factory\SettingsFactory.h" />
@@ -186,9 +185,7 @@
     <ClInclude Include="include\SceneGraph\Objects\Components\Physics\Collision\PolygonCollisionComponent.h" />
     <ClInclude Include="include\SceneGraph\Objects\Components\Physics\Collision\TriangleCollisionComponent.h" />
     <ClInclude Include="include\SceneGraph\Objects\Components\ImageComponent.h" />
-    <ClInclude Include="include\SceneGraph\Factory\ComponentFactory.h" />
     <ClInclude Include="include\SceneGraph\Factory\GameObjectFactory.h" />
-    <ClInclude Include="include\SceneGraph\Factory\SceneFactory.h" />
     <ClInclude Include="include\SceneGraph\Manager\ComponentManager.h" />
     <ClInclude Include="include\SceneGraph\Objects\Components\Physics\RigidBodyComponent.h" />
     <ClInclude Include="include\SceneGraph\Objects\Components\Shapes\CircleShapeComponent.h" />
@@ -266,5 +263,6 @@
     <ClInclude Include="include\Core\Data\Objects\Transition.h" />
     <ClInclude Include="include\SceneGraph\Objects\Components\ControllerComponent.h" />
     <ClInclude Include="include\SceneGraph\Objects\Components\Physics\Collision\RectCollisionComponent.h" />
+    <ClInclude Include="include\SceneGraph\Factory\AbstractSceneFactory.h" />
   </ItemGroup>
 </Project>

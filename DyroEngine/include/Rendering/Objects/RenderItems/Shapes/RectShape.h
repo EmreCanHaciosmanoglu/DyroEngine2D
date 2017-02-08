@@ -20,10 +20,9 @@ class RectShape : public Shape
 {
 public:
 	RectShape(const std::tstring& name = _T("RectShape"));
-	RectShape(RectShapeDescription* desc, const std::tstring& name = _T("RectShape"));
+	RectShape(RectShapeDescription* desc, Geometry* geometry, const std::tstring& name = _T("RectShape"));
 	virtual ~RectShape();
 
-	virtual void create();
 	virtual void render(Renderer* renderer);
 
 	virtual float getWidth() const;

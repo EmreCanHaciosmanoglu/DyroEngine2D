@@ -16,20 +16,13 @@
 PolygonShape::PolygonShape(const std::tstring& name)
 	:Shape(name)
 {}
-PolygonShape::PolygonShape(PolygonShapeDescription* description, const std::tstring& name)
-	: Shape(description, name)
+PolygonShape::PolygonShape(PolygonShapeDescription* description, Geometry* geometry, const std::tstring& name)
+	: Shape(description, geometry, name)
 {
 }
 PolygonShape::~PolygonShape()
 {}
 
-void PolygonShape::create()
-{
-	this->geometry = GeometryManager::getInstance().getGeometry(getDescription());
-
-	//Geometry cannot be null
-	assert(this->geometry != nullptr);
-}
 void PolygonShape::render(Renderer* renderer)
 {
 	//Renderer cannot be null

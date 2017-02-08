@@ -14,14 +14,21 @@
 #include "Core/Defines/assert.h"
 #include "Core/Defines/deletemacros.h"
 
-Renderer::Renderer()
+Renderer::Renderer(Scene* scene)
 	:interpolation_mode(D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR)
+	, scene(nullptr)
+	, graphics(nullptr)
 {
 	this->graphics = dynamic_cast<Graphics*>(SystemManager::getInstance().getSystem(SystemType::GRAPHICS_SYSTEM));
 	assert(this->graphics != nullptr);
 }
 Renderer::~Renderer()
 {
+}
+
+Scene* Renderer::getScene() const
+{
+	return this->scene;
 }
 
 void Renderer::render(std::vector<RenderItem*>& items)
@@ -56,7 +63,8 @@ void Renderer::render(std::vector<RenderItem*>& items)
 
 void Renderer::setTransformMatrix(const Matrix2D& transformMatrix)
 {
-	this->graphics->getRenderTarget()->SetTransform(&transformMatrix.toMatrix3x2F());
+	D2D1::Matrix3x2F matrix = transformMatrix.toMatrix3x2F();
+	this->graphics->getRenderTarget()->SetTransform(&matrix);
 }
 void Renderer::setInterpolationMode(D2D1_BITMAP_INTERPOLATION_MODE i)
 {

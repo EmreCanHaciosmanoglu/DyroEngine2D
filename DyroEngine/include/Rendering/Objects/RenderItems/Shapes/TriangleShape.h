@@ -20,7 +20,6 @@ public:
 	TriangleShape(TriangleShapeDescription* desc, const std::tstring& name = _T("TriangleShape"));
 	virtual ~TriangleShape();
 
-	virtual void create();
 	virtual void render(Renderer* renderer);
 
 	TriangleShapeDescription* getTriangleShapeDescription() const;

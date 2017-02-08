@@ -10,25 +10,16 @@
 #include "Core/Defines/assert.h"
 #include "Core/Defines/d2dutill.h"
 
-#include "SceneGraph\Objects\Scenes\Scene.h"
-
 CircleShape::CircleShape(const std::tstring& name)
 	:Shape(name)
 {}
-CircleShape::CircleShape(CircleShapeDescription* descripion, const std::tstring& name)
-	: Shape(descripion, name)
+CircleShape::CircleShape(CircleShapeDescription* descripion, Geometry* geometry, const std::tstring& name)
+	: Shape(descripion, geometry, name)
 {
 }
 CircleShape::~CircleShape()
 {}
 
-void CircleShape::create()
-{
-	this->geometry = GeometryManager::getInstance().getGeometry(getDescription());
-
-	//Geometry cannot be null
-	assert(this->geometry != nullptr);
-}
 void CircleShape::render(Renderer* renderer)
 {
 	//Renderer cannot be null

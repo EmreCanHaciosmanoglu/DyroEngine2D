@@ -12,10 +12,9 @@ class Shape : public RenderItem
 {
 public:
 	Shape(const std::tstring& name = _T("Shape"));
-	Shape(ShapeDescription* description, const std::tstring& name = _T("Shape"));
+	Shape(ShapeDescription* description, Geometry* geometry, const std::tstring& name = _T("Shape"));
 	virtual ~Shape();
 
-	virtual void create() = 0;
 	virtual void render(Renderer* renderer) = 0;
 
 	void setDescription(ShapeDescription* description);

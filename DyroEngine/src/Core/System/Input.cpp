@@ -50,6 +50,10 @@ void Input::update()
 	if (GetCursorPos(&current_mouse_position))
 		ScreenToClient(main_window->getWindowHandle(), &current_mouse_position);
 
+	//POINT mouse_delta = getMouseMovement();
+	//if(mouse_delta.x != 0 || mouse_delta.y != 0)
+		//Broadcast mouse movement
+
 	for (InputBinding& binding : this->vec_bindings)
 	{
 		switch (binding.type)

@@ -1,6 +1,9 @@
 #ifndef _ENGINE_H
 #define _ENGINE_H
 
+#pragma warning(disable: 4100) // unreferenced formal parameter
+#pragma warning(disable: 4458) // hides class member
+
 class Game;
 
 class Engine

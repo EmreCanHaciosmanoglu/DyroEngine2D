@@ -14,20 +14,12 @@
 LineShape::LineShape(const std::tstring& name)
 	:Shape(name)
 {}
-LineShape::LineShape(LineShapeDescription* description, const std::tstring& name)
-	:Shape(description, name)
+LineShape::LineShape(LineShapeDescription* description, Geometry* geometry, const std::tstring& name)
+	:Shape(description, geometry, name)
 {}
 LineShape::~LineShape()
 {}
 
-void LineShape::create()
-{
-	this->geometry = GeometryManager::getInstance().getGeometry(getDescription());
-
-	//Geometry cannot be null
-	assert(this->geometry != nullptr);
-
-}
 void LineShape::render(Renderer* renderer)
 {
 	//Renderer cannot be null

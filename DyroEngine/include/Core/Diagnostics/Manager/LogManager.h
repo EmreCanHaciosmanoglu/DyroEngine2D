@@ -1,8 +1,8 @@
 #ifndef _LOGMANAGER_H
 #define _LOGMANAGER_H
 
-#include "Core/Helpers/Patterns/Manager.h"
 #include "Core/Helpers/Patterns/Singleton.h"
+#include "Core/Helpers/Patterns/Manager.h"
 
 #define LOG_INFO __LINE__,__FILEW__
 

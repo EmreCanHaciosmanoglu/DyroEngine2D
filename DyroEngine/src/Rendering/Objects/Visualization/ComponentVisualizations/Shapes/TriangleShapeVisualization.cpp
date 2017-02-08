@@ -24,9 +24,6 @@ bool TriangleShapeVisualization::initialize()
 
 	assert(getShape() != nullptr);
 
-	//Create the requested shape
-	getShape()->create();
-
 	return true;
 }
 bool TriangleShapeVisualization::shutdown()

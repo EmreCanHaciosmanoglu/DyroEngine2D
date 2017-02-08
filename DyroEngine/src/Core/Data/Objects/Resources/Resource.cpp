@@ -6,7 +6,7 @@ Resource::Resource(const std::tstring& resourcePath, ResourceType type)
 	, resource_id(ObjectCounter<Resource>::getAmount())
 {
 	int start_index = this->resource_path.find_last_of('\\');
-	if (start_index == std::tstring::npos)
+	if (start_index == (int)std::tstring::npos)
 		start_index = this->resource_path.find_last_of('/');
 	++start_index;
 	int end_index = this->resource_path.find_last_of('.');

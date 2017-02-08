@@ -6,37 +6,16 @@
 #include "Rendering/Objects/RenderItems/Texture.h"
 
 Particle::Particle(ParticleDescription* desc, const std::tstring name)
-	:RenderItem(name)
+	:Texture(desc->getImage(), name)
 	,description(desc)
-	,texture(nullptr)
-{
-	this->texture = TextureManager::getInstance().getTexture(desc->getImage());
-}
+{}
 Particle::~Particle()
 {}
 
 void Particle::render(Renderer* renderer)
 {
 	if (!description->isDestroyed())
-		renderer->drawBitmap(this->texture->getImage(), Vector2D(0, 0), this->description->getFadeAmount());
-}
-
-bool Particle::isTransparant() const
-{
-	return this->texture->isTransparant();
-}
-Rect2D Particle::getBounds() const
-{
-	return this->texture->getBounds();
-}
-
-float Particle::getWidth() const
-{
-	return this->texture->getWidth();
-}
-float Particle::getHeight() const
-{
-	return this->texture->getHeight();
+		renderer->drawBitmap(getImage(), this->description->getFadeAmount());
 }
 
 ParticleDescription* Particle::getParticleDescription() const

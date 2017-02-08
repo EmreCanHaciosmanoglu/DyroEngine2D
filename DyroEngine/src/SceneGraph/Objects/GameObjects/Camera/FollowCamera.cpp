@@ -24,7 +24,7 @@ bool FollowCamera::initialize()
 }
 void FollowCamera::update()
 {
-	TransformComponent* target_transform = this->target->getTransform();
+	//TransformComponent* target_transform = this->target->getTransform();
 
 	//Move the camera to the position of the target
 	if (this->damping == 0.0f)
