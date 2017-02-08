@@ -54,8 +54,8 @@ public:
 	bool operator== (const Rect2D& other) const;
 	bool operator!= (const Rect2D& other) const;
 
-	bool contains(const Vector2D& point);
-	bool contains(const Rect2D& rect);
+	bool contains(const Vector2D& point, bool proper = true);
+	bool contains(const Rect2D& rect, bool proper = true);
 	bool overlaps(const Rect2D& rect);
 
 	static D2D_RECT_F toD2DRect(const Rect2D& other);

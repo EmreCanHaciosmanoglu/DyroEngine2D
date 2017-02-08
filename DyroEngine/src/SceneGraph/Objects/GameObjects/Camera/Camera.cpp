@@ -11,10 +11,9 @@ Camera::Camera(const std::tstring& name, bool setActive)
 	:GameObject(name)
 	, camera(new CameraComponent())
 	, transform(new TransformComponent())
+	, start_active(setActive)
 {
 	OBJECT_INIT(_T("Camera"));
-
-	getScene()->getManager<CameraManager>()->addCamera(this, setActive);
 
 	addComponent(this->transform);
 	addComponent(this->camera);
@@ -25,6 +24,8 @@ Camera::~Camera()
 
 bool Camera::initialize()
 {
+	getScene()->getManager<CameraManager>()->addCamera(this, this->start_active);
+
 	return GameObject::initialize();
 }
 void Camera::update()

@@ -37,7 +37,7 @@ Scene::Scene(const std::tstring& name)
 	:Object(name)
 	, phyx_world(nullptr)
 	, debug_rendering_type(DebugRenderingType::NO_DEBUG)
-	, renderer(new Renderer(this))
+	, renderer(nullptr)
 	, debug_renderer(nullptr)
 	, contact_filter(nullptr)
 	, contact_listener(nullptr)
@@ -63,6 +63,8 @@ Scene::~Scene()
 
 bool Scene::initialize()
 {
+	this->renderer = new Renderer(this);
+
 	setupPyhx();
 
 	if (!this->game_object_manager->initialize())
@@ -112,11 +114,13 @@ void Scene::update()
 bool Scene::shutdown()
 {
 	bool result = true;
-
-	if (!this->game_object_manager->shutdown())
-		result = false;
-
-	SafeDelete(this->game_object_manager);
+	
+	for (AbstractManager* manager : this->vec_managers)
+	{
+		if (!manager->shutdown())
+			return false;
+		SafeDelete(manager);
+	}
 
 	SafeDelete(this->debug_renderer);
 	SafeDelete(this->contact_filter);
@@ -124,12 +128,6 @@ bool Scene::shutdown()
 	SafeDelete(this->phyx_world);
 
 	SafeDelete(this->renderer);
-
-	for (AbstractManager* manager : this->vec_managers)
-	{
-		manager->shutdown();
-		SafeDelete(manager);
-	}
 
 	return result;
 }

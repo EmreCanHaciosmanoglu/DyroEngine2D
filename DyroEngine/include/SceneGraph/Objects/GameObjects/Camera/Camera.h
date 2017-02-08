@@ -27,6 +27,8 @@ public:
 private:
 	CameraComponent* camera;
 	TransformComponent* transform;
+
+	bool start_active;
 };
 
 #endif

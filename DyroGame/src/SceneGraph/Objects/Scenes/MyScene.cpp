@@ -6,12 +6,10 @@
 #include "SceneGraph\Objects\GameObjects\PhysicsObject.h"
 
 #include "SceneGraph\Objects\Components\Shapes\RectShapeComponent.h"
-#include "SceneGraph\Objects\Components\Shapes\TriangleShapeComponent.h"
 #include "SceneGraph\Objects\Components\Shapes\CircleShapeComponent.h"
 #include "SceneGraph\Objects\Components\TransformComponent.h"
 #include "SceneGraph\Objects\Components\Physics\Collision\RectCollisionComponent.h"
 #include "SceneGraph\Objects\Components\Physics\Collision\CircleCollisionComponent.h"
-#include "SceneGraph\Objects\Components\Physics\Collision\TriangleCollisionComponent.h"
 
 #include "Core\System\Objects\Input.h"
 
@@ -31,7 +29,6 @@
 #include "Core\Data\Objects\Settings\GameSettings.h"
 #include "Core\Data\Objects\Descriptions\Shapes\CircleShapeDescription.h"
 #include "Core\Data\Objects\Descriptions\Shapes\RectShapeDescription.h"
-#include "Core\Data\Objects\Descriptions\Shapes\TriangleShapeDescription.h"
 
 // DyroGame
 #include "SceneGraph\Objects\GameObjects\CrazyEmitter.h"
@@ -102,18 +99,6 @@ bool MyScene::initialize()
 
 		phyx_object->addComponent(new CircleShapeComponent(new CircleShapeDescription(0, 0, (float)CIRCLE_RADIUS)));
 		phyx_object->addComponent(new CircleCollisionComponent(phyx_object->getRigidBody(), (float)CIRCLE_RADIUS));
-
-		addGameObject(phyx_object);
-	}
-	float step_triangle = window_width / (TRIANGLE_AMOUNT + 1);
-	for (int i = 0; i < TRIANGLE_AMOUNT; ++i)
-	{
-		PhysicsObject* phyx_object = new PhysicsObject(BodyType::DYNAMIC);
-		phyx_object->setName(_T("TRIANGLE_") + std::tstring(TOSTRING(i)));
-		phyx_object->getTransform()->setPosition(Vector2D(step_triangle * (i + 1), 100.0f));
-
-		phyx_object->addComponent(new TriangleShapeComponent(new TriangleShapeDescription((float)TRIANGLE_SCALE, (float)TRIANGLE_SCALE,true)));
-		phyx_object->addComponent(new TriangleCollisionComponent(phyx_object->getRigidBody(), (float)TRIANGLE_SCALE, (float)TRIANGLE_SCALE));
 
 		addGameObject(phyx_object);
 	}

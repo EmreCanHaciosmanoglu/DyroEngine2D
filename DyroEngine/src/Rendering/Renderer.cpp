@@ -16,7 +16,7 @@
 
 Renderer::Renderer(Scene* scene)
 	:interpolation_mode(D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR)
-	, scene(nullptr)
+	, scene(scene)
 	, graphics(nullptr)
 {
 	this->graphics = dynamic_cast<Graphics*>(SystemManager::getInstance().getSystem(SystemType::GRAPHICS_SYSTEM));

@@ -186,20 +186,22 @@ bool Rect2D::operator!= (const Rect2D& other) const
 	return this->left != other.left || this->right != other.right || this->top != other.top || this->bottom != other.bottom;
 }
 
-bool Rect2D::contains(const Vector2D& point)
+bool Rect2D::contains(const Vector2D& point, bool proper)
 {
-	return point.x > this->left && point.x < this->right && point.y > this->top && point.y < this->bottom;
+	if(proper)
+		return point.x > this->left && point.x < this->right && point.y > this->top && point.y < this->bottom;
+	return point.x >= this->left && point.x <= this->right && point.y >= this->top && point.y <= this->bottom;
 }
-bool Rect2D::contains(const Rect2D& rect)
+bool Rect2D::contains(const Rect2D& rect, bool proper)
 {
-	return contains(Vector2D((float)rect.left, (float)rect.top)) && contains(Vector2D((float)rect.right, (float)rect.bottom));
+	return contains(Vector2D((float)rect.left, (float)rect.top), proper) && contains(Vector2D((float)rect.right, (float)rect.bottom), proper);
 }
 bool Rect2D::overlaps(const Rect2D& rect)
 {
-	return contains(Vector2D((float)rect.left, (float)rect.top))
-		|| contains(Vector2D((float)rect.right, (float)rect.bottom))
-		|| contains(Vector2D((float)rect.left, (float)rect.bottom))
-		|| contains(Vector2D((float)rect.right, (float)rect.top));
+	return contains(Vector2D((float)rect.left, (float)rect.top), false)
+		|| contains(Vector2D((float)rect.right, (float)rect.bottom), false)
+		|| contains(Vector2D((float)rect.left, (float)rect.bottom), false)
+		|| contains(Vector2D((float)rect.right, (float)rect.top), false);
 }
 
 D2D_RECT_F Rect2D::toD2DRect(const Rect2D& other)
