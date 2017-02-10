@@ -142,6 +142,7 @@
     <ClInclude Include="include\Core\Helpers\Patterns\Observer.h" />
     <ClInclude Include="include\Core\Helpers\Interfaces\IBoundingBox.h" />
     <ClInclude Include="include\Core\Helpers\TaggedObject.h" />
+    <ClInclude Include="include\SceneGraph\Factory\GameObjectFactory.h" />
     <ClInclude Include="include\SceneGraph\Objects\Components\EmitterComponent.h" />
     <ClInclude Include="include\SceneGraph\Objects\Components\Physics\Collision\RectCollisionComponent.h" />
     <ClInclude Include="include\SceneGraph\Objects\Components\Physics\Collision\CircleCollisionComponent.h" />
@@ -150,6 +151,7 @@
     <ClInclude Include="include\SceneGraph\Objects\Components\ImageComponent.h" />
     <ClInclude Include="include\SceneGraph\Factory\AbstractSceneFactory.h" />
     <ClInclude Include="include\SceneGraph\Manager\ComponentManager.h" />
+    <ClInclude Include="include\SceneGraph\Objects\Components\Physics\Collision\TriangleCollisionComponent.h" />
     <ClInclude Include="include\SceneGraph\Objects\Components\Physics\RigidBodyComponent.h" />
     <ClInclude Include="include\SceneGraph\Objects\Components\ControllerComponent.h" />
     <ClInclude Include="include\SceneGraph\Objects\Components\PlayerControllerComponent.h" />
@@ -317,6 +319,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\SceneGraph\Factory\AbstractSceneFactory.cpp" />
+    <ClCompile Include="src\SceneGraph\Factory\GameObjectFactory.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\Components\EmitterComponent.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\Components\Physics\Collision\RectCollisionComponent.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\Components\Physics\Collision\CircleCollisionComponent.cpp" />
@@ -324,6 +327,7 @@
     <ClCompile Include="src\SceneGraph\Objects\Components\Physics\Collision\PolygonCollisionComponent.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\Components\ImageComponent.cpp" />
     <ClCompile Include="src\SceneGraph\Manager\ComponentManager.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\Components\Physics\Collision\TriangleCollisionComponent.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\Components\Physics\RigidBodyComponent.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\Components\ControllerComponent.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\Components\PlayerControllerComponent.cpp" />
@@ -345,11 +349,20 @@
     <ClCompile Include="src\SceneGraph\Objects\GameObjects\Camera\FreeCamera.cpp" />
     <ClCompile Include="src\SceneGraph\Manager\CameraManager.cpp" />
     <ClCompile Include="src\SceneGraph\Manager\GameObjectManager.cpp" />
-    <ClCompile Include="src\SceneGraph\Objects\GameObjects\Physics\DynamicPhysicsObject.cpp" />
-    <ClCompile Include="src\SceneGraph\Objects\GameObjects\Physics\KinematicPhysicsObject.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\GameObjects\Physics\DynamicPhysicsObject.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\SceneGraph\Objects\GameObjects\Physics\KinematicPhysicsObject.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="src\SceneGraph\Objects\GameObjects\Physics\PhysicsObject.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\GameObjects\SceneObject.cpp" />
-    <ClCompile Include="src\SceneGraph\Objects\GameObjects\Physics\StaticPhysicsObject.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\GameObjects\Physics\StaticPhysicsObject.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="src\SceneGraph\Objects\GameObjects\UIObject.cpp" />
     <ClCompile Include="src\Core\Engine.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Game.cpp" />

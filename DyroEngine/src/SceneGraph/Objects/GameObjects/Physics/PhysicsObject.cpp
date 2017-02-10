@@ -1,4 +1,4 @@
-#include "SceneGraph\Objects\GameObjects\PhysicsObject.h"
+#include "SceneGraph\Objects\GameObjects\Physics\PhysicsObject.h"
 
 #include "SceneGraph\Objects\Components\Physics\RigidBodyComponent.h"
 #include "SceneGraph\Objects\Components\TransformComponent.h"

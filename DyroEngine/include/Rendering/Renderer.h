@@ -22,6 +22,7 @@
 #include "Core/Defines/color.h"
 #endif
 
+class Scene;
 class Graphics;
 class Image;
 
@@ -40,8 +41,10 @@ struct RenderInfo
 class Renderer
 {
 public:
-	Renderer();
+	Renderer(Scene* scene);
 	virtual ~Renderer();
+
+	Scene* getScene() const;
 
 	void render(const RenderInfo& info);
 
@@ -66,6 +69,7 @@ public:
 private:
 	D2D1_BITMAP_INTERPOLATION_MODE interpolation_mode;
 	Graphics* graphics;
+	Scene* scene;
 	std::vector<RenderItem*> cached_render_items;
 };
 

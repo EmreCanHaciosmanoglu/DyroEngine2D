@@ -31,6 +31,7 @@ Scene* Renderer::getScene() const
 	return this->scene;
 }
 
+void Renderer::render(const RenderInfo& info)
 {
 	std::vector<RenderItem*> render_items;
 	render_items.insert(render_items.end(), info.items.begin(), info.items.end());

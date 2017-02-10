@@ -119,7 +119,8 @@
     <ClCompile Include="src\SceneGraph\Objects\GameObjects\Physics\KinematicPhysicsObject.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\GameObjects\Physics\StaticPhysicsObject.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\GameObjects\Physics\PhysicsObject.cpp" />
-    <ClCompile Include="src\SceneGraph\Factory\AbstractGameObjectFactory.cpp" />
+    <ClCompile Include="src\SceneGraph\Factory\GameObjectFactory.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\Components\Physics\Collision\TriangleCollisionComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Core\Data\Factory\SettingsFactory.h" />
@@ -263,6 +264,7 @@
     <ClInclude Include="include\SceneGraph\Objects\GameObjects\Physics\StaticPhysicsObject.h" />
     <ClInclude Include="include\Core\Defines\gameobjects.h" />
     <ClInclude Include="include\Core\Defines\components.h" />
-    <ClInclude Include="include\SceneGraph\Factory\AbstractGameObjectFactory.h" />
+    <ClInclude Include="include\SceneGraph\Factory\GameObjectFactory.h" />
+    <ClInclude Include="include\SceneGraph\Objects\Components\Physics\Collision\TriangleCollisionComponent.h" />
   </ItemGroup>
 </Project>

@@ -3,7 +3,7 @@
 #include "SceneGraph\Objects\GameObjects\Camera\FreeCamera.h"
 
 #include "SceneGraph\Objects\GameObjects\SceneObject.h"
-#include "SceneGraph\Objects\GameObjects\PhysicsObject.h"
+#include "SceneGraph\Objects\GameObjects\Physics\PhysicsObject.h"
 
 #include "SceneGraph\Objects\Components\Shapes\RectShapeComponent.h"
 #include "SceneGraph\Objects\Components\Shapes\CircleShapeComponent.h"
@@ -76,7 +76,10 @@ bool MyScene::initialize()
 
 	game_settings->setBackgroundColor(Color(0.16f, 0.15f, 0.18f));
 
-	addGameObject(new FreeCamera(_T("Main Camera"), 200.0f));
+	FreeCamera* camera = new FreeCamera(_T("Main Camera"));
+	camera->setSpeed(200.0f);
+
+	addGameObject(camera);
 
 	float step_rect = window_width / (RECT_AMOUNT + 1);
 	for (int i = 0; i < RECT_AMOUNT; ++i)
