@@ -81,7 +81,7 @@ Visualization* VisualizationFactory::createVisualization(GameObject* object, boo
 		if (new_visualization == nullptr)
 			continue;
 
-		root->addVisualizationChildNode(new_visualization);		
+		root->addVisualizationChildNode(new_visualization);
 	}
 
 	if (generateChildVisualizations)

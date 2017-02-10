@@ -13,11 +13,9 @@
 EmitterComponentVisualization::EmitterComponentVisualization(Component* component, const std::tstring& name)
 	:ConcreteComponentVisualization(component, name)
 {
-
 }
 EmitterComponentVisualization::~EmitterComponentVisualization()
 {
-
 }
 
 bool EmitterComponentVisualization::initialize()
@@ -76,23 +74,23 @@ void EmitterComponentVisualization::generateRenderItems(std::vector<RenderItem*>
 	EmitterComponent* emitter_component = getConcreteComponent();
 	//if (emitter_component->getEmitterDescription()->getDirty())
 	//{
-		for (Particle* particle : this->particles)
-			SafeDelete(particle);
-		this->particles.clear();
+	for (Particle* particle : this->particles)
+		SafeDelete(particle);
+	this->particles.clear();
 
-		for (ParticleDescription* desc : emitter_component->getParticleDescriptions())
-		{
-			Particle* particle = new Particle(desc);
-			this->particles.push_back(particle);
+	for (ParticleDescription* desc : emitter_component->getParticleDescriptions())
+	{
+		Particle* particle = new Particle(desc);
+		this->particles.push_back(particle);
 
-			//Since an image will get renderer from his top corner we will need to center the image in order to achieve correct visuals.
-			Vector2D center = Vector2D(particle->getWidth() / 2, particle->getHeight() / 2);
+		//Since an image will get renderer from his top corner we will need to center the image in order to achieve correct visuals.
+		Vector2D center = Vector2D(particle->getWidth() / 2, particle->getHeight() / 2);
 
-			particle->setLayer(parent_object->getLayer());
-			particle->setTransform(particle->getParticleDescription()->getPosition() - center, particle->getParticleDescription()->getScale(), particle->getParticleDescription()->getRotation());
+		particle->setLayer(parent_object->getLayer());
+		particle->setTransform(particle->getParticleDescription()->getPosition() - center, particle->getParticleDescription()->getScale(), particle->getParticleDescription()->getRotation());
 
-			items.push_back(particle);
-		}
+		items.push_back(particle);
+	}
 	//}
 	//else
 	//{

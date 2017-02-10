@@ -50,7 +50,7 @@ Scene::Scene(const std::tstring& name)
 	OBJECT_INIT(_T("Scene"));
 
 	//Create the game object factory
-	if(!GameObjectFactory::hasInstance())
+	if (!GameObjectFactory::hasInstance())
 		GameObjectFactory::createInstance();
 
 	GameObjectFactory::getInstance().setScene(this);
@@ -117,7 +117,7 @@ void Scene::update()
 bool Scene::shutdown()
 {
 	bool result = true;
-	
+
 	for (AbstractManager* manager : this->vec_managers)
 	{
 		if (!manager->shutdown())
@@ -237,7 +237,7 @@ void Scene::triggerRender()
 		{
 			Rect2D visualization_bounds = pair.second->getBoundingBox();
 
-			if(screen_bounds.overlaps(visualization_bounds))
+			if (screen_bounds.overlaps(visualization_bounds))
 				pair.second->getRenderItems(items);
 		}
 	}

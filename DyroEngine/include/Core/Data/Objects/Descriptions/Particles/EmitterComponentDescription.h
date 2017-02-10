@@ -29,7 +29,7 @@ public:
 	void setLifeTime(const RangeFloat& time);
 	void setLoop(bool loop);
 	void setSpawnAtStart(bool spawn);
-	
+
 	void setVelocity(const RangeVector2D& velocity);
 	void setScaleVelocity(const RangeVector2D& velocity);
 	void setAngularVelocity(const RangeFloat& velocity);

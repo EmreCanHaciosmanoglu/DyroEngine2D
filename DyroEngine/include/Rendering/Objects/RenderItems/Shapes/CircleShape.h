@@ -7,7 +7,6 @@
 #include "Core\Data\Objects\Descriptions\Shapes\CircleShapeDescription.h"
 #endif
 
-
 #ifndef _VECTOR2D_H
 #include "Math/Objects/Vector2D.h"
 #endif

@@ -23,7 +23,7 @@ public:
 	virtual ~RenderItem();
 
 	virtual void render(Renderer* renderer) = 0;
-	
+
 	void setLayer(Layer* layer);
 	void setTransform(const Vector2D& position, const Vector2D& scale, float rotation);
 	void setTransform(const Matrix2D& transform);

@@ -11,7 +11,7 @@
 
 Settings::Settings(const std::tstring& filePath, SettingsType type)
 	:file_path(filePath)
-	,settings_type(type)
+	, settings_type(type)
 {
 }
 Settings::~Settings()

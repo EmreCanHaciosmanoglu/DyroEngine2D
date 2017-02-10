@@ -14,8 +14,6 @@ public:
 	}
 	virtual ~DynamicPhysicsObject()
 	{}
-
 };
 
 #endif
-

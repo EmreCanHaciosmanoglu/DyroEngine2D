@@ -51,7 +51,7 @@ public:
 	{
 		return (value - this->min_value) / getDelta();
 	}
-	
+
 	T min_value;
 	T max_value;
 };

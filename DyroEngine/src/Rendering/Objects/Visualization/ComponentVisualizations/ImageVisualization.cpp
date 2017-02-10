@@ -15,7 +15,6 @@ ImageVisualization::ImageVisualization(Component* object, const std::tstring& na
 	:ConcreteComponentVisualization(object, name)
 	, texture(nullptr)
 {
-
 }
 ImageVisualization::~ImageVisualization()
 {

@@ -48,4 +48,3 @@ float ControllerComponent::getRotationForce() const
 {
 	return this->rotation_force;
 }
-

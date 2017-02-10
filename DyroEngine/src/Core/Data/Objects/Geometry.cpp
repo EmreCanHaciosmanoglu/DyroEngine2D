@@ -6,7 +6,7 @@
 
 Geometry::Geometry(ID2D1Geometry* geometry, const std::tstring& name)
 	:TaggedObject(name)
-	,geometry(geometry)
+	, geometry(geometry)
 {}
 Geometry::~Geometry()
 {

@@ -4,7 +4,7 @@
 
 ShapeDescription::ShapeDescription(GeometryType type)
 	: geometry_type(type)
-	, color(0,0,0,1)
+	, color(0, 0, 0, 1)
 	, line_width(0.5f)
 {}
 ShapeDescription::ShapeDescription(const ShapeDescription& ref)

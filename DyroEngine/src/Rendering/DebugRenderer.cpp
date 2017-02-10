@@ -56,12 +56,12 @@ void DebugRenderer::DrawPolygon(const b2Vec2* vertices, int32 vertexCount, const
 {
 	Scene* scene = this->renderer->getScene();
 
-	 Matrix2D mat_view = scene->getManager<CameraManager>()->getActiveCamera()->getCamera()->getViewMatrix();
+	Matrix2D mat_view = scene->getManager<CameraManager>()->getActiveCamera()->getCamera()->getViewMatrix();
 	std::vector<Vector2D> vertexArr;
 	for (int i = 0; i < vertexCount; i++)
 		vertexArr.push_back(Vector2D(vertices[i].x, vertices[i].y));
 
-	PolygonShapeDescription* description = new PolygonShapeDescription(vertexArr, true, false, Color(color.r, color.g, color.b, color.a), 1/constants::BOX2D_SCALE);
+	PolygonShapeDescription* description = new PolygonShapeDescription(vertexArr, true, false, Color(color.r, color.g, color.b, color.a), 1 / constants::BOX2D_SCALE);
 	Geometry* geometry = scene->getManager<GeometryManager>()->getGeometry(description);
 	PolygonShape* shape = new PolygonShape(description, geometry);
 	shape->setTransform(this->mat_scale);
@@ -73,7 +73,7 @@ void DebugRenderer::DrawSolidPolygon(const b2Vec2* vertices, int32 vertexCount, 
 {
 	Scene* scene = this->renderer->getScene();
 
-	 Matrix2D mat_view = scene->getManager<CameraManager>()->getActiveCamera()->getCamera()->getViewMatrix();
+	Matrix2D mat_view = scene->getManager<CameraManager>()->getActiveCamera()->getCamera()->getViewMatrix();
 	std::vector<Vector2D> vertexArr;
 	for (int i = 0; i < vertexCount; i++)
 		vertexArr.push_back(Vector2D(vertices[i].x, vertices[i].y));
@@ -91,7 +91,7 @@ void DebugRenderer::DrawCircle(const b2Vec2& center, float32 radius, const b2Col
 {
 	Scene* scene = this->renderer->getScene();
 
-	 Matrix2D mat_view = scene->getManager<CameraManager>()->getActiveCamera()->getCamera()->getViewMatrix();
+	Matrix2D mat_view = scene->getManager<CameraManager>()->getActiveCamera()->getCamera()->getViewMatrix();
 	CircleShapeDescription* description = new CircleShapeDescription(center.x, center.y, radius, false, Color(color.r, color.g, color.b, color.a), 1 / constants::BOX2D_SCALE);
 	Geometry* geometry = scene->getManager<GeometryManager>()->getGeometry(description);
 	CircleShape* shape = new CircleShape(description, geometry);
@@ -104,7 +104,7 @@ void DebugRenderer::DrawSolidCircle(const b2Vec2& center, float32 radius, const 
 {
 	Scene* scene = this->renderer->getScene();
 
-	 Matrix2D mat_view = scene->getManager<CameraManager>()->getActiveCamera()->getCamera()->getViewMatrix();
+	Matrix2D mat_view = scene->getManager<CameraManager>()->getActiveCamera()->getCamera()->getViewMatrix();
 	CircleShapeDescription* description = new CircleShapeDescription(center.x, center.y, radius, true, Color(color.r, color.g, color.b, color.a), 1 / constants::BOX2D_SCALE);
 	Geometry* geometry = scene->getManager<GeometryManager>()->getGeometry(description);
 	CircleShape* shape = new CircleShape(description, geometry);
@@ -118,10 +118,10 @@ void DebugRenderer::DrawSegment(const b2Vec2& p1, const b2Vec2& p2, const b2Colo
 {
 	Scene* scene = this->renderer->getScene();
 
-	 Matrix2D mat_view = scene->getManager<CameraManager>()->getActiveCamera()->getCamera()->getViewMatrix();
+	Matrix2D mat_view = scene->getManager<CameraManager>()->getActiveCamera()->getCamera()->getViewMatrix();
 	LineShapeDescription* description = new LineShapeDescription(Vector2D(p1.x, p1.y), Vector2D(p2.x, p2.y), Color(color.r, color.g, color.b, color.a), 1.0f / constants::BOX2D_SCALE);
 	Geometry* geometry = scene->getManager<GeometryManager>()->getGeometry(description);
-	LineShape* shape = new LineShape(description,geometry);
+	LineShape* shape = new LineShape(description, geometry);
 	shape->setTransform(this->mat_scale);
 	shape->setLayer(scene->getManager<LayerManager>()->getLayer(_T("Debug")));
 
@@ -132,7 +132,7 @@ void DebugRenderer::DrawTransform(const b2Transform& xf)
 {
 	Scene* scene = this->renderer->getScene();
 
-	 Matrix2D mat_view = scene->getManager<CameraManager>()->getActiveCamera()->getCamera()->getViewMatrix();
+	Matrix2D mat_view = scene->getManager<CameraManager>()->getActiveCamera()->getCamera()->getViewMatrix();
 	CircleShapeDescription* circle_description = new CircleShapeDescription(Vector2D(xf.p.x, xf.p.y), 2.0f / constants::BOX2D_SCALE, false, Color(0, 0, 0), 1 / constants::BOX2D_SCALE);
 	Geometry* circle_geometry = scene->getManager<GeometryManager>()->getGeometry(circle_description);
 	CircleShape* circle_shape = new CircleShape(circle_description, circle_geometry);

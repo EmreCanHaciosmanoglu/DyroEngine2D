@@ -53,7 +53,7 @@ Geometry* GeometryFactory::createRectangleGeometry(ShapeDescription* description
 	ID2D1RectangleGeometry* rect_geometry;
 	hr = graphics->getD2DFactory()->CreateRectangleGeometry(Rect2D::toD2DRect(rect_description->getRect()), &rect_geometry);
 	if (SUCCEEDED(hr))
-		return new Geometry(rect_geometry,_T("Rectange Geometry"));
+		return new Geometry(rect_geometry, _T("Rectange Geometry"));
 
 	LogManager::getInstance().log(new WarningLog(_T("Rect shape creation failed!"), LOG_INFO));
 	return nullptr;
@@ -76,7 +76,7 @@ Geometry* GeometryFactory::createCircleGeometry(ShapeDescription* description)
 	hr = graphics->getD2DFactory()->CreateEllipseGeometry(ellipse, &ellipse_geometry);
 
 	if (SUCCEEDED(hr))
-		return new Geometry(ellipse_geometry,_T("Ellipse Geometry"));
+		return new Geometry(ellipse_geometry, _T("Ellipse Geometry"));
 
 	LogManager::getInstance().log(new WarningLog(_T("Circle shape creation failed!"), LOG_INFO));
 	return nullptr;

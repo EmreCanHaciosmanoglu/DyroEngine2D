@@ -53,7 +53,7 @@ Rect2D GameObjectVisualization::getBoundingBox() const
 	Rect2D bounds;
 	bounds = visualizations[0]->getBoundingBox();
 
-	for(Visualization* vis : visualizations)
+	for (Visualization* vis : visualizations)
 	{
 		Rect2D temp_bounds = vis->getBoundingBox();
 
@@ -80,7 +80,7 @@ GameObject* GameObjectVisualization::getGameObject() const
 const Vector2D& GameObjectVisualization::getPosition() const
 {
 	TransformComponent* transform = getGameObject()->getComponent<TransformComponent>();
-	if(transform != nullptr)
+	if (transform != nullptr)
 		return transform->getPosition();
 	return Vector2D::ZeroVector;
 }

@@ -7,7 +7,7 @@
 
 Particle::Particle(ParticleDescription* desc, const std::tstring name)
 	:Texture(desc->getImage(), name)
-	,description(desc)
+	, description(desc)
 {}
 Particle::~Particle()
 {}

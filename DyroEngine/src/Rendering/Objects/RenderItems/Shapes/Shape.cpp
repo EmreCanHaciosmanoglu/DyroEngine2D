@@ -20,7 +20,7 @@ Shape::Shape(const std::tstring& name)
 	, geometry(nullptr)
 {}
 Shape::Shape(ShapeDescription* description, Geometry* geometry, const std::tstring& name)
-	:RenderItem(name)
+	: RenderItem(name)
 	, description(description)
 	, geometry(geometry)
 {}

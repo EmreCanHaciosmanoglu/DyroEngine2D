@@ -115,7 +115,7 @@ bool MyScene::initialize()
 
 	addGameObject(ground_object);
 
-	// DyroGame 
+	// DyroGame
 	//ResourceManager* resource_manager = getManager<ResourceManager>();
 
 	//EmitterComponentDescription* description = new EmitterComponentDescription(PARTICLE_AMOUNT);

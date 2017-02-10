@@ -18,7 +18,7 @@ public:
 	bool shutdown();
 
 	void addSettings(Settings* setting);
-	
+
 	Settings* getSettings(SettingsType type);
 };
 

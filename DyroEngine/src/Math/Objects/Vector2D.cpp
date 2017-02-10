@@ -4,7 +4,7 @@
 #include "Math/Objects/Random.h"
 #endif
 
-Vector2D Vector2D::ZeroVector = Vector2D(0,0);
+Vector2D Vector2D::ZeroVector = Vector2D(0, 0);
 
 float Vector2D::Length() const
 {

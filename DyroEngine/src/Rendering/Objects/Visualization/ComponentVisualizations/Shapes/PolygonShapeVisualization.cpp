@@ -11,11 +11,9 @@
 PolygonShapeVisualization::PolygonShapeVisualization(Component* object, const std::tstring& name)
 	:ShapeVisualization(object, name)
 {
-
 }
 PolygonShapeVisualization::~PolygonShapeVisualization()
 {
-
 }
 
 bool PolygonShapeVisualization::initialize()

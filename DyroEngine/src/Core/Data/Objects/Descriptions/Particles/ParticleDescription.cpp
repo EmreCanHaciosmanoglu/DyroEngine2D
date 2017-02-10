@@ -15,7 +15,7 @@ ParticleDescription::ParticleDescription()
 	, scale_velocity(Vector2D(0.0f, 0.0f))
 	, angular_velocity(10.0f)
 
-	, position(Vector2D(0.0f,0.0f))
+	, position(Vector2D(0.0f, 0.0f))
 	, scale(Vector2D(1.0f, 1.0f))
 	, rotation(0.0f)
 
@@ -44,7 +44,6 @@ ParticleDescription::ParticleDescription(const ParticleDescription& description)
 	, fade_transition(description.fade_transition)
 	, image(description.image)
 {
-
 }
 ParticleDescription::~ParticleDescription()
 {}

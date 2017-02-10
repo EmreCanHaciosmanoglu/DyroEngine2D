@@ -56,7 +56,7 @@ bool IWindow::createWindow()
 
 	window_width = appSettings->getWindowWidth();
 	window_height = appSettings->getWindowHeight();
-	
+
 	this->window_rect = createWindowRect();
 
 	this->window_classname = getWindowClassName();

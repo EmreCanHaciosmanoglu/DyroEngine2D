@@ -6,27 +6,27 @@
 
 EmitterComponentDescription::EmitterComponentDescription(unsigned int particleAmount)
 	:particle_amount(particleAmount)
-	,emission_burst(5)
-	,emission_rate(1.0f)
-	,gravity_multiplier(0.0f)
-	,life_time(10.0f, 10.0f)
-	,loop(true)
-	,spawn_at_start(true)
+	, emission_burst(5)
+	, emission_rate(1.0f)
+	, gravity_multiplier(0.0f)
+	, life_time(10.0f, 10.0f)
+	, loop(true)
+	, spawn_at_start(true)
 
-	,velocity(Vector2D(-50.0f, -50.0f), Vector2D(50.0f,50.0f))
-	,scale_velocity(Vector2D(0.0f, 0.0f), Vector2D(0.0f, 0.0f))
-	,angular_velocity(0.0f, 0.0f)
+	, velocity(Vector2D(-50.0f, -50.0f), Vector2D(50.0f, 50.0f))
+	, scale_velocity(Vector2D(0.0f, 0.0f), Vector2D(0.0f, 0.0f))
+	, angular_velocity(0.0f, 0.0f)
 
-	,fade(true)
-	,fade_start(0.1f)
-	,fade_end(0.95f)
-	,fade_speed(1.0f, 1.0f)
+	, fade(true)
+	, fade_start(0.1f)
+	, fade_end(0.95f)
+	, fade_speed(1.0f, 1.0f)
 
-	,spawn_position_offset(Vector2D(-10.0f, -10.0f), Vector2D(10.0f, 10.0f))
-	,spawn_scale_offset(Vector2D(0.0f, 0.0f), Vector2D(0.0f, 0.0f))
-	,spawn_rotation_offset(0,0)
+	, spawn_position_offset(Vector2D(-10.0f, -10.0f), Vector2D(10.0f, 10.0f))
+	, spawn_scale_offset(Vector2D(0.0f, 0.0f), Vector2D(0.0f, 0.0f))
+	, spawn_rotation_offset(0, 0)
 
-	,dirty(false)
+	, dirty(false)
 {}
 EmitterComponentDescription::~EmitterComponentDescription()
 {}
@@ -168,11 +168,11 @@ bool EmitterComponentDescription::canSpawnAtStart() const
 
 const Vector2D EmitterComponentDescription::getVelocity() const
 {
-	return Vector2D::randomVector(this->velocity.min_value,this->velocity.max_value);
+	return Vector2D::randomVector(this->velocity.min_value, this->velocity.max_value);
 }
 const Vector2D EmitterComponentDescription::getScaleVelocity() const
 {
-	return Vector2D::randomVector(this->scale_velocity.min_value,this->scale_velocity.max_value);
+	return Vector2D::randomVector(this->scale_velocity.min_value, this->scale_velocity.max_value);
 }
 float EmitterComponentDescription::getAngularVelocity() const
 {

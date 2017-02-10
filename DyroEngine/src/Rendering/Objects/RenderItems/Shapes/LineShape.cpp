@@ -15,7 +15,7 @@ LineShape::LineShape(const std::tstring& name)
 	:Shape(name)
 {}
 LineShape::LineShape(LineShapeDescription* description, Geometry* geometry, const std::tstring& name)
-	:Shape(description, geometry, name)
+	: Shape(description, geometry, name)
 {}
 LineShape::~LineShape()
 {}

@@ -4,10 +4,10 @@
 #include "Core/Helpers/TaggedObject.h"
 
 #ifndef _RECT2D_H
-	#include "Math/Objects/Rect2D.h"
+#include "Math/Objects/Rect2D.h"
 #endif
 #ifndef _MATRIX2D_H
-	#include "Math\Objects\Matrix2D.h"
+#include "Math\Objects\Matrix2D.h"
 #endif
 
 struct ID2D1Geometry;

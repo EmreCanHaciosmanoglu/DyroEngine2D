@@ -32,6 +32,6 @@ TodoLog::~TodoLog()
 const std::tstring TodoLog::toString() const
 {
 	std::tstringstream buffer;
-	buffer <<_T("LogMessage Type: ToDo ") << std::endl << getMessage();
+	buffer << _T("LogMessage Type: ToDo ") << std::endl << getMessage();
 	return buffer.str();
 }

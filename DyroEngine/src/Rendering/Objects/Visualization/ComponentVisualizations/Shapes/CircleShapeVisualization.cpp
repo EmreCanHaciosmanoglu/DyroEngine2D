@@ -12,7 +12,6 @@
 CircleShapeVisualization::CircleShapeVisualization(Component* object, const std::tstring& name)
 	:ShapeVisualization(object, name)
 {
-
 }
 CircleShapeVisualization::~CircleShapeVisualization()
 {
@@ -28,7 +27,7 @@ bool CircleShapeVisualization::initialize()
 	Geometry* geometry = getScene()->getManager<GeometryManager>()->getGeometry(description);
 
 	setShape(new CircleShape(description, geometry));
-	
+
 	assert(getShape() != nullptr);
 
 	return true;

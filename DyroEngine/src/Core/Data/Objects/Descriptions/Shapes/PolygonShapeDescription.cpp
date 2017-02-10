@@ -3,26 +3,26 @@
 
 PolygonShapeDescription::PolygonShapeDescription()
 	:FillableShapeDescription(GeometryType::POLYGON_GEOMETRY)
-	,vec_points(std::vector<Vector2D> { Vector2D(-0.5f, 0.0f),
+	, vec_points(std::vector<Vector2D> { Vector2D(-0.5f, 0.0f),
 		Vector2D(0.5f, -0.5f),
 		Vector2D(0.5f, 0.5f)})
-	,close(true)
+	, close(true)
 {}
 PolygonShapeDescription::PolygonShapeDescription(const PolygonShapeDescription& ref)
 	:FillableShapeDescription(ref)
-	,vec_points(ref.vec_points)
-	,close(ref.close)
+	, vec_points(ref.vec_points)
+	, close(ref.close)
 {}
 PolygonShapeDescription::PolygonShapeDescription(Vector2D* points, unsigned int size, bool close, bool fill, const Color& color, float lineWidth)
-	: FillableShapeDescription(GeometryType::POLYGON_GEOMETRY,fill,color, lineWidth)
-	,vec_points(size, Vector2D())
-	,close(close)
+	: FillableShapeDescription(GeometryType::POLYGON_GEOMETRY, fill, color, lineWidth)
+	, vec_points(size, Vector2D())
+	, close(close)
 {
 	for (unsigned int i = 0; i < size; ++i)
 		vec_points[i] = points[i];
 }
 PolygonShapeDescription::PolygonShapeDescription(const std::vector<Vector2D>& vecPoints, bool close, bool fill, const Color& color, float lineWidth)
-	:FillableShapeDescription(GeometryType::POLYGON_GEOMETRY, fill,color, lineWidth)
+	:FillableShapeDescription(GeometryType::POLYGON_GEOMETRY, fill, color, lineWidth)
 	, vec_points(vecPoints)
 	, close(close)
 {}

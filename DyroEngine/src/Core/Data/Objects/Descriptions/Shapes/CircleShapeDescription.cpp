@@ -3,23 +3,23 @@
 
 CircleShapeDescription::CircleShapeDescription()
 	:FillableShapeDescription(GeometryType::CIRCLE_GEOMETRY)
-	,center(0,0)
-	,radius(1.0f)
+	, center(0, 0)
+	, radius(1.0f)
 {}
 CircleShapeDescription::CircleShapeDescription(const CircleShapeDescription& ref)
 	: FillableShapeDescription(ref)
-	,center(ref.getCenter())
-	,radius(ref.getRadius())
+	, center(ref.getCenter())
+	, radius(ref.getRadius())
 {}
 CircleShapeDescription::CircleShapeDescription(float xcenter, float ycenter, float r, bool fill, const Color& color, float lineWidth)
-	: FillableShapeDescription(GeometryType::CIRCLE_GEOMETRY,fill,color,lineWidth)
-	,center(xcenter,ycenter)
-	,radius(r)
+	: FillableShapeDescription(GeometryType::CIRCLE_GEOMETRY, fill, color, lineWidth)
+	, center(xcenter, ycenter)
+	, radius(r)
 {}
 CircleShapeDescription::CircleShapeDescription(const Vector2D& center, float r, bool fill, const Color& color, float lineWidth)
-	: FillableShapeDescription(GeometryType::CIRCLE_GEOMETRY,fill,color,lineWidth)
-	,center(center)
-	,radius(r)
+	: FillableShapeDescription(GeometryType::CIRCLE_GEOMETRY, fill, color, lineWidth)
+	, center(center)
+	, radius(r)
 {}
 CircleShapeDescription::~CircleShapeDescription()
 {}

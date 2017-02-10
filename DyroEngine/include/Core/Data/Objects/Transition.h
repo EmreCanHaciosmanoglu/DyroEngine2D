@@ -13,9 +13,8 @@ public:
 
 	AbstractTrasition(const AbstractTrasition& t)
 		:running(t.isRunning())
-		,finished(t.isFinished())
+		, finished(t.isFinished())
 	{}
-
 
 	void start()
 	{
@@ -58,28 +57,28 @@ public:
 	Transition(T from, T to)
 		:AbstractTrasition()
 
-		,initial_from(from)
+		, initial_from(from)
 
-		,from(from)
-		,to(to)
-		
-		,current(from)
+		, from(from)
+		, to(to)
 
-		,speed((T)1)
+		, current(from)
+
+		, speed((T)1)
 	{}
 	~Transition()
 	{}
 
 	Transition(const Transition<T>& t)
 		:AbstractTrasition(t)
-		,initial_from(t.from)
+		, initial_from(t.from)
 
-		,from(t.from)
-		,to(t.to)
-		
-		,current(t.current)
-		
-		,speed(t.speed)
+		, from(t.from)
+		, to(t.to)
+
+		, current(t.current)
+
+		, speed(t.speed)
 	{}
 
 	void setSource(T from)
@@ -104,7 +103,7 @@ public:
 		if (!isRunning())
 			return;
 
-		if(to - current >= (T)0)
+		if (to - current >= (T)0)
 			current += speed;
 		else setFinished(true);
 	}

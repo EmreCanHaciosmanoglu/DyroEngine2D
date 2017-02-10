@@ -26,5 +26,4 @@ bool CrazyEmitter::shutdown()
 
 void CrazyEmitter::setupInput(Input* input)
 {
-
 }

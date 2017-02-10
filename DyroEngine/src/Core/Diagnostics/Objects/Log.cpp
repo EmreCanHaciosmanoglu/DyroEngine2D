@@ -2,9 +2,9 @@
 
 Log::Log(LogType t, const std::tstring& m, int ln, const std::tstring& fn)
 	:TaggedObject(_T("Log"))
-	,message(m)
-	,line_number(ln)
-	,file_name(fn)
+	, message(m)
+	, line_number(ln)
+	, file_name(fn)
 {}
 Log::~Log()
 {}

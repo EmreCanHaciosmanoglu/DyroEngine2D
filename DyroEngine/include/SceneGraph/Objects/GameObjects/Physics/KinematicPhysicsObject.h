@@ -14,8 +14,6 @@ public:
 	}
 	virtual ~KinematicPhysicsObject()
 	{}
-
 };
 
 #endif
-

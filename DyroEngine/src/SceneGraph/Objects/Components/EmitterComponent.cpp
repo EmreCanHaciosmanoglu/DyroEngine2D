@@ -13,7 +13,7 @@
 #include "Core/Defines/deletemacros.h"
 #include "Core/Defines/debug.h"
 
-EmitterComponent::EmitterComponent(EmitterComponentDescription* description,const std::tstring& name)
+EmitterComponent::EmitterComponent(EmitterComponentDescription* description, const std::tstring& name)
 	:Component(name)
 	, description(description)
 	, current_emission_rate(description->getEmissionRate())
@@ -23,7 +23,6 @@ EmitterComponent::EmitterComponent(EmitterComponentDescription* description,cons
 }
 EmitterComponent::~EmitterComponent()
 {
-
 }
 
 bool EmitterComponent::initialize()
@@ -89,7 +88,7 @@ bool EmitterComponent::shutdown()
 	return true;
 }
 
-EmitterComponentDescription* EmitterComponent::getEmitterDescription() const 
+EmitterComponentDescription* EmitterComponent::getEmitterDescription() const
 {
 	return this->description;
 }

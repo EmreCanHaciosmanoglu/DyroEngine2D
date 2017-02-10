@@ -3,23 +3,23 @@
 
 LineShapeDescription::LineShapeDescription()
 	:ShapeDescription(GeometryType::LINE_GEOMETRY)
-	,v1(0,0)
-	,v2(0,0)
+	, v1(0, 0)
+	, v2(0, 0)
 {}
 LineShapeDescription::LineShapeDescription(const LineShapeDescription& ref)
-	:ShapeDescription(ref)
-	,v1(ref.v1)
-	,v2(ref.v2)
+	: ShapeDescription(ref)
+	, v1(ref.v1)
+	, v2(ref.v2)
 {}
 LineShapeDescription::LineShapeDescription(float x1, float y1, float x2, float y2, const Color& color, float lineWidth)
-	:ShapeDescription(GeometryType::LINE_GEOMETRY,color,lineWidth)
-	,v1(x1,y1)
-	,v2(x2,y2)
+	: ShapeDescription(GeometryType::LINE_GEOMETRY, color, lineWidth)
+	, v1(x1, y1)
+	, v2(x2, y2)
 {}
 LineShapeDescription::LineShapeDescription(const Vector2D& v1, const Vector2D& v2, const Color& color, float lineWidth)
-	:ShapeDescription(GeometryType::LINE_GEOMETRY,color,lineWidth)
-	,v1(v1)
-	,v2(v2)
+	: ShapeDescription(GeometryType::LINE_GEOMETRY, color, lineWidth)
+	, v1(v1)
+	, v2(v2)
 {}
 LineShapeDescription::~LineShapeDescription()
 {}

@@ -188,7 +188,7 @@ bool Rect2D::operator!= (const Rect2D& other) const
 
 bool Rect2D::contains(const Vector2D& point, bool proper)
 {
-	if(proper)
+	if (proper)
 		return point.x > this->left && point.x < this->right && point.y > this->top && point.y < this->bottom;
 	return point.x >= this->left && point.x <= this->right && point.y >= this->top && point.y <= this->bottom;
 }

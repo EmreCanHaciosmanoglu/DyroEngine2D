@@ -11,11 +11,9 @@
 RectShapeVisualization::RectShapeVisualization(Component* object, const std::tstring& name)
 	:ShapeVisualization(object, name)
 {
-
 }
 RectShapeVisualization::~RectShapeVisualization()
 {
-
 }
 
 bool RectShapeVisualization::initialize()

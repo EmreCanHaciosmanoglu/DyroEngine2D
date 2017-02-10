@@ -27,7 +27,7 @@ public:
 	float getRotation() const;
 
 	const Matrix2D& getTransform() const;
-	
+
 	void addVisualizationChildNode(Visualization* visualization);
 	void removeVisualizationChildNode(Visualization* visualization);
 

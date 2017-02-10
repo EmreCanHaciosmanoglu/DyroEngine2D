@@ -55,7 +55,7 @@ void Renderer::render(const RenderInfo& info)
 		setTransformMatrix(item->getTransform() * mat_view);
 		item->render(this);
 	}
-	
+
 	for (RenderItem* item : this->cached_render_items)
 		SafeDelete(item);
 	this->cached_render_items.clear();
@@ -93,7 +93,7 @@ void Renderer::fillGeometry(Geometry* geometry) const
 
 void Renderer::cacheShape(RenderItem* item)
 {
-	std::vector<RenderItem*>::const_iterator it = std::find(this->cached_render_items.begin(),this->cached_render_items.end(), item);
+	std::vector<RenderItem*>::const_iterator it = std::find(this->cached_render_items.begin(), this->cached_render_items.end(), item);
 
 	if (this->cached_render_items.end() != it)
 		return;

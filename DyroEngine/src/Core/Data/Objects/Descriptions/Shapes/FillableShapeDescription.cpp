@@ -2,15 +2,15 @@
 
 FillableShapeDescription::FillableShapeDescription(GeometryType type)
 	:ShapeDescription(type)
-	,fill(true)
+	, fill(true)
 {}
 FillableShapeDescription::FillableShapeDescription(const FillableShapeDescription& ref)
-	:ShapeDescription(ref)
-	,fill(ref.fill)
+	: ShapeDescription(ref)
+	, fill(ref.fill)
 {}
 FillableShapeDescription::FillableShapeDescription(GeometryType type, bool fill, const Color& color, float lineWidth)
-	:ShapeDescription(type, color,lineWidth)
-	,fill(fill)
+	: ShapeDescription(type, color, lineWidth)
+	, fill(fill)
 {}
 FillableShapeDescription::~FillableShapeDescription()
 {}

@@ -11,11 +11,9 @@
 LineShapeVisualization::LineShapeVisualization(Component* object, const std::tstring& name)
 	:ShapeVisualization(object, name)
 {
-
 }
 LineShapeVisualization::~LineShapeVisualization()
 {
-
 }
 
 bool LineShapeVisualization::initialize()

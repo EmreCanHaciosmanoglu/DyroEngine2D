@@ -28,7 +28,7 @@ private:
 
 	std::tstring message;
 	std::tstring file_name;
-	
+
 	int line_number;
 };
 

@@ -7,7 +7,7 @@
 #include "Core/Types/SettingsType.h"
 
 ApplicationSettings::ApplicationSettings(const std::tstring& filePath)
-	:Settings(filePath,SettingsType::APPLICATION_SETTINGS)
+	:Settings(filePath, SettingsType::APPLICATION_SETTINGS)
 	, window_width(1280)
 	, window_height(720)
 	, window_bits_per_pixel(constants::BITS_PER_PIXEL_16)
