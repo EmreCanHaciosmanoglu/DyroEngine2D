@@ -13,12 +13,18 @@ public:
 	virtual void update();
 	virtual bool shutdown();
 
-	void setSpeed(float speed);
+	void setHorizontalForce(float force);
+	void setVerticalForce(float force);
+	void setRotationForce(float force);
 
-	float getSpeed();
+	float getHorizontalForce() const;
+	float getVerticalForce() const;
+	float getRotationForce() const;
 
 private:
-	float speed;
+	float horizontal_force;
+	float vertical_force;
+	float rotation_force;
 };
 
 #endif

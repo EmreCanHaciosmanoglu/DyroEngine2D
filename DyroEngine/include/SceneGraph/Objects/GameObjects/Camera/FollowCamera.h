@@ -13,7 +13,7 @@ class FollowCamera : public Camera
 	OBJECT_STATICS("FollowCamera")
 
 public:
-	FollowCamera(SceneObject* target, const std::tstring& name = _T(""), float damping = 0.0f);
+	FollowCamera(const std::tstring& name = _T(""));
 	virtual ~FollowCamera();
 
 	virtual bool initialize();

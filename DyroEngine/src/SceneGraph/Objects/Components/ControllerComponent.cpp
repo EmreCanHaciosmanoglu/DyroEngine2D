@@ -2,8 +2,12 @@
 
 ControllerComponent::ControllerComponent(const std::tstring& name)
 	:Component(name)
-	, speed(50.0f)
-{}
+	, horizontal_force(50.0f)
+	, vertical_force(50.0f)
+	, rotation_force(10.0f)
+{
+	setExecutionOrder(400);
+}
 ControllerComponent::~ControllerComponent()
 {}
 
@@ -18,13 +22,29 @@ bool ControllerComponent::shutdown()
 	return true;
 }
 
-void ControllerComponent::setSpeed(float speed)
+void ControllerComponent::setHorizontalForce(float force)
 {
-	this->speed = speed;
+	this->horizontal_force = force;
+}
+void ControllerComponent::setVerticalForce(float force)
+{
+	this->vertical_force = force;
+}
+void ControllerComponent::setRotationForce(float force)
+{
+	this->rotation_force = force;
 }
 
-float ControllerComponent::getSpeed()
+float ControllerComponent::getHorizontalForce() const
 {
-	return this->speed;
+	return this->horizontal_force;
+}
+float ControllerComponent::getVerticalForce() const
+{
+	return this->vertical_force;
+}
+float ControllerComponent::getRotationForce() const
+{
+	return this->rotation_force;
 }
 

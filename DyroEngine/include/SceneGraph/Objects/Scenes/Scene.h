@@ -1,16 +1,19 @@
 #ifndef _SCENE_H
 #define _SCENE_H
 
-#include "SceneGraph/Objects/Object.h"
+#include "SceneGraph\Objects\Object.h"
+#include "SceneGraph\Manager\CameraManager.h"
+
 #ifndef _IINPUT_H
 #include "Core/Helpers/Interfaces/IInput.h"
 #endif
 
-#ifndef _VECTOR_
-#include <vector>
-#endif
 #ifndef _STRING_H
 #include "Core\Defines\string.h"
+#endif
+
+#ifndef _VECTOR_
+#include <vector>
 #endif
 
 class Input;

@@ -6,7 +6,7 @@
 class PlayerControllerComponent : public ControllerComponent
 {
 public:
-	PlayerControllerComponent();
+	PlayerControllerComponent(const std::tstring& name = _T("PlayerControllerComponent"));
 	virtual ~PlayerControllerComponent();
 };
 

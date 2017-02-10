@@ -28,13 +28,22 @@ class Image;
 class RenderItem;
 class Geometry;
 
+struct RenderInfo
+{
+	RenderInfo()
+	{}
+
+	Matrix2D mat_view;
+	std::vector<RenderItem*> items;
+};
+
 class Renderer
 {
 public:
 	Renderer();
 	virtual ~Renderer();
 
-	void render(std::vector<RenderItem*>& items);
+	void render(const RenderInfo& info);
 
 	void setTransformMatrix(const Matrix2D& transformMatrix);
 	void setInterpolationMode(D2D1_BITMAP_INTERPOLATION_MODE i);

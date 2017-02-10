@@ -8,9 +8,9 @@
 
 #include "Core\Data\Objects\Timers\WorldTimer.h"
 
-FreeCamera::FreeCamera(const std::tstring& name, float speed)
+FreeCamera::FreeCamera(const std::tstring& name)
 	:Camera(name)
-	, speed(speed)
+	, speed(50.0f)
 {
 	OBJECT_INIT(_T("FreeCamera"));
 }
@@ -37,11 +37,6 @@ void FreeCamera::setupInput(Input* input)
 	input->bindInput(InputBinding(VK_DOWN, std::bind(&FreeCamera::moveDown, this), InputStateType::DOWN));
 	input->bindInput(InputBinding(VK_LEFT, std::bind(&FreeCamera::moveLeft, this), InputStateType::DOWN));
 	input->bindInput(InputBinding(VK_RIGHT, std::bind(&FreeCamera::moveRight, this), InputStateType::DOWN));
-
-	input->bindInput(InputBinding('W', std::bind(&FreeCamera::moveUp, this), InputStateType::DOWN));
-	input->bindInput(InputBinding('S', std::bind(&FreeCamera::moveDown, this), InputStateType::DOWN));
-	input->bindInput(InputBinding('A', std::bind(&FreeCamera::moveLeft, this), InputStateType::DOWN));
-	input->bindInput(InputBinding('D', std::bind(&FreeCamera::moveRight, this), InputStateType::DOWN));
 }
 
 void FreeCamera::setSpeed(float speed)

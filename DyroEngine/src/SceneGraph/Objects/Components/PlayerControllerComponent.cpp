@@ -1,6 +1,7 @@
 #include "SceneGraph\Objects\Components\PlayerControllerComponent.h"
 
-PlayerControllerComponent::PlayerControllerComponent()
+PlayerControllerComponent::PlayerControllerComponent(const std::tstring& name)
+	:ControllerComponent(name)
 {}
 PlayerControllerComponent::~PlayerControllerComponent()
 {}

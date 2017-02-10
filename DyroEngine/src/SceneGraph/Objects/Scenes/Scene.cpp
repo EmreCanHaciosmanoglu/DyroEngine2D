@@ -18,6 +18,9 @@
 #include "Core\Data\Manager\LayerManager.h"
 #include "Core\Data\Manager\TimerManager.h"
 
+#include "SceneGraph\Objects\GameObjects\Camera\Camera.h"
+#include "SceneGraph\Objects\Components\CameraComponent.h"
+
 #include "Core\Data\Objects\Settings\PhysicsSettings.h"
 #include "Core\Data\Objects\Layer.h"
 
@@ -35,7 +38,7 @@ Scene::Scene(const std::tstring& name)
 	:Object(name)
 	, phyx_world(nullptr)
 	, debug_rendering_type(DebugRenderingType::NO_DEBUG)
-	, renderer(new Renderer())
+	, renderer(nullptr)
 	, debug_renderer(nullptr)
 	, contact_filter(nullptr)
 	, contact_listener(nullptr)
@@ -53,6 +56,8 @@ Scene::~Scene()
 
 bool Scene::initialize()
 {
+	this->renderer = new Renderer();
+
 	setupPyhx();
 
 	if (!this->game_object_manager->initialize())
@@ -212,7 +217,11 @@ void Scene::triggerRender()
 	}
 
 	//Render visualizations
-	this->renderer->render(items);
+	RenderInfo info;
+	info.items = items;
+	info.mat_view = getManager<CameraManager>()->getActiveCamera()->getCamera()->getViewMatrix();
+
+	this->renderer->render(info);
 
 	//Clear the render item list
 	items.clear();

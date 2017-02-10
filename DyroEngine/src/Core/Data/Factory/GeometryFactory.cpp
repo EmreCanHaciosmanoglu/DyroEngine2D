@@ -6,7 +6,6 @@
 #include "Core/Data/Objects/Descriptions/Shapes/RectShapeDescription.h"
 #include "Core/Data/Objects/Descriptions/Shapes/LineShapeDescription.h"
 #include "Core/Data/Objects/Descriptions/Shapes/PolygonShapeDescription.h"
-#include "Core/Data/Objects/Descriptions/Shapes/TriangleShapeDescription.h"
 
 #include "Core/Data/Objects/Geometry.h"
 
@@ -38,9 +37,6 @@ Geometry* GeometryFactory::createGeometry(ShapeDescription* description)
 		break;
 	case GeometryType::RECTANGLE_GEOMETRY:
 		return createRectangleGeometry(description);
-		break;
-	case GeometryType::TRIANGLE_GEOMETRY:
-		return createPolygonGeometry(description);
 		break;
 	}
 

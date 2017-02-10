@@ -41,6 +41,9 @@ protected:
 	void setFinished(bool f)
 	{
 		this->finished = f;
+
+		if (this->finished)
+			stop();
 	}
 
 private:
@@ -55,26 +58,34 @@ public:
 	Transition(T from, T to)
 		:AbstractTrasition()
 
+		,initial_from(from)
+
 		,from(from)
 		,to(to)
-		,speed()
-	{
-		current = from;
-	}
+		
+		,current(from)
+
+		,speed((T)1)
+	{}
 	~Transition()
 	{}
 
 	Transition(const Transition<T>& t)
 		:AbstractTrasition(t)
+		,initial_from(t.from)
+
 		,from(t.from)
 		,to(t.to)
+		
 		,current(t.current)
+		
 		,speed(t.speed)
 	{}
 
 	void setSource(T from)
 	{
 		this->from = from;
+		this->initial_from = from;
 	}
 	void setDestination(T to)
 	{
@@ -83,7 +94,9 @@ public:
 
 	void reset()
 	{
-		from = 0;
+		from = initial_from;
+		current = initial_from;
+
 		setFinished(false);
 	}
 	void update()
@@ -111,6 +124,8 @@ public:
 	}
 
 private:
+	T initial_from;
+
 	T from;
 	T to;
 

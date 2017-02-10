@@ -11,7 +11,6 @@
     <ClCompile Include="src\Core\Data\Objects\Descriptions\Shapes\PolygonShapeDescription.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Descriptions\Shapes\RectShapeDescription.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Descriptions\Shapes\ShapeDescription.cpp" />
-    <ClCompile Include="src\Core\Data\Objects\Descriptions\Shapes\TriangleShapeDescription.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Geometry.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Layer.cpp" />
     <ClCompile Include="src\Core\Data\Manager\LayerManager.cpp" />
@@ -32,7 +31,6 @@
     <ClCompile Include="src\Rendering\Objects\RenderItems\Shapes\PolygonShape.cpp" />
     <ClCompile Include="src\Rendering\Objects\RenderItems\Shapes\RectShape.cpp" />
     <ClCompile Include="src\Rendering\Objects\RenderItems\Shapes\Shape.cpp" />
-    <ClCompile Include="src\Rendering\Objects\RenderItems\Shapes\TriangleShape.cpp" />
     <ClCompile Include="src\Rendering\Objects\RenderItems\Texture.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Timers\WorldTimer.cpp" />
     <ClCompile Include="src\Rendering\Objects\RenderItems\RenderItem.cpp" />
@@ -49,7 +47,6 @@
     <ClCompile Include="src\Rendering\Objects\Visualization\ComponentVisualizations\Shapes\PolygonShapeVisualization.cpp" />
     <ClCompile Include="src\Rendering\Objects\Visualization\ComponentVisualizations\Shapes\RectShapeVisualization.cpp" />
     <ClCompile Include="src\Rendering\Objects\Visualization\ComponentVisualizations\Shapes\ShapeVisualization.cpp" />
-    <ClCompile Include="src\Rendering\Objects\Visualization\ComponentVisualizations\Shapes\TriangleShapeVisualization.cpp" />
     <ClCompile Include="src\Rendering\Objects\Visualization\Visualization.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Resources\Audio.cpp" />
     <ClCompile Include="src\Rendering\DebugRenderer.cpp" />
@@ -60,15 +57,12 @@
     <ClCompile Include="src\Core\Helpers\Patterns\Observer.cpp" />
     <ClCompile Include="src\Core\Helpers\TaggedObject.cpp" />
     <ClCompile Include="src\Core\Helpers\Interfaces\IBoundingBox.cpp" />
-    <ClCompile Include="src\SceneGraph\Factory\ComponentFactory.cpp" />
-    <ClCompile Include="src\SceneGraph\Factory\GameObjectFactory.cpp" />
     <ClCompile Include="src\SceneGraph\Factory\SceneFactory.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\Components\EmitterComponent.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\Components\Physics\Collision\BoxCollisionComponent.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\Components\Physics\Collision\CircleCollisionComponent.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\Components\Physics\Collision\CollisionComponent.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\Components\Physics\Collision\PolygonCollisionComponent.cpp" />
-    <ClCompile Include="src\SceneGraph\Objects\Components\Physics\Collision\TriangleCollisionComponent.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\Components\ImageComponent.cpp" />
     <ClCompile Include="src\SceneGraph\Manager\ComponentManager.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\Components\Physics\RigidBodyComponent.cpp" />
@@ -76,7 +70,6 @@
     <ClCompile Include="src\SceneGraph\Objects\Components\Shapes\LineShapeComponent.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\Components\Shapes\PolygonShapeComponent.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\Components\Shapes\RectShapeComponent.cpp" />
-    <ClCompile Include="src\SceneGraph\Objects\Components\Shapes\TriangleShapeComponent.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\GameObjects\Camera\Camera.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\Components\CameraComponent.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Resources\Image.cpp" />
@@ -88,7 +81,6 @@
     <ClCompile Include="src\SceneGraph\Objects\GameObjects\Camera\FreeCamera.cpp" />
     <ClCompile Include="src\SceneGraph\Manager\CameraManager.cpp" />
     <ClCompile Include="src\SceneGraph\Manager\GameObjectManager.cpp" />
-    <ClCompile Include="src\SceneGraph\Objects\GameObjects\PhysicsObject.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\GameObjects\SceneObject.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\GameObjects\UIObject.cpp" />
     <ClCompile Include="src\Core\Engine.cpp" />
@@ -122,6 +114,12 @@
     <ClCompile Include="src\Core\Data\Manager\GeometryManager.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Transition.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\Components\ControllerComponent.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\Components\PlayerControllerComponent.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\GameObjects\Physics\DynamicPhysicsObject.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\GameObjects\Physics\KinematicPhysicsObject.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\GameObjects\Physics\StaticPhysicsObject.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\GameObjects\Physics\PhysicsObject.cpp" />
+    <ClCompile Include="src\SceneGraph\Factory\AbstractGameObjectFactory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Core\Data\Factory\SettingsFactory.h" />
@@ -134,7 +132,6 @@
     <ClInclude Include="include\Core\Data\Objects\Descriptions\Shapes\PolygonShapeDescription.h" />
     <ClInclude Include="include\Core\Data\Objects\Descriptions\Shapes\RectShapeDescription.h" />
     <ClInclude Include="include\Core\Data\Objects\Descriptions\Shapes\ShapeDescription.h" />
-    <ClInclude Include="include\Core\Data\Objects\Descriptions\Shapes\TriangleShapeDescription.h" />
     <ClInclude Include="include\Core\Data\Objects\Geometry.h" />
     <ClInclude Include="include\Core\Data\Objects\Layer.h" />
     <ClInclude Include="include\Core\Data\Manager\LayerManager.h" />
@@ -165,7 +162,6 @@
     <ClInclude Include="include\Rendering\Objects\Visualization\ComponentVisualizations\Shapes\RectShapeVisualization.h" />
     <ClInclude Include="include\Rendering\Objects\Visualization\GameObjectVisualizations\GameObjectVisualization.h" />
     <ClInclude Include="include\Rendering\Objects\Visualization\ComponentVisualizations\Shapes\ShapeVisualization.h" />
-    <ClInclude Include="include\Rendering\Objects\Visualization\ComponentVisualizations\Shapes\TriangleShapeVisualization.h" />
     <ClInclude Include="include\Rendering\Objects\Visualization\Visualization.h" />
     <ClInclude Include="include\Core\Data\Objects\Resources\Audio.h" />
     <ClInclude Include="include\Core\Defines\collisionlayers.h" />
@@ -185,10 +181,7 @@
     <ClInclude Include="include\SceneGraph\Objects\Components\Physics\Collision\CircleCollisionComponent.h" />
     <ClInclude Include="include\SceneGraph\Objects\Components\Physics\Collision\CollisionComponent.h" />
     <ClInclude Include="include\SceneGraph\Objects\Components\Physics\Collision\PolygonCollisionComponent.h" />
-    <ClInclude Include="include\SceneGraph\Objects\Components\Physics\Collision\TriangleCollisionComponent.h" />
     <ClInclude Include="include\SceneGraph\Objects\Components\ImageComponent.h" />
-    <ClInclude Include="include\SceneGraph\Factory\ComponentFactory.h" />
-    <ClInclude Include="include\SceneGraph\Factory\GameObjectFactory.h" />
     <ClInclude Include="include\SceneGraph\Factory\SceneFactory.h" />
     <ClInclude Include="include\SceneGraph\Manager\ComponentManager.h" />
     <ClInclude Include="include\SceneGraph\Objects\Components\Physics\RigidBodyComponent.h" />
@@ -197,7 +190,6 @@
     <ClInclude Include="include\SceneGraph\Objects\Components\Shapes\PolygonShapeComponent.h" />
     <ClInclude Include="include\SceneGraph\Objects\Components\Shapes\RectShapeComponent.h" />
     <ClInclude Include="include\SceneGraph\Objects\Components\Shapes\ShapeComponent.h" />
-    <ClInclude Include="include\SceneGraph\Objects\Components\Shapes\TriangleShapeComponent.h" />
     <ClInclude Include="include\SceneGraph\Objects\GameObjects\Camera\Camera.h" />
     <ClInclude Include="include\SceneGraph\Objects\Components\CameraComponent.h" />
     <ClInclude Include="include\Core\Data\Objects\Resources\Image.h" />
@@ -238,13 +230,11 @@
     <ClInclude Include="include\SceneGraph\Manager\CameraManager.h" />
     <ClInclude Include="include\SceneGraph\Objects\GameObjects\GameObject.h" />
     <ClInclude Include="include\SceneGraph\Manager\GameObjectManager.h" />
-    <ClInclude Include="include\SceneGraph\Objects\GameObjects\PhysicsObject.h" />
     <ClInclude Include="include\SceneGraph\Objects\GameObjects\UIObject.h" />
     <ClInclude Include="include\Rendering\Objects\RenderItems\Shapes\CircleShape.h" />
     <ClInclude Include="include\Rendering\Objects\RenderItems\Shapes\LineShape.h" />
     <ClInclude Include="include\Rendering\Objects\RenderItems\Shapes\PolygonShape.h" />
     <ClInclude Include="include\Rendering\Objects\RenderItems\Shapes\RectShape.h" />
-    <ClInclude Include="include\Rendering\Objects\RenderItems\Shapes\TriangleShape.h" />
     <ClInclude Include="include\SceneGraph\Objects\Scenes\LoadingScene.h" />
     <ClInclude Include="include\SceneGraph\Objects\Scenes\Scene.h" />
     <ClInclude Include="include\SceneGraph\Manager\SceneManager.h" />
@@ -266,5 +256,13 @@
     <ClInclude Include="include\Core\Types\DebugRenderingType.h" />
     <ClInclude Include="include\Core\Data\Objects\Transition.h" />
     <ClInclude Include="include\SceneGraph\Objects\Components\ControllerComponent.h" />
+    <ClInclude Include="include\SceneGraph\Objects\Components\PlayerControllerComponent.h" />
+    <ClInclude Include="include\SceneGraph\Objects\GameObjects\Physics\DynamicPhysicsObject.h" />
+    <ClInclude Include="include\SceneGraph\Objects\GameObjects\Physics\KinematicPhysicsObject.h" />
+    <ClInclude Include="include\SceneGraph\Objects\GameObjects\Physics\PhysicsObject.h" />
+    <ClInclude Include="include\SceneGraph\Objects\GameObjects\Physics\StaticPhysicsObject.h" />
+    <ClInclude Include="include\Core\Defines\gameobjects.h" />
+    <ClInclude Include="include\Core\Defines\components.h" />
+    <ClInclude Include="include\SceneGraph\Factory\AbstractGameObjectFactory.h" />
   </ItemGroup>
 </Project>

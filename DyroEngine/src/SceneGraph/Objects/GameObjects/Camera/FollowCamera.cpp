@@ -5,10 +5,10 @@
 
 #include "Core/Defines/assert.h"
 
-FollowCamera::FollowCamera(SceneObject* target, const std::tstring& name, float damping)
+FollowCamera::FollowCamera(const std::tstring& name)
 	:Camera(name)
-	, damping(damping)
-	, target(target)
+	, damping(0.0f)
+	, target(nullptr)
 {
 	OBJECT_INIT(_T("FollowCamera"));
 }

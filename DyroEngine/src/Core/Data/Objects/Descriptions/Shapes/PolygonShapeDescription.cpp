@@ -1,8 +1,8 @@
 #include "Core\Data\Objects\Descriptions\Shapes\PolygonShapeDescription.h"
 #include "Core\Types\GeometryType.h"
 
-PolygonShapeDescription::PolygonShapeDescription(GeometryType type)
-	:FillableShapeDescription(type)
+PolygonShapeDescription::PolygonShapeDescription()
+	:FillableShapeDescription(GeometryType::POLYGON_GEOMETRY)
 	,vec_points(std::vector<Vector2D> { Vector2D(-0.5f, 0.0f),
 		Vector2D(0.5f, -0.5f),
 		Vector2D(0.5f, 0.5f)})
@@ -13,16 +13,16 @@ PolygonShapeDescription::PolygonShapeDescription(const PolygonShapeDescription& 
 	,vec_points(ref.vec_points)
 	,close(ref.close)
 {}
-PolygonShapeDescription::PolygonShapeDescription(GeometryType type, Vector2D* points, unsigned int size, bool close, bool fill, const Color& color, float lineWidth)
-	: FillableShapeDescription(type,fill,color, lineWidth)
+PolygonShapeDescription::PolygonShapeDescription(Vector2D* points, unsigned int size, bool close, bool fill, const Color& color, float lineWidth)
+	: FillableShapeDescription(GeometryType::POLYGON_GEOMETRY,fill,color, lineWidth)
 	,vec_points(size, Vector2D())
 	,close(close)
 {
 	for (unsigned int i = 0; i < size; ++i)
 		vec_points[i] = points[i];
 }
-PolygonShapeDescription::PolygonShapeDescription(GeometryType type, const std::vector<Vector2D>& vecPoints, bool close, bool fill, const Color& color, float lineWidth)
-	:FillableShapeDescription(type, fill,color, lineWidth)
+PolygonShapeDescription::PolygonShapeDescription(const std::vector<Vector2D>& vecPoints, bool close, bool fill, const Color& color, float lineWidth)
+	:FillableShapeDescription(GeometryType::POLYGON_GEOMETRY, fill,color, lineWidth)
 	, vec_points(vecPoints)
 	, close(close)
 {}

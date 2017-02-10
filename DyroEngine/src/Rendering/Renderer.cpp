@@ -24,10 +24,10 @@ Renderer::~Renderer()
 {
 }
 
-void Renderer::render(std::vector<RenderItem*>& items)
+void Renderer::render(const RenderInfo& info)
 {
 	std::vector<RenderItem*> render_items;
-	render_items.insert(render_items.end(), items.begin(), items.end());
+	render_items.insert(render_items.end(), info.items.begin(), info.items.end());
 	render_items.insert(render_items.end(), this->cached_render_items.begin(), this->cached_render_items.end());
 
 	//Sort the render items
@@ -40,10 +40,12 @@ void Renderer::render(std::vector<RenderItem*>& items)
 	this->graphics->beginDraw();
 	this->graphics->clear();
 
+	Matrix2D mat_view = info.mat_view;
+
 	//Render the render items
 	for (RenderItem* item : render_items)
 	{
-		setTransformMatrix(item->getTransform());
+		setTransformMatrix(item->getTransform() * mat_view);
 		item->render(this);
 	}
 	

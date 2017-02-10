@@ -13,7 +13,7 @@ class FreeCamera : public Camera
 	OBJECT_STATICS("FreeCamera")
 
 public:
-	FreeCamera(const std::tstring& name = _T(""), float speed = 50.0f);
+	FreeCamera(const std::tstring& name = _T(""));
 	virtual ~FreeCamera();
 
 	virtual bool initialize();
