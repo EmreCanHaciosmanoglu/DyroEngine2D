@@ -1,4 +1,4 @@
-#include "SceneGraph\Objects\Components\Physics\Collision\BoxCollisionComponent.h"
+#include "SceneGraph\Objects\Components\Physics\Collision\RectCollisionComponent.h"
 #include "SceneGraph\Objects\Components\Physics\RigidBodyComponent.h"
 #include "SceneGraph\Objects\Components\TransformComponent.h"
 
@@ -9,18 +9,18 @@
 
 #include <Box2D\Box2D.h>
 
-BoxCollisionComponent::BoxCollisionComponent(RigidBodyComponent* rigid, float width, float height, float restitution, float friction, float density, const std::tstring& name)
-	:CollisionComponent(rigid, restitution, friction, density, name == _T("") ? _T("BoxCollisionComponent") : name)
+RectCollisionComponent::RectCollisionComponent(RigidBodyComponent* rigid, float width, float height, float restitution, float friction, float density, const std::tstring& name)
+	:CollisionComponent(rigid, restitution, friction, density, name == _T("") ? _T("RectCollisionComponent") : name)
 	, width(width)
 	, height(height)
 
 {
-	OBJECT_INIT(_T("BoxCollisionComponent"));
+	OBJECT_INIT(_T("RectCollisionComponent"));
 }
-BoxCollisionComponent::~BoxCollisionComponent()
+RectCollisionComponent::~RectCollisionComponent()
 {}
 
-bool BoxCollisionComponent::initialize()
+bool RectCollisionComponent::initialize()
 {
 	//Rigid body cannot be null
 	assert(getRigid() != nullptr);
@@ -51,10 +51,10 @@ bool BoxCollisionComponent::initialize()
 
 	return true;
 }
-void BoxCollisionComponent::update()
+void RectCollisionComponent::update()
 {
 }
-bool BoxCollisionComponent::shutdown()
+bool RectCollisionComponent::shutdown()
 {
 	return true;
 }

@@ -36,12 +36,17 @@ bool ImageVisualization::shutdown()
 	return true;
 }
 
+Rect2D ImageVisualization::getBoundingBox() const
+{
+	return this->texture->getBounds();
+}
+
 void ImageVisualization::generateRenderItems(std::vector<RenderItem*>& items)
 {
 	ImageComponent* component = getConcreteComponent();
 
 	if (this->texture->getImage() != component->getImage())
-		this->texture = TextureManager::getInstance().getTexture(component->getImage());
+		this->texture = getScene()->getManager<TextureManager>()->getTexture(component->getImage());
 
 	GameObjectVisualization* parent = dynamic_cast<GameObjectVisualization*>(getParent());
 	if (parent != nullptr)

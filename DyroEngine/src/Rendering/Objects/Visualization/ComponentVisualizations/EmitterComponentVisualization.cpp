@@ -40,6 +40,31 @@ bool EmitterComponentVisualization::shutdown()
 	return true;
 }
 
+Rect2D EmitterComponentVisualization::getBoundingBox() const
+{
+	//Initialize bounds
+	Rect2D bounds;
+	bounds = this->particles[0]->getBounds();
+
+	for (Particle* p : this->particles)
+	{
+		Rect2D temp_bounds = p->getBounds();
+
+		//Expand bounding box to the entire visualization
+		if (bounds.left > temp_bounds.left)
+			bounds.left = temp_bounds.left;
+		if (bounds.top > temp_bounds.top)
+			bounds.top = temp_bounds.top;
+
+		if (bounds.right < temp_bounds.right)
+			bounds.right = temp_bounds.right;
+		if (bounds.bottom < temp_bounds.bottom)
+			bounds.bottom = temp_bounds.bottom;
+	}
+
+	return bounds;
+}
+
 void EmitterComponentVisualization::generateRenderItems(std::vector<RenderItem*>& items)
 {
 	GameObjectVisualization* parent = dynamic_cast<GameObjectVisualization*>(getParent());

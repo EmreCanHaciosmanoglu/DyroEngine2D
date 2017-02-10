@@ -9,7 +9,7 @@
 
 class Texture;
 
-class Particle : public RenderItem
+class Particle : public Texture
 {
 public:
 	Particle(ParticleDescription* desc, const std::tstring name = _T("Particle"));
@@ -17,16 +17,10 @@ public:
 
 	virtual void render(Renderer* renderer);
 
-	virtual bool isTransparant() const;
-
-	virtual float getWidth() const;
-	virtual float getHeight() const;
-
 	ParticleDescription* getParticleDescription() const;
 
 private:
 	ParticleDescription* description;
-	Texture* texture;
 };
 
 #endif

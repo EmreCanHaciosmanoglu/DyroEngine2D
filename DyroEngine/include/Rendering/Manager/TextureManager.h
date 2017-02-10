@@ -2,13 +2,12 @@
 #define _TEXTUREMANAGER_H
 
 #include "Core/Helpers/Patterns/Manager.h"
-#include "Core/Helpers/Patterns/Singleton.h"
 
 #include "Rendering\Objects\RenderItems\Texture.h"
 
 class Image;
 
-class TextureManager : public Manager<Texture>, public Singleton<TextureManager>
+class TextureManager : public Manager<Texture>
 {
 public:
 	TextureManager();

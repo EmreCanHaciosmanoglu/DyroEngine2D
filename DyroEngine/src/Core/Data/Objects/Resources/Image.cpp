@@ -153,6 +153,18 @@ ID2D1Bitmap* Image::getBitmap() const
 {
 	return this->bitmap;
 }
+Rect2D Image::getBounds(const Matrix2D& transform) const
+{
+	Rect2D bounds = Rect2D(0.0f, 0.0f, getWidth(), getHeight());
+	
+	Vector2D left_top((float)bounds.left, (float)bounds.top);
+	Vector2D right_bottom((float)bounds.right, (float)bounds.bottom);
+
+	left_top = transform.transformVector(left_top);
+	right_bottom = transform.transformVector(right_bottom);
+
+	return Rect2D(left_top, right_bottom);
+}
 
 int Image::getWidth() const
 {
@@ -185,14 +197,14 @@ void Image::setTransparencyColor(const Color& transparentColor)
 {
 	COLORREF color = RGB((int)(transparentColor.red * 255), (int)(transparentColor.green * 255), (int)(transparentColor.blue * 255));
 
-	UINT width = 0, height = 0;
+	UINT width = 0;
+	UINT height = 0;
 
-	WICPixelFormatGUID pixelFormat;
-	this->converter->GetPixelFormat(&pixelFormat);
 	this->converter->GetSize(&width, &height);
 
 	UINT bitmapStride = 4 * width;
 	UINT size = width * height * 4;
+
 	unsigned char* pixelsPtr = new unsigned char[size]; // create 32 bit buffer
 
 	this->converter->CopyPixels(NULL, bitmapStride, size, pixelsPtr);
@@ -211,7 +223,7 @@ void Image::setTransparencyColor(const Color& transparentColor)
 
 	IWICBitmap* iWICBitmapPtr = nullptr;
 	HRESULT hr = iWICFactoryPtr->CreateBitmapFromMemory(width, height, GUID_WICPixelFormat32bppPBGRA, bitmapStride, size, pixelsPtr, &iWICBitmapPtr);
-
+		
 	delete[] pixelsPtr; //destroy buffer
 
 	if (hr == S_OK)

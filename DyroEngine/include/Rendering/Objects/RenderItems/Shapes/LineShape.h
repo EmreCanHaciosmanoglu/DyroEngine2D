@@ -17,10 +17,9 @@ class LineShape : public Shape
 {
 public:
 	LineShape(const std::tstring& name = _T("Lineshape"));
-	LineShape(LineShapeDescription* description, const std::tstring& name = _T("LineShape"));
+	LineShape(LineShapeDescription* description, Geometry* geometry, const std::tstring& name = _T("LineShape"));
 	virtual ~LineShape();
 
-	virtual void create();
 	virtual void render(Renderer* renderer);
 
 	virtual float getWidth() const;

@@ -21,12 +21,11 @@
 class AbstractManager
 {
 public:
-	virtual bool initialize() = 0;
-	virtual bool shutdown() = 0;
-
-protected:
 	AbstractManager() {};
 	virtual ~AbstractManager() {};
+
+	virtual bool initialize() = 0;
+	virtual bool shutdown() = 0;
 };
 
 template <typename T>

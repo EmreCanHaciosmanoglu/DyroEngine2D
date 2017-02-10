@@ -49,7 +49,5 @@ void CircleCollisionComponent::update()
 {}
 bool CircleCollisionComponent::shutdown()
 {
-	b2Body* body = getRigid()->getBody();
-
 	return true;
 }

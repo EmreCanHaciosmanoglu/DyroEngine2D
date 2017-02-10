@@ -83,6 +83,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)\$(ProjectName)\include;$(SolutionDir)\DyroEngine\include;$(SolutionDir)\box2d\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CRT_SECURE_NO_WARNINGS;_LIB;WIN32_LEAN_AND_MEAN;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4100;4458;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)\bin\DyroEngine\Debug;$(SolutionDir)\bin\box2D\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -106,6 +107,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)\$(ProjectName)\include;$(SolutionDir)\DyroEngine\include;$(SolutionDir)\box2d\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CRT_SECURE_NO_WARNINGS;_LIB;WIN32_LEAN_AND_MEAN;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4100;4458;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -132,9 +134,15 @@
     <ClInclude Include="include\Core\Data\Objects\MyGame.h" />
     <ClInclude Include="include\Main.h" />
     <ClInclude Include="include\SceneGraph\Objects\Components\SpaceshipPlayerControllerComponent.h" />
+    <ClInclude Include="include\SceneGraph\Factory\SceneFactory.h" />
     <ClInclude Include="include\SceneGraph\Objects\Components\SpaceshipWeaponComponent.h" />
     <ClInclude Include="include\SceneGraph\Objects\GameObjects\Projectile.h" />
     <ClInclude Include="include\SceneGraph\Objects\GameObjects\Spaceship.h" />
+    <ClInclude Include="include\SceneGraph\Objects\Scenes\MyScene.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Core\Data\Objects\MyGame.cpp" />
+    <ClCompile Include="src\Main.cpp" />
     <ClInclude Include="include\SceneGraph\Objects\Scenes\MyScene.h" />
   </ItemGroup>
   <ItemGroup>

@@ -11,7 +11,10 @@
 #endif
 
 #ifndef _RECT2D_H
-#include "Math/Objects/Rect2D.h"
+	#include "Math/Objects/Rect2D.h"
+#endif
+#ifndef _MATRIX2D_H
+	#include "Math\Objects\Matrix2D.h"
 #endif
 
 class Image : public Resource
@@ -24,6 +27,7 @@ public:
 	virtual bool shutdown();
 
 	ID2D1Bitmap* getBitmap() const;
+	Rect2D getBounds(const Matrix2D& transform) const;
 
 	int	getWidth() const;
 	int	getHeight() const;

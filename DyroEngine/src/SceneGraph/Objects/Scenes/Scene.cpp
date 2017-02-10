@@ -2,6 +2,7 @@
 
 #include "SceneGraph\Objects\GameObjects\GameObject.h"
 #include "SceneGraph\Manager\GameObjectManager.h"
+#include "SceneGraph\Factory\GameObjectFactory.h"
 
 #include "Core\System\Objects\Input.h"
 #include "Core\System\Manager\SystemManager.h"
@@ -22,6 +23,7 @@
 #include "SceneGraph\Objects\Components\CameraComponent.h"
 
 #include "Core\Data\Objects\Settings\PhysicsSettings.h"
+#include "Core\Data\Objects\Settings\ApplicationSettings.h"
 #include "Core\Data\Objects\Layer.h"
 
 #include "Core/Types/SettingsType.h"
@@ -47,16 +49,24 @@ Scene::Scene(const std::tstring& name)
 {
 	OBJECT_INIT(_T("Scene"));
 
+	//Create the game object factory
+	if(!GameObjectFactory::hasInstance())
+		GameObjectFactory::createInstance();
+
+	GameObjectFactory::getInstance().setScene(this);
+
 	this->game_object_manager = new GameObjectManager();
 	addManager(this->game_object_manager);
 }
 Scene::~Scene()
 {
+	//Destroy teh game object factory
+	GameObjectFactory::destroyInstance();
 }
 
 bool Scene::initialize()
 {
-	this->renderer = new Renderer();
+	this->renderer = new Renderer(this);
 
 	setupPyhx();
 
@@ -107,11 +117,13 @@ void Scene::update()
 bool Scene::shutdown()
 {
 	bool result = true;
-
-	if (!this->game_object_manager->shutdown())
-		result = false;
-
-	SafeDelete(this->game_object_manager);
+	
+	for (AbstractManager* manager : this->vec_managers)
+	{
+		if (!manager->shutdown())
+			return false;
+		SafeDelete(manager);
+	}
 
 	SafeDelete(this->debug_renderer);
 	SafeDelete(this->contact_filter);
@@ -210,10 +222,24 @@ void Scene::triggerRender()
 
 	if (debug_rendering_type != DebugRenderingType::ONLY_DEBUG)
 	{
-		//Get all visualizations
+		ApplicationSettings* app_settings = dynamic_cast<ApplicationSettings*>(SettingsManager::getInstance().getSettings(SettingsType::APPLICATION_SETTINGS));
+		if (app_settings == nullptr)
+			return;
+
+		int window_width = app_settings->getWindowWidth();
+		int window_height = app_settings->getWindowHeight();
+
+		Rect2D screen_bounds(0, 0, window_width, window_height);
+
+		//Get all visualizations that are visible in the screen
 		std::map<unsigned int, Visualization*> visualizations = this->game_object_manager->getVisualizations();
 		for (const std::pair<unsigned int, Visualization*>& pair : visualizations)
-			pair.second->getRenderItems(items);
+		{
+			Rect2D visualization_bounds = pair.second->getBoundingBox();
+
+			if(screen_bounds.overlaps(visualization_bounds))
+				pair.second->getRenderItems(items);
+		}
 	}
 
 	//Render visualizations

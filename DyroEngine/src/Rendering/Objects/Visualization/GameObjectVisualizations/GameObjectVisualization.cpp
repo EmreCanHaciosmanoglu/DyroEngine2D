@@ -44,6 +44,33 @@ void GameObjectVisualization::getRenderItems(std::vector<RenderItem*>& items)
 		visualization->getRenderItems(items);
 	}
 }
+Rect2D GameObjectVisualization::getBoundingBox() const
+{
+	std::vector<Visualization*> visualizations;
+	this->visualization_manager->getVisualizations(visualizations);
+
+	//Initialize bounds
+	Rect2D bounds;
+	bounds = visualizations[0]->getBoundingBox();
+
+	for(Visualization* vis : visualizations)
+	{
+		Rect2D temp_bounds = vis->getBoundingBox();
+
+		//Expand bounding box to the entire visualization
+		if (bounds.left > temp_bounds.left)
+			bounds.left = temp_bounds.left;
+		if (bounds.top > temp_bounds.top)
+			bounds.top = temp_bounds.top;
+
+		if (bounds.right < temp_bounds.right)
+			bounds.right = temp_bounds.right;
+		if (bounds.bottom < temp_bounds.bottom)
+			bounds.bottom = temp_bounds.bottom;
+	}
+
+	return bounds;
+}
 
 GameObject* GameObjectVisualization::getGameObject() const
 {

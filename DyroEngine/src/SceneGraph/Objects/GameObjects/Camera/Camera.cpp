@@ -5,14 +5,15 @@
 
 #include "SceneGraph/Manager/CameraManager.h"
 
+#include "SceneGraph\Objects\Scenes\Scene.h"
+
 Camera::Camera(const std::tstring& name, bool setActive)
 	:GameObject(name)
 	, camera(new CameraComponent())
 	, transform(new TransformComponent())
+	, start_active(setActive)
 {
 	OBJECT_INIT(_T("Camera"));
-
-	CameraManager::getInstance().addCamera(this, setActive);
 
 	addComponent(this->transform);
 	addComponent(this->camera);
@@ -23,6 +24,8 @@ Camera::~Camera()
 
 bool Camera::initialize()
 {
+	getScene()->getManager<CameraManager>()->addCamera(this, this->start_active);
+
 	return GameObject::initialize();
 }
 void Camera::update()

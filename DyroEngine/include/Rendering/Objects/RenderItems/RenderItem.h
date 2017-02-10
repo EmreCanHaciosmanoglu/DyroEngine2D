@@ -6,6 +6,9 @@
 #ifndef _VECTOR2D_H
 #include "Math/Objects/Vector2D.h"
 #endif
+#ifndef _RECT2D_H
+#include "Math\Objects\Rect2D.h"
+#endif
 #ifndef _MATRIX2D_H
 #include "Math/Objects/Matrix2D.h"
 #endif
@@ -26,6 +29,7 @@ public:
 	void setTransform(const Matrix2D& transform);
 
 	virtual bool isTransparant() const = 0;
+	virtual Rect2D getBounds() const = 0;
 
 	virtual float getWidth() const = 0;
 	virtual float getHeight() const = 0;

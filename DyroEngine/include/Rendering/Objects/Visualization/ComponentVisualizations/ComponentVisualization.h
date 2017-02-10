@@ -15,6 +15,7 @@ public:
 	virtual bool shutdown() = 0;
 
 	virtual void getRenderItems(std::vector<RenderItem*>& items);
+	virtual Rect2D getBoundingBox() const = 0;
 
 	Component* getComponent() const;
 

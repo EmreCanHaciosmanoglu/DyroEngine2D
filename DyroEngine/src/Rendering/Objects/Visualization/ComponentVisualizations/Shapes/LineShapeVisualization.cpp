@@ -1,10 +1,12 @@
 #include "Rendering/Objects/Visualization/ComponentVisualizations/Shapes/LineShapeVisualization.h"
 #include "Rendering/Objects/Visualization/GameObjectVisualizations/GameObjectVisualization.h"
+#include "Rendering/Objects/RenderItems/Shapes/LineShape.h"
 
 #include "SceneGraph\Objects\GameObjects\SceneObject.h"
 #include "SceneGraph\Objects\Components\Shapes\LineShapeComponent.h"
+#include "SceneGraph\Objects\Scenes\Scene.h"
 
-#include "Rendering/Objects/RenderItems/Shapes/LineShape.h"
+#include "Core\Data\Manager\GeometryManager.h"
 
 LineShapeVisualization::LineShapeVisualization(Component* object, const std::tstring& name)
 	:ShapeVisualization(object, name)
@@ -19,13 +21,15 @@ LineShapeVisualization::~LineShapeVisualization()
 bool LineShapeVisualization::initialize()
 {
 	LineShapeComponent* component = dynamic_cast<LineShapeComponent*>(getObject());
-	if (component != nullptr)
-		setShape(new LineShape(component->getLineDescription()));
+	if (component == nullptr)
+		return false;
+
+	LineShapeDescription* description = component->getLineDescription();
+	Geometry* geometry = getScene()->getManager<GeometryManager>()->getGeometry(description);
+
+	setShape(new LineShape(description, geometry));
 
 	assert(getShape() != nullptr);
-
-	//Create the requested shape
-	getShape()->create();
 
 	return true;
 }

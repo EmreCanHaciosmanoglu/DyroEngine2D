@@ -1,6 +1,7 @@
 #include "Rendering/Objects/RenderItems/Shapes/Shape.h"
 
 #include "Core\Data\Objects\Descriptions\Shapes\ShapeDescription.h"
+#include "Core\Data\Objects\Geometry.h"
 
 #include "Core\System\Manager\SystemManager.h"
 #include "Core\System\Objects\Graphics.h"
@@ -18,10 +19,10 @@ Shape::Shape(const std::tstring& name)
 	, description(nullptr)
 	, geometry(nullptr)
 {}
-Shape::Shape(ShapeDescription* description, const std::tstring& name)
+Shape::Shape(ShapeDescription* description, Geometry* geometry, const std::tstring& name)
 	:RenderItem(name)
 	, description(description)
-	, geometry(nullptr)
+	, geometry(geometry)
 {}
 Shape::~Shape()
 {}
@@ -29,6 +30,10 @@ Shape::~Shape()
 bool Shape::isTransparant() const
 {
 	return this->description->getColor().alpha != 1.0f;
+}
+Rect2D Shape::getBounds() const
+{
+	return this->geometry->getBounds(getTransform());
 }
 
 void Shape::setDescription(ShapeDescription* description)

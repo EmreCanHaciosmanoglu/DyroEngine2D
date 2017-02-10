@@ -1,7 +1,12 @@
 #include "Core/Data/Objects/MyGame.h"
 
-#include "SceneGraph/Objects/Scenes/MyScene.h"
-#include "SceneGraph/Manager/SceneManager.h"
+#include "SceneGraph\Factory\SceneFactory.h"
+#include "SceneGraph\Manager\SceneManager.h"
+
+namespace
+{
+	const std::tstring MYSCENE_NAME = _T("MyScene");
+}
 
 MyGame::MyGame()
 {
@@ -12,11 +17,14 @@ MyGame::~MyGame()
 
 bool MyGame::initialize()
 {
+	//Create scene factory
+	SceneFactory factory;
+
 	//Add all the scenes you need
-	SceneManager::getInstance().addScene(new MyScene());
+	SceneManager::getInstance().addScene(factory.createScene(MYSCENE_NAME));
 
 	//Active your main scene
-	SceneManager::getInstance().setActiveScene(_T("MyScene"));
+	SceneManager::getInstance().setActiveScene(MYSCENE_NAME);
 
 	return true;
 }

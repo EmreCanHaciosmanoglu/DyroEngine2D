@@ -9,6 +9,7 @@ CameraComponent::CameraComponent(const std::tstring& name)
 	:Component(name == _T("") ? _T("CameraComponent") : name)
 	, transform(nullptr)
 {
+	OBJECT_INIT(_T("CameraComponent"));
 }
 CameraComponent::~CameraComponent()
 {

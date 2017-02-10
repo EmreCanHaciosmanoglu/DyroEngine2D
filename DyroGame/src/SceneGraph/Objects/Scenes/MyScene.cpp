@@ -6,12 +6,10 @@
 #include "SceneGraph\Objects\GameObjects\PhysicsObject.h"
 
 #include "SceneGraph\Objects\Components\Shapes\RectShapeComponent.h"
-#include "SceneGraph\Objects\Components\Shapes\TriangleShapeComponent.h"
 #include "SceneGraph\Objects\Components\Shapes\CircleShapeComponent.h"
 #include "SceneGraph\Objects\Components\TransformComponent.h"
-#include "SceneGraph\Objects\Components\Physics\Collision\BoxCollisionComponent.h"
+#include "SceneGraph\Objects\Components\Physics\Collision\RectCollisionComponent.h"
 #include "SceneGraph\Objects\Components\Physics\Collision\CircleCollisionComponent.h"
-#include "SceneGraph\Objects\Components\Physics\Collision\TriangleCollisionComponent.h"
 
 #include "Core\System\Objects\Input.h"
 
@@ -31,7 +29,6 @@
 #include "Core\Data\Objects\Settings\GameSettings.h"
 #include "Core\Data\Objects\Descriptions\Shapes\CircleShapeDescription.h"
 #include "Core\Data\Objects\Descriptions\Shapes\RectShapeDescription.h"
-#include "Core\Data\Objects\Descriptions\Shapes\TriangleShapeDescription.h"
 
 // DyroGame
 #include "SceneGraph\Objects\GameObjects\CrazyEmitter.h"
@@ -89,7 +86,7 @@ bool MyScene::initialize()
 		phyx_object->getTransform()->setPosition(Vector2D(step_rect * (i + 1), 0.0f));
 
 		phyx_object->addComponent(new RectShapeComponent(new RectShapeDescription(0, 0, RECT_WIDTH, RECT_HEIGHT)));
-		phyx_object->addComponent(new BoxCollisionComponent(phyx_object->getRigidBody(), (float)RECT_WIDTH, (float)RECT_HEIGHT, 0.5f, 0.5f, 1.0f));
+		phyx_object->addComponent(new RectCollisionComponent(phyx_object->getRigidBody(), (float)RECT_WIDTH, (float)RECT_HEIGHT, 0.5f, 0.5f, 1.0f));
 
 		addGameObject(phyx_object);
 	}
@@ -105,43 +102,31 @@ bool MyScene::initialize()
 
 		addGameObject(phyx_object);
 	}
-	float step_triangle = window_width / (TRIANGLE_AMOUNT + 1);
-	for (int i = 0; i < TRIANGLE_AMOUNT; ++i)
-	{
-		PhysicsObject* phyx_object = new PhysicsObject(BodyType::DYNAMIC);
-		phyx_object->setName(_T("TRIANGLE_") + std::tstring(TOSTRING(i)));
-		phyx_object->getTransform()->setPosition(Vector2D(step_triangle * (i + 1), 100.0f));
-
-		phyx_object->addComponent(new TriangleShapeComponent(new TriangleShapeDescription((float)TRIANGLE_SCALE, (float)TRIANGLE_SCALE,true)));
-		phyx_object->addComponent(new TriangleCollisionComponent(phyx_object->getRigidBody(), (float)TRIANGLE_SCALE, (float)TRIANGLE_SCALE));
-
-		addGameObject(phyx_object);
-	}
 
 	PhysicsObject* ground_object = new PhysicsObject(BodyType::STATIC);
 	ground_object->setName(_T("GROUND_OBJECT"));
 	ground_object->getTransform()->setPosition(Vector2D(window_width / 2, window_height - GROUND_RECT_HEIGHT / 2));
 
 	ground_object->addComponent(new RectShapeComponent(new RectShapeDescription(0, 0, GROUND_RECT_WIDTH, GROUND_RECT_HEIGHT)));
-	ground_object->addComponent(new BoxCollisionComponent(ground_object->getRigidBody(), (float)GROUND_RECT_WIDTH, (float)GROUND_RECT_HEIGHT, 0.0f, 0.5f, 1.0f));
+	ground_object->addComponent(new RectCollisionComponent(ground_object->getRigidBody(), (float)GROUND_RECT_WIDTH, (float)GROUND_RECT_HEIGHT, 0.0f, 0.5f, 1.0f));
 
 	addGameObject(ground_object);
 
 	// DyroGame 
-	ResourceManager* resource_manager = getManager<ResourceManager>();
+	//ResourceManager* resource_manager = getManager<ResourceManager>();
 
-	EmitterComponentDescription* description = new EmitterComponentDescription(PARTICLE_AMOUNT);
+	//EmitterComponentDescription* description = new EmitterComponentDescription(PARTICLE_AMOUNT);
 
-	description->addImage(resource_manager->getResource<Image>(_T("resources/IMAGES/Particles/star.png")));
-	description->addImage(resource_manager->getResource<Image>(_T("resources/IMAGES/Particles/circle.png")));
-	description->addImage(resource_manager->getResource<Image>(_T("resources/IMAGES/Particles/diamond.png")));
+	//description->addImage(resource_manager->getResource<Image>(_T("resources/IMAGES/Particles/star.png")));
+	//description->addImage(resource_manager->getResource<Image>(_T("resources/IMAGES/Particles/circle.png")));
+	//description->addImage(resource_manager->getResource<Image>(_T("resources/IMAGES/Particles/diamond.png")));
 
-	CrazyEmitter* emitter = new CrazyEmitter(description);
+	//CrazyEmitter* emitter = new CrazyEmitter(description);
 
-	emitter->getTransform()->setPosition(window_width / 2, window_height / 2);
-	emitter->getTransform()->setScale(Vector2D(1, 1));
+	//emitter->getTransform()->setPosition(window_width / 2, window_height / 2);
+	//emitter->getTransform()->setScale(Vector2D(1, 1));
 
-	addGameObject(emitter);
+	//addGameObject(emitter);
 
 	return Scene::initialize();
 }

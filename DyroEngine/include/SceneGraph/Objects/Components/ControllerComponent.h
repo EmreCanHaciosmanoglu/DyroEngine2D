@@ -5,6 +5,10 @@
 
 class ControllerComponent : public Component
 {
+	/**
+	\note Must be present in every subclass definition.
+	*/
+	OBJECT_STATICS("ControllerComponent");
 public:
 	ControllerComponent(const std::tstring& name = _T("ControllerComponent"));
 	virtual ~ControllerComponent();

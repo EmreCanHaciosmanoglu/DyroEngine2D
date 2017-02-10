@@ -91,7 +91,7 @@ Visualization* VisualizationFactory::createVisualization(GameObject* object, boo
 
 		for (GameObject* child : childeren)
 		{
-			SceneObject* child_scene_object = dynamic_cast<SceneObject*>(object);
+			SceneObject* child_scene_object = dynamic_cast<SceneObject*>(child);
 			if (child_scene_object == nullptr)
 				continue;
 

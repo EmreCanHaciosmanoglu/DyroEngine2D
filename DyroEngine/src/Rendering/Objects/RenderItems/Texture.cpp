@@ -12,12 +12,16 @@ Texture::~Texture()
 
 void Texture::render(Renderer* renderer)
 {
-	renderer->drawBitmap(getImage());
+	renderer->drawBitmap(getImage(), getImage()->getOpacity());
 }
 
 bool Texture::isTransparant() const
 {
-	return image->getOpacity() < 1.0f;
+	return getImage()->getOpacity() < 1.0f;
+}
+Rect2D Texture::getBounds() const
+{
+	return getImage()->getBounds(getTransform());
 }
 
 float Texture::getWidth() const

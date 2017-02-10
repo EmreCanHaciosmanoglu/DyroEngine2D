@@ -6,6 +6,7 @@ ControllerComponent::ControllerComponent(const std::tstring& name)
 	, vertical_force(50.0f)
 	, rotation_force(10.0f)
 {
+	OBJECT_INIT(_T("ControllerComponent"));
 	setExecutionOrder(400);
 }
 ControllerComponent::~ControllerComponent()

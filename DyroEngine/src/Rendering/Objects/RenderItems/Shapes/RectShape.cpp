@@ -15,20 +15,13 @@
 RectShape::RectShape(const std::tstring& name)
 	:Shape(name)
 {}
-RectShape::RectShape(RectShapeDescription* desc, const std::tstring& name)
-	: Shape(desc, name)
+RectShape::RectShape(RectShapeDescription* desc, Geometry* geometry, const std::tstring& name)
+	: Shape(desc, geometry, name)
 {
 }
 RectShape::~RectShape()
 {}
 
-void RectShape::create()
-{
-	this->geometry = GeometryManager::getInstance().getGeometry(getDescription());
-
-	//Geometry cannot be null
-	assert(this->geometry != nullptr);
-}
 void RectShape::render(Renderer* renderer)
 {
 	//Renderer cannot be null
