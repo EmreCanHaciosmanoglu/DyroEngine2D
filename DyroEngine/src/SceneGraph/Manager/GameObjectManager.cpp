@@ -135,6 +135,24 @@ const std::map<unsigned int, GameObject*>& GameObjectManager::getGameObjects() c
 {
 	return getObjects();
 }
+
+Visualization* GameObjectManager::getVisualization(const GameObject* object) const
+{
+	std::vector<Visualization*> visualizations;
+	getVisualizations(visualizations);
+
+	std::vector<Visualization*>::const_iterator it = std::find(visualizations.begin(), visualizations.end(), 
+		[object](Visualization* visualization) -> bool
+	{
+		GameObject* vis_object = dynamic_cast<GameObject*>(visualization->getObject());
+		if (vis_object == nullptr)
+			return false;
+
+		return object == vis_object;
+	});
+
+	return nullptr;
+}
 void GameObjectManager::getVisualizations(std::vector<Visualization*>& visualizations) const
 {
 	this->visualization_manager->getVisualizations(visualizations);

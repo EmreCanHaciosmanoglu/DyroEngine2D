@@ -13,6 +13,7 @@
 
 #include "Core/Types/SystemType.h"
 #include "Core/Types/SettingsType.h"
+#include "Core/Types/EngineStateType.h"
 
 #include "Core/Data/Factory/SettingsFactory.h"
 #include "Core/Data/Manager/SettingsManager.h"
@@ -27,6 +28,8 @@ namespace
 	const int SHUTDOWN_FAILED = 0x0010;
 }
 
+EngineState::EngineStateType EngineState::ENGINE_STATE = EngineState::EngineStateType::INVALID;
+
 Engine::Engine(Game* game)
 	:game(game)
 {
@@ -39,6 +42,9 @@ Engine::~Engine()
 
 int Engine::mainLoop()
 {
+	//CREATE APP
+	EngineState::ENGINE_STATE = EngineState::EngineStateType::CREATING;
+
 	if (!initialize())
 	{
 		LogManager::getInstance().log(new ErrorLog(_T("Initialization of the engine failed."), LOG_INFO));
@@ -51,6 +57,9 @@ int Engine::mainLoop()
 	MSG msg = {};
 	while (msg.message != WM_QUIT)
 	{
+		//RUN APP
+		EngineState::ENGINE_STATE = EngineState::EngineStateType::RUNNING;
+
 		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 		{
 			TranslateMessage(&msg);
@@ -69,6 +78,9 @@ int Engine::mainLoop()
 		//	fps = CLOCKS_PER_SEC / delta_ticks;
 		//std::cout << fps << std::endl;
 	}
+
+	//DESTROY APP
+	EngineState::ENGINE_STATE = EngineState::EngineStateType::DESTROYING;
 
 	if (!shutDown())
 	{

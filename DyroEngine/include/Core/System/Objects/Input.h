@@ -17,20 +17,20 @@
 
 class Window;
 
-struct InputBinding
+struct KeyBinding
 {
-	InputBinding(unsigned int key, std::function<void()> fn, InputStateType type)
+	KeyBinding(unsigned int key, std::function<void()> fn, InputStateType type)
 		:key(key)
 		, callback_function(fn)
 		, type(type)
 	{}
-	InputBinding(const InputBinding& ref)
+	KeyBinding(const KeyBinding& ref)
 		:key(ref.key)
 		, callback_function(ref.callback_function)
 		, type(ref.type)
 	{}
 
-	InputBinding operator= (const InputBinding& ref)
+	KeyBinding operator= (const KeyBinding& ref)
 	{
 		(*this).key = ref.key;
 		(*this).callback_function = ref.callback_function;
@@ -46,10 +46,67 @@ struct InputBinding
 	std::function<void()> callback_function;
 	InputStateType type;
 };
+struct MouseMoveBinding
+{
+	MouseMoveBinding(std::function<void(const POINT&, const POINT&)> fn)
+		:callback_function(fn)
+	{}
+	MouseMoveBinding(const MouseMoveBinding& ref)
+		:callback_function(ref.callback_function)
+	{}
+
+	MouseMoveBinding operator= (const MouseMoveBinding& ref)
+	{
+		(*this).callback_function = ref.callback_function;
+	}
+
+	void execute(const POINT& mousePosition, const POINT& mouseDelta)
+	{
+		callback_function(mousePosition, mouseDelta);
+	}
+
+	std::function<void(const POINT&, const POINT&)> callback_function;
+};
+struct MouseClickBinding
+{
+	MouseClickBinding(Input::MouseButton button, std::function<void(const POINT&, const POINT&)> fn, InputStateType type)
+		:mouse_button(button)
+		, callback_function(fn)
+		, type(type)
+	{}
+	MouseClickBinding(const MouseClickBinding& ref)
+		:mouse_button(ref.mouse_button)
+		, callback_function(ref.callback_function)
+		, type(ref.type)
+	{}
+
+	MouseClickBinding operator= (const MouseClickBinding& ref)
+	{
+		(*this).mouse_button = ref.mouse_button;
+		(*this).callback_function = ref.callback_function;
+		(*this).type = ref.type;
+	}
+
+	void execute(const POINT& mousePosition, const POINT& mouseDelta)
+	{
+		callback_function(mousePosition, mouseDelta);
+	}
+
+	Input::MouseButton mouse_button;
+	std::function<void(const POINT&, const POINT&)> callback_function;
+	InputStateType type;
+};
 
 class Input : public System
 {
 public:
+	enum class MouseButton
+	{
+		RIGHT,
+		LEFT,
+		MIDDLE
+	};
+
 	Input();
 	virtual ~Input();
 
@@ -57,7 +114,9 @@ public:
 	virtual void update();
 	virtual bool shutdown();
 
-	void bindInput(const InputBinding& binding);
+	void bindKey(const KeyBinding& binding);
+	void bindMouseMove(const MouseMoveBinding& binding);
+	void bindMouseClick(const MouseClickBinding& binding);
 
 	POINT getMousePosition(bool previousFrame = false);
 	POINT getMouseMovement();
@@ -70,7 +129,14 @@ private:
 	bool isKeyPressed(unsigned int key);
 	bool isKeyReleased(unsigned int key);
 
-	std::vector<InputBinding> vec_bindings;
+	void checkMouseBindings();
+	void checkKeyBindings();
+
+	unsigned char convertMouseButton(Input::MouseButton button);
+
+	std::vector<MouseMoveBinding> vec_mousemove_bindings;
+	std::vector<MouseClickBinding> vec_mouseclick_bindings;
+	std::vector<KeyBinding> vec_key_bindings;
 
 	BYTE* current_keyboard_state;
 	BYTE* previous_keyboard_state;

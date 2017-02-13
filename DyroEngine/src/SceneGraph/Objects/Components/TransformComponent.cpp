@@ -7,16 +7,24 @@
 
 #include "Rendering/Renderer.h"
 
+const Vector2D TransformComponent::world_forward = Vector2D(0, 1);
+const Vector2D TransformComponent::world_right = Vector2D(1, 0);
+
 TransformComponent::TransformComponent(const std::tstring& name)
 	:Component(name == _T("") ? _T("TransformComponent") : name)
 	, is_dirty(false)
-	, position(0, 0)
-	, scaling(1, 1)
-	, rotation(0.0f)
+	, start_position(0, 0)
+	, start_scaling(1, 1)
+	, start_rotation(0.0f)
+	, position(start_position)
+	, scaling(start_scaling)
+	, rotation(start_rotation)
 	, world_matrix()
 	, mirror_x(Vector2D(1, 1))
 	, mirror_y(Vector2D(1, 1))
 	//, center_position(0, 0)
+	, forward(TransformComponent::world_forward)
+	, right(TransformComponent::world_right)
 {
 	OBJECT_INIT(_T("TransformComponent"));
 
@@ -28,6 +36,11 @@ TransformComponent::~TransformComponent()
 
 bool TransformComponent::initialize()
 {
+	//Starting transform
+	setPosition(getStartPosition());
+	setScale(getStartScale());
+	setRotation(getStartRotation());
+
 	calculateWorldMatrix();
 
 	return true;
@@ -36,6 +49,11 @@ void TransformComponent::update()
 {
 	if (!getIsDirty())
 		return;
+
+	Matrix2D rot_mat = Matrix2D::createRotationMatrix(getRotation());
+
+	forward = rot_mat.transformVector(TransformComponent::world_forward);
+	right = rot_mat.transformVector(TransformComponent::world_right);
 
 	calculateWorldMatrix();
 
@@ -139,6 +157,15 @@ void TransformComponent::setPosition(float x, float y)
 {
 	setPosition(Vector2D(x, y));
 }
+void TransformComponent::setStartPosition(const Vector2D& position)
+{
+	setIsDirty();
+	this->start_position = position;
+}
+void TransformComponent::setStartPosition(float x, float y)
+{
+	setStartPosition(Vector2D(x, y));
+}
 void TransformComponent::setScale(const Vector2D& scale)
 {
 	setIsDirty();
@@ -148,15 +175,32 @@ void TransformComponent::setScale(float x, float y)
 {
 	setScale(Vector2D(x, y));
 }
+void TransformComponent::setStartScale(const Vector2D& scale)
+{
+	setIsDirty();
+	this->start_scaling = scale;
+}
+void TransformComponent::setStartScale(float x, float y)
+{
+	setStartScale(Vector2D(x, y));
+}
 void TransformComponent::setRotation(float angle)
 {
 	setIsDirty();
 	this->rotation = angle;
 }
+void TransformComponent::setStartRotation(float angle)
+{
+	this->start_rotation = angle;
+}
 
 const Vector2D& TransformComponent::getPosition() const
 {
 	return this->position;
+}
+const Vector2D& TransformComponent::getStartPosition() const
+{
+	return this->start_position;
 }
 //const Vector2D& TransformComponent::getCenterPosition() const
 //{
@@ -165,6 +209,10 @@ const Vector2D& TransformComponent::getPosition() const
 const Vector2D& TransformComponent::getScale() const
 {
 	return this->scaling;
+}
+const Vector2D& TransformComponent::getStartScale() const
+{
+	return this->start_scaling;
 }
 const Vector2D& TransformComponent::getMirrorX() const
 {
@@ -177,6 +225,19 @@ const Vector2D& TransformComponent::getMirrorY() const
 float TransformComponent::getRotation() const
 {
 	return this->rotation;
+}
+float TransformComponent::getStartRotation() const
+{
+	return this->start_rotation;
+}
+
+const Vector2D& TransformComponent::getForward() const
+{
+	return this->forward;
+}
+const Vector2D& TransformComponent::getRight() const
+{
+	return this->right;
 }
 
 const Matrix2D& TransformComponent::getWorldMatrix() const

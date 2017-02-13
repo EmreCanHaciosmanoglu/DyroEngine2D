@@ -14,9 +14,9 @@ PhysicsSettings::~PhysicsSettings()
 {
 }
 
-void PhysicsSettings::setGravity(float gravity)
+void PhysicsSettings::setGravity(const Vector2D& gravity)
 {
-	this->gravity = Vector2D(0.0f, gravity);
+	this->gravity = gravity;
 }
 const Vector2D& PhysicsSettings::getGravity()
 {
@@ -52,7 +52,7 @@ float PhysicsSettings::getPhyxTimeStep() const
 void PhysicsSettings::parseSettingsFile(const std::tstring& valueName, const std::tstring& valueData)
 {
 	if (valueName == _T("GRAVITY"))
-		setGravity((float)_tstof(valueData.c_str()));
+		setGravity(Vector2D(0,(float)_tstof(valueData.c_str())));
 	else if (valueName == _T("VELOCITYITERATION"))
 		setVelocityInterpolation(_tstoi(valueData.c_str()));
 	else if (valueName == _T("POSITIONITERATION"))

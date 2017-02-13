@@ -80,7 +80,6 @@
     <ClCompile Include="src\SceneGraph\Manager\CameraManager.cpp" />
     <ClCompile Include="src\SceneGraph\Manager\GameObjectManager.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\GameObjects\SceneObject.cpp" />
-    <ClCompile Include="src\SceneGraph\Objects\GameObjects\UIObject.cpp" />
     <ClCompile Include="src\Core\Engine.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Game.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Settings\ApplicationSettings.cpp" />
@@ -121,6 +120,9 @@
     <ClCompile Include="src\SceneGraph\Objects\GameObjects\Physics\PhysicsObject.cpp" />
     <ClCompile Include="src\SceneGraph\Factory\GameObjectFactory.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\Components\Physics\Collision\TriangleCollisionComponent.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\GameObjects\UI\UIObject.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\GameObjects\UI\Button.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Descriptions\UI\ButtonDescription.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Core\Data\Factory\SettingsFactory.h" />
@@ -229,7 +231,6 @@
     <ClInclude Include="include\SceneGraph\Manager\CameraManager.h" />
     <ClInclude Include="include\SceneGraph\Objects\GameObjects\GameObject.h" />
     <ClInclude Include="include\SceneGraph\Manager\GameObjectManager.h" />
-    <ClInclude Include="include\SceneGraph\Objects\GameObjects\UIObject.h" />
     <ClInclude Include="include\Rendering\Objects\RenderItems\Shapes\CircleShape.h" />
     <ClInclude Include="include\Rendering\Objects\RenderItems\Shapes\LineShape.h" />
     <ClInclude Include="include\Rendering\Objects\RenderItems\Shapes\PolygonShape.h" />
@@ -266,5 +267,10 @@
     <ClInclude Include="include\Core\Defines\components.h" />
     <ClInclude Include="include\SceneGraph\Factory\GameObjectFactory.h" />
     <ClInclude Include="include\SceneGraph\Objects\Components\Physics\Collision\TriangleCollisionComponent.h" />
+    <ClInclude Include="include\Core\Types\EngineStateType.h" />
+    <ClInclude Include="include\Core\Defines\settingsdata.h" />
+    <ClInclude Include="include\SceneGraph\Objects\GameObjects\UI\UIObject.h" />
+    <ClInclude Include="include\SceneGraph\Objects\GameObjects\UI\Button.h" />
+    <ClInclude Include="include\Core\Data\Objects\Descriptions\UI\ButtonDescription.h" />
   </ItemGroup>
 </Project>

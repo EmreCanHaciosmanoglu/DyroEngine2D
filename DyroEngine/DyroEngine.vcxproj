@@ -91,6 +91,7 @@
     <ClInclude Include="include\Core\Data\Objects\Descriptions\Shapes\PolygonShapeDescription.h" />
     <ClInclude Include="include\Core\Data\Objects\Descriptions\Shapes\RectShapeDescription.h" />
     <ClInclude Include="include\Core\Data\Objects\Descriptions\Shapes\ShapeDescription.h" />
+    <ClInclude Include="include\Core\Data\Objects\Descriptions\UI\ButtonDescription.h" />
     <ClInclude Include="include\Core\Data\Objects\Geometry.h" />
     <ClInclude Include="include\Core\Data\Objects\Layer.h" />
     <ClInclude Include="include\Core\Data\Manager\LayerManager.h" />
@@ -100,6 +101,7 @@
     <ClInclude Include="include\Core\Defines\debug.h" />
     <ClInclude Include="include\Core\Defines\gameobjects.h" />
     <ClInclude Include="include\Core\Defines\renderlayers.h" />
+    <ClInclude Include="include\Core\Defines\settingsdata.h" />
     <ClInclude Include="include\Core\Diagnostics\Objects\ErrorLog.h" />
     <ClInclude Include="include\Core\Diagnostics\Objects\InfoLog.h" />
     <ClInclude Include="include\Core\Diagnostics\Objects\TodoLog.h" />
@@ -107,6 +109,7 @@
     <ClInclude Include="include\Core\Data\Factory\GeometryFactory.h" />
     <ClInclude Include="include\Core\Data\Manager\GeometryManager.h" />
     <ClInclude Include="include\Core\Types\DebugRenderingType.h" />
+    <ClInclude Include="include\Core\Types\EngineStateType.h" />
     <ClInclude Include="include\Rendering\Manager\TextureManager.h" />
     <ClInclude Include="include\Math\Objects\Random.h" />
     <ClInclude Include="include\Math\Objects\Range.h" />
@@ -204,7 +207,8 @@
     <ClInclude Include="include\SceneGraph\Objects\GameObjects\Physics\KinematicPhysicsObject.h" />
     <ClInclude Include="include\SceneGraph\Objects\GameObjects\Physics\PhysicsObject.h" />
     <ClInclude Include="include\SceneGraph\Objects\GameObjects\Physics\StaticPhysicsObject.h" />
-    <ClInclude Include="include\SceneGraph\Objects\GameObjects\UIObject.h" />
+    <ClInclude Include="include\SceneGraph\Objects\GameObjects\UI\Button.h" />
+    <ClInclude Include="include\SceneGraph\Objects\GameObjects\UI\UIObject.h" />
     <ClInclude Include="include\Rendering\Objects\RenderItems\Shapes\CircleShape.h" />
     <ClInclude Include="include\Rendering\Objects\RenderItems\Shapes\LineShape.h" />
     <ClInclude Include="include\Rendering\Objects\RenderItems\Shapes\PolygonShape.h" />
@@ -236,6 +240,7 @@
     <ClCompile Include="src\Core\Data\Objects\Descriptions\Shapes\PolygonShapeDescription.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Descriptions\Shapes\RectShapeDescription.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Descriptions\Shapes\ShapeDescription.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Descriptions\UI\ButtonDescription.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Geometry.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Layer.cpp" />
     <ClCompile Include="src\Core\Data\Manager\LayerManager.cpp" />
@@ -363,7 +368,8 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="src\SceneGraph\Objects\GameObjects\UIObject.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\GameObjects\UI\Button.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\GameObjects\UI\UIObject.cpp" />
     <ClCompile Include="src\Core\Engine.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Game.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Settings\ApplicationSettings.cpp" />

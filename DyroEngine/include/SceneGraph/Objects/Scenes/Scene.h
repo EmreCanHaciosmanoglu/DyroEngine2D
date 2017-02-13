@@ -11,6 +11,9 @@
 #ifndef _STRING_H
 #include "Core\Defines\string.h"
 #endif
+#ifndef _SETTINGSDATA_H
+#include "Core\Defines\settingsdata.h"
+#endif
 
 #ifndef _VECTOR_
 #include <vector>
@@ -67,11 +70,15 @@ public:
 	void removeGameObject(unsigned int id);
 
 	void getGameObjects(std::vector<GameObject*>& objects) const;
+	Visualization* getVisualization(const GameObject* object) const;
 	void getVisualizations(std::vector<Visualization*>& visualizations) const;
 
 	void addManager(AbstractManager* manager);
 	template<typename T>
 	T* getManager() const;
+
+protected:
+	virtual void setupSettings(const SettingsData& settings);
 
 private:
 	void setupPyhx();

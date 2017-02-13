@@ -11,6 +11,10 @@
 #include <limits>
 #endif
 
+#ifndef _RECT2D_H
+#include "Math\Objects\Rect2D.h"
+#endif
+
 #ifndef _GAMEOBJECTMANAGER_H
 #include "SceneGraph\Manager\GameObjectManager.h"
 #endif
@@ -65,6 +69,8 @@ public:
 
 	void setLayer(Layer* layer);
 	Layer* getLayer() const;
+
+	Rect2D getBounds() const;
 
 private:
 	GameObjectManager* childeren;

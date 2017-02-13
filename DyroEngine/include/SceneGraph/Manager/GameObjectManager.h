@@ -40,6 +40,7 @@ public:
 	void getGameObjects(std::vector<GameObject*>& objects) const;
 	const std::map<unsigned int, GameObject*>& getGameObjects() const;
 
+	Visualization* getVisualization(const GameObject* object) const;
 	void getVisualizations(std::vector<Visualization*>& visualizations) const;
 	const std::map<unsigned int, Visualization*>& getVisualizations() const;
 

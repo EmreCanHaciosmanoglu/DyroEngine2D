@@ -1,4 +1,4 @@
-#include "SceneGraph/Objects/GameObjects/UIObject.h"
+#include "SceneGraph/Objects/GameObjects/UI/UIObject.h"
 
 #include "SceneGraph/Objects/Components/TransformComponent.h"
 

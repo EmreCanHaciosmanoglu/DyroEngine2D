@@ -22,12 +22,14 @@
 #include "SceneGraph\Objects\GameObjects\Camera\Camera.h"
 #include "SceneGraph\Objects\Components\CameraComponent.h"
 
-#include "Core\Data\Objects\Settings\PhysicsSettings.h"
-#include "Core\Data\Objects\Settings\ApplicationSettings.h"
+#include "Core/Data/Objects/Settings/ApplicationSettings.h"
+#include "Core/Data/Objects/Settings/GameSettings.h"
+#include "Core/Data/Objects/Settings/PhysicsSettings.h"
 #include "Core\Data\Objects\Layer.h"
 
 #include "Core/Types/SettingsType.h"
 #include "Core/Types/DebugRenderingType.h"
+#include "Core/Types/EngineStateType.h"
 
 #include "Rendering\Renderer.h"
 #include "Rendering\DebugRenderer.h"
@@ -68,6 +70,17 @@ bool Scene::initialize()
 {
 	this->renderer = new Renderer(this);
 
+	ApplicationSettings* app_settings = dynamic_cast<ApplicationSettings*>(SettingsManager::getInstance().getSettings(SettingsType::APPLICATION_SETTINGS));
+	if (app_settings == nullptr)
+		return false;
+	GameSettings* game_settings = dynamic_cast<GameSettings*>(SettingsManager::getInstance().getSettings(SettingsType::GAME_SETTINGS));
+	if (app_settings == nullptr)
+		return false;
+	PhysicsSettings* p_settings = dynamic_cast<PhysicsSettings*>(SettingsManager::getInstance().getSettings(SettingsType::PHYSICS_SETTINGS));
+	if (app_settings == nullptr)
+		return false;
+
+	setupSettings(SettingsData(app_settings, game_settings, p_settings));
 	setupPyhx();
 
 	if (!this->game_object_manager->initialize())
@@ -138,6 +151,10 @@ bool Scene::shutdown()
 void Scene::setupInput(Input* input)
 {
 }
+void Scene::setupSettings(const SettingsData& settings)
+{
+	settings.game_settings->setBackgroundColor(Color(0.16f, 0.15f, 0.18f));
+}
 
 void Scene::activate()
 {
@@ -162,7 +179,13 @@ void Scene::addGameObject(GameObject* object)
 {
 	object->setScene(this);
 	object->setLayer(getManager<LayerManager>()->getLayer(_T("Default")));
+
 	this->game_object_manager->addGameObject(object);
+	if (EngineState::ENGINE_STATE == EngineState::EngineStateType::RUNNING)
+	{
+		object->initialize();
+		object->postInitialize();
+	}
 }
 void Scene::removeGameObject(GameObject* object)
 {
@@ -176,6 +199,10 @@ void Scene::removeGameObject(unsigned int id)
 void Scene::getGameObjects(std::vector<GameObject*>& objects) const
 {
 	this->game_object_manager->getGameObjects(objects);
+}
+Visualization* Scene::getVisualization(const GameObject* object) const
+{
+	return this->game_object_manager->getVisualization(object);
 }
 void Scene::getVisualizations(std::vector<Visualization*>& visualizations) const
 {

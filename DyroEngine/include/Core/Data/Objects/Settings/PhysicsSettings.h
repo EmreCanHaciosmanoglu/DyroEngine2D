@@ -16,7 +16,7 @@ public:
 	PhysicsSettings(const std::tstring& filePath);
 	virtual ~PhysicsSettings();
 
-	void setGravity(float gravity);
+	void setGravity(const Vector2D& gravity);
 	const Vector2D& getGravity();
 
 	void setVelocityInterpolation(int interpolation);

@@ -50,41 +50,25 @@ void Input::update()
 	if (GetCursorPos(&current_mouse_position))
 		ScreenToClient(main_window->getWindowHandle(), &current_mouse_position);
 
-	//POINT mouse_delta = getMouseMovement();
-	//if(mouse_delta.x != 0 || mouse_delta.y != 0)
-		//Broadcast mouse movement
-
-	for (InputBinding& binding : this->vec_bindings)
-	{
-		switch (binding.type)
-		{
-		case InputStateType::PRESSED:
-			if (isKeyPressed(binding.key))
-				binding.execute();
-			break;
-		case InputStateType::RELEASD:
-			if (isKeyReleased(binding.key))
-				binding.execute();
-			break;
-		case InputStateType::DOWN:
-			if (isKeyDown(binding.key))
-				binding.execute();
-			break;
-		case InputStateType::UP:
-			if (isKeyUp(binding.key))
-				binding.execute();
-			break;
-		}
-	}
+	checkMouseBindings();
+	checkKeyBindings();
 }
 bool Input::shutdown()
 {
 	return true;
 }
 
-void Input::bindInput(const InputBinding& binding)
+void Input::bindKey(const KeyBinding& binding)
 {
-	vec_bindings.push_back(binding);
+	this->vec_key_bindings.push_back(binding);
+}
+void Input::bindMouseMove(const MouseMoveBinding& binding)
+{
+	this->vec_mousemove_bindings.push_back(binding);
+}
+void Input::bindMouseClick(const MouseClickBinding& binding)
+{
+	this->vec_mouseclick_bindings.push_back(binding);
 }
 
 POINT Input::getMousePosition(bool previousFrame)
@@ -121,4 +105,74 @@ bool Input::isKeyPressed(unsigned int key)
 bool Input::isKeyReleased(unsigned int key)
 {
 	return ((previous_keyboard_state[key] & 0xF0) != 0 && (current_keyboard_state[key] & 0xF0) == 0);
+}
+
+void Input::checkMouseBindings()
+{
+	//Mouse move
+	POINT mouse_delta = getMouseMovement();
+	if (mouse_delta.x != 0 || mouse_delta.y != 0)
+	{
+		for (MouseMoveBinding& binding : this->vec_mousemove_bindings)
+			binding.execute(getMousePosition(), mouse_delta);
+	}
+
+	//Mouse click
+	for (MouseClickBinding& binding : this->vec_mouseclick_bindings)
+	{
+		switch (binding.type)
+		{
+		case InputStateType::PRESSED:
+			if (isKeyPressed(convertMouseButton(binding.mouse_button)))
+				binding.execute(getMousePosition(), getMouseMovement());
+			break;
+		case InputStateType::RELEASD:
+			if (isKeyReleased(convertMouseButton(binding.mouse_button)))
+				binding.execute(getMousePosition(), getMouseMovement());
+			break;
+		case InputStateType::DOWN:
+			if (isKeyDown(convertMouseButton(binding.mouse_button)))
+				binding.execute(getMousePosition(), getMouseMovement());
+			break;
+		case InputStateType::UP:
+			if (isKeyUp(convertMouseButton(binding.mouse_button)))
+				binding.execute(getMousePosition(), getMouseMovement());
+			break;
+		}
+	}
+}
+void Input::checkKeyBindings()
+{
+	for (KeyBinding& binding : this->vec_key_bindings)
+	{
+		switch (binding.type)
+		{
+		case InputStateType::PRESSED:
+			if (isKeyPressed(binding.key))
+				binding.execute();
+			break;
+		case InputStateType::RELEASD:
+			if (isKeyReleased(binding.key))
+				binding.execute();
+			break;
+		case InputStateType::DOWN:
+			if (isKeyDown(binding.key))
+				binding.execute();
+			break;
+		case InputStateType::UP:
+			if (isKeyUp(binding.key))
+				binding.execute();
+			break;
+		}
+	}
+}
+
+unsigned char Input::convertMouseButton(Input::MouseButton button)
+{
+	switch (button)
+	{
+	case Input::MouseButton::RIGHT: return VK_LBUTTON;
+	case Input::MouseButton::LEFT: return VK_RBUTTON;
+	case Input::MouseButton::MIDDLE: return VK_MBUTTON;
+	}
 }

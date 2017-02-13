@@ -33,10 +33,10 @@ bool FreeCamera::shutdown()
 
 void FreeCamera::setupInput(Input* input)
 {
-	input->bindInput(InputBinding(VK_UP, std::bind(&FreeCamera::moveUp, this), InputStateType::DOWN));
-	input->bindInput(InputBinding(VK_DOWN, std::bind(&FreeCamera::moveDown, this), InputStateType::DOWN));
-	input->bindInput(InputBinding(VK_LEFT, std::bind(&FreeCamera::moveLeft, this), InputStateType::DOWN));
-	input->bindInput(InputBinding(VK_RIGHT, std::bind(&FreeCamera::moveRight, this), InputStateType::DOWN));
+	input->bindKey(KeyBinding(VK_UP, std::bind(&FreeCamera::moveUp, this), InputStateType::DOWN));
+	input->bindKey(KeyBinding(VK_DOWN, std::bind(&FreeCamera::moveDown, this), InputStateType::DOWN));
+	input->bindKey(KeyBinding(VK_LEFT, std::bind(&FreeCamera::moveLeft, this), InputStateType::DOWN));
+	input->bindKey(KeyBinding(VK_RIGHT, std::bind(&FreeCamera::moveRight, this), InputStateType::DOWN));
 }
 
 void FreeCamera::setSpeed(float speed)

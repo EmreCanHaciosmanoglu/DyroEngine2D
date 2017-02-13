@@ -6,6 +6,8 @@
 #include "Core\Data\Objects\Layer.h"
 #include "Core\Data\Manager\LayerManager.h"
 
+#include "Rendering\Objects\Visualization\Visualization.h"
+
 #ifndef _ALGORITHM_
 #include <algorithm>
 #endif
@@ -139,4 +141,13 @@ void GameObject::setLayer(Layer* layer)
 Layer* GameObject::getLayer() const
 {
 	return getScene()->getManager<LayerManager>()->getLayer(this->layer_id);
+}
+
+Rect2D GameObject::getBounds() const
+{
+	Scene* scene = getScene();
+	if (scene == nullptr)
+		return Rect2D::empty;
+
+	return scene->getVisualization(this)->getBoundingBox();
 }
