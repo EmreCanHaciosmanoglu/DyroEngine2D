@@ -3,6 +3,7 @@
 
 #include "Core\System\Objects\System.h"
 #include "Core\Types\InputStateType.h"
+#include "Core\Types\MouseButtonType.h"
 
 #ifndef _WINDOWS_
 #include <Windows.h>
@@ -69,7 +70,7 @@ struct MouseMoveBinding
 };
 struct MouseClickBinding
 {
-	MouseClickBinding(Input::MouseButton button, std::function<void(const POINT&, const POINT&)> fn, InputStateType type)
+	MouseClickBinding(MouseButton button, std::function<void(const POINT&, const POINT&)> fn, InputStateType type)
 		:mouse_button(button)
 		, callback_function(fn)
 		, type(type)
@@ -92,7 +93,7 @@ struct MouseClickBinding
 		callback_function(mousePosition, mouseDelta);
 	}
 
-	Input::MouseButton mouse_button;
+	MouseButton mouse_button;
 	std::function<void(const POINT&, const POINT&)> callback_function;
 	InputStateType type;
 };
@@ -100,13 +101,6 @@ struct MouseClickBinding
 class Input : public System
 {
 public:
-	enum class MouseButton
-	{
-		RIGHT,
-		LEFT,
-		MIDDLE
-	};
-
 	Input();
 	virtual ~Input();
 
@@ -132,7 +126,7 @@ private:
 	void checkMouseBindings();
 	void checkKeyBindings();
 
-	unsigned char convertMouseButton(Input::MouseButton button);
+	unsigned char convertMouseButton(MouseButton button);
 
 	std::vector<MouseMoveBinding> vec_mousemove_bindings;
 	std::vector<MouseClickBinding> vec_mouseclick_bindings;

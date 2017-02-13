@@ -141,17 +141,20 @@ Visualization* GameObjectManager::getVisualization(const GameObject* object) con
 	std::vector<Visualization*> visualizations;
 	getVisualizations(visualizations);
 
-	std::vector<Visualization*>::const_iterator it = std::find(visualizations.begin(), visualizations.end(), 
+	std::vector<Visualization*>::iterator it = std::find_if(visualizations.begin(), visualizations.end(), 
 		[object](Visualization* visualization) -> bool
 	{
-		GameObject* vis_object = dynamic_cast<GameObject*>(visualization->getObject());
+		const GameObject* vis_object = dynamic_cast<GameObject*>(visualization->getObject());
 		if (vis_object == nullptr)
 			return false;
 
 		return object == vis_object;
 	});
 
-	return nullptr;
+	if (it == visualizations.end())
+		return nullptr;
+
+	return (*it);
 }
 void GameObjectManager::getVisualizations(std::vector<Visualization*>& visualizations) const
 {

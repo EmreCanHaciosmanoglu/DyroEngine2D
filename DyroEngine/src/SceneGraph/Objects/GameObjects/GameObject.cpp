@@ -149,5 +149,9 @@ Rect2D GameObject::getBounds() const
 	if (scene == nullptr)
 		return Rect2D::empty;
 
-	return scene->getVisualization(this)->getBoundingBox();
+	Visualization* visualization = scene->getVisualization(this);
+	if (visualization == nullptr)
+		return Rect2D::empty;
+
+	return visualization->getBoundingBox();
 }

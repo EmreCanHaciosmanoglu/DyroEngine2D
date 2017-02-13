@@ -110,6 +110,7 @@
     <ClInclude Include="include\Core\Data\Manager\GeometryManager.h" />
     <ClInclude Include="include\Core\Types\DebugRenderingType.h" />
     <ClInclude Include="include\Core\Types\EngineStateType.h" />
+    <ClInclude Include="include\Core\Types\MouseButtonType.h" />
     <ClInclude Include="include\Rendering\Manager\TextureManager.h" />
     <ClInclude Include="include\Math\Objects\Random.h" />
     <ClInclude Include="include\Math\Objects\Range.h" />

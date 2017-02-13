@@ -1,11 +1,9 @@
 #ifndef _UIOBJECT_H
 #define _UIOBJECT_H
 
-#include "SceneGraph/Objects/GameObjects/GameObject.h"
+#include "SceneGraph/Objects/GameObjects/SceneObject.h"
 
-class TransformComponent;
-
-class UIObject : public GameObject
+class UIObject : public SceneObject
 {
 	/**
 	\note Must be present in every subclass definition.
@@ -19,11 +17,6 @@ public:
 	virtual bool initialize();
 	virtual void upddate();
 	virtual bool shutdown();
-
-	TransformComponent* getTransform() const;
-
-private:
-	TransformComponent* transform;
 };
 
 #endif
