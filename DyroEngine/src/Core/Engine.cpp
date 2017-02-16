@@ -98,27 +98,31 @@ int Engine::initialize()
 
 	SettingsFactory factory;
 
-	SettingsManager::getInstance().addSettings(factory.createSettings(_T("resources/INI/Engine.ini"), SettingsType::APPLICATION_SETTINGS));
-	SettingsManager::getInstance().addSettings(factory.createSettings(_T("resources/INI/Engine.ini"), SettingsType::GAME_SETTINGS));
-	SettingsManager::getInstance().addSettings(factory.createSettings(_T("resources/INI/Engine.ini"), SettingsType::PHYSICS_SETTINGS));
+	if(!SettingsManager::getInstance().addSettings(factory.createSettings(_T("resources/INI/Engine.ini"), SettingsType::APPLICATION_SETTINGS)))
+		return FALSE;
+	if(!SettingsManager::getInstance().addSettings(factory.createSettings(_T("resources/INI/Engine.ini"), SettingsType::GAME_SETTINGS)))
+		return FALSE;
+	if(!SettingsManager::getInstance().addSettings(factory.createSettings(_T("resources/INI/Engine.ini"), SettingsType::PHYSICS_SETTINGS)))
+		return FALSE;
 
 	if (!SettingsManager::getInstance().initialize())
 		return FALSE;
 	if (!SystemManager::getInstance().initialize())
 		return FALSE;
 
-	Window* window = dynamic_cast<Window*>(SystemManager::getInstance().getSystem(SystemType::WINDOW_SYSTEM));
-	if (window == nullptr)
+	if (!SystemManager::getInstance().addSystem(SystemType::WINDOW_SYSTEM))
 		return FALSE;
-	Input* input = dynamic_cast<Input*>(SystemManager::getInstance().getSystem(SystemType::INPUT_SYSTEM));
-	if (input == nullptr)
+	if(!SystemManager::getInstance().addSystem(SystemType::INPUT_SYSTEM))
 		return FALSE;
-	Graphics* graphics = dynamic_cast<Graphics*>(SystemManager::getInstance().getSystem(SystemType::GRAPHICS_SYSTEM));
-	if (graphics == nullptr)
+	if(!SystemManager::getInstance().addSystem(SystemType::GRAPHICS_SYSTEM))
 		return FALSE;
-	Logic* logic = dynamic_cast<Logic*>(SystemManager::getInstance().getSystem(SystemType::LOGIC_SYSTEM));
-	if (logic == nullptr)
+	if(!SystemManager::getInstance().addSystem(SystemType::LOGIC_SYSTEM))
 		return FALSE;
+
+	Window* window = SystemManager::getInstance().getSystem<Window>();
+	Input* input = SystemManager::getInstance().getSystem<Input>();
+	Graphics* graphics = SystemManager::getInstance().getSystem<Graphics>();
+	Logic* logic = SystemManager::getInstance().getSystem<Logic>();
 
 	if (!window->initialize())
 		return FALSE;
@@ -143,6 +147,8 @@ void Engine::update()
 int Engine::shutDown()
 {
 	if (!SystemManager::getInstance().shutdown())
+		return FALSE;
+	if (!SettingsManager::getInstance().shutdown())
 		return FALSE;
 
 	if (!destroyManagers())

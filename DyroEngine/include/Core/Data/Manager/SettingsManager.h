@@ -17,7 +17,7 @@ public:
 	bool initialize();
 	bool shutdown();
 
-	void addSettings(Settings* setting);
+	bool addSettings(Settings* setting);
 
 	Settings* getSettings(SettingsType type);
 };

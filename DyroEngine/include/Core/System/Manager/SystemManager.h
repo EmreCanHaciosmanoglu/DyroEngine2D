@@ -26,11 +26,30 @@ public:
 	virtual bool initialize();
 	virtual bool shutdown();
 
-	System* getSystem(SystemType type);
+	bool addSystem(SystemType type);
+
+	template <typename T>
+	T* getSystem();
 	void getSystems(std::vector<System*>& systems);
 
 private:
 	SystemFactory* factory;
 };
+
+template <typename T>
+T* SystemManager::getSystem()
+{
+	std::vector<System*> systems;
+	getSystems(systems);
+
+	for (System* s : systems)
+	{
+		T* concrete_system = dynamic_cast<T*>(s);
+		if (s != nullptr)
+			return concrete_system;
+	}
+
+	return nullptr;
+}
 
 #endif //_SYSTEMMANAGER

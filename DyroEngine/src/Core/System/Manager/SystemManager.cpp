@@ -14,17 +14,11 @@ SystemManager::~SystemManager()
 {
 }
 
-System* SystemManager::getSystem(SystemType type)
+bool SystemManager::addSystem(SystemType type)
 {
-	System* system = getObject((int)type);
-	if (system != nullptr)
-		return system;
-
-	System* new_system = this->factory->createSystem(type);
-	addObject((int)type, new_system);
-
-	return new_system;
+	addObject((int)type, this->factory->createSystem(type));
 }
+
 void SystemManager::getSystems(std::vector<System*>& systems)
 {
 	getObjects(systems);

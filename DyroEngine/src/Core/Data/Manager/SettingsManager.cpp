@@ -31,9 +31,9 @@ bool SettingsManager::shutdown()
 	return true;
 }
 
-void SettingsManager::addSettings(Settings* setting)
+bool SettingsManager::addSettings(Settings* setting)
 {
-	addObject((unsigned int)setting->getSettingsType(), setting);
+	return addObject((unsigned int)setting->getSettingsType(), setting);
 }
 
 Settings* SettingsManager::getSettings(SettingsType type)
