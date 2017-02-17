@@ -3,8 +3,6 @@
 
 #include "System.h"
 
-class Game;
-
 class Logic : public System
 {
 public:
@@ -15,11 +13,7 @@ public:
 	void update();
 	virtual bool shutdown();
 
-	void setGame(Game* game);
-
 private:
-
-	Game* game;
 };
 
 #endif

@@ -15,8 +15,8 @@ Image::~Image()
 
 bool Image::initialize()
 {
-	ID2D1RenderTarget *renderTargetPtr = dynamic_cast<Graphics*>(SystemManager::getInstance().getSystem(SystemType::GRAPHICS_SYSTEM))->getRenderTarget();
-	IWICImagingFactory *iWICFactoryPtr = dynamic_cast<Graphics*>(SystemManager::getInstance().getSystem(SystemType::GRAPHICS_SYSTEM))->getImageFactory();
+	ID2D1RenderTarget *renderTargetPtr = SystemManager::getInstance().getSystem<Graphics>()->getRenderTarget();
+	IWICImagingFactory *iWICFactoryPtr = SystemManager::getInstance().getSystem<Graphics>()->getImageFactory();
 
 	HRESULT hr = LoadBitmapFromFile(renderTargetPtr, iWICFactoryPtr, getResourcePath(), 0, 0, &this->converter);
 	if (FAILED(hr))
@@ -219,7 +219,7 @@ void Image::setTransparencyColor(const Color& transparentColor)
 	}
 
 	//assign modified pixels to bitmap
-	IWICImagingFactory* iWICFactoryPtr = dynamic_cast<Graphics*>(SystemManager::getInstance().getSystem(SystemType::GRAPHICS_SYSTEM))->getImageFactory();
+	IWICImagingFactory* iWICFactoryPtr = SystemManager::getInstance().getSystem<Graphics>()->getImageFactory();
 
 	IWICBitmap* iWICBitmapPtr = nullptr;
 	HRESULT hr = iWICFactoryPtr->CreateBitmapFromMemory(width, height, GUID_WICPixelFormat32bppPBGRA, bitmapStride, size, pixelsPtr, &iWICBitmapPtr);
@@ -228,7 +228,7 @@ void Image::setTransparencyColor(const Color& transparentColor)
 
 	if (hr == S_OK)
 	{
-		ID2D1RenderTarget *renderTargetPtr = dynamic_cast<Graphics*>(SystemManager::getInstance().getSystem(SystemType::GRAPHICS_SYSTEM))->getRenderTarget();
+		ID2D1RenderTarget *renderTargetPtr = SystemManager::getInstance().getSystem<Graphics>()->getRenderTarget();
 
 		if (this->bitmap != nullptr)
 			this->bitmap->Release();

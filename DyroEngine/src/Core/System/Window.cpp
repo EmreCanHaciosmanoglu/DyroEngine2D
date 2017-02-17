@@ -38,7 +38,7 @@ void Window::update()
 }
 bool Window::shutdown()
 {
-	ApplicationSettings* appSettings = dynamic_cast<ApplicationSettings*>(SettingsManager::getInstance().getSettings(SettingsType::APPLICATION_SETTINGS));
+	ApplicationSettings* appSettings = SettingsManager::getInstance().getSettings<ApplicationSettings>();
 	if (appSettings == nullptr)
 		return false;
 
@@ -90,9 +90,12 @@ LRESULT Window::handleEvent(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 	case WM_SIZE:
 	{
-		Graphics* graphics = dynamic_cast<Graphics*>(SystemManager::getInstance().getSystem(SystemType::GRAPHICS_SYSTEM));
-		graphics->onResize(LOWORD(lParam), HIWORD(lParam));
-		return 0;
+		Graphics* graphics = SystemManager::getInstance().getSystem<Graphics>();
+		if (graphics != nullptr)
+		{
+			graphics->onResize(LOWORD(lParam), HIWORD(lParam));
+			return 0;
+		}
 	}
 
 	case WM_CLOSE:
@@ -107,7 +110,7 @@ LRESULT Window::handleEvent(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 BYTE Window::getWindowBitsPerPixel() const
 {
-	ApplicationSettings* appSettings = dynamic_cast<ApplicationSettings*>(SettingsManager::getInstance().getSettings(SettingsType::APPLICATION_SETTINGS));
+	ApplicationSettings* appSettings = SettingsManager::getInstance().getSettings<ApplicationSettings>();
 	if (appSettings == nullptr)
 		return 0;
 
@@ -116,7 +119,7 @@ BYTE Window::getWindowBitsPerPixel() const
 
 const std::tstring Window::getWindowTitle() const
 {
-	ApplicationSettings* appSettings = dynamic_cast<ApplicationSettings*>(SettingsManager::getInstance().getSettings(SettingsType::APPLICATION_SETTINGS));
+	ApplicationSettings* appSettings = SettingsManager::getInstance().getSettings<ApplicationSettings>();
 	if (appSettings == nullptr)
 		return _T("");
 
@@ -124,7 +127,7 @@ const std::tstring Window::getWindowTitle() const
 }
 const std::tstring Window::getWindowClassName() const
 {
-	ApplicationSettings* appSettings = dynamic_cast<ApplicationSettings*>(SettingsManager::getInstance().getSettings(SettingsType::APPLICATION_SETTINGS));
+	ApplicationSettings* appSettings = SettingsManager::getInstance().getSettings<ApplicationSettings>();
 	if (appSettings == nullptr)
 		return _T("");
 

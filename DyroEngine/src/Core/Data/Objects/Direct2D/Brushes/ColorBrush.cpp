@@ -11,4 +11,6 @@ ColorBrush::~ColorBrush()
 bool ColorBrush::destroy()
 {
 	SafeRelease(this->brush);
+
+	return true;
 }

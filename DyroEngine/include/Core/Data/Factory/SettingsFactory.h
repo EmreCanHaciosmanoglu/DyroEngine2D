@@ -14,7 +14,7 @@ public:
 	SettingsFactory();
 	~SettingsFactory();
 
-	Settings* createSettings(const std::tstring& filePath, SettingsType type);
+	Settings* createSettings(SettingsType type);
 };
 
 #endif

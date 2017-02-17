@@ -46,7 +46,7 @@ Geometry* GeometryFactory::createGeometry(ShapeDescription* description)
 Geometry* GeometryFactory::createRectangleGeometry(ShapeDescription* description)
 {
 	RectShapeDescription* rect_description = dynamic_cast<RectShapeDescription*>(description);
-	Graphics* graphics = dynamic_cast<Graphics*>(SystemManager::getInstance().getSystem(SystemType::GRAPHICS_SYSTEM));
+	Graphics* graphics = SystemManager::getInstance().getSystem<Graphics>();
 	HRESULT hr = S_OK;
 
 	//Create the rectangular geometry
@@ -61,7 +61,7 @@ Geometry* GeometryFactory::createRectangleGeometry(ShapeDescription* description
 Geometry* GeometryFactory::createCircleGeometry(ShapeDescription* description)
 {
 	CircleShapeDescription* circle_description = dynamic_cast<CircleShapeDescription*>(description);
-	Graphics* graphics = dynamic_cast<Graphics*>(SystemManager::getInstance().getSystem(SystemType::GRAPHICS_SYSTEM));
+	Graphics* graphics = SystemManager::getInstance().getSystem<Graphics>();
 	HRESULT hr = S_OK;
 
 	D2D1_ELLIPSE ellipse;
@@ -84,7 +84,7 @@ Geometry* GeometryFactory::createCircleGeometry(ShapeDescription* description)
 Geometry* GeometryFactory::createLineGeometry(ShapeDescription* description)
 {
 	LineShapeDescription* line_description = dynamic_cast<LineShapeDescription*>(description);
-	Graphics* graphics = dynamic_cast<Graphics*>(SystemManager::getInstance().getSystem(SystemType::GRAPHICS_SYSTEM));
+	Graphics* graphics = SystemManager::getInstance().getSystem<Graphics>();
 	HRESULT hr = S_OK;
 
 	//Create line geometry
@@ -126,7 +126,7 @@ Geometry* GeometryFactory::createLineGeometry(ShapeDescription* description)
 Geometry* GeometryFactory::createPolygonGeometry(ShapeDescription* description)
 {
 	PolygonShapeDescription* polygon_description = dynamic_cast<PolygonShapeDescription*>(description);
-	Graphics* graphics = dynamic_cast<Graphics*>(SystemManager::getInstance().getSystem(SystemType::GRAPHICS_SYSTEM));
+	Graphics* graphics = SystemManager::getInstance().getSystem<Graphics>();
 	HRESULT hr = S_OK;
 
 	//Create polygon geometry

@@ -20,6 +20,12 @@ private:
 	void update();
 	int shutDown();
 
+	bool createGame();
+	bool destroyGame();
+
+	bool addSettings();
+	bool addSystems();
+
 	bool createManagers();
 	bool destroyManagers();
 

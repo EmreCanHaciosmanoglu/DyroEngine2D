@@ -50,5 +50,5 @@ Geometry* Shape::getGeometry() const
 }
 Graphics* Shape::getGraphics() const
 {
-	return dynamic_cast<Graphics*>(SystemManager::getInstance().getSystem(SystemType::GRAPHICS_SYSTEM));
+	return SystemManager::getInstance().getSystem<Graphics>();
 }

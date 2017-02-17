@@ -70,13 +70,13 @@ bool Scene::initialize()
 {
 	this->renderer = new Renderer(this);
 
-	ApplicationSettings* app_settings = dynamic_cast<ApplicationSettings*>(SettingsManager::getInstance().getSettings(SettingsType::APPLICATION_SETTINGS));
+	ApplicationSettings* app_settings = SettingsManager::getInstance().getSettings<ApplicationSettings>();
 	if (app_settings == nullptr)
 		return false;
-	GameSettings* game_settings = dynamic_cast<GameSettings*>(SettingsManager::getInstance().getSettings(SettingsType::GAME_SETTINGS));
+	GameSettings* game_settings = SettingsManager::getInstance().getSettings<GameSettings>();
 	if (app_settings == nullptr)
 		return false;
-	PhysicsSettings* p_settings = dynamic_cast<PhysicsSettings*>(SettingsManager::getInstance().getSettings(SettingsType::PHYSICS_SETTINGS));
+	PhysicsSettings* p_settings = SettingsManager::getInstance().getSettings<PhysicsSettings>();
 	if (app_settings == nullptr)
 		return false;
 
@@ -93,7 +93,7 @@ bool Scene::initialize()
 }
 bool Scene::postInitialize()
 {
-	Input* input = dynamic_cast<Input*>(SystemManager::getInstance().getSystem(SystemType::INPUT_SYSTEM));
+	Input* input = SystemManager::getInstance().getSystem<Input>();
 	this->setupInput(input);
 
 	this->game_object_manager->setupInput(input);
@@ -108,7 +108,7 @@ void Scene::update()
 	this->timer_manager->update();
 
 	//Retrieve the physics settings
-	PhysicsSettings* physicsSettings = dynamic_cast<PhysicsSettings*>(SettingsManager::getInstance().getSettings(SettingsType::PHYSICS_SETTINGS));
+	PhysicsSettings* physicsSettings = SettingsManager::getInstance().getSettings<PhysicsSettings>();
 	if (physicsSettings == nullptr)
 		return;
 
@@ -224,7 +224,7 @@ void Scene::setupPyhx()
 	this->contact_filter = new ContactFilter();
 	this->contact_listener = new ContactListener();
 
-	PhysicsSettings* physicsSettings = dynamic_cast<PhysicsSettings*>(SettingsManager::getInstance().getSettings(SettingsType::PHYSICS_SETTINGS));
+	PhysicsSettings* physicsSettings = SettingsManager::getInstance().getSettings<PhysicsSettings>();
 	if (physicsSettings == nullptr)
 		return;
 
@@ -249,7 +249,7 @@ void Scene::triggerRender()
 
 	if (debug_rendering_type != DebugRenderingType::ONLY_DEBUG)
 	{
-		ApplicationSettings* app_settings = dynamic_cast<ApplicationSettings*>(SettingsManager::getInstance().getSettings(SettingsType::APPLICATION_SETTINGS));
+		ApplicationSettings* app_settings = SettingsManager::getInstance().getSettings<ApplicationSettings>();
 		if (app_settings == nullptr)
 			return;
 

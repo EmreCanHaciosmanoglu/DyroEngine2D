@@ -19,7 +19,7 @@ Renderer::Renderer(Scene* scene)
 	, scene(scene)
 	, graphics(nullptr)
 {
-	this->graphics = dynamic_cast<Graphics*>(SystemManager::getInstance().getSystem(SystemType::GRAPHICS_SYSTEM));
+	this->graphics = SystemManager::getInstance().getSystem<Graphics>();
 	assert(this->graphics != nullptr);
 }
 Renderer::~Renderer()

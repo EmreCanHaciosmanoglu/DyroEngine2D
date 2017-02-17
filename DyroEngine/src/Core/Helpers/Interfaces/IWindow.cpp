@@ -50,7 +50,7 @@ LRESULT CALLBACK IWindow::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lP
 
 bool IWindow::createWindow()
 {
-	ApplicationSettings* appSettings = dynamic_cast<ApplicationSettings*>(SettingsManager::getInstance().getSettings(SettingsType::APPLICATION_SETTINGS));
+	ApplicationSettings* appSettings = SettingsManager::getInstance().getSettings<ApplicationSettings>();
 	if (appSettings == nullptr)
 		return false;
 

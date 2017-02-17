@@ -27,7 +27,7 @@ bool Input::initialize()
 	GetKeyboardState(keyboard_state_0);
 	GetKeyboardState(keyboard_state_1);
 
-	main_window = dynamic_cast<Window*>(SystemManager::getInstance().getSystem(SystemType::WINDOW_SYSTEM));
+	main_window = SystemManager::getInstance().getSystem<Window>();
 
 	return true;
 }
