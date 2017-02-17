@@ -55,7 +55,7 @@ Geometry* GeometryFactory::createRectangleGeometry(ShapeDescription* description
 	if (SUCCEEDED(hr))
 		return new Geometry(rect_geometry, _T("Rectange Geometry"));
 
-	LogManager::getInstance().log(new WarningLog(_T("Rect shape creation failed!"), LOG_INFO));
+	LogManager::getInstance().log(new WarningLog(_T("Rect shape creation failed!"), LOG_DATA));
 	return nullptr;
 }
 Geometry* GeometryFactory::createCircleGeometry(ShapeDescription* description)
@@ -78,7 +78,7 @@ Geometry* GeometryFactory::createCircleGeometry(ShapeDescription* description)
 	if (SUCCEEDED(hr))
 		return new Geometry(ellipse_geometry, _T("Ellipse Geometry"));
 
-	LogManager::getInstance().log(new WarningLog(_T("Circle shape creation failed!"), LOG_INFO));
+	LogManager::getInstance().log(new WarningLog(_T("Circle shape creation failed!"), LOG_DATA));
 	return nullptr;
 }
 Geometry* GeometryFactory::createLineGeometry(ShapeDescription* description)
@@ -92,7 +92,7 @@ Geometry* GeometryFactory::createLineGeometry(ShapeDescription* description)
 	hr = graphics->getD2DFactory()->CreatePathGeometry(&path_geometry);
 	if (FAILED(hr))
 	{
-		LogManager::getInstance().log(new WarningLog(_T("Line shape creation failed!"), LOG_INFO));
+		LogManager::getInstance().log(new WarningLog(_T("Line shape creation failed!"), LOG_DATA));
 		return nullptr;
 	}
 
@@ -103,7 +103,7 @@ Geometry* GeometryFactory::createLineGeometry(ShapeDescription* description)
 	hr = path_geometry->Open(&geometry_sink);
 	if (FAILED(hr))
 	{
-		LogManager::getInstance().log(new WarningLog(_T("Line shape creation failed!"), LOG_INFO));
+		LogManager::getInstance().log(new WarningLog(_T("Line shape creation failed!"), LOG_DATA));
 		SafeRelease(geometry_sink);
 		return nullptr;
 	}
@@ -115,7 +115,7 @@ Geometry* GeometryFactory::createLineGeometry(ShapeDescription* description)
 	hr = geometry_sink->Close();
 	if (FAILED(hr))
 	{
-		LogManager::getInstance().log(new WarningLog(_T("Line shape creation failed!"), LOG_INFO));
+		LogManager::getInstance().log(new WarningLog(_T("Line shape creation failed!"), LOG_DATA));
 		SafeRelease(geometry_sink);
 		return nullptr;
 	}
@@ -134,7 +134,7 @@ Geometry* GeometryFactory::createPolygonGeometry(ShapeDescription* description)
 	hr = graphics->getD2DFactory()->CreatePathGeometry(&path_geometry);
 	if (FAILED(hr))
 	{
-		LogManager::getInstance().log(new WarningLog(_T("Polygon shape creation failed!"), LOG_INFO));
+		LogManager::getInstance().log(new WarningLog(_T("Polygon shape creation failed!"), LOG_DATA));
 		return nullptr;
 	}
 
@@ -142,7 +142,7 @@ Geometry* GeometryFactory::createPolygonGeometry(ShapeDescription* description)
 	path_geometry->Open(&geometry_sink);
 	if (FAILED(hr))
 	{
-		LogManager::getInstance().log(new WarningLog(_T("Polygon shape creation failed!"), LOG_INFO));
+		LogManager::getInstance().log(new WarningLog(_T("Polygon shape creation failed!"), LOG_DATA));
 		SafeRelease(geometry_sink);
 		return nullptr;
 	}
@@ -159,7 +159,7 @@ Geometry* GeometryFactory::createPolygonGeometry(ShapeDescription* description)
 	hr = geometry_sink->Close();
 	if (FAILED(hr))
 	{
-		LogManager::getInstance().log(new WarningLog(_T("Polygon shape creation failed!"), LOG_INFO));
+		LogManager::getInstance().log(new WarningLog(_T("Polygon shape creation failed!"), LOG_DATA));
 		SafeRelease(geometry_sink);
 		return nullptr;
 	}

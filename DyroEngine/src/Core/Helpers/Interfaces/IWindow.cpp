@@ -65,7 +65,7 @@ bool IWindow::createWindow()
 	WNDCLASS wndclass = createWindowClass();
 	if (!RegisterClass(&wndclass))
 	{
-		LogManager::getInstance().log(new ErrorLog(_T("Register \"WNDCLASS\" failed."), LOG_INFO));
+		LogManager::getInstance().log(new ErrorLog(_T("Register \"WNDCLASS\" failed."), LOG_DATA));
 		return false;
 	}
 
@@ -84,18 +84,18 @@ bool IWindow::destroyWindow()
 {
 	if (this->handle_devicecontext && !ReleaseDC(this->handle_window, this->handle_devicecontext))
 	{
-		LogManager::getInstance().log(new ErrorLog(_T("Release \"DC\" failed."), LOG_INFO));
+		LogManager::getInstance().log(new ErrorLog(_T("Release \"DC\" failed."), LOG_DATA));
 		this->handle_devicecontext = NULL;
 	}
 	if (this->handle_window && !DestroyWindow(this->handle_window))
 	{
-		LogManager::getInstance().log(new ErrorLog(_T("Release \"HWND\" failed"), LOG_INFO));
+		LogManager::getInstance().log(new ErrorLog(_T("Release \"HWND\" failed"), LOG_DATA));
 		this->handle_window = NULL;
 	}
 
 	if (!UnregisterClass(this->window_classname.c_str(), this->handle_instance))
 	{
-		LogManager::getInstance().log(new ErrorLog(_T("Unregister \"WNDCLASS\" failed"), LOG_INFO));
+		LogManager::getInstance().log(new ErrorLog(_T("Unregister \"WNDCLASS\" failed"), LOG_DATA));
 		this->handle_instance = NULL;
 	}
 
@@ -153,7 +153,7 @@ bool IWindow::setupWindow()
 
 	if (!this->handle_window)
 	{
-		LogManager::getInstance().log(new ErrorLog(_T("Creation of our window failed."), LOG_INFO));
+		LogManager::getInstance().log(new ErrorLog(_T("Creation of our window failed."), LOG_DATA));
 		return false;
 	}
 
@@ -165,7 +165,7 @@ bool IWindow::errorHandling()
 	this->handle_devicecontext = GetDC(this->handle_window);
 	if (!this->handle_devicecontext)
 	{
-		LogManager::getInstance().log(new ErrorLog(_T("Can't create a \"GLDC\"."), LOG_INFO));
+		LogManager::getInstance().log(new ErrorLog(_T("Can't create a \"GLDC\"."), LOG_DATA));
 		return false;
 	}
 
@@ -175,12 +175,12 @@ bool IWindow::errorHandling()
 	this->pixel_format = ChoosePixelFormat(this->handle_devicecontext, &pfd);
 	if (!this->pixel_format)
 	{
-		LogManager::getInstance().log(new ErrorLog(_T("Can't find a suitable \"PixelFormat\"."), LOG_INFO));
+		LogManager::getInstance().log(new ErrorLog(_T("Can't find a suitable \"PixelFormat\"."), LOG_DATA));
 		return false;
 	}
 	if (!SetPixelFormat(this->handle_devicecontext, this->pixel_format, &pfd))
 	{
-		LogManager::getInstance().log(new ErrorLog(_T("Can't set the \"PixelFormat\"."), LOG_INFO));
+		LogManager::getInstance().log(new ErrorLog(_T("Can't set the \"PixelFormat\"."), LOG_DATA));
 		return false;
 	}
 

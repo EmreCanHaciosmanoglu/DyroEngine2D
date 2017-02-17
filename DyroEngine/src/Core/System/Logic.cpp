@@ -1,10 +1,11 @@
 #include "Core/System/Objects/Logic.h"
 
-#include "SceneGraph/Manager/SceneManager.h"
-
 #include "Core\Types\SystemType.h"
+
 #include "Core/Defines\assert.h"
 #include "Core/Defines/deletemacros.h"
+
+#include "SceneGraph/Manager/SceneManager.h"
 
 Logic::Logic()
 	:System(SystemType::LOGIC_SYSTEM)

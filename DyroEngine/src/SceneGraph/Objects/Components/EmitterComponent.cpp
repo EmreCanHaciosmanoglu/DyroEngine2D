@@ -73,7 +73,7 @@ void EmitterComponent::update()
 		else ++it;
 	}
 
-	//LogManager::getInstance().log(new TodoLog(_T("Apply particle emitter modifications"), LOG_INFO));
+	//LogManager::getInstance().log(new TodoLog(_T("Apply particle emitter modifications"), LOG_DATA));
 
 	this->description->setDirty(false);
 }

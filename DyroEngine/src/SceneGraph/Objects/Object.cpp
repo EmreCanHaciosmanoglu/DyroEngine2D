@@ -70,7 +70,7 @@ void Object::OBJECT_INIT(const std::tstring& classTypeId)
 	std::vector<std::tstring>::const_iterator it = std::find(this->inheritance_list.begin(), this->inheritance_list.end(), classTypeId);
 	if (it != this->inheritance_list.end())
 	{
-		LogManager::getInstance().log(new ErrorLog(_T("DataObject : duplicate class type id detected; ignored:") + classTypeId, LOG_INFO));
+		LogManager::getInstance().log(new ErrorLog(_T("DataObject : duplicate class type id detected; ignored:") + classTypeId, LOG_DATA));
 		return;
 	}
 

@@ -48,7 +48,7 @@ bool Settings::loadFile(const std::tstring& filePath)
 	}
 	else
 	{
-		LogManager::getInstance().log(new InfoLog(_T("Could not open file: ") + filePath, LOG_INFO));
+		LogManager::getInstance().log(new InfoLog(_T("Could not open file: ") + filePath, LOG_DATA));
 
 		return false;
 	}

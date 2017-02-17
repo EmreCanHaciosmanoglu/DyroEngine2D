@@ -1,5 +1,7 @@
 #include "Core\Diagnostics\Manager\LogManager.h"
-#include "Core\Diagnostics\Objects\Log.h"
+#include "Core\Diagnostics\Objects\InfoLog.h"
+#include "Core\Diagnostics\Objects\WarningLog.h"
+#include "Core\Diagnostics\Objects\ErrorLog.h"
 
 #include "Core\Types\LogType.h"
 
@@ -55,4 +57,17 @@ void LogManager::writeLogToFile()
 
 		logfile.close();
 	}
+}
+
+void LogManager::info(const std::tstring& message, int ln, const std::tstring& fn)
+{
+	LogManager::getInstance().log(new InfoLog(message, ln, fn));
+}
+void LogManager::warning(const std::tstring& message, int ln, const std::tstring& fn)
+{
+	LogManager::getInstance().log(new WarningLog(message, ln, fn));
+}
+void LogManager::error(const std::tstring& message, int ln, const std::tstring& fn)
+{
+	LogManager::getInstance().log(new ErrorLog(message, ln, fn));
 }

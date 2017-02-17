@@ -1,9 +1,7 @@
 #ifndef _SYSTEM_H
 #define _SYSTEM_H
 
-#ifndef _SYSTEMTYPE_H
-#include "Core/Types/SystemType.h"
-#endif
+enum class SystemType;
 
 class System
 {

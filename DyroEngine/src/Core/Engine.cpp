@@ -45,12 +45,12 @@ int Engine::mainLoop()
 
 	if (!initialize())
 	{
-		LogManager::getInstance().log(new ErrorLog(_T("Initialization of the engine failed."), LOG_INFO));
+		LogManager::getInstance().log(new ErrorLog(_T("Initialization of the engine failed."), LOG_DATA));
 		return INITIALIZATION_FAILED;
 	}
 
 	// Seed the random number generator
-	srand(GetTickCount64());
+	srand((unsigned int)GetTickCount64());
 
 	MSG msg = {};
 	while (msg.message != WM_QUIT)
@@ -82,7 +82,7 @@ int Engine::mainLoop()
 
 	if (!shutDown())
 	{
-		LogManager::getInstance().log(new ErrorLog(_T("Shutdown of the engine failed."), LOG_INFO));
+		LogManager::getInstance().log(new ErrorLog(_T("Shutdown of the engine failed."), LOG_DATA));
 		return SHUTDOWN_FAILED;
 	}
 

@@ -63,10 +63,10 @@ void Timer::reset()
 void Timer::pause()
 {
 	this->paused = true;
-	LogManager::getInstance().log(new TodoLog(_T("Implement timer pause"), LOG_INFO));
+	LogManager::getInstance().log(new TodoLog(_T("Implement timer pause"), LOG_DATA));
 }
 void Timer::unpause()
 {
 	this->paused = false;
-	LogManager::getInstance().log(new ErrorLog(_T("Implement timer unpause"), LOG_INFO));
+	LogManager::getInstance().log(new ErrorLog(_T("Implement timer unpause"), LOG_DATA));
 }

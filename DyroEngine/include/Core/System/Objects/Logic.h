@@ -1,7 +1,7 @@
 #ifndef _LOGIC_H
 #define _LOGIC_H
 
-#include "System.h"
+#include "Core/System/Objects/System.h"
 
 class Logic : public System
 {
