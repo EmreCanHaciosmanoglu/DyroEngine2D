@@ -123,6 +123,10 @@
     <ClCompile Include="src\SceneGraph\Objects\GameObjects\UI\UIObject.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\GameObjects\UI\Button.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Descriptions\UI\ButtonDescription.cpp" />
+    <ClCompile Include="src\Core\Data\Manager\FontManager.cpp" />
+    <ClCompile Include="src\Core\Data\Font.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\Components\TextComponent.cpp" />
+    <ClCompile Include="src\Rendering\Objects\RenderItems\Text.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Core\Data\Factory\SettingsFactory.h" />
@@ -272,5 +276,9 @@
     <ClInclude Include="include\SceneGraph\Objects\GameObjects\UI\UIObject.h" />
     <ClInclude Include="include\SceneGraph\Objects\GameObjects\UI\Button.h" />
     <ClInclude Include="include\Core\Data\Objects\Descriptions\UI\ButtonDescription.h" />
+    <ClInclude Include="include\Core\Data\Manager\FontManager.h" />
+    <ClInclude Include="include\Core\Data\Objects\Font.h" />
+    <ClInclude Include="include\SceneGraph\Objects\Components\TextComponent.h" />
+    <ClInclude Include="include\Rendering\Objects\RenderItems\Text.h" />
   </ItemGroup>
 </Project>

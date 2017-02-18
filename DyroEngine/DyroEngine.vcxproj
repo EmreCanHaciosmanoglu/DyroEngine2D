@@ -82,6 +82,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\Core\Data\Factory\SettingsFactory.h" />
+    <ClInclude Include="include\Core\Data\Manager\FontManager.h" />
     <ClInclude Include="include\Core\Data\Manager\SettingsManager.h" />
     <ClInclude Include="include\Core\Data\Manager\TimerManager.h" />
     <ClInclude Include="include\Core\Data\Objects\Descriptions\Particles\EmitterComponentDescription.h" />
@@ -92,6 +93,7 @@
     <ClInclude Include="include\Core\Data\Objects\Descriptions\Shapes\RectShapeDescription.h" />
     <ClInclude Include="include\Core\Data\Objects\Descriptions\Shapes\ShapeDescription.h" />
     <ClInclude Include="include\Core\Data\Objects\Descriptions\UI\ButtonDescription.h" />
+    <ClInclude Include="include\Core\Data\Objects\Font.h" />
     <ClInclude Include="include\Core\Data\Objects\Geometry.h" />
     <ClInclude Include="include\Core\Data\Objects\Layer.h" />
     <ClInclude Include="include\Core\Data\Manager\LayerManager.h" />
@@ -114,6 +116,7 @@
     <ClInclude Include="include\Math\Objects\Random.h" />
     <ClInclude Include="include\Math\Objects\Range.h" />
     <ClInclude Include="include\Rendering\Objects\RenderItems\Particle.h" />
+    <ClInclude Include="include\Rendering\Objects\RenderItems\Text.h" />
     <ClInclude Include="include\Rendering\Objects\RenderItems\Texture.h" />
     <ClInclude Include="include\Core\Data\Objects\Timers\WorldTimer.h" />
     <ClInclude Include="include\Rendering\Objects\RenderItems\RenderItem.h" />
@@ -163,6 +166,7 @@
     <ClInclude Include="include\SceneGraph\Objects\Components\Shapes\PolygonShapeComponent.h" />
     <ClInclude Include="include\SceneGraph\Objects\Components\Shapes\RectShapeComponent.h" />
     <ClInclude Include="include\SceneGraph\Objects\Components\Shapes\ShapeComponent.h" />
+    <ClInclude Include="include\SceneGraph\Objects\Components\TextComponent.h" />
     <ClInclude Include="include\SceneGraph\Objects\GameObjects\Camera\Camera.h" />
     <ClInclude Include="include\SceneGraph\Objects\Components\CameraComponent.h" />
     <ClInclude Include="include\Core\Data\Objects\Resources\Image.h" />
@@ -231,6 +235,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Core\Data\Factory\SettingsFactory.cpp" />
+    <ClCompile Include="src\Core\Data\Font.cpp" />
+    <ClCompile Include="src\Core\Data\Manager\FontManager.cpp" />
     <ClCompile Include="src\Core\Data\Manager\SettingsManager.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Descriptions\Particles\EmitterComponentDescription.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Descriptions\Particles\ParticleDescription.cpp" />
@@ -276,6 +282,7 @@
     <ClCompile Include="src\Rendering\Objects\RenderItems\Shapes\PolygonShape.cpp" />
     <ClCompile Include="src\Rendering\Objects\RenderItems\Shapes\RectShape.cpp" />
     <ClCompile Include="src\Rendering\Objects\RenderItems\Shapes\Shape.cpp" />
+    <ClCompile Include="src\Rendering\Objects\RenderItems\Text.cpp" />
     <ClCompile Include="src\Rendering\Objects\RenderItems\Texture.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Timers\WorldTimer.cpp" />
     <ClCompile Include="src\Rendering\Objects\RenderItems\RenderItem.cpp" />
@@ -340,6 +347,7 @@
     <ClCompile Include="src\SceneGraph\Objects\Components\Shapes\LineShapeComponent.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\Components\Shapes\PolygonShapeComponent.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\Components\Shapes\RectShapeComponent.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\Components\TextComponent.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\GameObjects\Camera\Camera.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\Components\CameraComponent.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Resources\Image.cpp" />

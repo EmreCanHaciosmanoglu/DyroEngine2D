@@ -19,6 +19,7 @@ Graphics::Graphics()
 	, D2D_factory(nullptr)
 	, color_brush(nullptr)
 	, image_factory(nullptr)
+	, write_factory(nullptr)
 
 	, main_window(nullptr)
 {
@@ -68,8 +69,19 @@ HRESULT Graphics::createDeviceIndependentResources()
 	HRESULT hr = S_OK;
 
 	hr = D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, &this->D2D_factory);
+	if (FAILED(hr))
+		return hr;
+
 	hr = CoInitializeEx(NULL, COINIT_MULTITHREADED);
+	if (FAILED(hr))
+		return hr;
 	hr = CoCreateInstance(CLSID_WICImagingFactory, NULL, CLSCTX_INPROC_SERVER, IID_IWICImagingFactory, (LPVOID*)&this->image_factory);
+	if (FAILED(hr))
+		return hr;
+
+	hr = DWriteCreateFactory(DWRITE_FACTORY_TYPE_SHARED, __uuidof(IDWriteFactory), reinterpret_cast<IUnknown**>(&this->write_factory));
+	if (FAILED(hr))
+		return hr;
 
 	return hr;
 }
