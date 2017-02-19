@@ -1,9 +1,7 @@
 #ifndef _LOGIC_H
 #define _LOGIC_H
 
-#include "System.h"
-
-class Game;
+#include "Core/System/Objects/System.h"
 
 class Logic : public System
 {
@@ -15,11 +13,7 @@ public:
 	void update();
 	virtual bool shutdown();
 
-	void setGame(Game* game);
-
 private:
-
-	Game* game;
 };
 
 #endif

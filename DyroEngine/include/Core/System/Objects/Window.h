@@ -1,10 +1,8 @@
 #ifndef _WINDOW_H
 #define _WINDOW_H
 
-#include "System.h"
-#ifndef _IWINDOW_H
+#include "Core/System/Objects/System.h"
 #include "Core/Helpers/Interfaces/IWindow.h"
-#endif
 
 class Window : public System, public IWindow
 {

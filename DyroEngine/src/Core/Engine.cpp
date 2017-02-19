@@ -4,21 +4,19 @@
 #include <Windows.h>
 #endif
 
-#include "Core/System/Manager/SystemManager.h"
-#include "Core/System/Objects/System.h"
+#include "Core\System\Manager\SystemManager.h"
+#include "Core\System\Objects\System.h"
 #include "Core\System\Objects\Logic.h"
 #include "Core\System\Objects\Window.h"
 #include "Core\System\Objects\Graphics.h"
 #include "Core\System\Objects\Input.h"
 
-#include "Core/Types/SystemType.h"
-#include "Core/Types/SettingsType.h"
-#include "Core/Types/EngineStateType.h"
+#include "Core\Types\SystemType.h"
+#include "Core\Types\SettingsType.h"
+#include "Core\Types\EngineStateType.h"
 
-#include "Core/Data/Factory/SettingsFactory.h"
-#include "Core/Data/Manager/SettingsManager.h"
-
-#include "Core/Data/Objects/Game.h"
+#include "Core\Data\Manager\SettingsManager.h"
+#include "Core\Data\Objects\Game.h"
 
 #include "Core\Defines\debug.h"
 
@@ -47,12 +45,12 @@ int Engine::mainLoop()
 
 	if (!initialize())
 	{
-		LogManager::getInstance().log(new ErrorLog(_T("Initialization of the engine failed."), LOG_INFO));
+		LogManager::getInstance().log(new ErrorLog(_T("Initialization of the engine failed."), LOG_DATA));
 		return INITIALIZATION_FAILED;
 	}
 
 	// Seed the random number generator
-	srand(GetTickCount());
+	srand((unsigned int)GetTickCount64());
 
 	MSG msg = {};
 	while (msg.message != WM_QUIT)
@@ -84,7 +82,7 @@ int Engine::mainLoop()
 
 	if (!shutDown())
 	{
-		LogManager::getInstance().log(new ErrorLog(_T("Shutdown of the engine failed."), LOG_INFO));
+		LogManager::getInstance().log(new ErrorLog(_T("Shutdown of the engine failed."), LOG_DATA));
 		return SHUTDOWN_FAILED;
 	}
 
@@ -96,39 +94,17 @@ int Engine::initialize()
 	if (!createManagers())
 		return FALSE;
 
-	SettingsFactory factory;
+	if (!addSettings())
+		return FALSE;
+	if (!addSystems())
+		return FALSE;
 
-	SettingsManager::getInstance().addSettings(factory.createSettings(_T("resources/INI/Engine.ini"), SettingsType::APPLICATION_SETTINGS));
-	SettingsManager::getInstance().addSettings(factory.createSettings(_T("resources/INI/Engine.ini"), SettingsType::GAME_SETTINGS));
-	SettingsManager::getInstance().addSettings(factory.createSettings(_T("resources/INI/Engine.ini"), SettingsType::PHYSICS_SETTINGS));
+	if (!createGame())
+		return FALSE;
 
 	if (!SettingsManager::getInstance().initialize())
 		return FALSE;
 	if (!SystemManager::getInstance().initialize())
-		return FALSE;
-
-	Window* window = dynamic_cast<Window*>(SystemManager::getInstance().getSystem(SystemType::WINDOW_SYSTEM));
-	if (window == nullptr)
-		return FALSE;
-	Input* input = dynamic_cast<Input*>(SystemManager::getInstance().getSystem(SystemType::INPUT_SYSTEM));
-	if (input == nullptr)
-		return FALSE;
-	Graphics* graphics = dynamic_cast<Graphics*>(SystemManager::getInstance().getSystem(SystemType::GRAPHICS_SYSTEM));
-	if (graphics == nullptr)
-		return FALSE;
-	Logic* logic = dynamic_cast<Logic*>(SystemManager::getInstance().getSystem(SystemType::LOGIC_SYSTEM));
-	if (logic == nullptr)
-		return FALSE;
-
-	if (!window->initialize())
-		return FALSE;
-	if (!input->initialize())
-		return false;
-	if (!graphics->initialize())
-		return FALSE;
-
-	logic->setGame(this->game);
-	if (!logic->initialize())
 		return FALSE;
 
 	return TRUE;
@@ -142,13 +118,59 @@ void Engine::update()
 }
 int Engine::shutDown()
 {
+	if (!destroyGame())
+		return FALSE;
+
 	if (!SystemManager::getInstance().shutdown())
+		return FALSE;
+	if (!SettingsManager::getInstance().shutdown())
 		return FALSE;
 
 	if (!destroyManagers())
 		return FALSE;
 
 	return TRUE;
+}
+
+bool Engine::createGame()
+{
+	//Game cannot be null!
+	assert(this->game != nullptr);
+
+	if (!game->initialize())
+		return false;
+}
+bool Engine::destroyGame()
+{
+	if (!game->shutdown())
+		return false;
+
+	return true;
+}
+
+bool Engine::addSettings()
+{
+	if (!SettingsManager::getInstance().addSettings(SettingsType::APPLICATION_SETTINGS))
+		return false;
+	if (!SettingsManager::getInstance().addSettings(SettingsType::GAME_SETTINGS))
+		return false;
+	if (!SettingsManager::getInstance().addSettings(SettingsType::PHYSICS_SETTINGS))
+		return false;
+
+	return true;
+}
+bool Engine::addSystems()
+{
+	if (!SystemManager::getInstance().addSystem(SystemType::WINDOW_SYSTEM))
+		return false;
+	if (!SystemManager::getInstance().addSystem(SystemType::INPUT_SYSTEM))
+		return false;
+	if (!SystemManager::getInstance().addSystem(SystemType::GRAPHICS_SYSTEM))
+		return false;
+	if (!SystemManager::getInstance().addSystem(SystemType::LOGIC_SYSTEM))
+		return false;
+
+	return true;
 }
 
 bool Engine::createManagers()

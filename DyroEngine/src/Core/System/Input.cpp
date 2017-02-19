@@ -9,7 +9,13 @@ Input::Input()
 	, keyboard_state_0(nullptr)
 	, keyboard_state_1(nullptr)
 	, main_window(nullptr)
-{}
+{
+	current_mouse_position.x = 0;
+	current_mouse_position.y = 0;
+
+	old_mouse_position.x = 0;
+	old_mouse_position.y = 0;
+}
 Input::~Input()
 {}
 
@@ -21,7 +27,7 @@ bool Input::initialize()
 	GetKeyboardState(keyboard_state_0);
 	GetKeyboardState(keyboard_state_1);
 
-	main_window = dynamic_cast<Window*>(SystemManager::getInstance().getSystem(SystemType::WINDOW_SYSTEM));
+	main_window = SystemManager::getInstance().getSystem<Window>();
 
 	return true;
 }
@@ -167,12 +173,14 @@ void Input::checkKeyBindings()
 	}
 }
 
-unsigned char Input::convertMouseButton(Input::MouseButton button)
+unsigned char Input::convertMouseButton(MouseButton button)
 {
 	switch (button)
 	{
-	case Input::MouseButton::RIGHT: return VK_LBUTTON;
-	case Input::MouseButton::LEFT: return VK_RBUTTON;
-	case Input::MouseButton::MIDDLE: return VK_MBUTTON;
+	case MouseButton::RIGHT: return VK_LBUTTON;
+	case MouseButton::LEFT: return VK_RBUTTON;
+	case MouseButton::MIDDLE: return VK_MBUTTON;
 	}
+
+	return 0;
 }

@@ -29,15 +29,20 @@ public:
 	bool isHovered() const;
 
 	void onClicked(std::function<void()> fn);
-	void onHover(std::function<void()> fn);
+	void onHoverEnter(std::function<void()> fn);
+	void onHoverLeave(std::function<void()> fn);
 
 private:
+	void updateBackgroundColor();
+	void updateBorderColor();
+
 	void checkMouseMove(const POINT& mousePosition, const POINT& mouseMove);
 	void checkMousePress(const POINT& mousePosition, const POINT& mouseMove);
 	void checkMouseRelease(const POINT& mousePosition, const POINT& mouseDelta);
 
 	std::vector<std::function<void()>> on_clicked_bindings;
-	std::vector<std::function<void()>> on_hover_bindings;
+	std::vector<std::function<void()>> on_hover_enter_bindings;
+	std::vector<std::function<void()>> on_hover_leave_bindings;
 
 	ButtonDescription* description;
 

@@ -46,7 +46,7 @@ Geometry* GeometryFactory::createGeometry(ShapeDescription* description)
 Geometry* GeometryFactory::createRectangleGeometry(ShapeDescription* description)
 {
 	RectShapeDescription* rect_description = dynamic_cast<RectShapeDescription*>(description);
-	Graphics* graphics = dynamic_cast<Graphics*>(SystemManager::getInstance().getSystem(SystemType::GRAPHICS_SYSTEM));
+	Graphics* graphics = SystemManager::getInstance().getSystem<Graphics>();
 	HRESULT hr = S_OK;
 
 	//Create the rectangular geometry
@@ -55,13 +55,13 @@ Geometry* GeometryFactory::createRectangleGeometry(ShapeDescription* description
 	if (SUCCEEDED(hr))
 		return new Geometry(rect_geometry, _T("Rectange Geometry"));
 
-	LogManager::getInstance().log(new WarningLog(_T("Rect shape creation failed!"), LOG_INFO));
+	LogManager::getInstance().log(new WarningLog(_T("Rect shape creation failed!"), LOG_DATA));
 	return nullptr;
 }
 Geometry* GeometryFactory::createCircleGeometry(ShapeDescription* description)
 {
 	CircleShapeDescription* circle_description = dynamic_cast<CircleShapeDescription*>(description);
-	Graphics* graphics = dynamic_cast<Graphics*>(SystemManager::getInstance().getSystem(SystemType::GRAPHICS_SYSTEM));
+	Graphics* graphics = SystemManager::getInstance().getSystem<Graphics>();
 	HRESULT hr = S_OK;
 
 	D2D1_ELLIPSE ellipse;
@@ -78,13 +78,13 @@ Geometry* GeometryFactory::createCircleGeometry(ShapeDescription* description)
 	if (SUCCEEDED(hr))
 		return new Geometry(ellipse_geometry, _T("Ellipse Geometry"));
 
-	LogManager::getInstance().log(new WarningLog(_T("Circle shape creation failed!"), LOG_INFO));
+	LogManager::getInstance().log(new WarningLog(_T("Circle shape creation failed!"), LOG_DATA));
 	return nullptr;
 }
 Geometry* GeometryFactory::createLineGeometry(ShapeDescription* description)
 {
 	LineShapeDescription* line_description = dynamic_cast<LineShapeDescription*>(description);
-	Graphics* graphics = dynamic_cast<Graphics*>(SystemManager::getInstance().getSystem(SystemType::GRAPHICS_SYSTEM));
+	Graphics* graphics = SystemManager::getInstance().getSystem<Graphics>();
 	HRESULT hr = S_OK;
 
 	//Create line geometry
@@ -92,7 +92,7 @@ Geometry* GeometryFactory::createLineGeometry(ShapeDescription* description)
 	hr = graphics->getD2DFactory()->CreatePathGeometry(&path_geometry);
 	if (FAILED(hr))
 	{
-		LogManager::getInstance().log(new WarningLog(_T("Line shape creation failed!"), LOG_INFO));
+		LogManager::getInstance().log(new WarningLog(_T("Line shape creation failed!"), LOG_DATA));
 		return nullptr;
 	}
 
@@ -103,7 +103,7 @@ Geometry* GeometryFactory::createLineGeometry(ShapeDescription* description)
 	hr = path_geometry->Open(&geometry_sink);
 	if (FAILED(hr))
 	{
-		LogManager::getInstance().log(new WarningLog(_T("Line shape creation failed!"), LOG_INFO));
+		LogManager::getInstance().log(new WarningLog(_T("Line shape creation failed!"), LOG_DATA));
 		SafeRelease(geometry_sink);
 		return nullptr;
 	}
@@ -115,7 +115,7 @@ Geometry* GeometryFactory::createLineGeometry(ShapeDescription* description)
 	hr = geometry_sink->Close();
 	if (FAILED(hr))
 	{
-		LogManager::getInstance().log(new WarningLog(_T("Line shape creation failed!"), LOG_INFO));
+		LogManager::getInstance().log(new WarningLog(_T("Line shape creation failed!"), LOG_DATA));
 		SafeRelease(geometry_sink);
 		return nullptr;
 	}
@@ -126,7 +126,7 @@ Geometry* GeometryFactory::createLineGeometry(ShapeDescription* description)
 Geometry* GeometryFactory::createPolygonGeometry(ShapeDescription* description)
 {
 	PolygonShapeDescription* polygon_description = dynamic_cast<PolygonShapeDescription*>(description);
-	Graphics* graphics = dynamic_cast<Graphics*>(SystemManager::getInstance().getSystem(SystemType::GRAPHICS_SYSTEM));
+	Graphics* graphics = SystemManager::getInstance().getSystem<Graphics>();
 	HRESULT hr = S_OK;
 
 	//Create polygon geometry
@@ -134,7 +134,7 @@ Geometry* GeometryFactory::createPolygonGeometry(ShapeDescription* description)
 	hr = graphics->getD2DFactory()->CreatePathGeometry(&path_geometry);
 	if (FAILED(hr))
 	{
-		LogManager::getInstance().log(new WarningLog(_T("Polygon shape creation failed!"), LOG_INFO));
+		LogManager::getInstance().log(new WarningLog(_T("Polygon shape creation failed!"), LOG_DATA));
 		return nullptr;
 	}
 
@@ -142,7 +142,7 @@ Geometry* GeometryFactory::createPolygonGeometry(ShapeDescription* description)
 	path_geometry->Open(&geometry_sink);
 	if (FAILED(hr))
 	{
-		LogManager::getInstance().log(new WarningLog(_T("Polygon shape creation failed!"), LOG_INFO));
+		LogManager::getInstance().log(new WarningLog(_T("Polygon shape creation failed!"), LOG_DATA));
 		SafeRelease(geometry_sink);
 		return nullptr;
 	}
@@ -159,7 +159,7 @@ Geometry* GeometryFactory::createPolygonGeometry(ShapeDescription* description)
 	hr = geometry_sink->Close();
 	if (FAILED(hr))
 	{
-		LogManager::getInstance().log(new WarningLog(_T("Polygon shape creation failed!"), LOG_INFO));
+		LogManager::getInstance().log(new WarningLog(_T("Polygon shape creation failed!"), LOG_DATA));
 		SafeRelease(geometry_sink);
 		return nullptr;
 	}

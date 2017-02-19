@@ -1,45 +1,28 @@
 #include "Core/System/Manager/SystemManager.h"
-
-#include "Core/System/Objects/System.h"
-#include "Core/System/Factory/SystemFactory.h"
-
 #include "Core/Types/SystemType.h"
+
 #include "Core/Defines/deletemacros.h"
 
 SystemManager::SystemManager()
-	:factory(nullptr)
-{
-}
+{}
 SystemManager::~SystemManager()
-{
-}
-
-System* SystemManager::getSystem(SystemType type)
-{
-	System* system = getObject((int)type);
-	if (system != nullptr)
-		return system;
-
-	System* new_system = this->factory->createSystem(type);
-	addObject((int)type, new_system);
-
-	return new_system;
-}
-void SystemManager::getSystems(std::vector<System*>& systems)
-{
-	getObjects(systems);
-}
+{}
 
 bool SystemManager::initialize()
 {
-	this->factory = new SystemFactory();
+	std::vector<System*> systems;
+	getObjects(systems);
+
+	for (System* system : systems)
+	{
+		if (!system->initialize())
+			return false;
+	}
 
 	return true;
 }
 bool SystemManager::shutdown()
 {
-	SafeDelete(this->factory);
-
 	std::vector<System*> systems;
 	getObjects(systems);
 
@@ -53,4 +36,14 @@ bool SystemManager::shutdown()
 	}
 
 	return result;
+}
+
+bool SystemManager::addSystem(SystemType type)
+{
+	return addObject((int)type, this->factory.createSystem(type));
+}
+
+void SystemManager::getSystems(std::vector<System*>& systems)
+{
+	getObjects(systems);
 }

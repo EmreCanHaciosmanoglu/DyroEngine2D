@@ -127,6 +127,14 @@
     <ClCompile Include="src\Core\Data\Font.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\Components\TextComponent.cpp" />
     <ClCompile Include="src\Rendering\Objects\RenderItems\Text.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Descriptions\Direct2D\RenderTargetDescription.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Direct2D\RenderTarget.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Direct2D\DeviceResource.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Direct2D\Brushes\ColorBrush.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Direct2D\Brushes\GradientColorBrush.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Direct2D\Brushes\LinearGradientColorBrush.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Direct2D\Brushes\RadialGradientColorBrush.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Direct2D\Brushes\SolidColorBrush.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Core\Data\Factory\SettingsFactory.h" />
@@ -280,5 +288,14 @@
     <ClInclude Include="include\Core\Data\Objects\Font.h" />
     <ClInclude Include="include\SceneGraph\Objects\Components\TextComponent.h" />
     <ClInclude Include="include\Rendering\Objects\RenderItems\Text.h" />
+    <ClInclude Include="include\Core\Types\MouseButtonType.h" />
+    <ClInclude Include="include\Core\Data\Objects\Descriptions\Direct2D\RenderTargetDescription.h" />
+    <ClInclude Include="include\Core\Data\Objects\Direct2D\RenderTarget.h" />
+    <ClInclude Include="include\Core\Data\Objects\Direct2D\DeviceResource.h" />
+    <ClInclude Include="include\Core\Data\Objects\Direct2D\Brushes\ColorBrush.h" />
+    <ClInclude Include="include\Core\Data\Objects\Direct2D\Brushes\GradientColorBrush.h" />
+    <ClInclude Include="include\Core\Data\Objects\Direct2D\Brushes\LinearGradientColorBrush.h" />
+    <ClInclude Include="include\Core\Data\Objects\Direct2D\Brushes\RadialGradientColorBrush.h" />
+    <ClInclude Include="include\Core\Data\Objects\Direct2D\Brushes\SolidColorBrush.h" />
   </ItemGroup>
 </Project>

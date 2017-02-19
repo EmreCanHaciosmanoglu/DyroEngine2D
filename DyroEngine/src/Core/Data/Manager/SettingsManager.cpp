@@ -1,6 +1,7 @@
 #include "Core/Data/Manager/SettingsManager.h"
-
 #include "Core/Types/SettingsType.h"
+
+#include "Core/Defines/deletemacros.h"
 
 SettingsManager::SettingsManager()
 {}
@@ -25,18 +26,24 @@ bool SettingsManager::shutdown()
 	std::vector<Settings*> settings;
 	getObjects(settings);
 
+	bool result = true;
 	for (Settings* setting : settings)
-		delete setting;
+	{
+		//if (!setting->shutdown())
+		//	result = false;
 
-	return true;
+		SafeDelete(setting);
+	}
+
+	return result;
 }
 
-void SettingsManager::addSettings(Settings* setting)
+bool SettingsManager::addSettings(SettingsType type)
 {
-	addObject((unsigned int)setting->getSettingsType(), setting);
+	return addObject((unsigned int)type, this->factory.createSettings(type));
 }
 
-Settings* SettingsManager::getSettings(SettingsType type)
+void SettingsManager::getSettings(std::vector<Settings*>& settings)
 {
-	return getObject((unsigned int)type);
+	getObjects(settings);
 }

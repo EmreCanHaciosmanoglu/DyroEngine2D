@@ -14,10 +14,15 @@
 #include "Core/System/Objects/Input.h"
 
 #include "Core/Types/GeometryType.h"
+#include "Core/Types/MouseButtonType.h"
 
 #include "Math\Objects\Rect2D.h"
 
-Button::Button(ButtonDescription* desc, const std::tstring& name = _T("Button"))
+#ifndef _FUNCTIONAL_
+#include <functional>
+#endif
+
+Button::Button(ButtonDescription* desc, const std::tstring& name)
 	:UIObject(name)
 	, description(desc)
 	, selected(false)
@@ -49,6 +54,11 @@ Button::~Button()
 
 bool Button::initialize()
 {
+	onHoverEnter(std::bind(&Button::updateBackgroundColor, this));
+	onHoverEnter(std::bind(&Button::updateBorderColor, this));
+	onHoverLeave(std::bind(&Button::updateBackgroundColor, this));
+	onHoverLeave(std::bind(&Button::updateBorderColor, this));
+
 	return UIObject::initialize();
 }
 void Button::update()
@@ -62,10 +72,12 @@ bool Button::shutdown()
 
 void Button::setupInput(Input* input)
 {
-	input->bindMouseMove(MouseMoveBinding(std::bind(&Button::checkMouseMove, this)));
+	//Place holders of mouse move will be filled up by the input system
+	input->bindMouseMove(MouseMoveBinding(std::bind(&Button::checkMouseMove, this, std::placeholders::_1, std::placeholders::_2)));
 
-	input->bindMouseClick(MouseClickBinding(Input::MouseButton::LEFT, std::bind(&Button::checkMousePress, this), InputStateType::PRESSED));
-	input->bindMouseClick(MouseClickBinding(Input::MouseButton::LEFT, std::bind(&Button::checkMouseRelease, this), InputStateType::RELEASD));
+	//Place holders of mouse click will be filled up by the input system
+	input->bindMouseClick(MouseClickBinding(MouseButton::LEFT, std::bind(&Button::checkMousePress, this, std::placeholders::_1, std::placeholders::_2), InputStateType::PRESSED));
+	input->bindMouseClick(MouseClickBinding(MouseButton::LEFT, std::bind(&Button::checkMouseRelease, this, std::placeholders::_1, std::placeholders::_2), InputStateType::RELEASD));
 }
 
 bool Button::isSelected() const
@@ -81,29 +93,51 @@ void Button::onClicked(std::function<void()> fn)
 {
 	this->on_clicked_bindings.push_back(fn);
 }
-void Button::onHover(std::function<void()> fn)
+void Button::onHoverEnter(std::function<void()> fn)
 {
-	this->on_hover_bindings.push_back(fn);
+	this->on_hover_enter_bindings.push_back(fn);
+}
+void Button::onHoverLeave(std::function<void()> fn)
+{
+	this->on_hover_leave_bindings.push_back(fn);
+}
+
+void Button::updateBackgroundColor()
+{
+	if (isHovered())
+		this->description->getShape()->setColor(this->description->getBackgroundHoverColor());
+	else this->description->getShape()->setColor(this->description->getBackgroundIdleColor());
+}
+void Button::updateBorderColor()
+{
+	//if (isHovered())
+	//	this->description->getShape()->setColor(this->description->getBorderHoverColor());
+	//else this->description->getShape()->setColor(this->description->getBorderIdleColor());
 }
 
 void Button::checkMouseMove(const POINT& mousePosition, const POINT& mouseDelta)
 {
 	Rect2D bounds = getBounds();
 
-	if (bounds.contains(Vector2D(mousePosition.x, mousePosition.y)))
+	if (bounds.contains(Vector2D((float)mousePosition.x, (float)mousePosition.y)) && !this->hovered)
 	{
 		this->hovered = true;
-		for (std::function<void()>& fn : this->on_hover_bindings)
+		for (std::function<void()>& fn : this->on_hover_enter_bindings)
 			fn();
 	}
-	else this->hovered = false;
+	else if (!bounds.contains(Vector2D((float)mousePosition.x, (float)mousePosition.y)) && this->hovered)
+	{
+		this->hovered = false;
+		for (std::function<void()>& fn : this->on_hover_leave_bindings)
+			fn();
+	}
 }
 
 void Button::checkMousePress(const POINT& mousePosition, const POINT& mouseDelta)
 {
 	Rect2D bounds = getBounds();
 
-	if (bounds.contains(Vector2D(mousePosition.x, mousePosition.y)))
+	if (bounds.contains(Vector2D((float)mousePosition.x, (float)mousePosition.y)))
 		this->selected = true;
 	else this->selected = false;
 }
@@ -112,7 +146,7 @@ void Button::checkMouseRelease(const POINT& mousePosition, const POINT& mouseDel
 	Rect2D bounds = getBounds();
 
 	this->selected = false;
-	if (bounds.contains(Vector2D(mousePosition.x, mousePosition.y)) && this->selected)
+	if (bounds.contains(Vector2D((float)mousePosition.x, (float)mousePosition.y)) && this->selected)
 	{
 		for (std::function<void()>& fn : this->on_clicked_bindings)
 			fn();
