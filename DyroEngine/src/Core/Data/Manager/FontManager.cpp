@@ -15,7 +15,7 @@ bool FontManager::initialize()
 	std::vector<Font*> fonts;
 	getObjects(fonts);
 
-	Graphics* graphics = dynamic_cast<Graphics*>(SystemManager::getInstance().getSystem(SystemType::GRAPHICS_SYSTEM));
+	Graphics* graphics = SystemManager::getInstance().getSystem<Graphics>();
 
 	for (Font* font : fonts)
 		font->create(graphics->getWriteFactory());

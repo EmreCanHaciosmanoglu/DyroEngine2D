@@ -139,6 +139,8 @@ bool Engine::createGame()
 
 	if (!game->initialize())
 		return false;
+
+	return true;
 }
 bool Engine::destroyGame()
 {
