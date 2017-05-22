@@ -47,7 +47,7 @@ Font* FontManager::getFont(const std::tstring& name)
 	std::vector<Font*> fonts;
 	getObjects(fonts);
 
-	std::vector<Font*>::const_iterator it = std::_Find_if_not(fonts.begin(), fonts.end(), 
+	std::vector<Font*>::const_iterator it = std::find_if(fonts.begin(), fonts.end(), 
 		[name](Font* font) -> bool
 	{
 		return name == font->getName();
