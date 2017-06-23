@@ -124,7 +124,6 @@
     <ClCompile Include="src\SceneGraph\Objects\GameObjects\UI\Button.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Descriptions\UI\ButtonDescription.cpp" />
     <ClCompile Include="src\Core\Data\Manager\FontManager.cpp" />
-    <ClCompile Include="src\Core\Data\Font.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\Components\TextComponent.cpp" />
     <ClCompile Include="src\Rendering\Objects\RenderItems\Text.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Descriptions\Direct2D\RenderTargetDescription.cpp" />
@@ -135,6 +134,16 @@
     <ClCompile Include="src\Core\Data\Objects\Direct2D\Brushes\LinearGradientColorBrush.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Direct2D\Brushes\RadialGradientColorBrush.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Direct2D\Brushes\SolidColorBrush.cpp" />
+    <ClCompile Include="src\Rendering\Objects\Visualization\ComponentVisualizations\TextVisualization.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Direct2D\Text\TextFormat.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Direct2D\Text\TextLayout.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Font.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Descriptions\Text\TextDescription.cpp" />
+    <ClCompile Include="src\SceneGraph\Objects\GameObjects\Camera\FixedCamera.cpp" />
+    <ClCompile Include="src\Core\Data\Manager\MessageManager.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Message\Listener.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Message\Messages\Message.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Message\Messages\SwitchSceneMessage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Core\Data\Factory\SettingsFactory.h" />
@@ -279,13 +288,11 @@
     <ClInclude Include="include\Core\Defines\components.h" />
     <ClInclude Include="include\SceneGraph\Factory\GameObjectFactory.h" />
     <ClInclude Include="include\SceneGraph\Objects\Components\Physics\Collision\TriangleCollisionComponent.h" />
-    <ClInclude Include="include\Core\Types\EngineStateType.h" />
     <ClInclude Include="include\Core\Defines\settingsdata.h" />
     <ClInclude Include="include\SceneGraph\Objects\GameObjects\UI\UIObject.h" />
     <ClInclude Include="include\SceneGraph\Objects\GameObjects\UI\Button.h" />
     <ClInclude Include="include\Core\Data\Objects\Descriptions\UI\ButtonDescription.h" />
     <ClInclude Include="include\Core\Data\Manager\FontManager.h" />
-    <ClInclude Include="include\Core\Data\Objects\Font.h" />
     <ClInclude Include="include\SceneGraph\Objects\Components\TextComponent.h" />
     <ClInclude Include="include\Rendering\Objects\RenderItems\Text.h" />
     <ClInclude Include="include\Core\Types\MouseButtonType.h" />
@@ -297,5 +304,17 @@
     <ClInclude Include="include\Core\Data\Objects\Direct2D\Brushes\LinearGradientColorBrush.h" />
     <ClInclude Include="include\Core\Data\Objects\Direct2D\Brushes\RadialGradientColorBrush.h" />
     <ClInclude Include="include\Core\Data\Objects\Direct2D\Brushes\SolidColorBrush.h" />
+    <ClInclude Include="include\Rendering\Objects\Visualization\ComponentVisualizations\TextVisualization.h" />
+    <ClInclude Include="include\Core\Data\Objects\Direct2D\Text\TextFormat.h" />
+    <ClInclude Include="include\Core\Data\Objects\Direct2D\Text\TextLayout.h" />
+    <ClInclude Include="include\Core\Data\Objects\Font.h" />
+    <ClInclude Include="include\Core\Data\Objects\Descriptions\Text\TextDescription.h" />
+    <ClInclude Include="include\SceneGraph\Objects\GameObjects\Camera\FixedCamera.h" />
+    <ClInclude Include="include\Core\Types\SceneManagerStateType.h" />
+    <ClInclude Include="include\Core\Data\Manager\MessageManager.h" />
+    <ClInclude Include="include\Core\Data\Objects\Message\Listener.h" />
+    <ClInclude Include="include\Core\Types\MessageType.h" />
+    <ClInclude Include="include\Core\Data\Objects\Message\Messages\Message.h" />
+    <ClInclude Include="include\Core\Data\Objects\Message\Messages\SwitchSceneMessage.h" />
   </ItemGroup>
 </Project>

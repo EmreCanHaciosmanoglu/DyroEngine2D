@@ -30,6 +30,24 @@
     <ClInclude Include="include\SceneGraph\Objects\GameObjects\CrazyEmitter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\SceneGraph\Objects\Scenes\TestScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SceneGraph\Objects\Scenes\MainMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SceneGraph\Objects\GameObjects\Projectile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SceneGraph\Objects\GameObjects\Spaceship.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SceneGraph\Objects\Components\SpaceshipPlayerControllerComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SceneGraph\Objects\Components\SpaceshipWeaponComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Main.cpp">
@@ -45,6 +63,24 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\SceneGraph\Objects\GameObjects\CrazyEmitter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneGraph\Objects\Scenes\TestScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneGraph\Objects\Scenes\MainMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneGraph\Objects\Components\SpaceshipPlayerControllerComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneGraph\Objects\Components\SpaceshipWeaponComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneGraph\Objects\GameObjects\Projectile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneGraph\Objects\GameObjects\Spaceship.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

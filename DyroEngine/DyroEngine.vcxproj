@@ -83,6 +83,7 @@
   <ItemGroup>
     <ClInclude Include="include\Core\Data\Factory\SettingsFactory.h" />
     <ClInclude Include="include\Core\Data\Manager\FontManager.h" />
+    <ClInclude Include="include\Core\Data\Manager\MessageManager.h" />
     <ClInclude Include="include\Core\Data\Manager\SettingsManager.h" />
     <ClInclude Include="include\Core\Data\Manager\TimerManager.h" />
     <ClInclude Include="include\Core\Data\Objects\Descriptions\Direct2D\RenderTargetDescription.h" />
@@ -93,18 +94,24 @@
     <ClInclude Include="include\Core\Data\Objects\Descriptions\Shapes\PolygonShapeDescription.h" />
     <ClInclude Include="include\Core\Data\Objects\Descriptions\Shapes\RectShapeDescription.h" />
     <ClInclude Include="include\Core\Data\Objects\Descriptions\Shapes\ShapeDescription.h" />
+    <ClInclude Include="include\Core\Data\Objects\Descriptions\Text\TextDescription.h" />
     <ClInclude Include="include\Core\Data\Objects\Descriptions\UI\ButtonDescription.h" />
-    <ClInclude Include="include\Core\Data\Objects\Font.h" />
+    <ClInclude Include="include\Core\Data\Objects\Direct2D\Text\TextFormat.h" />
+    <ClInclude Include="include\Core\Data\Objects\Direct2D\Text\TextLayout.h" />
     <ClInclude Include="include\Core\Data\Objects\Direct2D\Brushes\ColorBrush.h" />
     <ClInclude Include="include\Core\Data\Objects\Direct2D\DeviceResource.h" />
     <ClInclude Include="include\Core\Data\Objects\Direct2D\Brushes\GradientColorBrush.h" />
     <ClInclude Include="include\Core\Data\Objects\Direct2D\Brushes\LinearGradientColorBrush.h" />
     <ClInclude Include="include\Core\Data\Objects\Direct2D\Brushes\RadialGradientColorBrush.h" />
     <ClInclude Include="include\Core\Data\Objects\Direct2D\Brushes\SolidColorBrush.h" />
+    <ClInclude Include="include\Core\Data\Objects\Font.h" />
     <ClInclude Include="include\Core\Data\Objects\Geometry.h" />
     <ClInclude Include="include\Core\Data\Objects\Layer.h" />
     <ClInclude Include="include\Core\Data\Manager\LayerManager.h" />
     <ClInclude Include="include\Core\Data\Objects\Direct2D\RenderTarget.h" />
+    <ClInclude Include="include\Core\Data\Objects\Message\Listener.h" />
+    <ClInclude Include="include\Core\Data\Objects\Message\Messages\Message.h" />
+    <ClInclude Include="include\Core\Data\Objects\Message\Messages\SwitchSceneMessage.h" />
     <ClInclude Include="include\Core\Data\Objects\Transition.h" />
     <ClInclude Include="include\Core\Defines\components.h" />
     <ClInclude Include="include\Core\Defines\consolecolors.h" />
@@ -119,7 +126,8 @@
     <ClInclude Include="include\Core\Data\Factory\GeometryFactory.h" />
     <ClInclude Include="include\Core\Data\Manager\GeometryManager.h" />
     <ClInclude Include="include\Core\Types\DebugRenderingType.h" />
-    <ClInclude Include="include\Core\Types\EngineStateType.h" />
+    <ClInclude Include="include\Core\Types\MessageType.h" />
+    <ClInclude Include="include\Core\Types\SceneManagerStateType.h" />
     <ClInclude Include="include\Core\Types\MouseButtonType.h" />
     <ClInclude Include="include\Rendering\Manager\TextureManager.h" />
     <ClInclude Include="include\Math\Objects\Random.h" />
@@ -143,6 +151,7 @@
     <ClInclude Include="include\Rendering\Objects\Visualization\ComponentVisualizations\Shapes\RectShapeVisualization.h" />
     <ClInclude Include="include\Rendering\Objects\Visualization\GameObjectVisualizations\GameObjectVisualization.h" />
     <ClInclude Include="include\Rendering\Objects\Visualization\ComponentVisualizations\Shapes\ShapeVisualization.h" />
+    <ClInclude Include="include\Rendering\Objects\Visualization\ComponentVisualizations\TextVisualization.h" />
     <ClInclude Include="include\Rendering\Objects\Visualization\Visualization.h" />
     <ClInclude Include="include\Core\Data\Objects\Resources\Audio.h" />
     <ClInclude Include="include\Core\Defines\collisionlayers.h" />
@@ -211,6 +220,7 @@
     <ClInclude Include="include\Core\Helpers\ObjectCounter.h" />
     <ClInclude Include="include\Math\Objects\Rect2D.h" />
     <ClInclude Include="include\SceneGraph\Objects\Components\Component.h" />
+    <ClInclude Include="include\SceneGraph\Objects\GameObjects\Camera\FixedCamera.h" />
     <ClInclude Include="include\SceneGraph\Objects\GameObjects\Camera\FollowCamera.h" />
     <ClInclude Include="include\SceneGraph\Objects\GameObjects\Camera\FreeCamera.h" />
     <ClInclude Include="include\SceneGraph\Manager\CameraManager.h" />
@@ -244,7 +254,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Core\Data\Factory\SettingsFactory.cpp" />
-    <ClCompile Include="src\Core\Data\Font.cpp" />
+    <ClCompile Include="src\Core\Data\Manager\MessageManager.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Descriptions\Text\TextDescription.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Font.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Direct2D\Text\TextFormat.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Direct2D\Text\TextLayout.cpp" />
     <ClCompile Include="src\Core\Data\Manager\FontManager.cpp" />
     <ClCompile Include="src\Core\Data\Manager\SettingsManager.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Descriptions\Direct2D\RenderTargetDescription.cpp" />
@@ -267,6 +281,12 @@
     <ClCompile Include="src\Core\Data\Objects\Geometry.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Layer.cpp" />
     <ClCompile Include="src\Core\Data\Manager\LayerManager.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Message\Listener.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\Core\Data\Objects\Message\Messages\Message.cpp" />
+    <ClCompile Include="src\Core\Data\Objects\Message\Messages\SwitchSceneMessage.cpp" />
     <ClCompile Include="src\Core\Data\Objects\Transition.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -309,6 +329,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\Rendering\Objects\Visualization\ComponentVisualizations\EmitterComponentVisualization.cpp" />
+    <ClCompile Include="src\Rendering\Objects\Visualization\ComponentVisualizations\TextVisualization.cpp" />
     <ClCompile Include="src\Rendering\Objects\Visualization\GameObjectVisualizations\ConcreteGameObjectVisualization.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -375,6 +396,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="src\SceneGraph\Objects\GameObjects\Camera\FixedCamera.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\GameObjects\Camera\FollowCamera.cpp" />
     <ClCompile Include="src\SceneGraph\Objects\GameObjects\Camera\FreeCamera.cpp" />
     <ClCompile Include="src\SceneGraph\Manager\CameraManager.cpp" />
