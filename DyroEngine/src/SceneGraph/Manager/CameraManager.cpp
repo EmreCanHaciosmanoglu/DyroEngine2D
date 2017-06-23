@@ -16,6 +16,8 @@ bool CameraManager::initialize()
 }
 bool CameraManager::shutdown()
 {
+	clearActiveCamera();
+
 	return true;
 }
 
@@ -38,6 +40,11 @@ void CameraManager::setActiveCamera(Camera* camera)
 Camera* CameraManager::getActiveCamera() const
 {
 	return this->active_camera;
+}
+
+void CameraManager::clearActiveCamera()
+{
+	this->active_camera = nullptr;
 }
 
 void CameraManager::addCamera(Camera* camera, bool setActive)

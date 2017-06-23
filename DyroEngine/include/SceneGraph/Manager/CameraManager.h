@@ -18,12 +18,14 @@ public:
 	virtual bool initialize();
 	virtual bool shutdown();
 
+	void addCamera(Camera* camera, bool setActive = true);
+
 	void setActiveCamera(unsigned int id);
 	void setActiveCamera(Camera* camera);
 
 	Camera* getActiveCamera() const;
 
-	void addCamera(Camera* camera, bool setActive = true);
+	void clearActiveCamera();
 
 private:
 	Camera* active_camera;
