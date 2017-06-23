@@ -36,11 +36,11 @@ void CircleShape::render(Renderer* renderer)
 
 float CircleShape::getWidth() const
 {
-	return getCirlceShapeDescription()->getRadius() * 2;
+	return this->description->getWidth();
 }
 float CircleShape::getHeight() const
 {
-	return getCirlceShapeDescription()->getRadius() * 2;
+	return this->description->getHeight();
 }
 
 CircleShapeDescription* CircleShape::getCirlceShapeDescription() const

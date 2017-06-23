@@ -68,3 +68,12 @@ float CircleShapeDescription::getRadius() const
 {
 	return this->radius;
 }
+
+float CircleShapeDescription::getWidth() const
+{
+	return this->radius * 2;
+}
+float CircleShapeDescription::getHeight() const
+{
+	return this->radius * 2;
+}

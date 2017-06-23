@@ -26,6 +26,10 @@ public:
 
 	const Vector2D& getCenter() const;
 	float getRadius() const;
+
+	virtual float getWidth() const;
+	virtual float getHeight() const;
+
 private:
 	Vector2D center;
 	float radius;
