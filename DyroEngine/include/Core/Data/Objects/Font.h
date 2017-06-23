@@ -3,17 +3,23 @@
 
 #include "Core/Helpers/TaggedObject.h"
 
-#ifndef _2DUTILL_H
-#include "Core/Defines/d2dutill.h"
+#ifndef _RECT2D_H
+#include "Math\Objects\Rect2D.h"
 #endif
+
+class TextLayout;
+class TextFormat;
+
+struct IDWriteFactory;
 
 class Font : public TaggedObject<Font>
 {
 public:
-	Font(const std::tstring& name);
+	Font(const std::tstring& fontName, const std::tstring& name);
 	virtual ~Font();
 
-	bool create(IDWriteFactory* factory);
+	bool createTextFormat(IDWriteFactory* factory);
+	bool createTextLayout(const std::tstring& text, const Rect2D& bounds);
 
 	void setFontCollection(IDWriteFontCollection* collection);
 	void setFontWeight(const DWRITE_FONT_WEIGHT& weight);
@@ -29,20 +35,14 @@ public:
 	float getFontSize() const;
 	const std::tstring& getFontLocalization() const;
 
-	IDWriteTextFormat* getTextFormat() const;
+	TextLayout* getTextLayout() const;
+	TextFormat* getTextFormat() const;
 
-private:
-	IDWriteFontCollection* collection;
+private:	
+	TextFormat* format;
+	TextLayout* layout;
 
-	DWRITE_FONT_WEIGHT weight;
-	DWRITE_FONT_STYLE style;
-	DWRITE_FONT_STRETCH stretch;
-
-	float size;
-	
-	std::tstring local;
-	
-	IDWriteTextFormat* format;
+	IDWriteFactory* factory;
 };
 
 #endif 
