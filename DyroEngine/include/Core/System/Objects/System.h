@@ -1,9 +1,12 @@
 #ifndef _SYSTEM_H
 #define _SYSTEM_H
 
-enum class SystemType;
+#include "Core/Data/Objects/Message/Listener.h"
 
-class System
+enum class SystemType;
+enum class MessageType;
+
+class System : public Listener
 {
 public:
 	System(SystemType type);
@@ -12,6 +15,9 @@ public:
 	virtual bool initialize() = 0;
 	virtual void update() = 0;
 	virtual bool shutdown() = 0;
+
+	virtual void handleMessage(Message* message) = 0;
+	virtual std::vector<MessageType> listenTo() const = 0;
 
 	void activate();
 	void deactivate();
