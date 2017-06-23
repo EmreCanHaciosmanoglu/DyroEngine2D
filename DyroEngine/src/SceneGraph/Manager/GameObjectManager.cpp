@@ -17,14 +17,17 @@ GameObjectManager::GameObjectManager()
 	:visualization_factory(nullptr)
 	, visualization_manager(nullptr)
 {
-	this->visualization_manager = new VisualizationManager();
-	this->visualization_factory = new VisualizationFactory();
 }
 GameObjectManager::~GameObjectManager()
 {}
 
 bool GameObjectManager::initialize()
 {
+	if(this->visualization_manager == nullptr)
+		this->visualization_manager = new VisualizationManager();
+	if(this->visualization_factory == nullptr)
+		this->visualization_factory = new VisualizationFactory();
+
 	for (const std::pair<unsigned int, GameObject*>& pair : getObjects())
 	{
 		if (pair.second->getInitialized())
@@ -32,6 +35,7 @@ bool GameObjectManager::initialize()
 
 		if (!pair.second->initialize())
 			return false;
+		pair.second->setInitialized(true);
 
 		Visualization* visualization = this->visualization_factory->createVisualization(pair.second, pair.second->hasChilderen());
 		if (visualization != nullptr)
@@ -54,6 +58,7 @@ bool GameObjectManager::postInitialize()
 
 		if (!pair.second->postInitialize())
 			return false;
+		pair.second->setPostInitialized(true);
 	}
 
 	return true;
