@@ -108,6 +108,9 @@ public:
 	virtual void update();
 	virtual bool shutdown();
 
+	virtual void handleMessage(Message* message);
+	virtual std::vector<MessageType> listenTo() const;
+
 	void bindKey(const KeyBinding& binding);
 	void bindMouseMove(const MouseMoveBinding& binding);
 	void bindMouseClick(const MouseClickBinding& binding);
@@ -116,6 +119,10 @@ public:
 	POINT getMouseMovement();
 
 	void showMouseCursor(bool show);
+
+	void clearAllBindings();
+	void clearKeyBindings();
+	void clearMouseBindings();
 
 private:
 	bool isKeyDown(unsigned int key);

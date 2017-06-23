@@ -2,6 +2,10 @@
 #include "Core\System\Objects\Window.h"
 #include "Core\System\Manager\SystemManager.h"
 
+#include "Core\Data\Objects\Message\Messages\SwitchSceneMessage.h"
+
+#include "Core\Types\MessageType.h"
+
 Input::Input()
 	:System(SystemType::INPUT_SYSTEM)
 	, current_keyboard_state(nullptr)
@@ -64,6 +68,20 @@ bool Input::shutdown()
 	return true;
 }
 
+void Input::handleMessage(Message* message)
+{
+	switch (message->getMessageType())
+	{
+	case MessageType::SWITCH_SCENE_MESSAGE:
+		clearAllBindings();
+		break;
+	}
+}
+std::vector<MessageType> Input::listenTo() const
+{
+	return std::vector<MessageType> { MessageType::SWITCH_SCENE_MESSAGE };
+}
+
 void Input::bindKey(const KeyBinding& binding)
 {
 	this->vec_key_bindings.push_back(binding);
@@ -94,6 +112,21 @@ POINT Input::getMouseMovement()
 void Input::showMouseCursor(bool show)
 {
 	ShowCursor(show);
+}
+
+void Input::clearAllBindings()
+{
+	clearKeyBindings();
+	clearMouseBindings();
+}
+void Input::clearKeyBindings()
+{
+	this->vec_key_bindings.clear();
+}
+void Input::clearMouseBindings()
+{
+	this->vec_mouseclick_bindings.clear();
+	this->vec_mousemove_bindings.clear();
 }
 
 bool Input::isKeyDown(unsigned int key)
@@ -177,8 +210,8 @@ unsigned char Input::convertMouseButton(MouseButton button)
 {
 	switch (button)
 	{
-	case MouseButton::RIGHT: return VK_LBUTTON;
-	case MouseButton::LEFT: return VK_RBUTTON;
+	case MouseButton::RIGHT: return VK_RBUTTON;
+	case MouseButton::LEFT: return VK_LBUTTON;
 	case MouseButton::MIDDLE: return VK_MBUTTON;
 	}
 
