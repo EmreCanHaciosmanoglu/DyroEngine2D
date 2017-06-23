@@ -18,6 +18,9 @@
 #include "Math/Objects/Rect2D.h"
 #endif
 
+#ifndef _STRING_H
+#include "Core/Defines/string.h"
+#endif
 #ifndef _COLOR_H
 #include "Core/Defines/color.h"
 #endif
@@ -28,6 +31,7 @@ class Image;
 
 class RenderItem;
 class Geometry;
+class TextDescription;
 
 struct RenderInfo
 {
@@ -58,6 +62,14 @@ public:
 	void fillGeometry(Geometry* geometry) const;
 
 	void cacheShape(RenderItem* item);
+
+	bool drawText(TextDescription* description) const;
+	bool drawText(TextDescription* description, float x, float y) const;
+	bool drawText(TextDescription* description, const Vector2D& position) const;
+
+	bool drawTextLayout(TextDescription* description) const;
+	bool drawTextLayout(TextDescription* description, float x, float y) const;
+	bool drawTextLayout(TextDescription* description, const Vector2D& position) const;
 
 	bool drawBitmap(const Image* bmpPtr, float opacity = 1.0f) const;
 	bool drawBitmap(const Image* bmpPtr, float x, float y, float opacity = 1.0f) const;

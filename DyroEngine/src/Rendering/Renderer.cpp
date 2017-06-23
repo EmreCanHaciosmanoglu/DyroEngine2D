@@ -1,16 +1,21 @@
 #include "Rendering/Renderer.h"
 #include "Rendering/Objects/RenderItems/RenderItem.h"
 
-#include "Core\Data\Objects\Layer.h"
-#include "Core\Data\Objects\Geometry.h"
+#include "Core/Data/Objects/Layer.h"
+#include "Core/Data/Objects/Geometry.h"
+#include "Core/Data/Objects/Font.h"
+
+#include "Core/Data/Objects/Direct2D/Text/TextFormat.h"
+#include "Core/Data/Objects/Direct2D/Text/TextLayout.h"
+
+#include "Core/Data/Objects/Resources/Image.h"
+
+#include "Core/Data/Objects/Descriptions/Text/TextDescription.h"
 
 #include "Core/System/Objects/Graphics.h"
 #include "Core/System/Manager/SystemManager.h"
 
-#include "Core/Data/Objects/Resources/Image.h"
-
 #include "Core/Defines/debug.h"
-
 #include "Core/Defines/assert.h"
 #include "Core/Defines/deletemacros.h"
 
@@ -99,6 +104,42 @@ void Renderer::cacheShape(RenderItem* item)
 		return;
 
 	this->cached_render_items.push_back(item);
+}
+
+bool Renderer::drawText(TextDescription* description) const
+{
+	return drawText(description, Vector2D(0.0f, 0.0f));
+}
+bool Renderer::drawText(TextDescription* description, float x, float y) const
+{
+	return drawText(description, Vector2D(x, y));
+}
+bool Renderer::drawText(TextDescription* description, const Vector2D& position) const
+{
+	std::tstring text = description->getText();
+	IDWriteTextFormat* format = description->getFont()->getTextFormat()->getFormat();
+	Rect2D layout_box = description->getLayoutBox();
+
+	this->graphics->getRenderTarget()->DrawTextW(text.c_str(), (UINT32)text.size(), format, Rect2D::toD2DRect(layout_box), this->graphics->getColorBrush());
+
+	return true;
+}
+
+bool Renderer::drawTextLayout(TextDescription* description) const
+{
+	return drawTextLayout(description, Vector2D(0.0f,0.0f));
+}
+bool Renderer::drawTextLayout(TextDescription* description, float x, float y) const
+{
+	return drawTextLayout(description, Vector2D(x, y));
+}
+bool Renderer::drawTextLayout(TextDescription* description, const Vector2D& position) const
+{
+	IDWriteTextLayout* layout = description->getFont()->getTextLayout()->getLayout();
+
+	this->graphics->getRenderTarget()->DrawTextLayout(Vector2D::toD2DPoint(position), layout, this->graphics->getColorBrush());
+
+	return true;
 }
 
 bool Renderer::drawBitmap(const Image* imagePtr, float opacity) const
