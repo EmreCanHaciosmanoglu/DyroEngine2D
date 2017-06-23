@@ -6,12 +6,13 @@
 
 #include "Core/Types/SystemType.h"
 #include "Core/Types/SettingsType.h"
+#include "Core/Types/MessageType.h"
 
 #include "Core/Defines/deletemacros.h"
-#include "Core/Defines\color.h"
+#include "Core/Defines/color.h"
 
-#include "Core\Data\Manager\SettingsManager.h"
-#include "Core\Data\Objects\Settings\GameSettings.h"
+#include "Core/Data/Manager/SettingsManager.h"
+#include "Core/Data/Objects/Settings/GameSettings.h"
 
 Graphics::Graphics()
 	: System(SystemType::GRAPHICS_SYSTEM)
@@ -64,6 +65,15 @@ bool Graphics::shutdown()
 	return true;
 }
 
+void Graphics::handleMessage(Message* message)
+{
+
+}
+std::vector<MessageType> Graphics::listenTo() const
+{
+	return std::vector<MessageType>();
+}
+
 HRESULT Graphics::createDeviceIndependentResources()
 {
 	HRESULT hr = S_OK;
@@ -79,7 +89,7 @@ HRESULT Graphics::createDeviceIndependentResources()
 	if (FAILED(hr))
 		return hr;
 
-	hr = DWriteCreateFactory(DWRITE_FACTORY_TYPE_SHARED, __uuidof(IDWriteFactory), reinterpret_cast<IUnknown**>(&this->write_factory));
+	hr = DWriteCreateFactory(DWRITE_FACTORY_TYPE_SHARED, __uuidof(this->write_factory), reinterpret_cast<IUnknown**>(&this->write_factory));
 	if (FAILED(hr))
 		return hr;
 

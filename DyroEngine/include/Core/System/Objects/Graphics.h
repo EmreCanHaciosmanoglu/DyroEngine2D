@@ -19,6 +19,9 @@ public:
 	virtual void update();
 	virtual bool shutdown();
 
+	virtual void handleMessage(Message* message);
+	virtual std::vector<MessageType> listenTo() const;
+
 	void beginDraw();
 	HRESULT endDraw();
 
