@@ -5,7 +5,6 @@
 #include "Rendering\Manager\TextureManager.h"
 
 #include "SceneGraph\Objects\GameObjects\SceneObject.h"
-
 #include "SceneGraph\Objects\Components\ImageComponent.h"
 #include "SceneGraph\Objects\Scenes\Scene.h"
 
