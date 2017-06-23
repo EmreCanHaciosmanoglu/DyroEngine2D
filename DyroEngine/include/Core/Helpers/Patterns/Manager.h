@@ -43,6 +43,9 @@ public:
 
 	size_t getSize();
 
+	void clear();
+	void destroy();
+
 protected:
 	virtual bool addObject(unsigned int id, T* object);
 
@@ -66,7 +69,7 @@ Manager<T>::Manager()
 template <typename T>
 Manager<T>::~Manager()
 {
-	this->map_objects.clear();
+	clear();
 }
 
 template <typename T>
@@ -84,6 +87,18 @@ template <typename T>
 size_t Manager<T>::getSize()
 {
 	return this->map_objects.size();
+}
+
+template <typename T>
+void Manager<T>::clear()
+{
+	this->map_objects.clear();
+}
+template <typename T>
+void Manager<T>::destroy()
+{
+	for (const std::pair<unsigned int, T*>& pair : this->map_objects)
+		delete pair.second;
 }
 
 template <typename T>
