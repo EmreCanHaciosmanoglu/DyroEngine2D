@@ -21,6 +21,9 @@ public:
 	void setFill(bool fill);
 	bool getFill() const;
 
+	virtual float getWidth() const = 0;
+	virtual float getHeight() const = 0;
+
 private:
 	bool fill;
 };
