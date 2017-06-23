@@ -31,6 +31,10 @@ public:
 
 	const std::vector<Vector2D>& getPoints() const;
 	bool getClose() const;
+
+	virtual float getWidth() const;
+	virtual float getHeight() const;
+
 private:
 	std::vector<Vector2D> vec_points;
 	bool close;
