@@ -20,6 +20,8 @@ void TimerManager::update()
 	std::map<unsigned int, Timer*> timers = getObjects();
 	for (const std::pair<unsigned int, Timer*>& pair : timers)
 		pair.second->update();
+
+	//TODO destroy finished timers
 }
 bool TimerManager::shutdown()
 {
