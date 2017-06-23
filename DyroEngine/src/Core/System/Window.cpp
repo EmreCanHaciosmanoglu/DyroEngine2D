@@ -1,15 +1,16 @@
-#include "Core/System/Objects/Window.h"
-#include "Core/System/Objects/Graphics.h"
-#include "Core/System/Manager/SystemManager.h"
+#include "Core\System\Objects\Window.h"
+#include "Core\System\Objects\Graphics.h"
+#include "Core\System\Manager\SystemManager.h"
 
-#include "Core/Data/Manager/SettingsManager.h"
-#include "Core/Data/Objects/Settings/ApplicationSettings.h"
+#include "Core\Data\Manager\SettingsManager.h"
+#include "Core\Data\Objects\Settings\ApplicationSettings.h"
 
-#include "Core/Types/SystemType.h"
-#include "core/Types/SettingsType.h"
+#include "Core\Types\SystemType.h"
+#include "Core\Types\SettingsType.h"
+#include "Core\Types\MessageType.h"
 
-#include "Core/Defines/string.h"
-#include "Core/Defines/debug.h"
+#include "Core\Defines\string.h"
+#include "Core\Defines\debug.h"
 
 Window::Window()
 	:System(SystemType::WINDOW_SYSTEM)
@@ -50,6 +51,15 @@ bool Window::shutdown()
 	destroyWindow();
 
 	return true;
+}
+
+void Window::handleMessage(Message* message)
+{
+
+}
+std::vector<MessageType> Window::listenTo() const
+{
+	return std::vector<MessageType>();
 }
 
 LRESULT Window::handleEvent(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)

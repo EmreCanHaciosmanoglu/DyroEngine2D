@@ -14,6 +14,9 @@ public:
 	virtual void update();
 	virtual bool shutdown();
 
+	virtual void handleMessage(Message* message);
+	virtual std::vector<MessageType> listenTo() const;
+
 	virtual LRESULT handleEvent(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam);
 
 	virtual BYTE getWindowBitsPerPixel() const;
