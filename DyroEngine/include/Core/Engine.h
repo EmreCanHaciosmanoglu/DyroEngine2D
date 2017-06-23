@@ -26,6 +26,11 @@ private:
 	bool addSettings();
 	bool addSystems();
 
+	bool initializeSettings();
+	bool initializeSystems();
+	bool shutdownSettings();
+	bool shutdownSystems();
+
 	bool createManagers();
 	bool destroyManagers();
 

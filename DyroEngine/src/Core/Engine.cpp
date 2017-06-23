@@ -13,9 +13,10 @@
 
 #include "Core\Types\SystemType.h"
 #include "Core\Types\SettingsType.h"
-#include "Core\Types\EngineStateType.h"
+#include "Core\Types\SceneManagerStateType.h"
 
 #include "Core\Data\Manager\SettingsManager.h"
+#include "Core\Data\Manager\MessageManager.h"
 #include "Core\Data\Objects\Game.h"
 
 #include "Core\Defines\debug.h"
@@ -26,23 +27,27 @@ namespace
 	const int SHUTDOWN_FAILED = 0x0010;
 }
 
-EngineState::EngineStateType EngineState::ENGINE_STATE = EngineState::EngineStateType::INVALID;
-
 Engine::Engine(Game* game)
 	:game(game)
 {
 	LogManager::createInstance();
+	MessageManager::createInstance();
+
+	LogManager::getInstance().initialize();
+	MessageManager::getInstance().initialize();
 }
 Engine::~Engine()
 {
+	MessageManager::getInstance().shutdown();
+	LogManager::getInstance().shutdown();
+
+	MessageManager::destroyInstance();
 	LogManager::destroyInstance();
 }
 
 int Engine::mainLoop()
 {
 	//CREATE APP
-	EngineState::ENGINE_STATE = EngineState::EngineStateType::CREATING;
-
 	if (!initialize())
 	{
 		LogManager::getInstance().log(new ErrorLog(_T("Initialization of the engine failed."), LOG_DATA));
@@ -52,11 +57,10 @@ int Engine::mainLoop()
 	// Seed the random number generator
 	srand((unsigned int)GetTickCount64());
 
+	//RUN APP
 	MSG msg = {};
 	while (msg.message != WM_QUIT)
 	{
-		//RUN APP
-		EngineState::ENGINE_STATE = EngineState::EngineStateType::RUNNING;
 
 		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 		{
@@ -78,8 +82,6 @@ int Engine::mainLoop()
 	}
 
 	//DESTROY APP
-	EngineState::ENGINE_STATE = EngineState::EngineStateType::DESTROYING;
-
 	if (!shutDown())
 	{
 		LogManager::getInstance().log(new ErrorLog(_T("Shutdown of the engine failed."), LOG_DATA));
@@ -102,28 +104,35 @@ int Engine::initialize()
 	if (!createGame())
 		return FALSE;
 
-	if (!SettingsManager::getInstance().initialize())
+	if (!initializeSettings())
 		return FALSE;
-	if (!SystemManager::getInstance().initialize())
+	if (!initializeSystems())
 		return FALSE;
 
 	return TRUE;
 }
 void Engine::update()
 {
-	std::vector<System*> systems;
-	SystemManager::getInstance().getSystems(systems);
-	for (System* system : systems)
-		system->update();
+	MessageManager::getInstance().update();
+
+	//std::vector<System*> systems;
+	//SystemManager::getInstance().getSystems(systems);
+	//for (System* system : systems)
+	//	system->update();
+
+	SystemManager::getInstance().getSystem<Window>()->update();
+	SystemManager::getInstance().getSystem<Input>()->update();
+	SystemManager::getInstance().getSystem<Graphics>()->update();
+	SystemManager::getInstance().getSystem<Logic>()->update();
 }
 int Engine::shutDown()
 {
 	if (!destroyGame())
 		return FALSE;
 
-	if (!SystemManager::getInstance().shutdown())
+	if (!shutdownSettings())
 		return FALSE;
-	if (!SettingsManager::getInstance().shutdown())
+	if (!shutdownSystems())
 		return FALSE;
 
 	if (!destroyManagers())
@@ -170,6 +179,40 @@ bool Engine::addSystems()
 	if (!SystemManager::getInstance().addSystem(SystemType::GRAPHICS_SYSTEM))
 		return false;
 	if (!SystemManager::getInstance().addSystem(SystemType::LOGIC_SYSTEM))
+		return false;
+
+	return true;
+}
+
+bool Engine::initializeSettings()
+{
+	if (!SettingsManager::getInstance().initialize())
+		return false;
+
+	return true;
+}
+bool Engine::initializeSystems()
+{
+	std::vector<System*> systems;
+	SystemManager::getInstance().getSystems(systems);
+	for (System* system : systems)
+		MessageManager::getInstance().subscribeListener(system);
+
+	if (!SystemManager::getInstance().initialize())
+		return false;
+
+	return true;
+}
+bool Engine::shutdownSettings()
+{
+	if (!SystemManager::getInstance().shutdown())
+		return false;
+
+	return true;
+}
+bool Engine::shutdownSystems()
+{
+	if (!SettingsManager::getInstance().shutdown())
 		return false;
 
 	return true;
