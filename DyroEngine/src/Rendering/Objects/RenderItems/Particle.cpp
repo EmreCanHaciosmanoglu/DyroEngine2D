@@ -5,6 +5,8 @@
 #include "Rendering/Manager/TextureManager.h"
 #include "Rendering/Objects/RenderItems/Texture.h"
 
+#include "Core/Data/Objects/Descriptions/Particles/ParticleDescription.h"
+
 Particle::Particle(ParticleDescription* desc, const std::tstring name)
 	:Texture(desc->getImage(), name)
 	, description(desc)

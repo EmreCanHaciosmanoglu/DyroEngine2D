@@ -3,11 +3,8 @@
 
 #include "Rendering/Objects/RenderItems/Texture.h"
 
-#ifndef _PARTICLEDESCRIPTION_H
-#include "Core/Data/Objects/Descriptions/Particles/ParticleDescription.h"
-#endif
-
 class Texture;
+class ParticleDescription;
 
 class Particle : public Texture
 {
