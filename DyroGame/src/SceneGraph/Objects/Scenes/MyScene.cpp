@@ -63,11 +63,11 @@ MyScene::~MyScene()
 
 bool MyScene::initialize()
 {
-	ApplicationSettings* app_settings = dynamic_cast<ApplicationSettings*>(SettingsManager::getInstance().getSettings(SettingsType::APPLICATION_SETTINGS));
+	ApplicationSettings* app_settings = SettingsManager::getInstance().getSettings<ApplicationSettings>();
 	if (app_settings == nullptr)
 		return false;
 
-	GameSettings* game_settings = dynamic_cast<GameSettings*>(SettingsManager::getInstance().getSettings(SettingsType::GAME_SETTINGS));
+	GameSettings* game_settings = SettingsManager::getInstance().getSettings<GameSettings>();
 	if (game_settings == nullptr)
 		return false;
 
@@ -144,9 +144,9 @@ bool MyScene::shutdown()
 
 void MyScene::setupInput(Input* input)
 {
-	input->bindInput(InputBinding(VK_F1, std::bind(&MyScene::noDebugRendering, this), InputStateType::PRESSED));
-	input->bindInput(InputBinding(VK_F2, std::bind(&MyScene::debugOnlyRendering, this), InputStateType::PRESSED));
-	input->bindInput(InputBinding(VK_F3, std::bind(&MyScene::overlayDebugRendering, this), InputStateType::PRESSED));
+	input->bindKey(KeyBinding(VK_F1, std::bind(&MyScene::noDebugRendering, this), InputStateType::PRESSED));
+	input->bindKey(KeyBinding(VK_F2, std::bind(&MyScene::debugOnlyRendering, this), InputStateType::PRESSED));
+	input->bindKey(KeyBinding(VK_F3, std::bind(&MyScene::overlayDebugRendering, this), InputStateType::PRESSED));
 }
 
 void MyScene::noDebugRendering()
