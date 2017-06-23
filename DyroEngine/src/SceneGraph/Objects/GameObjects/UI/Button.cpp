@@ -4,12 +4,17 @@
 #include "SceneGraph\Objects\Components\Shapes\PolygonShapeComponent.h"
 #include "SceneGraph\Objects\Components\Shapes\RectShapeComponent.h"
 #include "SceneGraph\Objects\Components\ImageComponent.h"
+#include "SceneGraph\Objects\Components\TextComponent.h"
 
 #include "Core/Data/Objects/Descriptions/UI/ButtonDescription.h"
 #include "Core/Data/Objects/Descriptions/Shapes/CircleShapeDescription.h"
 #include "Core/Data/Objects/Descriptions/Shapes/LineShapeDescription.h"
 #include "Core/Data/Objects/Descriptions/Shapes/PolygonShapeDescription.h"
 #include "Core/Data/Objects/Descriptions/Shapes/RectShapeDescription.h"
+#include "Core/Data/Objects/Descriptions/Text/TextDescription.h"
+
+#include "Core/Data/Manager/FontManager.h"
+#include "Core/Data/Objects/Font.h"
 
 #include "Core/System/Objects/Input.h"
 
@@ -46,6 +51,8 @@ Button::Button(ButtonDescription* desc, const std::tstring& name)
 
 	if (this->description->getImage() != nullptr)
 		addComponent(new ImageComponent(this->description->getImage()));
+	
+	addComponent(new TextComponent(new TextDescription(this->description->getText(), FontManager::getInstance().getFont(_T("consolas")), Rect2D(0, 0, this->description->getShape()->getWidth(),this->description->getShape()->getHeight()))));
 }
 Button::~Button()
 {
@@ -145,9 +152,9 @@ void Button::checkMouseRelease(const POINT& mousePosition, const POINT& mouseDel
 {
 	Rect2D bounds = getBounds();
 
-	this->selected = false;
 	if (bounds.contains(Vector2D((float)mousePosition.x, (float)mousePosition.y)) && this->selected)
 	{
+		this->selected = false;
 		for (std::function<void()>& fn : this->on_clicked_bindings)
 			fn();
 	}
