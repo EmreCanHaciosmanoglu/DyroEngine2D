@@ -14,6 +14,7 @@
 #include "Core\Data\Manager\TimerManager.h"
 #include "Rendering\Manager\TextureManager.h"
 #include "SceneGraph\Manager\CameraManager.h"
+#include "SceneGraph\Manager\GameObjectManager.h"
 
 #include "Core\Defines\debug.h"
 
@@ -38,19 +39,55 @@ public:
 	void setActiveScene(unsigned int id);
 	void setActiveScene(const std::tstring& name);
 
+	bool initializePreviousScene();
+	bool initializeActiveScene();
+	bool initializeScene(Scene* scene);
+	 
+	bool shutdownPreviousScene();
+	bool shutdownActiveScene();
+	bool shutdownScene(Scene* scene);
+
 	Scene* getActiveScene() const;
 
 private:
+	void createManagers();
+	void destroyManagers();
+
 	template<typename T>
-	T* createManager()
-	{
-		T* manager = new T();
-		manager->initialize();
+	T* createManager();
+	template<typename T>
+	T* getManager() const;
 
-		return manager;
-	}
+	template<typename T>
+	bool initializeManager(T* manager);
+	template<typename T>
+	bool shutdownManager(T* manager);
+	template<typename T>
+	bool destroyManager(T* manager);
 
+	template<typename T>
+	void clearManager(T* manager);
+
+
+	std::vector<AbstractManager*> managers;
+
+	Scene* previous_scene;
 	Scene* active_scene;
 };
+
+template <typename T>
+T* SceneManager::getManager() const
+{
+	for (AbstractManager* m : this->managers)
+	{
+		T* new_m = dynamic_cast<T*>(m);
+		if (new_m == nullptr)
+			continue;
+
+		return new_m;
+	}
+
+	return nullptr;
+}
 
 #endif _SCENEMANAGER_H
