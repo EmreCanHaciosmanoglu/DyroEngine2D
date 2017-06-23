@@ -31,17 +31,14 @@ public:
 	bool isOfType(const std::tstring& classTypeId) const;
 	const std::vector<std::tstring>& getInheritanceList() const;
 
-	void setInitialized();
+	void setInitialized(bool initialized);
+	void setPostInitialized(bool postInitialized);
 	bool getInitialized();
-	void setPostInitialized();
 	bool getPostInitialized();
 
 	virtual void activate();
 	virtual void deactive();
 	bool isActive();
-
-	virtual void destroy();
-	bool isDestroyed() const;
 
 protected:
 	void OBJECT_INIT(const std::tstring& classTypeId);
@@ -51,7 +48,6 @@ private:
 
 	bool initialized;
 	bool post_initialized;
-	bool destroyed;
 
 	std::vector<std::tstring> inheritance_list;
 };

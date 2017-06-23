@@ -6,7 +6,6 @@ Object::Object(const std::tstring& name)
 	, active(true)
 	, initialized(false)
 	, post_initialized(false)
-	, destroyed(false)
 {
 	OBJECT_INIT(_T("Object"));
 }
@@ -23,17 +22,17 @@ const std::vector<std::tstring>& Object::getInheritanceList() const
 	return this->inheritance_list;
 }
 
-void Object::setInitialized()
+void Object::setInitialized(bool initialized)
 {
-	this->initialized = true;
+	this->initialized = initialized;
+}
+void Object::setPostInitialized(bool postInitialized)
+{
+	this->post_initialized = postInitialized;
 }
 bool Object::getInitialized()
 {
 	return this->initialized;
-}
-void Object::setPostInitialized()
-{
-	this->post_initialized = true;
 }
 bool Object::getPostInitialized()
 {
@@ -51,18 +50,6 @@ void Object::deactive()
 bool Object::isActive()
 {
 	return this->active;
-}
-
-void Object::destroy()
-{
-	this->destroyed = true;
-
-	this->initialized = false;
-	this->post_initialized = false;
-}
-bool Object::isDestroyed() const
-{
-	return this->destroyed;
 }
 
 void Object::OBJECT_INIT(const std::tstring& classTypeId)
