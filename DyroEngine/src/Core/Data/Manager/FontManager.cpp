@@ -18,7 +18,7 @@ bool FontManager::initialize()
 	Graphics* graphics = SystemManager::getInstance().getSystem<Graphics>();
 
 	for (Font* font : fonts)
-		font->create(graphics->getWriteFactory());
+		font->createTextFormat(graphics->getWriteFactory());
 
 	return true;
 }
@@ -52,6 +52,9 @@ Font* FontManager::getFont(const std::tstring& name)
 	{
 		return name == font->getName();
 	});
+
+	if (it == fonts.end())
+		return nullptr;
 
 	return (*it);
 }

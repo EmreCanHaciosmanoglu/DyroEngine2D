@@ -5,8 +5,8 @@
 #include "Rendering/Objects/Visualization/ComponentVisualizations/Shapes/PolygonShapeVisualization.h"
 #include "Rendering/Objects/Visualization/ComponentVisualizations/Shapes/RectShapeVisualization.h"
 #include "Rendering/Objects/Visualization/ComponentVisualizations/EmitterComponentVisualization.h"
-//#include "RenderingVisualization/ComponentVisualizations/ImageVisualization.h"
-//#include "RenderingVisualization/ComponentVisualizations/TextVisualization.h"
+//#include "Rendering/Objects/Visualization/ComponentVisualizations/ImageVisualization.h"
+#include "Rendering/Objects/Visualization/ComponentVisualizations/TextVisualization.h"
 
 #include "Rendering/Objects/Visualization/GameObjectVisualizations/GameObjectVisualization.h"
 
@@ -16,7 +16,7 @@
 #include "SceneGraph\Objects/Components/Shapes/RectShapeComponent.h"
 #include "SceneGraph\Objects/Components/EmitterComponent.h"
 //#include "SceneGraph\Objects\Components\ImageComponent.h"
-//#include "SceneGraph\Objects\Components\TextComponent.h"
+#include "SceneGraph\Objects\Components\TextComponent.h"
 
 #include "SceneGraph\Objects\GameObjects\SceneObject.h"
 #include "SceneGraph\Objects\GameObjects\GameObject.h"
@@ -71,12 +71,12 @@ Visualization* VisualizationFactory::createVisualization(GameObject* object, boo
 		}
 		//else if (component->getTypeId() == ImageComponent::getClassTypeId())
 		//{
-		//	root->addVisualizationChildNode(new ImageVisualization(component));
+		//	new_visualization = new ImageVisualization(component);
 		//}
-		//else if (component->getTypeId() == TextComponent::getClassTypeId())
-		//{
-		//	root->addVisualizationChildNode(new TextVisualization(component));
-		//}
+		else if (component->getTypeId() == TextComponent::getClassTypeId())
+		{
+			new_visualization = new TextVisualization(component);
+		}
 
 		if (new_visualization == nullptr)
 			continue;

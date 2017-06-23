@@ -1,112 +1,136 @@
 #include "SceneGraph\Objects\Components\TextComponent.h"
 
+#include "Core/Data/Objects/Descriptions/Text/TextDescription.h"
 #include "Core/Data/Objects/Font.h"
+
 #include "Core/Defines/assert.h"
+#include "Core/Defines/deletemacros.h"
 
-TextComponent::TextComponent(const std::tstring& text, Font* font,const std::tstring& name)
+TextComponent::TextComponent(TextDescription* description,const std::tstring& name)
 	:Component(name)
-
-	, flow_direction(DWRITE_FLOW_DIRECTION_LEFT_TO_RIGHT)
-	, paragraph_alignment(DWRITE_PARAGRAPH_ALIGNMENT_CENTER)
-	, reading_direction(DWRITE_READING_DIRECTION_LEFT_TO_RIGHT)
-	, text_alignment(DWRITE_TEXT_ALIGNMENT_CENTER)
-	, text_wrapping(DWRITE_WORD_WRAPPING_CHARACTER)
-	, line_spacing_method(DWRITE_LINE_SPACING_METHOD_DEFAULT)
-	, line_spacing(1.0f)
-	, line_spacing_baseline(0.0f)
-
-	, text(text)
-	, font(font)
-{}
+	, description(description)
+{
+	setExecutionOrder(500);
+}
 TextComponent::~TextComponent()
 {}
 
 bool TextComponent::initialize()
 {
-	assert(this->font != nullptr);
+	assert(this->description->getFont() != nullptr);
 
-	this->font->getTextFormat()->SetFlowDirection(this->flow_direction);
-	this->font->getTextFormat()->SetParagraphAlignment(this->paragraph_alignment);
-	this->font->getTextFormat()->SetReadingDirection(this->reading_direction);
-	this->font->getTextFormat()->SetTextAlignment(this->text_alignment);
-	this->font->getTextFormat()->SetWordWrapping(this->text_wrapping);
-	this->font->getTextFormat()->SetLineSpacing(this->line_spacing_method, this->line_spacing, this->line_spacing_baseline);
+	this->description->getFont()->createTextLayout(this->description->getText(), this->description->getLayoutBox());
 
 	return true;
 }
 bool TextComponent::shutdown()
 {
+	SafeDelete(this->description);
+
 	return true;
 }
 
-void TextComponent::setFontFlowDirection(const DWRITE_FLOW_DIRECTION& flowDirection)
+void TextComponent::setFlowDirection(const DWRITE_FLOW_DIRECTION& flowDirection)
 {
-	this->flow_direction = flowDirection;
+	this->description->getFont()->getTextFormat()->setFlowDirection(flowDirection);
 }
-void TextComponent::setFontLineSpacing(const DWRITE_LINE_SPACING_METHOD& spacingMethod, float lineSpacing, float baseLine)
+void TextComponent::setLineSpacing(const LineSpacingData& data)
 {
-	this->line_spacing_method = spacingMethod;
-	this->line_spacing = lineSpacing;
-	this->line_spacing_baseline = baseLine;
+	this->description->getFont()->getTextFormat()->setLineSpacing(data);
 }
-void TextComponent::setFontParagraphAlignment(const DWRITE_PARAGRAPH_ALIGNMENT& alignment)
+void TextComponent::setParagraphAlignment(const DWRITE_PARAGRAPH_ALIGNMENT& alignment)
 {
-	this->paragraph_alignment = alignment;
+	this->description->getFont()->getTextFormat()->setParagraphAlignment(alignment);
 }
-void TextComponent::setFontReadingDirection(const DWRITE_READING_DIRECTION& direction)
+void TextComponent::setReadingDirection(const DWRITE_READING_DIRECTION& direction)
 {
-	this->reading_direction = direction;
+	this->description->getFont()->getTextFormat()->setReadingDirection(direction);
 }
-void TextComponent::setFontTextAlignment(const DWRITE_TEXT_ALIGNMENT& alignment)
+void TextComponent::setTextAlignment(const DWRITE_TEXT_ALIGNMENT& alignment)
 {
-	this->text_alignment = alignment;
+	this->description->getFont()->getTextFormat()->setTextAlignment(alignment);
 }
-void TextComponent::setFontWordWrapping(const DWRITE_WORD_WRAPPING& wrapping)
+void TextComponent::setWordWrapping(const DWRITE_WORD_WRAPPING& wrapping)
 {
-	this->text_wrapping = wrapping;
+	this->description->getFont()->getTextFormat()->setWordWrapping(wrapping);
+}
+
+void TextComponent::setOriginOffset(const Vector2D& offset)
+{
+	this->description->setOriginOffset(offset);
+}
+void TextComponent::setLayoutBox(const Rect2D& layoutBox)
+{
+	this->description->setLayoutBox(layoutBox);
+}
+void TextComponent::setColor(const Color& color)
+{
+	this->description->setColor(color);
+}
+void TextComponent::setDescription(TextDescription* description)
+{
+	if (this->description != nullptr)
+		SafeDelete(this->description);
+
+	this->description = description;
 }
 
 void TextComponent::setText(const std::tstring& text)
 {
-	this->text = text;
+	this->description->setText(text);
 }
 void TextComponent::setFont(Font* font)
 {
-	this->font = font;
+	this->description->setFont(font);
 }
 
-const DWRITE_FLOW_DIRECTION& TextComponent::getFontFlowDirection() const
+const DWRITE_FLOW_DIRECTION& TextComponent::getFlowDirection() const
 {
-	return this->flow_direction;
+	return this->description->getFont()->getTextFormat()->getFlowDirection();
 }
-void TextComponent::getFontLineSpacing(DWRITE_LINE_SPACING_METHOD& spacingMethod, float& lineSpacing, float& baseLine) const
+const LineSpacingData& TextComponent::getLineSpacing() const
 {
-	spacingMethod = this->line_spacing_method;
-	lineSpacing = this->line_spacing;
-	baseLine = this->line_spacing_baseline;
+	return this->description->getFont()->getTextFormat()->getLineSpacing();
 }
 const DWRITE_PARAGRAPH_ALIGNMENT& TextComponent::getParagraphAlignment() const
 {
-	return this->paragraph_alignment;
+	return this->description->getFont()->getTextFormat()->getParagraphAlignment();
 }
 const DWRITE_READING_DIRECTION& TextComponent::getReadingDirection() const
 {
-	return this->reading_direction;
+	return this->description->getFont()->getTextFormat()->getReadingDirection();
 }
 const DWRITE_TEXT_ALIGNMENT& TextComponent::getTextAlignment() const
 {
-	return this->text_alignment;
+	return this->description->getFont()->getTextFormat()->getTextAlignment();
 }
 const DWRITE_WORD_WRAPPING& TextComponent::getWordWrapping() const
 {
-	return this->text_wrapping;
+	return this->description->getFont()->getTextFormat()->getWordWrapping();
+}
+
+const Vector2D& TextComponent::getOriginOffset() const
+{
+	return this->description->getOriginOffset();
+}
+const Rect2D& TextComponent::getLayoutBox() const
+{
+	return this->description->getLayoutBox();
+}
+const Color& TextComponent::getColor() const
+{
+	return this->description->getColor();
+}
+TextDescription* TextComponent::getDescription() const
+{
+	return this->description;
 }
 
 const std::tstring& TextComponent::getText() const
 {
-	return this->text;
+	return this->description->getText();
 }
 Font* TextComponent::getFont() const
 {
-	return this->font;
+	return this->description->getFont();
 }
