@@ -33,6 +33,10 @@ class VisualizationManager;
 class Renderer;
 class DebugRenderer;
 
+class ApplicationSettings;
+class PhysicsSettings;
+class GameSettings;
+
 class ContactListener;
 class ContactFilter;
 class b2World;
@@ -53,16 +57,15 @@ public:
 	virtual bool initialize();
 	virtual bool postInitialize();
 	virtual void update();
+	void draw();
 	virtual bool shutdown();
 
 	virtual void setupInput(Input* input);
 
-	virtual void activate();
-	virtual void deactive();
-
 	void setDebugRenderingType(DebugRenderingType type);
 
-	b2World* getPhyxWorld();
+	b2World* getPhyxWorld() const;
+	SettingsData getSettings() const;
 
 	void addGameObject(GameObject* object);
 
@@ -74,6 +77,8 @@ public:
 	void getVisualizations(std::vector<Visualization*>& visualizations) const;
 
 	void addManager(AbstractManager* manager);
+	void removeManager(AbstractManager* manager);
+
 	template<typename T>
 	T* getManager() const;
 
@@ -82,8 +87,6 @@ protected:
 
 private:
 	void setupPyhx();
-
-	void triggerRender();
 
 	b2World* phyx_world;
 
@@ -97,6 +100,10 @@ private:
 
 	GameObjectManager* game_object_manager;
 	TimerManager* timer_manager;
+
+	ApplicationSettings* app_settings;
+	PhysicsSettings* physics_settings;
+	GameSettings* game_settings;
 
 	std::vector<AbstractManager*> vec_managers;
 };
