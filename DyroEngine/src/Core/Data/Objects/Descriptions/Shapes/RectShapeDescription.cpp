@@ -58,3 +58,12 @@ const Rect2D& RectShapeDescription::getRect() const
 {
 	return this->rect;
 }
+
+float RectShapeDescription::getWidth() const
+{
+	return (float)this->rect.getWidth();
+}
+float RectShapeDescription::getHeight() const
+{
+	return (float)this->rect.getHeight();
+}

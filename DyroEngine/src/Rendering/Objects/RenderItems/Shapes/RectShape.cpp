@@ -38,11 +38,11 @@ void RectShape::render(Renderer* renderer)
 
 float RectShape::getWidth() const
 {
-	return (float)getRectShapeDescription()->getRect().getWidth();
+	return this->description->getWidth();
 }
 float RectShape::getHeight() const
 {
-	return (float)getRectShapeDescription()->getRect().getHeight();
+	return this->description->getHeight();
 }
 
 RectShapeDescription* RectShape::getRectShapeDescription() const

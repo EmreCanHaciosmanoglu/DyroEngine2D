@@ -28,6 +28,9 @@ public:
 	void setRect(const Rect2D& rect);
 	const Rect2D& getRect() const;
 
+	virtual float getWidth() const;
+	virtual float getHeight() const;
+
 private:
 	Rect2D rect;
 };
