@@ -12,7 +12,7 @@ Texture::~Texture()
 
 void Texture::render(Renderer* renderer)
 {
-	renderer->drawBitmap(getImage(), getImage()->getOpacity());
+	renderer->drawBitmap(getImage());
 }
 
 bool Texture::isTransparant() const
