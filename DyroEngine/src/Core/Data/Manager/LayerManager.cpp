@@ -1,4 +1,7 @@
 #include "Core\Data\Manager\LayerManager.h"
+#include "Core\Data\Objects\Layer.h"
+
+#include "Core\Defines\renderlayers.h"
 
 #include <algorithm>
 
@@ -9,6 +12,11 @@ LayerManager::~LayerManager()
 
 bool LayerManager::initialize()
 {
+	addLayer(new Layer(layers::DEFAULT_LAYER, _T("Default")));
+	addLayer(new Layer(layers::UI_LAYER, _T("UI")));
+	addLayer(new Layer(layers::DEBUG_LAYER, _T("Debug")));
+	addLayer(new Layer(layers::BACKGROUND_LAYER, _T("Background")));
+
 	return true;
 }
 bool LayerManager::shutdown()
