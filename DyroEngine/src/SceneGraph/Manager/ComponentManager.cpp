@@ -36,6 +36,7 @@ bool ComponentManager::initialize()
 
 		if (!c->initialize())
 			return false;
+		c->setInitialized(true);
 	}
 
 	return true;
@@ -49,6 +50,7 @@ bool ComponentManager::postInitialize()
 
 		if (!pair.second->postInitialize())
 			return false;
+		pair.second->setPostInitialized(true);
 	}
 
 	return true;
