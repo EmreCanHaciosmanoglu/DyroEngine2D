@@ -68,3 +68,12 @@ const Vector2D& LineShapeDescription::getEndPosition() const
 {
 	return this->v2;
 }
+
+float LineShapeDescription::getWidth() const
+{
+	return (this->v2 - this->v1).Length();
+}
+float LineShapeDescription::getHeight() const
+{
+	return getLineWidth() == 0.0f ? 1.0f : getLineWidth();
+}

@@ -27,6 +27,9 @@ public:
 	const Vector2D& getStartPosition() const;
 	const Vector2D& getEndPosition() const;
 
+	virtual float getWidth() const;
+	virtual float getHeight() const;
+
 private:
 	Vector2D v1;
 	Vector2D v2;

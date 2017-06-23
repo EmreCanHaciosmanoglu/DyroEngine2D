@@ -33,11 +33,11 @@ void LineShape::render(Renderer* renderer)
 
 float LineShape::getWidth() const
 {
-	return getLineShapeDescription()->getEndPosition().x - getLineShapeDescription()->getEndPosition().x;
+	return this->description->getWidth();
 }
 float LineShape::getHeight() const
 {
-	return getLineShapeDescription()->getEndPosition().y - getLineShapeDescription()->getEndPosition().y;
+	return this->description->getHeight();
 }
 
 LineShapeDescription* LineShape::getLineShapeDescription() const
