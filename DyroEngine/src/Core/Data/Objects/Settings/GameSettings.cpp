@@ -12,6 +12,16 @@ GameSettings::~GameSettings()
 {
 }
 
+GameSettings& GameSettings::operator=(const GameSettings& ref)
+{
+	this->default_scene_name = ref.default_scene_name;
+	this->background_color = ref.background_color;
+
+	Settings::operator=(ref);
+
+	return (*this);
+}
+
 void GameSettings::setDefaultSceneName(const std::tstring& name)
 {
 	this->default_scene_name = name;

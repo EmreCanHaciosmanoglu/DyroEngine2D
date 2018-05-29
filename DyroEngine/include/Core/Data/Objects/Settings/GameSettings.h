@@ -16,6 +16,8 @@ public:
 	GameSettings(const std::tstring& filePath);
 	virtual ~GameSettings();
 
+	GameSettings& operator=(const GameSettings& ref);
+
 	void setDefaultSceneName(const std::tstring& name);
 	const std::tstring& getDefaultSceneName() const;
 	void setBackgroundColor(const Color& color);

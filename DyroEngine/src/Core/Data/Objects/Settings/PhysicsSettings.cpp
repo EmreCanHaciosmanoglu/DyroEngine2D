@@ -14,6 +14,16 @@ PhysicsSettings::~PhysicsSettings()
 {
 }
 
+PhysicsSettings& PhysicsSettings::operator=(const PhysicsSettings& ref)
+{
+	this->gravity = ref.gravity;
+	this->velocity_interpolation = ref.velocity_interpolation;
+	this->position_interpolation = ref.position_interpolation;
+	this->phyx_time_step = ref.phyx_time_step;
+
+	return (*this);
+}
+
 void PhysicsSettings::setGravity(const Vector2D& gravity)
 {
 	this->gravity = gravity;

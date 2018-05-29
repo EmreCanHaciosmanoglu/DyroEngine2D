@@ -20,6 +20,20 @@ ApplicationSettings::~ApplicationSettings()
 {
 }
 
+ApplicationSettings& ApplicationSettings::operator=(const ApplicationSettings& ref)
+{
+	this->window_width = ref.window_width;
+	this->window_height = ref.window_height;
+	this->window_bits_per_pixel = ref.window_bits_per_pixel;
+	this->fullscreen = ref.fullscreen;
+	this->window_title = ref.window_title;
+	this->content_root_path = ref.content_root_path;
+
+	Settings::operator=(ref);
+
+	return (*this);
+}
+
 void ApplicationSettings::setWindowWidth(int width)
 {
 	this->window_width = width;

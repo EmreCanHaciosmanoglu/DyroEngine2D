@@ -16,6 +16,8 @@ public:
 	PhysicsSettings(const std::tstring& filePath);
 	virtual ~PhysicsSettings();
 
+	PhysicsSettings& operator=(const PhysicsSettings& ref);
+
 	void setGravity(const Vector2D& gravity);
 	const Vector2D& getGravity();
 

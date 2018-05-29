@@ -18,6 +18,14 @@ Settings::~Settings()
 {
 }
 
+Settings& Settings::operator=(const Settings& ref)
+{
+	this->file_path = ref.file_path;
+	this->settings_type = ref.settings_type;
+
+	return (*this);
+}
+
 bool Settings::loadSettings()
 {
 	return loadFile(this->file_path);

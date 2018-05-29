@@ -13,6 +13,8 @@ public:
 	Settings(const std::tstring& filePath, SettingsType type);
 	virtual ~Settings();
 
+	Settings& operator=(const Settings& ref);
+
 	virtual bool loadSettings();
 	SettingsType getSettingsType() const;
 
@@ -23,7 +25,7 @@ protected:
 private:
 	bool loadFile(const std::tstring& filePath);
 
-	const std::tstring file_path;
+	std::tstring file_path;
 	SettingsType settings_type;
 };
 

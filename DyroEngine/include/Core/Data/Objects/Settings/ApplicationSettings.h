@@ -13,6 +13,8 @@ public:
 	ApplicationSettings(const std::tstring& filePath);
 	virtual ~ApplicationSettings();
 
+	ApplicationSettings& operator=(const ApplicationSettings& ref);
+
 	void setWindowWidth(int width);
 	int getWindowWidth() const;
 	void setWindowHeight(int height);
